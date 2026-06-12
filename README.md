@@ -18,8 +18,6 @@ Raspberry Pi, ROS2, Home Assistant, and 3D-printing communities. It uses an
 affordable 2D LiDAR to map your home and navigate on its own. Local, no
 cloud required for regular functionality, no vendor lock-in.
 
-*(The name is a rotational ambigram - it reads the same flipped 180°, like the robot itself, roaming your floor in every direction.)*
-
 Reference design images - this is approximately how the finished design will look:
 
 ![Reference robot vacuum cleaner top](./assets/vacuum_model_top.webp)
@@ -66,12 +64,6 @@ Open Source Deliverables:
 Full build docs and a complete BOM are on the way, with the goal that you can
 source every part yourself.
 
-## Full disclosure:
-
-if you'd rather skip the parts hunt, a kit (motors, PCB, brushes, gaskets, LiDAR) will be available at [makerspet.com](https://makerspet.com), from the same maker behind this project. The kit is a convenience, never a requirement. **Everything here stays open.**
-
-When we get to apps, [remake.ai](https://remake.ai) will be providing its robot app store and apps platform. Using the app store will be optional. The vacuum will **always support cloud-free, local operation for regular functionality out-of-the-box**. 
-
 ## Contributing
 
 oomwoo is organized to built by the community, massively **in parallel**.
@@ -106,6 +98,16 @@ The best solution for each module surfaces for over time, with the project maste
 - Reddit: build-in-public home at [r/ArduinoAndRobotics](https://www.reddit.com/r/ArduinoAndRobotics/)
 - YouTube: [build-in-public channel](https://www.youtube.com/@makerspet)
 - X: [@0OMWO0](https://x.com/@0OMWO0)
+
+## Full disclosure
+
+if you'd rather skip the parts hunt, a kit (motors, PCB, brushes, gaskets, LiDAR) will be available at [makerspet.com](https://makerspet.com), from the same maker behind this project. The kit is a convenience, never a requirement. **Everything here stays open.**
+
+When we get to apps, [remake.ai](https://remake.ai) will be providing its robot apps platform and app store. Using the app store will be entirely optional. The vacuum will **always support cloud-free, local operation for regular functionality out-of-the-box**. 
+
+## About
+
+The project name "oomwoo" is a rotational ambigram - it reads the same flipped 180°, like the robot itself, roaming your floor in every direction.
 
 ## License
 
