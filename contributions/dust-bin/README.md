@@ -15,7 +15,7 @@ The dust bin lock is spring loaded with a retractable latch on top. The dust bin
 
 # Request for Contribution - Instructions
 
-- review the [teardown master assembly](https://github.com/makerspet/oomwoo/new/main/contributions)
+- review the [teardown master assembly](https://github.com/remakeai/vacuum_cleaner_teardown/blob/main/step/MASTER-ASSM.stp)
 - start with the [teardown dust bin module reference](https://github.com/remakeai/vacuum_cleaner_teardown/blob/main/step/U01.stp)
   - post in [Project Discussions](https://github.com/makerspet/oomwoo/discussions?discussions_q=) to let everyone know you're working on it
   - post your progress as well
