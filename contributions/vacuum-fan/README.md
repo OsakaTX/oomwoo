@@ -49,10 +49,10 @@ The assembly consists of
 (*) if you have a strong reason to change the part's interface, material or something else of that sort,
 please post your raionale in [discussions](https://github.com/makerspet/oomwoo/discussions?discussions_q=).
 
-Teardown reference showing the vacuum fan assembly
+### Teardown reference showing the vacuum fan assembly
 ![Teardown internals photo](https://github.com/remakeai/vacuum_cleaner_teardown/blob/main/assets/vacuum_top_removed.webp)
 
-Teardown reference blower fan
+### Teardown reference blower fan
 ![Reference blower fan](https://github.com/remakeai/vacuum_cleaner_teardown/blob/main/assets/blower_fan.webp)
 
 ## Acceptance criteria
