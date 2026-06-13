@@ -4,12 +4,6 @@ This is a removable dust bin that collects dust, contains an air filter and rece
 
 The dust bin lock is spring loaded with a retractable latch on top. The dust bin inlet mates with a gasket.
 
-# Important References
-- [Teardown dust bin module reference](https://github.com/remakeai/vacuum_cleaner_teardown/blob/main/step/U01.stp)
-- [Teardown master assembly](https://github.com/remakeai/vacuum_cleaner_teardown/blob/main/step/MASTER-ASSM.stp)
-- [Project discussions](https://github.com/makerspet/oomwoo/discussions?discussions_q=)
-- [Discord server](https://discord.gg/3y2JKz5T25)
-
 ### Assembled vacuum, no top - back
 ![Teardown reference vacuum - no top, back](../../assets/vacuum-no-top-back.webp)
 
