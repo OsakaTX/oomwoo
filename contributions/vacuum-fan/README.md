@@ -22,11 +22,13 @@ The assembly consists of
 - find a high-speed blower motor and impeller
   - make sure it is easy-to-source, affordable
   - make sure it fits the teardown reference vacuum
+  - target 8kpa suction or better
   - the reference vacuum uses szebo.com EBO Innovation EBO-A65126 that runs DC 8.4V 1.4A, DC 12.6V 2.2A
   - if you cannot find a suitable off-the-shelf high-speed fan, try designing and 3D printing one
 - pick blower housing material thickness to ensure sturdiness without excess weight
 - redesign the housing the fan you've selected
   - make sure your redesigned assembly mates with the dust bin and the vacuum frame
+  - simulate suction if you can
   - try finding an off-the-shelf gasket
   - if an off-the-shelf gasket is unavailable, review [this post](https://makerspet.com/blog/3d-printable-omni-wheel/) for alternatives
   - consider printing one using TPU
@@ -34,6 +36,8 @@ The assembly consists of
   - assume PETG
   - make the part easy to 3D print - ideally no supports - and reproduced reliably
   - make the sliced part fit a 20cm by 25cm, 20 cm height. Split the part if necessary.
+  - make sure there is no excessive shaking, vibration
+  - make sure the suction is strong
 - test it well
   - 3D print it, assemble it, make sure it works, mates with the rest of the design
 - submit a PR (pull request) to `contributions/vacuum-fan/<your-github-username>/`
@@ -62,6 +66,9 @@ Objective, measurable. Examples:
 - Easy to source, affordable
 - Performs its function
   - no air leaks
+  - reasonably quiet
+  - does bot shake, vibrate
+  - strong suction, target 8kpa
 - Reasonable mass, size, cost budget
 - Documented and reliably reproducible by someone else
 - TBD, expect criteria to evolve
