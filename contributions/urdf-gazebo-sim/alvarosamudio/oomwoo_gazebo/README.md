@@ -59,10 +59,11 @@ ros2 launch oomwoo_gazebo sim.launch.py world:=/path/to/kitchen.sdf
 ros2 launch oomwoo_gazebo teleop.launch.py
 ```
 
-> **Note:** The LiDAR sensor (`gpu_lidar`) requires hardware GPU for range data.
-> In headless environments without GPU (e.g., Docker on macOS), the scan topic
-> is created but no data is published. For full SLAM/Nav2 testing, run with a
-> display or GPU-accelerated VM.
+> **Note:** The LiDAR uses `type="lidar"` (CpuLidar) — physics-based raycasting
+> that requires **no GPU**. It uses the `gz-sim-cpu-lidar-system` plugin with
+> DART physics + Bullet collision detector. This requires building the Gazebo
+> libraries from source with CpuLidar support (PRs merged May 2026).
+> See [Build Requirements](#build-requirements) below.
 
 ## Bumper
 
@@ -114,7 +115,34 @@ velocity smoother, collision monitor, docking server, waypoint follower, and rou
 | `multi_room.sdf`  | Connected rooms with doorways  |
 | `narrow_passage.sdf` | Corridor with bottleneck    |
 
-## Fixes Applied During Testing
+## Build Requirements
+
+The CpuLidar sensor requires Gazebo libraries built from source with the latest
+CpuLidar support:
+
+```bash
+# Clone Gazebo sources
+mkdir -p /gz_ws/src && cd /gz_ws
+vcs import src < collection-harmonic.yaml
+
+# Apply CpuLidar patches (already in main branch since May 2026)
+# gz-sensors: PR #593 — CpuLidarSensor
+# gz-sim:     PR #3343 — CpuLidar system plugin
+# gz-physics: PR #880 — Raycast support
+
+# Build
+colcon build --merge-install --packages-up-to gz-sim
+source install/setup.bash
+```
+
+If you cannot build from source, use the **software rendering workaround** instead:
+```bash
+export MESA_GL_VERSION_OVERRIDE=3.3
+export LIBGL_ALWAYS_SOFTWARE=1
+gz sim -s -r --headless-rendering <world.sdf>
+```
+
+## Fixes Applied
 
 | Issue | Fix |
 |-------|-----|
@@ -125,11 +153,15 @@ velocity smoother, collision monitor, docking server, waypoint follower, and rou
 | `docking_server` needed charging dock plugins | Added `docking_server` section with `SimpleChargingDock` |
 | SDF `box size="..."` attribute syntax deprecated | Changed to nested `<box><size>...</size></box>` in all worlds |
 | `fuel.gazebosim.org` remote model references | Replaced with self-contained light + ground_plane models |
+| GPU LiDAR requires hardware GPU | Switched to `type="lidar"` (CpuLidar) with physics raycasting |
+| Bumper bridge `Contact` → `Contacts` type mismatch | Fixed ROS msg type in `gz_bridge.yaml` |
+| SDF 1.8 gravity deprecation warning | Moved `gravity` to `<world>` level in all SDFs |
 
 ## Dependencies
 
 - ROS2 Jazzy
-- Gazebo Harmonic (gz-sim8)
+- Gazebo Harmonic (gz-sim9, with CpuLidar support from main branch)
+- DART physics with Bullet collision detector
 - `nav2_bringup`, `slam_toolbox`, `ros_gz_sim`, `ros_gz_bridge`, `teleop_twist_keyboard`
 
 ## License

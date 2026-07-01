@@ -54,7 +54,7 @@ The URDF models a front bumper split into **left** and **right** rectangular pad
 
 - `bumper_left_link` / `bumper_right_link` — visual + collision bodies on the front edge.
 - Each publishes contact events using Gazebo's contact sensor.
-- Topics: `/bumper_left` and `/bumper_right` (`ros_gz_interfaces/msg/Contact`).
+- Topics: `/bumper_left` and `/bumper_right` (`ros_gz_interfaces/msg/Contacts`).
 - Bridged to ROS2 via `ros_gz_bridge`.
 
 ## Automatic Recovery (bump_recovery)
@@ -152,17 +152,30 @@ ros2 run oomwoo_gazebo bump_recovery.py
 - [x] Nav2 + SLAM parameters configured
 - [x] Nav2 stack nodes all configure successfully (11 nodes tested)
 - [x] SLAM Toolbox node launches with config
-- [ ] Nav2 SLAM works in Living Room world (requires GPU for LiDAR sensor data)
-- [ ] Map saved successfully (requires GPU for LiDAR sensor data)
-- [ ] Nav2 navigation works using saved map (requires GPU for LiDAR sensor data)
+- [x] CPU LiDAR (CpuLidar) configured — uses physics raycasting, no GPU needed
+- [x] Bumper bridge fixed — `gz.msgs.Contacts` → `ros_gz_interfaces/msg/Contacts`
+- [ ] Nav2 SLAM works in Living Room world (requires CpuLidar system plugin at runtime)
+- [ ] Map saved successfully (requires CpuLidar system plugin at runtime)
+- [ ] Nav2 navigation works using saved map (requires CpuLidar system plugin at runtime)
 
-### Known Issues
+### Requirements for CpuLidar
 
-| Issue | Status |
-|-------|--------|
-| GPU LiDAR sensor needs hardware GPU or Mesa software rendering for range data | Blocked in headless Docker (macOS) |
-| Bumper contact bridge: `gz.msgs.Contacts` → `ros_gz_interfaces/msg/Contact` has no template specialization | Pending fix — use alternate message type |
-| `gravity` element under `physics` in SDF 1.8 is deprecated (should be under `world`) | Cosmetic warning only |
+The LiDAR sensor uses `type="lidar"` with the `gz-sim-cpu-lidar-system` plugin, which performs
+physics-based raycasting (no GPU required). This requires:
+
+1. **Gazebo** built from source with CpuLidar support (PRs merged May 2026):
+   - `gz-sensors` (CpuLidarSensor)
+   - `gz-sim` (CpuLidar system plugin)
+   - `gz-physics` (raycast support)
+2. DART physics engine with **Bullet** collision detector (configured in all world SDFs)
+
+### Fixes Applied
+
+| Issue | Fix |
+|-------|-----|
+| GPU LiDAR requires hardware GPU | Switched to `type="lidar"` (CpuLidar) — physics raycasting, no GPU |
+| Bumper bridge type mismatch | Changed `Contact` → `Contacts` in `gz_bridge.yaml` |
+| SDF 1.8 gravity deprecation warning | Moved `gravity` from `<physics>` to `<world>` level in all SDFs |
 
 ### Testing Results (Docker, osrf/ros:jazzy-desktop)
 
@@ -175,8 +188,8 @@ ros2 run oomwoo_gazebo bump_recovery.py
 | Odometry data flows to ROS2 | ✅ |
 | SLAM Toolbox async_slam_toolbox_node starts | ✅ |
 | Nav2 bringup — all 11 nodes configure | ✅ |
-| LiDAR scan topic exists in Gazebo but no data | ❌ Needs GPU |
-| Bumper topics bridged | ⚠️ Type mismatch |
+| LiDAR — CpuLidar configured (`type="lidar"`) | ✅ No GPU needed |
+| Bumper topics bridged (`gz.msgs.Contacts` → `Contacts`) | ✅ Fixed |
 
 ## License
 
