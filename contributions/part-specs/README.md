@@ -57,7 +57,8 @@ background needed — a multimeter, patience, and (for reverse-engineering) an o
 
 If a spec isn't published, reverse-engineer it by opening an existing vacuum and probing.
 **Safety first:**
-- Opening a vacuum **voids the warranty** and **can damage it** — accept that risk knowingly.
+- Don't do it unless you're qualified, experienced
+- Opening a vacuum usually **voids the warranty** and **can damage it** — accept that risk knowingly.
 - **Secure / prop up the vacuum** so it can't scoot off the table or bench when the wheels or
   fan spin during testing (clamp it, or raise the wheels off the surface).
 - Respect the **Li-ion battery** — don't short, pierce, or stress the pack; disconnect where sensible.
@@ -69,18 +70,19 @@ If a spec isn't published, reverse-engineer it by opening an existing vacuum and
 ## Submit
 
 A PR to `contributions/part-specs/<your-github-username>/<part>/`:
-- a **spec sheet** (markdown table) with everything you found
-- any **datasheets** (PDF) and source links
-- **photos** of connectors + labelled pinouts
-- **waveform** captures where reverse-engineered
-- exact **provenance** — which vendor / model / revision the data is from
+- a spec sheet (markdown table) with everything you found
+- any datasheets (PDF) and source links
+- photos of connectors + labelled pinouts
+- waveform captures where reverse-engineered
+- provenance — which vendor / model / revision the data is from
 - announce it in [Project Discussions](https://github.com/makerspet/oomwoo/discussions?discussions_q=)
 
 ## Acceptance criteria
 
-- A complete, **sourced** spec sheet for a part (or a clearly-scoped subset)
-- Datasheets / links where found; pinouts + waveforms where reverse-engineered
-- **Provenance** stated (exact part / vendor / revision)
+- Spec sheet for a part (or a clearly-scoped subset)
+- Datasheets / links where found
+  - pinouts + waveforms where reverse-engineered when appropriate
+- Provenance stated (part / vendor / revision)
 - Verifiable by someone else with the same part
 - TBD, expect criteria to evolve
 
