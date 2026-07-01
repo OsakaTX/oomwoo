@@ -7,6 +7,11 @@ hardware**. This is the **single home for live validation** across all behaviors
 so the many sim contributors aren't blocked on hardware and the bring-up / bridge
 cost is paid once.
 
+> **Note:** the Proscenic / 3irobotix CRL-200S here is an **interim real-hardware test mule**
+> for the ROS2 software stack — it is **not** the oomwoo hardware design (which is built from
+> sourced Roborock/Dreame/Xiaomi parts). This RFC eventually re-runs the same tests on real
+> oomwoo hardware.
+
 > **Status — blocked by the behavior RFCs and by real hardware.**
 > This re-runs the simulated behaviors ([clean-and-map](../clean-and-map), [nav-localize](../nav-localize),
 > [dock-cycle](../dock-cycle), [recovery-safety](../recovery-safety), [floor-care](../floor-care),

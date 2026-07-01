@@ -95,10 +95,11 @@ Follow us building in public:
 ## How the RFCs fit together
 
 The modules can be worked on **in parallel**, but some build on others. An arrow
-**A → B means "B builds on A"** — green modules have no dependencies and are ready
-now; amber modules are unblocked once their parents land; the blue one needs real
-hardware. The mechanical modules (`dust-bin`, `vacuum-fan`) have no software
-dependency and can start anytime.
+**A → B means "B builds on A"** — green modules are ready now; amber modules are
+unblocked once their parents land; the blue one needs real hardware; grey modules are
+**on hold**. `source-3d-models` and `part-specs` are ready now; the mechanical **design**
+modules (`dust-bin`, `vacuum-fan`) are on hold pending sourced parts + a 3D
+reference-design sketch.
 
 ```mermaid
 flowchart TD
@@ -116,6 +117,7 @@ flowchart TD
     DB["dust-bin"]
     VF["vacuum-fan"]
     SM["source-3d-models"]
+    SP["part-specs"]
 
     URDF --> CM
     URDF --> RS
@@ -135,9 +137,11 @@ flowchart TD
     classDef ready fill:#d4edda,stroke:#28a745,color:#155724;
     classDef blocked fill:#fff3cd,stroke:#ffc107,color:#856404;
     classDef hw fill:#cfe2ff,stroke:#0d6efd,color:#084298;
-    class URDF,DB,VF,SM ready;
+    classDef onhold fill:#e2e3e5,stroke:#6c757d,color:#383d41;
+    class URDF,SM,SP ready;
     class CM,NL,DC,RS,FC,CJ blocked;
     class LR hw;
+    class DB,VF onhold;
 ```
 
 > A standalone image of this graph (with a legend) lives at
@@ -157,9 +161,10 @@ flowchart TD
 | Floor-surface handling & edge cleaning | [floor-care](./contributions/floor-care) | Blocked by urdf-gazebo-sim, clean-and-map | Wall/edge following, carpet vs hardwood, mop lift/lower |
 | Cleaning modes, zones & job orchestration | [cleaning-jobs](./contributions/cleaning-jobs) | Blocked by urdf-gazebo-sim + behaviors | Modes (regular/spot), virtual walls, room segmentation, job splitting + resume |
 | Live robot bring-up & validation | [live-robot-bringup](./contributions/live-robot-bringup) | Blocked by behaviors + needs hardware | Connect real vacuum to ROS2, re-run sim tests on hardware |
-| Dust bin 3D design | [dust-bin](./contributions/dust-bin) | Ready to start work | Design, 3D print, test dust bin |
-| Vacuum fan / blower assembly | [vacuum-fan](./contributions/vacuum-fan) | Ready to start work | Source blower motor + impeller, design volute housing + gasket |
+| Dust bin 3D design | [dust-bin](./contributions/dust-bin) | ⛔ On hold | Design/print/test dust bin — waits on sourced parts + 3D design |
+| Vacuum fan / blower assembly | [vacuum-fan](./contributions/vacuum-fan) | ⛔ On hold | Fans already sourced (see BOM); volute/gasket design waits on the 3D design |
 | Source 3D models (STEP) for BOM parts | [source-3d-models](./contributions/source-3d-models) | Ready to start work | Obtain / measure / model STEP files of off-the-shelf parts (wheels, fans, caster…) so mounts fit |
+| Procure part specs & datasheets | [part-specs](./contributions/part-specs) | Ready to start work | Find/measure/reverse-engineer specs (pinouts, encoder PPR, torque, how to drive fans…) for sourced parts |
 
 > The full granular module list lives in [docs/RFC_MASTER_LIST.md](docs/RFC_MASTER_LIST.md).
 

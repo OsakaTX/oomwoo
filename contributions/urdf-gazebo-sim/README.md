@@ -3,21 +3,21 @@
 URDF (robot definition file) - a simplified URDF with Gazebo simulation,
 including a front bumper.
 
-### Assembled vacuum, no top - back
-![Teardown reference vacuum - no dock, front](../../assets/vacuum-no-dock-front.webp)
+> **Design basis:** model a *representative* round LiDAR vacuum with approximate dimensions.
+> The old teardown reference vacuum is no longer used, and exact geometry will come later from
+> the 3D design — nav/SLAM doesn't need exact geometry, so this module can proceed now.
 
 # Request for Contribution - Instructions
 
-- review the [teardown master assembly](https://github.com/remakeai/vacuum_cleaner_teardown/blob/main/step/MASTER-ASSM.stp)
-  - measure the robot's outer dimensions, track distance, wheels outer diameter, wheels coordinates, LiDAR coordinates and orientation and so on
+- use **representative** dimensions for a round LiDAR vacuum (e.g. ~340 mm diameter, ~95 mm tall, LiDAR turret centered on top, differential drive + caster). Refine later when the 3D design lands — nav/SLAM doesn't need exact geometry.
 - review the [template ROS2 package](https://github.com/makerspet/oomwoo_urdf)
   - I've cloned the template package
   - this package has been tested, should be reused to minimize development
-  - modify URDF to match the reference vacuum cleaner
+  - model a representative round diff-drive vacuum (approximate dimensions; not the old teardown reference)
 - add a **bumper** to the URDF and simulate it in Gazebo
   - model the conventional **front semi-circular bumper** with **left and right bumper switches**
   - use a Gazebo contact/bumper sensor to publish contact events to ROS2, distinguishing **left vs right** contact
-  - keep the bumper geometry and mount consistent with the teardown reference
+  - use a conventional front semicircular bumper (representative geometry)
 - review, reproduce [Gazebo Simulation Instructions](https://makerspet.com/blog/tutorial-map-navigate-ros2-robot-in-simulation/)
   - review [development environment setup instructions](https://makerspet.com/blog/build-arduino-self-driving-robot-video-instructions/)
   - use this [oomwoo ROS2 development](https://github.com/makerspet/oomwoo-install) to build oomwoo ROS2 Docker image(s) with your packages
@@ -34,7 +34,7 @@ including a front bumper.
 ## Acceptance criteria
 
 Objective, measurable. Examples:
-- URDF matches the teardown reference design
+- URDF is a plausible round vacuum with representative/approximate dimensions
 - Gazebo simulation works
   - Nav2 SLAM works reliably in the Living Room world
   - map gets saved successfully

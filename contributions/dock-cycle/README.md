@@ -17,7 +17,7 @@ hardware in the [live-robot-bringup RFC](../live-robot-bringup).
 - [nav-localize RFC](../nav-localize) — localization + Nav2; the find-the-dock fallback is invoked when its relocalization fails.
 - [clean-and-map RFC](../clean-and-map) and [cleaning-jobs RFC](../cleaning-jobs) — trigger return-to-dock for recharge / auto-empty / mop-wash mid-job.
 - [urdf-gazebo-sim RFC](../urdf-gazebo-sim) — robot URDF and Gazebo world(s) to model the dock in.
-- [remakeai reference vacuum teardown](https://github.com/remakeai/vacuum-cleaner-teardown) — a consumer LiDAR vacuum with a **basic dock and stationary mop**; keep the dock model consistent with it.
+- Model a **generic basic charging dock** (charge contacts + a detectable marker). Exact dock geometry is TBD — the old teardown reference vacuum is no longer used.
 - [oomwoo ROS2 development](https://github.com/makerspet/oomwoo-install) — build oomwoo ROS2 Docker image(s) with your packages.
 - Nav2 docking (`opennav_docking`) is a good starting point for precise approach.
 - [Project discussions](https://github.com/makerspet/oomwoo/discussions?discussions_q=)
@@ -28,7 +28,7 @@ hardware in the [live-robot-bringup RFC](../live-robot-bringup).
 - model the dock in Gazebo
   - add charge contacts and a **detectable marker** for the final approach (IR beacon, fiducial/AprilTag, or a reflective-intensity pattern the LiDAR can see)
   - model a **battery** (drain during cleaning, charge curve while docked) so low-battery behavior can be tested
-  - keep the dock geometry consistent with the [teardown reference dock](https://github.com/remakeai/vacuum-cleaner-teardown)
+  - model a **generic basic dock** (contacts + a detectable marker); exact geometry TBD
   - post in [Project Discussions](https://github.com/makerspet/oomwoo/discussions?discussions_q=) to let everyone know you're working on it, and post your progress
 - undocking
   - safely back / drive out of the dock to a known start pose, then hand off to cleaning

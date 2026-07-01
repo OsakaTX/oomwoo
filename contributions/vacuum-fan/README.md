@@ -1,87 +1,49 @@
 # Blower Fan Assembly (mechanical module)
 
-The vacuum fan assembly provides air suction to the main brush and streams air into the dust bin.
+> ⛔ **On hold.** Fan options are **already sourced** — see the suction-fan rows in
+> [BOM.md](../../BOM.md) (multiple Pa/price options: Dreame, Nidec, Roborock-family blowers).
+> The project has also moved **away from the old teardown reference vacuum** (its parts are
+> hard to source vs. big names like Roborock/Dreame/Xiaomi). This module resumes once enough
+> components are sourced and a **3D reference design with the key parts** is sketched, so the
+> housing can be designed to fit real parts.
+>
+> **Useful upstream work now:** model the sourced fans in
+> [source-3d-models](../source-3d-models), and gather fan specs / how to drive them in
+> [part-specs](../part-specs). Those unblock this design.
 
-The assembly consists of
-- a high-speed blower motor and impeller
-- a blower housing (volute)
+The vacuum fan assembly provides air suction to the main brush and streams air into the dust bin.
+It consists of:
+- a high-speed **BLDC blower motor + impeller** (already sourced — see BOM)
+- a blower housing (volute) — to be designed
 - a blower exhaust gasket
-- blower housing rubber pins
+- blower housing rubber mounts
 
 > **Design research note:** real-world cleaning does **not** track raw suction (Pa) —
 > mid-range sealed motors match flagships. Prioritise a **well-sealed** airflow path
 > (no leaks at the bin / fan / brush seams) and a good brush over chasing maximum Pa.
 > See [design research](../../README.md#design-research).
 
-### Assembled vacuum, no top - back
-![Teardown reference vacuum - no top, vacuum fan](https://github.com/makerspet/oomwoo/blob/main/assets/vacuum-no-top-vacuum-fan.webp)
+# Request for Contribution — Instructions (resumes when off hold)
 
-# Request for Contribution - Instructions
+When this reopens, the task is to design a **3D-printable volute housing + gasket around a
+sourced BLDC blower** (chosen from the [BOM](../../BOM.md)) that mates cleanly with the dust
+bin and the chassis. Design goals:
+- 3D-printable (assume PETG); ideally no supports; reliably reproducible
+- sliced part fits ~20 × 25 cm, 20 cm height (split if needed)
+- **well-sealed** airflow path (no leaks); mates with the dust bin + chassis
+- low vibration; secure motor mounting
+- gasket: find an off-the-shelf one, else print TPU
+- submit STEP + native CAD + 3MF/STL + a sub-component BoM + docs/photos/video to
+  `contributions/vacuum-fan/<your-github-username>/`
 
-- review the [teardown master assembly](https://github.com/remakeai/vacuum_cleaner_teardown/blob/main/step/MASTER-ASSM.stp)
-- review the [teardown internals photo](https://github.com/remakeai/vacuum_cleaner_teardown/blob/main/assets/vacuum_top_removed.webp)
-- review the [teardown photos of the dust bin](https://github.com/remakeai/vacuum_cleaner_teardown/tree/main/assets/dust_bin)
-- review the [reference blower fan](https://github.com/remakeai/vacuum_cleaner_teardown/blob/main/assets/blower_fan.webp)
-- start with the [teardown vacuum fan module reference](https://github.com/remakeai/vacuum_cleaner_teardown/blob/main/step/M04.stp)
-  - post in [Project Discussions](https://github.com/makerspet/oomwoo/discussions?discussions_q=) to let everyone know you're working on it
-  - post your progress as well
-- find a high-speed blower motor and impeller
-  - make sure it is easy-to-source, affordable
-  - make sure it fits the teardown reference vacuum
-  - target 8kpa suction or better
-  - the reference vacuum uses szebo.com EBO Innovation EBO-A65126 that runs DC 8.4V 1.4A, DC 12.6V 2.2A
-  - if you cannot find a suitable off-the-shelf high-speed fan, try designing and 3D printing one
-- pick blower housing material thickness to ensure sturdiness without excess weight
-- redesign the housing the fan you've selected
-  - make sure your redesigned assembly mates with the dust bin and the vacuum frame
-  - simulate suction if you can
-  - try finding an off-the-shelf gasket
-  - if an off-the-shelf gasket is unavailable, review [this post](https://makerspet.com/blog/3d-printable-omni-wheel/) for alternatives
-  - consider printing one using TPU
-- make your design 3D printable
-  - assume PETG
-  - make the part easy to 3D print - ideally no supports - and reproduced reliably
-  - make the sliced part fit a 20cm by 25cm, 20 cm height. Split the part if necessary.
-  - make sure there is no excessive shaking, vibration
-  - make sure the suction is strong
-- test it well
-  - 3D print it, assemble it, make sure it works, mates with the rest of the design
-- submit a PR (pull request) to `contributions/vacuum-fan/<your-github-username>/`
-  - design: 3D STEP files, 3D CAD source files (Fusion 360, Solidworks, etc.) and 3MF/STL files
-  - make sure to submit the master STEP assembly file
-  - submit BoM of all sub-components
-  - instructions, documentation - how to use, assemble, 3D print, troubleshoot, test results
-  - photos, videos
-  - announce your submission in [Project Discussions](https://github.com/makerspet/oomwoo/discussions?discussions_q=)
-- iterate with review
-- TBD, expect the RFC to evolve
+## Acceptance criteria (when it resumes)
 
-(*) if you have a strong reason to change the part's interface, material or something else of that sort,
-please post your raionale in [discussions](https://github.com/makerspet/oomwoo/discussions?discussions_q=).
-
-### Teardown reference showing the vacuum fan assembly
-![Teardown internals photo](https://github.com/remakeai/vacuum_cleaner_teardown/blob/main/assets/vacuum_top_removed.webp)
-
-### Teardown reference blower fan
-![Reference blower fan](https://github.com/remakeai/vacuum_cleaner_teardown/blob/main/assets/blower_fan.webp)
-
-### Inner frame from top — dust bin and vacuum fan (top cover and LiDAR removed)
-![Teardown inner frame from top](https://github.com/remakeai/vacuum_cleaner_teardown/blob/main/assets/inner_frame_top.webp?raw=true)
-
-## Acceptance criteria
-
-Objective, measurable. Examples:
-- Fits the reference chassis without modification to other modules
-- Easy to source, affordable
-- Performs its function
-  - no air leaks
-  - reasonably quiet
-  - does bot shake, vibrate
-  - strong suction, target 8kpa
-- Reasonable mass, size, cost budget
-- Documented and reliably reproducible by someone else
+- Fits the (forthcoming) chassis + dust-bin interfaces without forcing changes to other modules
+- Well-sealed, reasonably quiet, low-vibration, strong suction with the chosen sourced blower
+- 3D-printable and reliably reproducible by someone else
+- Documented; STEP + native CAD source provided
 - TBD, expect criteria to evolve
 
-The maintainer selects among compliant candidates using these criteria. Multiple
-attempts are welcome and useful even if not selected — modules are swappable, and
-a non-selected design is still a valid learning exercise and a fallback.
+The maintainer selects among compliant candidates using these criteria. Multiple attempts
+are welcome and useful even if not selected — modules are swappable, and a non-selected
+design is still a valid learning exercise and a fallback.
