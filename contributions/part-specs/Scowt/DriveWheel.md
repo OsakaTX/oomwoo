@@ -1,3 +1,7 @@
+> ⚠️ **Tentative — not yet confirmed on a physical PCB.** The pinout, cable length, and connector
+> below are educated guesses from photos and references. **Verify before wiring** — a wrong
+> motor/encoder pinout can damage hardware. Corrections welcome (open a PR or issue).
+
 ## Drive Wheel pinout and cable length: ##
   - Pinout:
     - pin 1: Limit switch, grey
@@ -18,3 +22,7 @@ https://electronics.stackexchange.com/questions/549640/how-to-find-pinout-of-dc-
 https://www.reddit.com/r/Roborock/comments/1t4akoj/new_wheel_for_roborock_s5v/
 (used google translate to determine wire colour)
 https://drive.google.com/file/d/1xLM9X-zjDowNAcrZBPqK-h6_eV-Fou7R/edit (disassembly of roborock vacuum; red and black wires clearly largest traces at 2:00, pin 1 marking also visible on connector)
+
+## Evidence
+
+![Roborock S4/S5 wheel module connector closeup](WM_V2_closeup.png)
