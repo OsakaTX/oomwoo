@@ -1,13 +1,13 @@
 # Localization & Navigation on a Known Map (ROS2 package)
 
 Once the [first clean](../clean-and-map) has produced a map, the robot must be able
-to **operate on that saved map**: localize itself, navigate to any goal with Nav2,
-recover its pose when it gets **lost** or is picked up and moved (the *kidnapped
-robot* problem), and **resume an unfinished map**. Because the physical robot isn't
-built yet, this is a **Gazebo simulation**; it is later re-validated on hardware in
+to *operate on that saved map*: localize itself, navigate to any goal with Nav2,
+recover its pose when it gets *lost* or is picked up and moved (the *kidnapped
+robot* problem), and *resume an unfinished map*. Because the physical robot isn't
+built yet, this is a *Gazebo simulation*; it is later re-validated on hardware in
 the [live-robot-bringup RFC](../live-robot-bringup).
 
-> **Status — blocked by [urdf-gazebo-sim](../urdf-gazebo-sim) and [clean-and-map](../clean-and-map).**
+> *Status — blocked by [urdf-gazebo-sim](../urdf-gazebo-sim) and [clean-and-map](../clean-and-map).*
 > This package runs on the simulated robot (URDF, world, bumper) from urdf-gazebo-sim
 > and consumes a map produced by clean-and-map, so it can't be *completed* until those
 > exist. You're welcome to start prototyping in parallel — just say so in the discussions.
@@ -27,20 +27,20 @@ the [live-robot-bringup RFC](../live-robot-bringup).
   - load a map saved by [clean-and-map](../clean-and-map) and bring up Nav2 + a localizer (AMCL or slam_toolbox localization mode) on the [urdf-gazebo-sim](../urdf-gazebo-sim) robot
   - post in [Project Discussions](https://github.com/makerspet/oomwoo/discussions?discussions_q=) to let everyone know you're working on it, and post your progress
 - localization on a known map
-  - **global initial localization at startup** without being given a pose (e.g. AMCL global init / scan-matching) — the robot figures out where it is on the saved map
+  - *global initial localization at startup* without being given a pose (e.g. AMCL global init / scan-matching) — the robot figures out where it is on the saved map
   - track pose reliably during navigation; expose a localization-confidence signal (covariance / scan-match score)
 - navigation
   - Nav2 navigate-to-pose and navigate-through-poses to arbitrary goals on the saved map
   - obey dynamic obstacles via the local costmap
 - lost / kidnapped recovery
-  - **detect** when localization confidence drops (low score, high covariance, or a detected pickup/kidnap)
-  - **relocalize**: rotate in place and/or drive to gather scans until the pose re-converges
-  - define a clear **"relocalized" success condition**, and what happens if it **fails** — hand off to the [dock-cycle](../dock-cycle) *find-the-dock-when-lost* fallback
+  - *detect* when localization confidence drops (low score, high covariance, or a detected pickup/kidnap)
+  - *relocalize*: rotate in place and/or drive to gather scans until the pose re-converges
+  - define a clear *"relocalized" success condition*, and what happens if it *fails* — hand off to the [dock-cycle](../dock-cycle) *find-the-dock-when-lost* fallback
 - resume an unfinished map
-  - load a **partial / serialized SLAM session** (e.g. slam_toolbox serialization) and **continue mapping where it left off**, merging newly seen areas into the existing map without corrupting it
+  - load a *partial / serialized SLAM session* (e.g. slam_toolbox serialization) and *continue mapping where it left off*, merging newly seen areas into the existing map without corrupting it
 - test it well
-  - start from **many initial poses**, including a wrong or unknown initial pose
-  - **kidnap** the robot mid-run (teleport it in sim) and verify it recovers
+  - start from *many initial poses*, including a wrong or unknown initial pose
+  - *kidnap* the robot mid-run (teleport it in sim) and verify it recovers
   - resume from several partial maps and verify the merged map is correct
 - regression tests (headless, CI-friendly)
   - relocalization success rate from random poses
@@ -57,11 +57,11 @@ the [live-robot-bringup RFC](../live-robot-bringup).
 ## Acceptance criteria
 
 Objective, measurable. Examples:
-- On a saved map, from an **unknown initial pose**, the robot performs global localization and converges to the correct pose
+- On a saved map, from an *unknown initial pose*, the robot performs global localization and converges to the correct pose
 - Nav2 navigation reaches arbitrary reachable goals reliably, avoiding dynamic obstacles
-- When **lost / kidnapped**, the robot detects it, relocalizes, and resumes — or cleanly hands off to the find-the-dock fallback when relocalization fails
-- An **unfinished map** can be loaded and mapping continued, producing a complete, uncorrupted map
-- **Regression tests** pass and verify relocalization, navigation, and map-resume, runnable headless in CI
+- When *lost / kidnapped*, the robot detects it, relocalizes, and resumes — or cleanly hands off to the find-the-dock fallback when relocalization fails
+- An *unfinished map* can be loaded and mapping continued, producing a complete, uncorrupted map
+- *Regression tests* pass and verify relocalization, navigation, and map-resume, runnable headless in CI
 - Documented and reliably reproducible by someone else
 - TBD, expect criteria to evolve
 

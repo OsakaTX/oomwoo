@@ -4,7 +4,7 @@ Thanks for your interest. oomwoo is an open-source robot vacuum you build
 yourself, and it's at a very early stage. That's the best time to get involved,
 the foundations are still being laid and your input can shape the direction.
 
-The project is built **module by module** so many people can work in parallel.
+The project is built *module by module* so many people can work in parallel.
 Browse the [module list in the README](../README.md#requests-for-contributions),
 and see [ARCHITECTURE.md](ARCHITECTURE.md) for how the pieces fit together.
 
@@ -12,34 +12,34 @@ and see [ARCHITECTURE.md](ARCHITECTURE.md) for how the pieces fit together.
 
 You don't need to be a roboticist to contribute:
 
-- **Ideas and feedback** — open a [Discussion](https://github.com/makerspet/oomwoo/discussions)
+- *Ideas and feedback* — open a [Discussion](https://github.com/makerspet/oomwoo/discussions)
   about features, design choices, or what would make you build one.
-- **Code** — firmware, ROS2 packages, Home Assistant integration.
-- **Hardware** — 3D-printable chassis design, mechanical parts, PCB.
-- **Documentation** — build guides, wiring diagrams, troubleshooting notes.
-- **Testing** — once there's something to build, real-world build reports are gold.
-- **Spread the word** — star the repo, share your build, post a demo.
+- *Code* — firmware, ROS2 packages, Home Assistant integration.
+- *Hardware* — 3D-printable chassis design, mechanical parts, PCB.
+- *Documentation* — build guides, wiring diagrams, troubleshooting notes.
+- *Testing* — once there's something to build, real-world build reports are gold.
+- *Spread the word* — star the repo, share your build, post a demo.
 
 ## Getting started
 
-1. **Pick a module.** Browse the
+1. *Pick a module.* Browse the
    [module list in the README](../README.md#requests-for-contributions) and choose a
    hardware or software module. Software and simulation modules can start
    immediately; hardware modules wait on the interface specs in
    [ARCHITECTURE.md](ARCHITECTURE.md). Read the module's `README.md` so you know
    the contract.
-2. **Start a conversation first.** Claim or ask about the module in its
+2. *Start a conversation first.* Claim or ask about the module in its
    [Issue](https://github.com/makerspet/oomwoo/issues) or
    [Discussion](https://github.com/makerspet/oomwoo/discussions) before writing
    code, so we align on the approach and avoid wasted effort.
-3. **Work in the module folder.** Put your attempt under
+3. *Work in the module folder.* Put your attempt under
    `<module>/<your-username>/` and keep it interface-compliant. Multiple attempts
    per module are welcome — modules are swappable, and a design that isn't
    selected is still a useful exercise and a fallback.
-4. **Fork** the repo and create a branch for your change.
-5. **Keep pull requests focused.** One logical change per PR is easier to review
+4. *Fork* the repo and create a branch for your change.
+5. *Keep pull requests focused.* One logical change per PR is easier to review
    and merge than a large mixed one.
-6. **Open the PR** with a short description of what it does and why.
+6. *Open the PR* with a short description of what it does and why.
 
 ## Hardware contributions
 
@@ -49,7 +49,7 @@ used. If your change affects the bill of materials, mention it in the PR. Each
 hardware module must stay within the mechanical/electrical interfaces in
 [ARCHITECTURE.md](ARCHITECTURE.md).
 
-**Safety:** battery, charging, motor-driver, and mains-adjacent modules require a
+*Safety:* battery, charging, motor-driver, and mains-adjacent modules require a
 maintainer safety review before merge. Include a hazard note in your submission.
 
 ## Code style

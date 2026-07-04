@@ -5,13 +5,13 @@ The project is split into modules that can be built in parallel.
 - Contributors submit attempts under `contributions/module-name/github-username/`. 
 - Users try out contributions and the best ones surface over time.
 - The repo maintainer makes the final call which to include in the official kit(s).
-- Modules are **swappable** — a non-selected design is valuable a valid learning exercise, an alternative implementation or a fallback.
+- Modules are *swappable* — a non-selected design is valuable a valid learning exercise, an alternative implementation or a fallback.
 - Design choices follow the [design research](../README.md#design-research) — what makes vacuum users happy.
 
-**Phase legend:** `MVP` = needed for the Aug 31 2026 bare-bones build ·
-`P2` = next phase · `P3+` = later. **Safety** = requires maintainer safety review.
+*Phase legend:* `MVP` = needed for the Aug 31 2026 bare-bones build ·
+`P2` = next phase · `P3+` = later. *Safety* = requires maintainer safety review.
 
-> ⚠️ Hardware modules cannot be finalized until the interface specs in
+> Hardware modules cannot be finalized until the interface specs in
 > `ARCHITECTURE.md` (§4, §5.2, §5.3) are frozen. Software/sim modules and SOTA
 > research can start immediately.
 
@@ -23,21 +23,21 @@ The project is split into modules that can be built in parallel.
 | Left drive wheel assembly | `hw-wheel-left` | MVP | Motor + encoder + suspension/mount. |
 | Right drive wheel assembly | `hw-wheel-right` | MVP | Mirror of left; share design. |
 | Caster / universal wheel | `hw-caster` | MVP | Passive support wheel. |
-| Motor driver + power distribution PCB | `hw-power-pcb` | MVP | **Safety.** Drives wheels + fan, distributes rails. |
-| Battery pack + holder | `hw-battery` | MVP | **Safety.** Chemistry/voltage per ARCHITECTURE §5.3. |
+| Motor driver + power distribution PCB | `hw-power-pcb` | MVP | *Safety.* Drives wheels + fan, distributes rails. |
+| Battery pack + holder | `hw-battery` | MVP | *Safety.* Chemistry/voltage per ARCHITECTURE §5.3. |
 | Compute mount (RPi 5) | `hw-compute-mount` | MVP | Mount + airflow for Pi 5. |
 | LiDAR mount | `hw-lidar-mount` | MVP | Fits LD14P; parametric for other models. |
-| Suction motor + airflow | `hw-suction` | MVP | **Sourced sealed vacuum motor** + airflow sealing — not a custom impeller. |
-| Main brush assembly | `hw-main-brush` | MVP | **Tapered rubber anti-tangle roller** + drive. |
+| Suction motor + airflow | `hw-suction` | MVP | *Sourced sealed vacuum motor* + airflow sealing — not a custom impeller. |
+| Main brush assembly | `hw-main-brush` | MVP | *Tapered rubber anti-tangle roller* + drive. |
 | Dust bin + filter | `hw-dustbin` | MVP | Removable bin, filter interface. |
 | Bumper (mechanical + switches) | `hw-bumper` | MVP | Contact detection. |
 | Cliff sensors + mounts | `hw-cliff` | MVP | IR drop detection at edges/stairs. |
 | Top cover / shell | `hw-shell` | MVP | Cosmetic + protective; LiDAR clearance. |
 | Wiring harness | `hw-harness` | MVP | Connector pinouts per ARCHITECTURE §5.3. |
 | Side brush | `hw-side-brush` | P2 | Edge cleaning. |
-| Mop module (dual-spinning) | `hw-mop` | P2 | 3D-printed **dual-spinning** pads; skip self-washing roller. |
+| Mop module (dual-spinning) | `hw-mop` | P2 | 3D-printed *dual-spinning* pads; skip self-washing roller. |
 | Wheel-drop sensors | `hw-wheel-drop` | P2 | Lift detection. |
-| Charging dock (basic) | `hw-dock` | P2 | **Safety.** Contacts + alignment. |
+| Charging dock (basic) | `hw-dock` | P2 | *Safety.* Contacts + alignment. |
 
 ## Software modules
 

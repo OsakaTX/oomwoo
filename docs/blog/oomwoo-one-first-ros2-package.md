@@ -1,8 +1,8 @@
 # Write Your First oomwoo ROS 2 Package: Cover the Floor While Mapping
 
-> **Draft for makerspet.com (WordPress / Gutenberg).** Post 2 of 2. Builds on Post 1
+> *Draft for makerspet.com (WordPress / Gutenberg).* Post 2 of 2. Builds on Post 1
 > (*Simulate the oomwoo-one Robot Vacuum in Gazebo with ROS 2*). Here you'll write a small
-> **pure-ROS 2** package that drives `oomwoo-one` on a coverage path *while* SLAM maps the
+> *pure-ROS 2* package that drives `oomwoo-one` on a coverage path *while* SLAM maps the
 > room, and launch it all with one `ros2 launch`.
 
 This is the "hello world" of developing for oomwoo. It's deliberately simple — a reactive
@@ -13,8 +13,8 @@ you the mechanics of writing and launching an oomwoo node.
 
 ## Prerequisites
 
-The dev environment from **Post 1** (the `makerspet/oomwoo:jazzy-dev` container running, with
-`kaia config robot.model oomwoo_one` set). Everything below runs **inside the container**.
+The dev environment from *Post 1* (the `makerspet/oomwoo:jazzy-dev` container running, with
+`kaia config robot.model oomwoo_one` set). Everything below runs *inside the container*.
 
 ## 1. Create a ROS 2 package
 
@@ -157,12 +157,12 @@ ros2 run nav2_map_server map_saver_cli -f ~/maps/map
 
 ## What you just learned
 
-- created a ROS 2 package, wrote a node that **subscribes to `/scan` and publishes `/cmd_vel`**,
-- combined **your code + SLAM** in a single `ros2 launch`,
+- created a ROS 2 package, wrote a node that *subscribes to `/scan` and publishes `/cmd_vel`*,
+- combined *your code + SLAM* in a single `ros2 launch`,
 - produced a real map from an autonomous run.
 
-That's the whole loop of developing for oomwoo. From here, the natural next step is **real
-coverage path planning** (boustrophedon, wall-following, frontier exploration) — which is
+That's the whole loop of developing for oomwoo. From here, the natural next step is *real
+coverage path planning* (boustrophedon, wall-following, frontier exploration) — which is
 exactly the [clean-and-map RFC](https://github.com/makerspet/oomwoo/tree/main/contributions/clean-and-map).
 Pick it up (or another module) from the [Requests for
 Contributions](https://github.com/makerspet/oomwoo#requests-for-contributions), and come build

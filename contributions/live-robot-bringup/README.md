@@ -1,18 +1,18 @@
 # Live Robot Bring-up & Validation (ROS2 integration)
 
-Take the behaviors validated in **simulation** and run them on a **real robot
-vacuum**. Connect an off-the-shelf vacuum to ROS2 following the Proscenic M6 Pro
-tutorial, then **re-run the acceptance tests from the simulation RFCs on
-hardware**. This is the **single home for live validation** across all behaviors,
+Take the behaviors validated in *simulation* and run them on a *real robot
+vacuum*. Connect an off-the-shelf vacuum to ROS2 following the Proscenic M6 Pro
+tutorial, then *re-run the acceptance tests from the simulation RFCs on
+hardware*. This is the *single home for live validation* across all behaviors,
 so the many sim contributors aren't blocked on hardware and the bring-up / bridge
 cost is paid once.
 
-> **Note:** the Proscenic / 3irobotix CRL-200S here is an **interim real-hardware test mule**
-> for the ROS2 software stack — it is **not** the oomwoo hardware design (which is built from
+> *Note:* the Proscenic / 3irobotix CRL-200S here is an *interim real-hardware test mule*
+> for the ROS2 software stack — it is *not* the oomwoo hardware design (which is built from
 > sourced Roborock/Dreame/Xiaomi parts). This RFC eventually re-runs the same tests on real
 > oomwoo hardware.
 
-> **Status — blocked by the behavior RFCs and by real hardware.**
+> *Status — blocked by the behavior RFCs and by real hardware.*
 > This re-runs the simulated behaviors ([clean-and-map](../clean-and-map), [nav-localize](../nav-localize),
 > [dock-cycle](../dock-cycle), [recovery-safety](../recovery-safety), [floor-care](../floor-care),
 > [cleaning-jobs](../cleaning-jobs)) on a physical vacuum, so it can't be *completed* until they
@@ -35,13 +35,13 @@ cost is paid once.
   - bring up the real sensors and actuators on ROS2: LiDAR, odometry, motors, bumper, battery, dock signals
   - post in [Project Discussions](https://github.com/makerspet/oomwoo/discussions?discussions_q=) to let everyone know you're working on it, and post your progress
 - match the simulation interfaces
-  - map the sim topics / actions to the real robot so the behavior packages run **unchanged** wherever possible; document every gap
+  - map the sim topics / actions to the real robot so the behavior packages run *unchanged* wherever possible; document every gap
   - bring-up checklist: teleop, sensor sanity checks, e-stop verified before any autonomous run
 - re-run the sim acceptance tests on hardware
   - run each behavior's acceptance tests on the real robot: [clean-and-map](../clean-and-map), [nav-localize](../nav-localize), [dock-cycle](../dock-cycle), [recovery-safety](../recovery-safety), [floor-care](../floor-care) (as the hardware allows), [cleaning-jobs](../cleaning-jobs)
-  - record real-world results; document **sim-to-real gaps**, hardware-specific issues, and tuning changes
+  - record real-world results; document *sim-to-real gaps*, hardware-specific issues, and tuning changes
 - be explicit about coverage
-  - if a behavior **can't** be tested on a given robot (e.g. no mop or no auto-empty dock), **log it** — do not silently skip it
+  - if a behavior *can't* be tested on a given robot (e.g. no mop or no auto-empty dock), *log it* — do not silently skip it
 - submit a PR (pull request) to `contributions/live-robot-bringup/<your-github-username>/`
   - link to the bring-up / bridge package(s) and config
   - instructions, documentation - exact hardware, how to connect, run, troubleshoot
@@ -53,10 +53,10 @@ cost is paid once.
 ## Acceptance criteria
 
 Objective, measurable. Examples:
-- A real vacuum is **connected to ROS2** with LiDAR, odometry, motors, bumper, battery, and dock signals working
+- A real vacuum is *connected to ROS2* with LiDAR, odometry, motors, bumper, battery, and dock signals working
 - The sim interfaces are matched so behavior packages run on hardware with minimal changes; gaps are documented
-- Each simulated behavior is **reproduced on the real robot** — or there is a **documented reason** it couldn't be (no silent skips)
-- Real-world test results, videos, and a **sim-to-real gap** write-up are included
+- Each simulated behavior is *reproduced on the real robot* — or there is a *documented reason* it couldn't be (no silent skips)
+- Real-world test results, videos, and a *sim-to-real gap* write-up are included
 - Reproducible by someone else with the same hardware
 - TBD, expect criteria to evolve
 

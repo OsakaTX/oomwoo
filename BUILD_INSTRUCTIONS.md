@@ -1,28 +1,28 @@
 # Build Instructions
 
-> 🚧 **Not available yet — this is a placeholder.**
+> *Not available yet — this is a placeholder.*
 >
-> oomwoo is currently at the **design / RFC stage**, not the build-it-yourself stage.
+> oomwoo is currently at the *design / RFC stage*, not the build-it-yourself stage.
 > Step-by-step build instructions will arrive once the first
-> [Bill of Materials](BOM.md) and parts are validated (**first BoM targeted ~mid-July**)
+> [Bill of Materials](BOM.md) and parts are validated (*first BoM targeted ~mid-July*)
 > and the modules are proven on real hardware.
 
 ## Where the project is right now
 
-- **Design + interfaces:** [ARCHITECTURE.md](docs/ARCHITECTURE.md)
-- **Parts list (draft):** [BoM.md](BOM.md)
-- **Modules being built (RFCs):** [README → Requests for Contributions](README.md#requests-for-contributions)
-- **Design decisions + research:** [docs/design-document.md](docs/design-document.md)
+- *Design + interfaces:* [ARCHITECTURE.md](docs/ARCHITECTURE.md)
+- *Parts list (draft):* [BoM.md](BOM.md)
+- *Modules being built (RFCs):* [README → Requests for Contributions](README.md#requests-for-contributions)
+- *Design decisions + research:* [docs/design-document.md](docs/design-document.md)
 
 ## What you can do now
 
-- ⭐ **Star / watch** the repo to follow along — that's the best way to know when build
+- *Star / watch* the repo to follow along — that's the best way to know when build
   instructions land.
-- 🛠️ **Contribute:** pick a module from the [RFC list](README.md#requests-for-contributions)
+- *Contribute:* pick a module from the [RFC list](README.md#requests-for-contributions)
   and dive in — every skill level welcome.
-- 💬 **Join the community:** [Discord](https://discord.gg/3y2JKz5T25) and
+- *Join the community:* [Discord](https://discord.gg/3y2JKz5T25) and
   [GitHub Discussions](https://github.com/makerspet/oomwoo/discussions).
-- 📺 **Follow the build in public:** [YouTube](https://www.youtube.com/@makerspet).
+- *Follow the build in public:* [YouTube](https://www.youtube.com/@makerspet).
 
 ## What this page will become
 

@@ -1,8 +1,8 @@
 # Bill of Materials (work in progress)
 
-First working BoM is targeted for **mid-July '26**
+First working BoM is targeted for *mid-July '26*
 
-A final, fully-costed BoM is targeted for **end of August '26**
+A final, fully-costed BoM is targeted for *end of August '26*
 
 Blog post - how I'm making this BOM [How-to: Source BOM for OOMWOO Open-Source Vacuum Robot](https://makerspet.com/blog/how-to-source-bom-for-oomwoo-open-source-vacuum-robot/)
 
@@ -24,7 +24,7 @@ Retail / low-qty prices, INCLUDES shipping, excludes tax.
 |---|---|---|---|---|
 | Drive wheel assembly pair | 1 | $24-$33 | Motor + encoder + suspension + tire + cables + wheel-drop sensors | Roborock S4/5/45/50/51/52/55 Max, S7/Pro/MaxV, E4/E5/45/50/55, G10, T7S/S+, S6/60/65 Pure/MaxV, S70/75, Q5/7 [search AliExpress](https://www.aliexpress.us/w/wholesale-roborock-s5-maxv-wheels.html) |
 | Caster wheel | 1 | $2.50-$5 | Push-in | iRobot Roomba I3/4/6/8, J7/Plus J7 E5/6 500 600 700 800 900 [search AliExpress](https://www.aliexpress.us/w/wholesale-roomba-caster.html) |
-| Suction fan | 1 | $10–23 | 6 kPa option | Dreame MSD-C-3, Nidec 20N709U020; fits Dreame L10s Prime/Pro, **L10s Ultra Gen 1** (5.3 kPa — Gen 2 is 10 kPa!), D10s Plus, X10+ (6 kPa); X20+ verify (~7 kPa?) [search AliExpress](https://www.aliexpress.us/w/wholesale-Dreame-L10s-fan.html) |
+| Suction fan | 1 | $10–23 | 6 kPa option | Dreame MSD-C-3, Nidec 20N709U020; fits Dreame L10s Prime/Pro, *L10s Ultra Gen 1* (5.3 kPa — Gen 2 is 10 kPa!), D10s Plus, X10+ (6 kPa); X20+ verify (~7 kPa?) [search AliExpress](https://www.aliexpress.us/w/wholesale-Dreame-L10s-fan.html) |
 |             |   | $17–28 | 5.1-6 kPa option | Nidec 22N704W150, 20N704S980, 20N704R980L; fits Roborock S8 Pro Ultra, S7 MaxV (5.1 kPa), S8/S8+/S8 Plus (6 kPa); G20 (Q7 Max/Max+ excluded — they're 4.2 kPa, not 5-6) [search AliExpress](https://www.aliexpress.us/w/wholesale-roborock-s8-pro-fan.html) |
 |             |   | $12–24 | 10 kPa option | Roborock BL24131616; Nidec 22N704V160; fits Roborock S8 MaxV Ultra (10 kPa); G20S [search AliExpress](https://www.aliexpress.us/w/wholesale-roborock-g20s-fan.html) |
 |             |   | $34–45 | 36 kPa option | Roborock Saros 20 [search AliExpress](https://www.aliexpress.us/w/wholesale-Roborock-Saros-20-fan.html) |
@@ -41,7 +41,7 @@ Retail / low-qty prices, INCLUDES shipping, excludes tax.
 | Mop spin motor(s) + pads | 1–2 | 6–15 | mopping models only | |
 | Water pump + valve + tubing | 1 | 4–10 | mopping models only | |
 | Mop lift servo | 1 | 2–6 | mopping models only | |
-| Battery pack (~14.8 V Li-ion) + BMS | 1 | 15–30 | **safety review** | |
+| Battery pack (~14.8 V Li-ion) + BMS | 1 | 15–30 | *safety review* | |
 | LiDAR (3irobotix CRL-200S / LDS) | 1 | 30–40 | | |
 | VL53L7CX multizone ToF | 1 | 8–15 | obstacle detection (90° FoV) | |
 | Color camera | 1 | 5–15 | connects to the SBC | |
@@ -53,11 +53,11 @@ Retail / low-qty prices, INCLUDES shipping, excludes tax.
 | Custom I/O PCB (JLCPCB assembled, low qty) | 1 | 15–40 | STM32 + motor drivers + sensor front-ends | |
 | Wiring, connectors, fasteners, magnets, gaskets, filter | — | 12–25 | | |
 | Printed parts (filament) | — | 5–15 | you print these yourself | |
-| **Robot subtotal (sourced parts)** | | **~$130–270** | excludes SBC | |
+| *Robot subtotal (sourced parts)* | | *~$130–270* | excludes SBC | |
 | Raspberry Pi 5 (4 GB) | 1 | ~60 | the SBC | |
 
-> **⚠️ Fan sourcing caveat:** the **kPa is the fan's own rating** — verify it against the fan's
-> model number / datasheet. The vacuum models are a **sourcing search aid only**: a fan listed
+> *Fan sourcing caveat:* the *kPa is the fan's own rating* — verify it against the fan's
+> model number / datasheet. The vacuum models are a *sourcing search aid only*: a fan listed
 > as "fits vacuum X" is *not* necessarily X's original fan (lower-power replacements are sold as
 > compatible for higher-suction models). Omit any model whose known suction contradicts the row.
 
@@ -67,15 +67,15 @@ Three dock tiers share one robot base, released in order:
 
 | Tier | Adds | Rough extra parts |
 |---|---|---|
-| **Basic charge** (first release) | charging only | printed housing + contacts/magnets + wall adapter + IR beacon |
-| **Auto-empty** | dust auto-emptying | dock fan + bin/bag + sealed port |
-| **Auto-empty + wash + dry** | mop wash + hot-air dry | clean + dirty tanks, 2 pumps, heater + fan, **own ESP32 + WiFi controller** |
+| *Basic charge* (first release) | charging only | printed housing + contacts/magnets + wall adapter + IR beacon |
+| *Auto-empty* | dust auto-emptying | dock fan + bin/bag + sealed port |
+| *Auto-empty + wash + dry* | mop wash + hot-air dry | clean + dirty tanks, 2 pumps, heater + fan, *own ESP32 + WiFi controller* |
 
 ## Sourcing strategy
 
-- **Print geometry, source mechanisms and wear items.** See the print-vs-source table in
+- *Print geometry, source mechanisms and wear items.* See the print-vs-source table in
   [docs/design-document.md](docs/design-document.md#2-print-vs-source-strategy).
-- Spec wear parts (brushes, filters, wheel modules) in **common, abundant sizes** so
+- Spec wear parts (brushes, filters, wheel modules) in *common, abundant sizes* so
   builders can buy cheap universal replacements anywhere.
 - Per-module sourcing details will land in the relevant
   [contributions/](contributions) RFCs as they mature.
