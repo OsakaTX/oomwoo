@@ -2,7 +2,7 @@
 
 # OOMWOO
 
-**The open-source robot vacuum you build yourself.**
+*The open-source robot vacuum you build yourself.*
 
 Clean well · Raspberry Pi · ROS2 · Home Assistant · 2D LiDAR · 3D printed · ESP32 · Arduino
 
@@ -13,7 +13,7 @@ Clean well · Raspberry Pi · ROS2 · Home Assistant · 2D LiDAR · 3D printed �
 
 ## What is this?
 
-OOMWOO is an **open-source home robot vacuum** you can build yourself, made for the
+OOMWOO is an *open-source home robot vacuum* you can build yourself, made for the
 Raspberry Pi, ROS2, Home Assistant, and 3D-printing communities. It uses an
 affordable 2D LiDAR to map your home and navigate on its own. Local, no
 cloud required for regular functionality, no vendor lock-in. Follow the [community newsletter](https://stats.sender.net/forms/bo2rAK/view).
@@ -39,7 +39,7 @@ Reference design images - this is approximately how the finished design will loo
 - Stretch goal: App store
 - Stretch goal: LeRobot integration, OpenClaw
 
-** v0 target: bare-bones build:
+*v0 target: bare-bones build:*
 
 - 3D-printed chassis
 - ROS2 Gazebo sim
@@ -58,11 +58,11 @@ Open Source Deliverables:
 
 ## Build one
 
-> **Status: design / RFC stage.** Step-by-step build instructions don't exist yet —
-> they arrive once the first BoM and parts are validated (**first BoM targeted ~mid-July**).
+> *Status: design / RFC stage.* Step-by-step build instructions don't exist yet —
+> they arrive once the first BoM and parts are validated (*first BoM targeted ~mid-July*).
 
-- 📋 **[Bill of Materials (BoM)](BOM.md)** — work-in-progress parts list + budget target
-- 🛠️ **[Build Instructions](BUILD_INSTRUCTIONS.md)** — placeholder for now; how to follow along
+- *[Bill of Materials (BoM)](BOM.md)* — work-in-progress parts list + budget target
+- *[Build Instructions](BUILD_INSTRUCTIONS.md)* — placeholder for now; how to follow along
 
 Full build docs and a complete BoM are on the way, with the goal that you can
 source every part yourself.
@@ -71,7 +71,7 @@ source every part yourself.
 
 Would you like to contribute? See [CONTRIBUTING](docs/CONTRIBUTING.md) for the full guide.
 
-OOMWOO is organized to built by the community, massively **in parallel**.
+OOMWOO is organized to built by the community, massively *in parallel*.
 The vacuum and its software are subdivided into [modules](#requests-for-contributions), see list below.
 
 A volunteer picks whatever module she wants, works on that module whenever she wants,
@@ -94,10 +94,10 @@ Follow us building in public:
 
 ## How the RFCs fit together
 
-The modules can be worked on **in parallel**, but some build on others. An arrow
-**A → B means "B builds on A"** — green modules are ready now; amber modules are
+The modules can be worked on *in parallel*, but some build on others. An arrow
+*A → B means "B builds on A"* — green modules are ready now; amber modules are
 unblocked once their parents land; the blue one needs real hardware; grey modules are
-**on hold**. `source-3d-models` and `part-specs` are ready now; the mechanical **design**
+*on hold*. `source-3d-models` and `part-specs` are ready now; the mechanical *design*
 modules (`dust-bin`, `vacuum-fan`) are on hold pending sourced parts + a 3D
 reference-design sketch.
 
@@ -161,8 +161,8 @@ flowchart TD
 | Floor-surface handling & edge cleaning | [floor-care](./contributions/floor-care) | Blocked by urdf-gazebo-sim, clean-and-map | Wall/edge following, carpet vs hardwood, mop lift/lower |
 | Cleaning modes, zones & job orchestration | [cleaning-jobs](./contributions/cleaning-jobs) | Blocked by urdf-gazebo-sim + behaviors | Modes (regular/spot), virtual walls, room segmentation, job splitting + resume |
 | Live robot bring-up & validation | [live-robot-bringup](./contributions/live-robot-bringup) | Blocked by behaviors + needs hardware | Connect real vacuum to ROS2, re-run sim tests on hardware |
-| Dust bin 3D design | [dust-bin](./contributions/dust-bin) | ⛔ On hold | Design/print/test dust bin — waits on sourced parts + 3D design |
-| Vacuum fan / blower assembly | [vacuum-fan](./contributions/vacuum-fan) | ⛔ On hold | Fans already sourced (see BOM); volute/gasket design waits on the 3D design |
+| Dust bin 3D design | [dust-bin](./contributions/dust-bin) | On hold | Design/print/test dust bin — waits on sourced parts + 3D design |
+| Vacuum fan / blower assembly | [vacuum-fan](./contributions/vacuum-fan) | On hold | Fans already sourced (see BOM); volute/gasket design waits on the 3D design |
 | Source 3D models (STEP) for BOM parts | [source-3d-models](./contributions/source-3d-models) | Ready to start work | Obtain / measure / model STEP files of off-the-shelf parts (wheels, fans, caster…) so mounts fit |
 | Procure part specs & datasheets | [part-specs](./contributions/part-specs) | Ready to start work | Find/measure/reverse-engineer specs (pinouts, encoder PPR, torque, how to drive fans…) for sourced parts |
 
@@ -192,21 +192,21 @@ We reviewed the 2025–2026 consumer robot vacuum landscape (global + China-sour
 brands, all price tiers) to decide which solutions to copy and which to skip. Key
 takeaways for the build:
 
-- **Suction is a sourcing problem, not an engineering one.** Real-world cleaning does
-  **not** track advertised suction (Pa); ~$500 mid-tier models beat flagships. A
-  moderate **sealed** sourced motor + a good brush + tight airflow sealing matches
-  flagships — **no custom impeller needed.**
-- **"Never gets stuck" needs camera + AI sensor fusion**, not LiDAR alone — LiDAR is
-  blind below its ~10 cm turret (cables, socks). v1 leans on the **bumper** for low
+- *Suction is a sourcing problem, not an engineering one.* Real-world cleaning does
+  *not* track advertised suction (Pa); ~$500 mid-tier models beat flagships. A
+  moderate *sealed* sourced motor + a good brush + tight airflow sealing matches
+  flagships — *no custom impeller needed.*
+- *"Never gets stuck" needs camera + AI sensor fusion*, not LiDAR alone — LiDAR is
+  blind below its ~10 cm turret (cables, socks). v1 leans on the *bumper* for low
   obstacles; vision-based avoidance is a later / experimental goal, not an MVP promise.
-- **Anti-tangle brush:** a **tapered rubber roller** resists hair-wrap best (a top user
+- *Anti-tangle brush:* a *tapered rubber roller* resists hair-wrap best (a top user
   complaint) and is easy to 3D-print.
-- **Mop:** a 3D-printed **dual-spinning** mop is competitive; the self-washing roller
+- *Mop:* a 3D-printed *dual-spinning* mop is competitive; the self-washing roller
   mop's edge is overstated and hard to replicate — skip it for now.
 
-**Well-loved models worth studying:** Eufy Omni S2 (obstacle avoidance), Narwal Flow
+*Well-loved models worth studying:* Eufy Omni S2 (obstacle avoidance), Narwal Flow
 (roller mop), Ecovacs Deebot T90 Pro Omni (~$499 all-rounder), Dreame X40 Ultra
-(dual-spinning mop). **Dreame** is also the most [Valetudo](https://github.com/Hypfer/Valetudo)-rootable
+(dual-spinning mop). *Dreame* is also the most [Valetudo](https://github.com/Hypfer/Valetudo)-rootable
 brand — the safest donor to study. *(Per-model rankings are directional, from
 single-run reviewer tests.)*
 
@@ -215,8 +215,8 @@ single-run reviewer tests.)*
 The project name "OOMWOO" is a rotational ambigram - it reads the same flipped 180°, like the robot itself, roaming your floor in every direction.
 
 The project is sponsored by makerspet.com and remake.ai. We are reusing their open-source solutions.
-- If you'd rather skip the parts hunt, a kit (motors, PCB, brushes, gaskets, LiDAR) will be available at [makerspet.com](https://makerspet.com), from the same maker behind this project. The kit is a convenience, never a requirement. **Everything here stays open.**
-- When we get to apps, [remake.ai](https://remake.ai) will be providing its robot apps platform and app store. Using the app store will be entirely optional. The vacuum will **always support cloud-free, local operation for regular functionality out-of-the-box**. 
+- If you'd rather skip the parts hunt, a kit (motors, PCB, brushes, gaskets, LiDAR) will be available at [makerspet.com](https://makerspet.com), from the same maker behind this project. The kit is a convenience, never a requirement. *Everything here stays open.*
+- When we get to apps, [remake.ai](https://remake.ai) will be providing its robot apps platform and app store. Using the app store will be entirely optional. The vacuum will *always support cloud-free, local operation for regular functionality out-of-the-box*. 
 
 ## License
 
