@@ -18,7 +18,7 @@ hardware in the [live-robot-bringup RFC](../live-robot-bringup).
 - [clean-and-map RFC](../clean-and-map) and [cleaning-jobs RFC](../cleaning-jobs) — trigger return-to-dock for recharge / auto-empty / mop-wash mid-job.
 - [urdf-gazebo-sim RFC](../urdf-gazebo-sim) — robot URDF and Gazebo world(s) to model the dock in.
 - Model a *generic basic charging dock* (charge contacts + a detectable marker). Exact dock geometry is TBD — the old teardown reference vacuum is no longer used.
-- [oomwoo ROS2 development](https://github.com/makerspet/oomwoo-install) — build oomwoo ROS2 Docker image(s) with your packages.
+- [OOMWOO ROS2 development](https://github.com/makerspet/oomwoo-install) — build OOMWOO ROS2 Docker image(s) with your packages.
 - Nav2 docking (`opennav_docking`) is a good starting point for precise approach.
 - [Project discussions](https://github.com/makerspet/oomwoo/discussions?discussions_q=)
 - [Discord server](https://discord.gg/3y2JKz5T25)

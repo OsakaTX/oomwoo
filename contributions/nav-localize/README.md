@@ -16,7 +16,7 @@ the [live-robot-bringup RFC](../live-robot-bringup).
 - [clean-and-map RFC](../clean-and-map) — produces the saved/partial map this package consumes.
 - [urdf-gazebo-sim RFC](../urdf-gazebo-sim) — robot URDF, Gazebo world(s), bumper.
 - [Gazebo + Nav2 simulation tutorial](https://makerspet.com/blog/tutorial-map-navigate-ros2-robot-in-simulation/) — baseline diff-drive + LiDAR robot in a Gazebo world.
-- [oomwoo ROS2 development](https://github.com/makerspet/oomwoo-install) — build oomwoo ROS2 Docker image(s) with your packages.
+- [OOMWOO ROS2 development](https://github.com/makerspet/oomwoo-install) — build OOMWOO ROS2 Docker image(s) with your packages.
 - Nav2 (navigation), AMCL (localization), and slam_toolbox (localization mode / serialized session continue) are the expected building blocks.
 - [Project discussions](https://github.com/makerspet/oomwoo/discussions?discussions_q=)
 - [Discord server](https://discord.gg/3y2JKz5T25)

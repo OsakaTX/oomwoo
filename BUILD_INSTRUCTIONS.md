@@ -2,7 +2,7 @@
 
 > *Not available yet — this is a placeholder.*
 >
-> oomwoo is currently at the *design / RFC stage*, not the build-it-yourself stage.
+> OOMWOO is currently at the *design / RFC stage*, not the build-it-yourself stage.
 > Step-by-step build instructions will arrive once the first
 > [Bill of Materials](BOM.md) and parts are validated (*first BoM targeted ~mid-July*)
 > and the modules are proven on real hardware.

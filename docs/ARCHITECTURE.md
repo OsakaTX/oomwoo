@@ -1,4 +1,4 @@
-# oomwoo Architecture Brief
+# OOMWOO Architecture Brief
 
 > *Status: DRAFT / skeleton.* This document defines the system so that modules
 > can be built in parallel without colliding. Sections marked *TBD* are the
@@ -8,12 +8,12 @@
 
 ## 1. Purpose and scope
 
-oomwoo is an open-source, 3D-printed, ROS2-based home robot vacuum with 2D LiDAR
+OOMWOO is an open-source, 3D-printed, ROS2-based home robot vacuum with 2D LiDAR
 and (later) Home Assistant support. It is designed to be *built from scratch by
 the community*, module by module, and to double as an affordable ROS2
 development and learning platform.
 
-*North star (not MVP):* oomwoo is also the reference hardware for a broader
+*North star (not MVP):* OOMWOO is also the reference hardware for a broader
 robot application platform. Architectural boundaries (especially the app layer in
 §6) are drawn with that future in mind, but the MVP below deliberately excludes it.
 

@@ -1,4 +1,4 @@
-# oomwoo Design Document
+# OOMWOO Design Document
 
 > *Working design doc.* This accumulates research-backed design decisions before
 > they're split into per-module [RFCs](RFC_MASTER_LIST.md) and/or migrated into
@@ -28,10 +28,10 @@ or RGB camera + AI object recognition), not any single sensor. LiDAR is structur
 *blind below its ~10 cm turret*, which is exactly why robots eat cables and socks.
 The Eufy Omni S2 ($1,599) was the only model in one test to pass all 24 obstacles —
 and it has the full vision stack. *Never-stuck is commercial-scale.*
-- *For oomwoo:* v1 leans on the *bumper* for low/LiDAR-invisible obstacles (this
+- *For OOMWOO:* v1 leans on the *bumper* for low/LiDAR-invisible obstacles (this
   is already how the [clean-and-map RFC](../contributions/clean-and-map) handles it).
   Camera + AI vision avoidance is a *later / experimental* goal, not an MVP promise.
-  Don't position oomwoo as out-navigating commercial flagships; position it as an
+  Don't position OOMWOO as out-navigating commercial flagships; position it as an
   open platform to *experiment* with navigation and vision.
 [(source)](https://vacuumwars.com/best-robot-vacuums-with-obstacle-avoidance/)
 
@@ -55,7 +55,7 @@ commercial-scale — defer, or use an off-the-shelf corded vac for emptying.
 ### Cloud-free / local control — the real differentiator
 [Valetudo](https://github.com/Hypfer/Valetudo) gives cloud-free MQTT/REST local
 control across ~10 brands. *Dreame* is the most rootable (≈16 models) and the
-safest donor to study. Cloud-free local operation is oomwoo's positioning advantage.
+safest donor to study. Cloud-free local operation is OOMWOO's positioning advantage.
 
 ### Well-loved models worth studying
 Eufy Omni S2 (obstacle avoidance), Narwal Flow (roller mop), Ecovacs Deebot T90 Pro
@@ -72,7 +72,7 @@ Omni (~$499 all-rounder), Dreame X40 Ultra (dual-spinning mop; Dreame = best don
 
 *Rule of thumb: print geometry, source mechanisms and wear items.* Anything with a
 gearbox, encoder, rubber compound, spring, pump, or bearing is precision you can buy
-for a few dollars; anything custom-shaped that mates with the oomwoo chassis, print.
+for a few dollars; anything custom-shaped that mates with the OOMWOO chassis, print.
 
 | Component | Source or 3D print | Why / how |
 |---|---|---|

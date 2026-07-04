@@ -26,7 +26,7 @@ physical robot isn't built yet, this is a *Gazebo simulation*.
 - [m-explore-ros2 (kaiaai fork)](https://github.com/kaiaai/m-explore-ros2) — frontier exploration, tested and working. It maps and explores but does *not* clean — a good starting point to build on.
 - [m-explore-ros2 demo + step-by-step instructions (video)](https://www.youtube.com/watch?v=81-9q7QfkHs&list=PLOSXKDW70aR8uA1IFahSKVuk5ODDfjTZV) — shows m-explore-ros2 in action and how to run it.
 - [Gazebo simulation setup instructions](https://makerspet.com/blog/tutorial-map-navigate-ros2-robot-in-simulation/) — a simple differential-drive robot with a LiDAR in a Gazebo living room world; another possible starting point.
-- [oomwoo ROS2 development](https://github.com/makerspet/oomwoo-install) — build oomwoo ROS2 Docker image(s) with your packages.
+- [OOMWOO ROS2 development](https://github.com/makerspet/oomwoo-install) — build OOMWOO ROS2 Docker image(s) with your packages.
 - [Project discussions](https://github.com/makerspet/oomwoo/discussions?discussions_q=)
 - [Discord server](https://discord.gg/3y2JKz5T25)
 

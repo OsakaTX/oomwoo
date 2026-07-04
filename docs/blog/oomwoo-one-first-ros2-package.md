@@ -1,15 +1,15 @@
-# Write Your First oomwoo ROS 2 Package: Cover the Floor While Mapping
+# Write Your First OOMWOO ROS 2 Package: Cover the Floor While Mapping
 
 > *Draft for makerspet.com (WordPress / Gutenberg).* Post 2 of 2. Builds on Post 1
 > (*Simulate the oomwoo-one Robot Vacuum in Gazebo with ROS 2*). Here you'll write a small
 > *pure-ROS 2* package that drives `oomwoo-one` on a coverage path *while* SLAM maps the
 > room, and launch it all with one `ros2 launch`.
 
-This is the "hello world" of developing for oomwoo. It's deliberately simple — a reactive
+This is the "hello world" of developing for OOMWOO. It's deliberately simple — a reactive
 "drive forward, turn when blocked" coverage that, combined with SLAM, maps and roughly covers
 a room. Proper boustrophedon coverage is the [clean-and-map
 RFC](https://github.com/makerspet/oomwoo/tree/main/contributions/clean-and-map); this teaches
-you the mechanics of writing and launching an oomwoo node.
+you the mechanics of writing and launching an OOMWOO node.
 
 ## Prerequisites
 
@@ -161,7 +161,7 @@ ros2 run nav2_map_server map_saver_cli -f ~/maps/map
 - combined *your code + SLAM* in a single `ros2 launch`,
 - produced a real map from an autonomous run.
 
-That's the whole loop of developing for oomwoo. From here, the natural next step is *real
+That's the whole loop of developing for OOMWOO. From here, the natural next step is *real
 coverage path planning* (boustrophedon, wall-following, frontier exploration) — which is
 exactly the [clean-and-map RFC](https://github.com/makerspet/oomwoo/tree/main/contributions/clean-and-map).
 Pick it up (or another module) from the [Requests for

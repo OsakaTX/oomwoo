@@ -1,6 +1,6 @@
-# Contributing to oomwoo
+# Contributing to OOMWOO
 
-Thanks for your interest. oomwoo is an open-source robot vacuum you build
+Thanks for your interest. OOMWOO is an open-source robot vacuum you build
 yourself, and it's at a very early stage. That's the best time to get involved,
 the foundations are still being laid and your input can shape the direction.
 
@@ -67,7 +67,7 @@ files are made on that same open basis.
 
 ## Community and conduct
 
-Be respectful, helpful, and welcoming. We want oomwoo to be an easy, friendly
+Be respectful, helpful, and welcoming. We want OOMWOO to be an easy, friendly
 place for makers of every skill level. Harassment or hostility isn't tolerated.
 
 Questions? Open a [Discussion](https://github.com/makerspet/oomwoo/discussions?discussions_q=)

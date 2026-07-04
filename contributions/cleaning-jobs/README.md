@@ -16,7 +16,7 @@ the [live-robot-bringup RFC](../live-robot-bringup).
 - [clean-and-map RFC](../clean-and-map) — coverage cleaning and its done condition; this orchestrates and segments it.
 - [nav-localize RFC](../nav-localize) — the saved map this segments and the resume-after-interruption support.
 - [dock-cycle RFC](../dock-cycle) — the recharge / auto-empty / mop-wash station services a job pauses for.
-- [oomwoo ROS2 development](https://github.com/makerspet/oomwoo-install) — build oomwoo ROS2 Docker image(s) with your packages.
+- [OOMWOO ROS2 development](https://github.com/makerspet/oomwoo-install) — build OOMWOO ROS2 Docker image(s) with your packages.
 - Nav2 keepout/zone costmap filters are a good starting point for no-go zones.
 - [Project discussions](https://github.com/makerspet/oomwoo/discussions?discussions_q=)
 - [Discord server](https://discord.gg/3y2JKz5T25)

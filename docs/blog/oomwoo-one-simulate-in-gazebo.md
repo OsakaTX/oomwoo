@@ -1,10 +1,10 @@
 # Simulate the oomwoo-one Robot Vacuum in Gazebo with ROS 2
 
-> *Draft for makerspet.com (WordPress / Gutenberg).* Post 1 of 2: set up the oomwoo
+> *Draft for makerspet.com (WordPress / Gutenberg).* Post 1 of 2: set up the OOMWOO
 > software dev environment and drive `oomwoo-one` in simulation — no robot required.
-> (Post 2 teaches you to write your own oomwoo code.)
+> (Post 2 teaches you to write your own OOMWOO code.)
 
-[oomwoo](https://github.com/makerspet/oomwoo) is an open-source robot vacuum you build
+[OOMWOO](https://github.com/makerspet/oomwoo) is an open-source robot vacuum you build
 yourself. *oomwoo-one* is the first model. This tutorial gets its ROS 2 simulation running
 in *Gazebo* so you can develop mapping, navigation, and cleaning behaviours with *no
 hardware* — everything runs in Docker on *Ubuntu or Windows*.
@@ -36,7 +36,7 @@ On *Linux*, instead allow local Docker to reach your X server:
 xhost +local:docker
 ```
 
-## 2. Pull the oomwoo Docker image
+## 2. Pull the OOMWOO Docker image
 
 ```
 docker pull makerspet/oomwoo:jazzy-dev
@@ -118,10 +118,10 @@ On Windows the map lands in `c:\maps`; on Linux in `~/maps`.
 ## What's next
 
 You now have a full oomwoo-one simulation: SLAM, Nav2, teleop, and bumpers, exactly the
-interfaces the real robot exposes. In *Post 2* you'll write your *first oomwoo ROS 2
+interfaces the real robot exposes. In *Post 2* you'll write your *first OOMWOO ROS 2
 package* — a node that drives a coverage path *while* mapping — and launch it with
 `ros2 launch`.
 
-Want to help build oomwoo? Grab a module from the [Requests for
+Want to help build OOMWOO? Grab a module from the [Requests for
 Contributions](https://github.com/makerspet/oomwoo#requests-for-contributions) or say hi on
 [Discord](https://discord.gg/3y2JKz5T25).

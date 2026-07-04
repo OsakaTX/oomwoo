@@ -16,7 +16,7 @@ simulation*; it is later re-validated on hardware in the
 # Important References
 - [clean-and-map RFC](../clean-and-map) and [urdf-gazebo-sim RFC](../urdf-gazebo-sim) — the *bumper* (left / right / front) and any cliff / wheel-drop sensors this package reacts to.
 - [nav-localize RFC](../nav-localize) — pickup / kidnap detection ties into relocalization.
-- [oomwoo ROS2 development](https://github.com/makerspet/oomwoo-install) — build oomwoo ROS2 Docker image(s) with your packages.
+- [OOMWOO ROS2 development](https://github.com/makerspet/oomwoo-install) — build OOMWOO ROS2 Docker image(s) with your packages.
 - Nav2's behavior/recovery server is a good starting point for composing recoveries.
 - [Project discussions](https://github.com/makerspet/oomwoo/discussions?discussions_q=)
 - [Discord server](https://discord.gg/3y2JKz5T25)
