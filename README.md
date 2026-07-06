@@ -80,6 +80,7 @@ Follow us building in public:
 - [Discord](https://discord.gg/3y2JKz5T25)
 - YouTube: [build-in-public channel](https://www.youtube.com/@makerspet)
 - X: [@0OMWO0](https://x.com/@0OMWO0)
+- Reddit: [r/oomwoo](https://www.reddit.com/r/oomwoo/)
 
 ## Requests for Contributions
 
