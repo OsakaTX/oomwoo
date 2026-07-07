@@ -90,6 +90,7 @@ until OOMWOO hardware is ready. Pick one, tell us in
 | Localization & navigation on a known map | [nav-localize](./contributions/nav-localize) | Ready to start work | Nav2 nav, AMCL localization, relocalize when lost, resume map |
 | Dock cycle: undock, dock, recharge | [dock-cycle](./contributions/dock-cycle) | Ready to start work | Undock, return-to-dock, precise docking, station services, find dock when lost |
 | Recovery behaviors & safety | [recovery-safety](./contributions/recovery-safety) | Ready to start work | Recovery ladder, escalation, pause-and-alert, safety sensors, status reporting |
+| Compute benchmark & memory reduction | [compute-benchmark](./contributions/compute-benchmark) | In progress | Measure ROS2/Nav2/SLAM memory, compare composable nodes, and track the 4 GB -> 2 GB target |
 | Floor-surface handling & edge cleaning | [floor-care](./contributions/floor-care) | Ready to start work | Wall/edge following, carpet vs hardwood, mop lift/lower |
 | Cleaning modes, zones & job orchestration | [cleaning-jobs](./contributions/cleaning-jobs) | Ready to start work | Modes (regular/spot), virtual walls, room segmentation, job splitting + resume |
 | Live robot bring-up & validation | [live-robot-bringup](./contributions/live-robot-bringup) | Ready to start work | Connect the placeholder Proscenic M6 Pro to ROS2, re-run sim tests on hardware |
