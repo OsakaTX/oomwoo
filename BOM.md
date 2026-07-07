@@ -22,7 +22,8 @@ Retail / low-qty prices, INCLUDES shipping, excludes tax. Read [how I calculate 
 
 | Item | Qty | ~USD | Notes | Source |
 |---|---|---|---|---|
-| Drive wheel assembly pair | 1 | $24-$33 | Motor + encoder + suspension + tire + cables + wheel-drop sensors | Roborock S4/5/45/50/51/52/55 Max, S7/Pro/MaxV, E4/E5/45/50/55, G10, T7S/S+, S6/60/65 Pure/MaxV, S70/75, Q5/7 [AliExpress](https://www.aliexpress.us/w/wholesale-roborock-s5-maxv-wheels.html) / [Amazon](https://www.amazon.com/s?k=roborock+s5+maxv+wheels) / [eBay](https://www.ebay.com/sch/i.html?_nkw=roborock+s5+maxv+wheels) |
+| Drive wheel assembly pair | 1 | $24-$33 | Motor + encoder + suspension + tire + cables + wheel-drop sensors | Roborock S4 Max, S45 Max, S5 Max, S50 Max, S55 Max, S6 MaxV, S6 Pure, S65 Pure, S65 MaxV, S7, S7 Pro, S7 MaxV, S7 Max Ultra, S70, S75, E4, E45, E5, E50, E55, G10, T7, T7S, Q5, Q7, Q7 Max, and Q Revo [AliExpress](https://www.aliexpress.us/w/wholesale-roborock-s5-maxv-wheels.html) / [Amazon](https://www.amazon.com/s?k=roborock+s5+maxv+wheels) / [eBay](https://www.ebay.com/sch/i.html?_nkw=roborock+s5+maxv+wheels) |
+| Drive wheel assembly pair | 1 | $24-$33 | | Roborock S5, S50, S51, S52, S55, S502, and the budget C10, E20, E25 and E35 [AliExpress](https://www.aliexpress.us/w/wholesale-roborock-s5-wheels.html) / [Amazon](https://www.amazon.com/s?k=roborock+s5+wheels) / [eBay](https://www.ebay.com/sch/i.html?_nkw=roborock+s5+wheels) |
 | Caster wheel | 1 | $2.50-$5 | Push-in | iRobot Roomba I3/4/6/8, J7/Plus J7 E5/6 500 600 700 800 900 [AliExpress](https://www.aliexpress.us/w/wholesale-roomba-caster.html) / [Amazon](https://www.amazon.com/s?k=roomba+caster) / [eBay](https://www.ebay.com/sch/i.html?_nkw=roomba+caster) |
 | Suction fan | 1 | $10–23 | 6 kPa option | Dreame MSD-C-3, Nidec 20N709U020; fits Dreame L10s Prime/Pro, *L10s Ultra Gen 1* (5.3 kPa — Gen 2 is 10 kPa!), D10s Plus, X10+ (6 kPa); X20+ verify (~7 kPa?) [AliExpress](https://www.aliexpress.us/w/wholesale-Dreame-L10s-fan.html) / [Amazon](https://www.amazon.com/s?k=Dreame+L10s+fan) / [eBay](https://www.ebay.com/sch/i.html?_nkw=Dreame+L10s+fan) |
 |             |   | $17–28 | 5.1-6 kPa option | Nidec 22N704W150, 20N704S980, 20N704R980L; fits Roborock S8 Pro Ultra, S7 MaxV (5.1 kPa), S8/S8+/S8 Plus (6 kPa); G20 (Q7 Max/Max+ excluded — they're 4.2 kPa, not 5-6) [AliExpress](https://www.aliexpress.us/w/wholesale-roborock-s8-pro-fan.html) / [Amazon](https://www.amazon.com/s?k=roborock+s8+pro+fan) / [eBay](https://www.ebay.com/sch/i.html?_nkw=roborock+s8+pro+fan) |
@@ -108,12 +109,7 @@ Try searching Google "site:aliexpress.com lds02rr" and other variations. Be crea
 Combining all these methods is how you can get the rock bottom $15 price.
 
 I record two prices for each part in the BoM table, for example "$15-$25".
-The first ($15) price is the rock bottom one that often requires a minimum purchase of 3 pieces.
+The first ($15) price is the rock bottom one that often requires a minimum purchase of 3 pieces - what I'd (or anyone) be paying putting together an OOMWOO all-parts-included convenience kit.
 The second ($25) price is what you can realistically get when purchasing 1 piece, *applying coupons* and doing *a few minutes of search*.
 
 Why record the first price if requires a 3 pcs minimum? This is because I intend to assemble a convenient parts kit - and make it available to everyone.
-
-Hunting dozens of parts on AliExpress/Amazon/eBay can take be onerous. AliExpress shipping from China add a couple weeks more.
-
-Getting an all-in-one kit, quickly shipped from the US, with parts that I've shopped, pre-screened/pre-tested for you - that's what I'd like to make.
-I would be purchasing parts for that "first" small quantity ($15) price. This is why I record that price.
