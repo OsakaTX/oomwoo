@@ -6,11 +6,11 @@
 > together cannot be finalized. Treat the interface specs as the contract every
 > module agrees to.
 
-## 1. Purpose and scope
+## 1. Purpose/Goal and scope
 
 OOMWOO is an open-source, 3D-printed, ROS2-based home robot vacuum with 2D LiDAR
-and (later) Home Assistant support. It is designed to be *built from scratch by
-the community*, module by module, and to double as an affordable ROS2
+and Home Assistant support. It is designed to be *built from scratch by
+the community*, module by module, clean well and to double as an affordable ROS2
 development and learning platform.
 
 *North star (not MVP):* OOMWOO is also the reference hardware for a broader
