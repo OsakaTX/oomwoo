@@ -95,7 +95,7 @@ until OOMWOO hardware is ready. Pick one, tell us in
 | Live robot bring-up & validation | [live-robot-bringup](./contributions/live-robot-bringup) | Ready to start work | Connect the placeholder Proscenic M6 Pro to ROS2, re-run sim tests on hardware |
 | Source 3D models (STEP) for BOM parts | [source-3d-models](./contributions/source-3d-models) | In progress | Obtain / measure / model STEP files of off-the-shelf parts (wheels, fans, caster…) so mounts fit |
 | Procure part specs & datasheets | [part-specs](./contributions/part-specs) | In progress | Find/measure/reverse-engineer specs (pinouts, encoder PPR, torque, how to drive fans…) for sourced parts |
-| I/O + motor-driver PCB | [io-pcb](./contributions/io-pcb) | Ready to start work | Trim the RK3562 reference schematic to the STM32 I/O side (motors, sensors, battery charging), move the battery to 4S, convert to KiCad; hold at schematic for review |
+| I/O + motor-driver PCB | [io-pcb](./contributions/io-pcb) | Ready to start work | Carrier I/O board: a CM4/CM5 socket (+ pin-compatible modules) plus an STM32G070 controller (motors, sensors, charging, safety; FreeRTOS + custom serial); design in KiCad; hold at schematic for review |
 
 > Planned and on-hold modules (mechanical design, later-phase software) live in the
 > [RFC backlog](docs/RFC_BACKLOG.md).
