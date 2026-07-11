@@ -47,6 +47,8 @@ Retail / low-qty prices, INCLUDES shipping, excludes tax. Read [how I calculate 
 |                |   | $72.50 | Raspberry Pi CM5 ≥4 GB | CM5102000 [PiShop](https://www.pishop.us/product/raspberry-pi-compute-module-5-wireless-4gb-ram-lite-cm5104000/) [Newark](https://www.newark.com/raspberry-pi/cm5104000/som-rpi-compute-mod-5-lite-2gb/dp/20AM3783) [DigiKey](https://www.digikey.com/en/products/detail/raspberry-pi/SC1592/25805568) CM5102016 CM5102032 CM5104064 |
 |                |   | $62.50*  | Raspberry Pi CM4 ≥2 GB | *if software fits CM4102000 [PiShop](https://www.pishop.us/product/raspberry-pi-compute-module-4-wireless-2gb-lite-cm4102000/) [Newark](https://www.digikey.com/en/products/detail/raspberry-pi/SC0667/13530921) [DigiKey](https://www.newark.com/raspberry-pi/cm4102000/rpi-compute-module-4-lite-2gb/dp/86AH2093) CM4102008 CM4102016 CM4102032 |
 |                |   | $72.50* | Raspberry Pi CM5 ≥2 GB | *if software fits CM5102000 [PiShop](https://www.pishop.us/product/raspberry-pi-compute-module-5-wireless-2gb-ram-lite-cm5102000/) [Newark](https://www.newark.com/raspberry-pi/cm5102000/som-rpi-compute-mod-5-lite-2gb/dp/20AM3775) [DigiKey](https://www.digikey.com/en/products/detail/raspberry-pi/SC1586/25805584) CM5102016 CM5102032 CM5104064 |
+| Cliff sensors | 4 | $1.50-2.50 ea | 4x cliff + 2x bumper w/cables bundle | iRobot Roomba 500 600 700 800 528 552 564 595 560 570 610 615 620 625 630 650 [AliExpress](https://www.aliexpress.us/w/wholesale-irobot-roomba-500-cliff.html) / [Amazon](https://www.amazon.com/s?k=irobot+roomba+500+cliff) / [eBay](https://www.ebay.com/sch/i.html?_nkw=irobot+roomba+500+cliff) |
+| Bumper switches | 2 | $0 | Included in cliff sensors bundle | |
 | Main brush motor, gearbox | 1 | TBD | TBD | |
 | Side brush + motor | 1–2 | 3–8 | fixed (extendable is later) | |
 | Mop spin motor(s) + pads | 1–2 | 6–15 | mopping models only | |
@@ -54,8 +56,7 @@ Retail / low-qty prices, INCLUDES shipping, excludes tax. Read [how I calculate 
 | Mop lift servo | 1 | 2–6 | mopping models only | |
 | VL53L7CX multizone ToF | 1 | 8–15 | obstacle detection (90° FoV) | |
 | Color camera | 1 | 5–15 | connects to the SBC | |
-| IR cliff / proximity sensors | 3–4 | 3–8 | | |
-| Bumper micro-switches | 2–3 | 1–3 | | |
+| Side proximity sensors | 3–4 | 3–8 | | |
 | Ultrasonic carpet sensor | 1 | 2–5 | | |
 | Speaker + amp, mic, LEDs, buttons | — | 3–8 | | |
 | Custom I/O PCB | 1 | 20–40 | STM32 + motor drivers + sensor front-ends | |
