@@ -55,12 +55,12 @@ Retail / low-qty prices, INCLUDES shipping, excludes tax. Read [how I calculate 
 |            |   | $3-7 | 2-arm curved | Used in Roborock Saros; possibly fits many other Roborock models [AliExpress](https://www.aliexpress.us/w/wholesale-roborock-saros-side-brush.html) / [Amazon](https://www.amazon.com/s?k=roborock+saros+side+brush) / [eBay](https://www.ebay.com/sch/i.html?_nkw=roborock+saros+side+brush) |
 | Side brush motor | 1 | $7-10 | Fixed | Fits Roborock S5, S50, S51, S52, S55, S502-00/01/02/03** S552-00, S5 Max, S6, S6 Pure, S6 MaxV, S60, S61, S65, S7, S7 MaxV, S7 Plus, S70, S75, Xiaowa/Xiaomi C10 E20 E25 E35 [AliExpress](https://www.aliexpress.us/w/wholesale-roborock-s5-side-brush-motor.html) / [Amazon](https://www.amazon.com/s?k=roborock+s5+side+brush+motor) / [eBay](https://www.ebay.com/sch/i.html?_nkw=roborock+s5+side+brush+motor) |
 |                  |   | $18-35 | Extendable | FlexiArm fits Roborock Qrevo Master, Qrevo Edge, Qrevo Slim, Qrevo Pro, Qrevo S Pro, S8 MaxV Ultra, S8 Max Ultra, Q55 Pro, G20, G20S, V20 [AliExpress](https://www.aliexpress.us/w/wholesale-roborock-qrevo-side-brush-motor.html) / [Amazon](https://www.amazon.com/s?k=roborock+qrevo+side+brush+motor) / [eBay](https://www.ebay.com/sch/i.html?_nkw=roborock+qrevo+side+brush+motor) |
+| Wall sensor | 1 | $5-10 | Custom PCB | TSOP38238 IR receiver and 940nm IR LED; VL53L7CX a premium option |
 | Mop spin motor(s) + pads | 1–2 | 6–15 | mopping models only | |
 | Water pump + valve + tubing | 1 | 4–10 | mopping models only | |
 | Mop lift servo | 1 | 2–6 | mopping models only | |
 | VL53L7CX multizone ToF | 1 | 8–15 | obstacle detection (90° FoV) | |
 | Color camera | 1 | 5–15 | connects to the SBC | |
-| Side proximity sensors | 3–4 | 3–8 | | |
 | Ultrasonic carpet sensor | 1 | 2–5 | | |
 | LiDAR tower bumper sensor | 2 | TODO | Microswitches | |
 | Speaker + amp, mic, LEDs, buttons | — | 3–8 | | |
