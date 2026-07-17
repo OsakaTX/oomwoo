@@ -375,6 +375,8 @@ Start byte `0xAA`, followed by:
 
 **⚠️ BOM specifies a Roomba-style caster** (iRobot part #4624869, $2.50-$5 push-in ball-type). The Roborock S-family caster (50mm wheel-type, OEM #9.01.1272/1273) is a different part — verify which is selected before designing the mount.
 
+> **Note on Roborock caster SKUs:** replacement listings cite more than one OEM number for the S-family caster — `9.01.1272/1273` (~50mm wheel, ~45mm base) above, and `HA00021` (~46 × 52mm) in [`io-board-wheel-connector-and-caster.md`](io-board-wheel-connector-and-caster.md). These appear to be the same donor part under different reseller SKUs; the BOM's primary remains the Roomba-style iRobot 4624869. Confirm the exact SKU and dimensions against the selected part before designing the mount.
+
 ### Roomba Caster (BOM Source)
 
 | Spec | Value |
@@ -514,7 +516,7 @@ Active reflective proximity sensor: a 940nm IR LED emits 38kHz-modulated bursts 
 
 | Parameter | Value | Source |
 |-----------|-------|--------|
-| Transducer | HTW HT-300PLTR — 290±15kHz center, 16mm diameter, ~30mm target distance, ≤2mm precision, IP67 | HTW listing (Made-in-China) |
+| Transducer | HTW HT-300PLTR1612-1 — 290±15kHz center, 16mm diameter, ~30mm target distance, ≤2mm precision, IP67 | HTW listing (Made-in-China) |
 | OEM alternative | Roborock OEM carpet sensor module (~$6.93) | AliExpress listing |
 | Principle | Echo-characteristic analysis to distinguish carpet from hard floor | — |
 
@@ -537,4 +539,4 @@ Active reflective proximity sensor: a 940nm IR LED emits 38kHz-modulated bursts 
 | **Charging contacts (dock)** | Gold-plated pogo pins, 4A rating; dock outputs 20V 1.2A (24W) | ❌ Exact pogo pin model/part number, ❌ pricing |
 | **Charging system** | CMD_CHARGER_POWER=0x9B, charging flags at offset 0x07 (dock=0x01, charging=0x02), battery voltage at 0x08 | None — firmware-level specs complete |
 | **Wall sensor** | TSOP38238 IR receiver (38kHz, AGC2, ±45°, active-low) + 940nm IR LED (TSAL6100 representative); reflective proximity design | ❌ Exact IR LED part in BOM, ❌ detection-range tuning |
-| **Carpet sensor** | HTW HT-300PLTR ultrasonic (290±15kHz, IP67, ~30mm range); Roborock OEM module alternative | ❌ Manufacturer datasheet for exact BOM part, ❌ echo-analysis thresholds |
+| **Carpet sensor** | HTW HT-300PLTR1612-1 ultrasonic (290±15kHz, IP67, ~30mm range); Roborock OEM module alternative | ❌ Manufacturer datasheet for exact BOM part, ❌ echo-analysis thresholds |
