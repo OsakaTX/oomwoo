@@ -22,7 +22,7 @@ See BOM.md for the full Aliexpress search links.
 
 ### Motor Specs (Nidec 20N704RC70 — "Motor for Wheel")
 
-Sourced from the [Nidec Robot Cleaner Motor catalog PDF](https://file.eleecans.com/web1/M00/CC/89/o4YBAF-ZOBKAQBvyADDMAglsvTw020.pdf):
+Sourced from the [Nidec Robot Cleaner Motor catalog PDF](https://file.elecfans.com/web1/M00/CC/89/o4YBAF-ZOBKAQBvyADDMAglsvTw020.pdf):
 
 | Parameter | Value |
 |---|---|
