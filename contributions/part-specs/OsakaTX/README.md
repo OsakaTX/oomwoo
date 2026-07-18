@@ -1,8 +1,11 @@
 # Part Specs — Compiled Datasheets & Specifications
 
 > **Contributor:** OsakaTX
-> **Status:** Initial compilation — datasheets and specifications found via online research
-> **Methodology:** Web research from manufacturer datasheets, public SDKs, open-source reverse-engineering projects, and Aliexpress listings
+> **Status:** Updated July 17, 2026 — consolidated batch covering the I/O board wheel connector, caster wheel, side brush motor and brushes, charging contacts, and wall/carpet sensors (new BOM items Jul 12-16). Encoder, gearbox, caster, and connector findings drawn from merged PRs, codetiger/VacuumTiger firmware analysis, and verified calibrations
+> **Methodology:** Web research from manufacturer datasheets, public SDKs, open-source reverse-engineering projects (codetiger/VacuumTiger, codetiger/VacuumRobot), physical inspection data from merged contributor PRs (Scowt PR #13), Aliexpress listings, and VacuumTiger firmware empirical calibration
+>
+> 👉 **See the companion file for detailed methodology, derivation, and cross-referencing:**
+> [`vacuumtiger-verified-specs.md`](vacuumtiger-verified-specs.md)
 
 This document compiles the electrical and mechanical specifications found for key BOM
 parts. Each section covers what was found and what is still missing.
@@ -33,10 +36,10 @@ Sourced from the [Nidec Robot Cleaner Motor catalog PDF](https://file.elecfans.c
 | **Status** | ⚠️ "In development" per Nidec catalog — model may have changed in production |
 
 **Note:** The actual motor used in production Roborock wheels may differ from the
-catalog entry above. The wheel module includes a **gearbox** (ratio not published)
+catalog entry above. The wheel module includes a **gearbox** (see estimated ratio below)
 that reduces this to the final wheel RPM. The encoder is mounted after the gearbox.
 
-### Wheel Dimensions (from open PR #10 — alvarosamudio's URDF)
+### Wheel Dimensions (from PR #10 — alvarosamudio's URDF, merged)
 
 | Dimension | Value |
 |---|---|
@@ -45,42 +48,78 @@ that reduces this to the final wheel RPM. The encoder is mounted after the gearb
 
 ### Encoder
 
-- **Type:** Incremental quadrature encoder (magnetic or optical, likely magnetic for dust resistance)
-- **Known fact:** Connected to GD32F103 MCU timer inputs (quadrature decoder mode)
-- **PPR:** ❔ **NOT FOUND** — needs physical disassembly and measurement or reverse-engineering
-- The GD32F103VCT6 has hardware timers capable of quadrature decoding
-- The 16-pin J25/J26 connectors carry encoder + cliff + bumper + misc signals
+- **Type:** **Single-channel Hall-effect sensor** (pulse output) — confirmed via physical inspection by Scowt PR #13 (merged). The wheel-side 7-pin JST connector has exactly **one** encoder signal wire (blue), plus 5V (orange) and GND (brown). This is NOT a quadrature A/B encoder.
+- **GD32 decoding:** The GD32F103VCT6 hardware timer performs **4× edge counting** on the single pulse train (rising + falling edges × 2 timer channels), producing effective 4× resolution.
+- **Effective ticks/rev (wheel shaft):** **~911 ticks/rev** — derived from the calibrated `ticks_per_meter = 4464.0` (VacuumTiger firmware, confirmed in `encoder_sim.rs` unit test) and wheel circumference = π × 0.065 m ≈ 0.2042 m. Calculation: 4464 ticks/m × 0.2042 m/rev ≈ 911 ticks/rev.
+- **PPR:** **~228 PPR** (raw encoder pulses per wheel revolution) — 911 / 4 = ~228. Typical multi-pole magnetic ring encoders range from 8-32 poles, making a multi-pole ring a plausible mechanism but this pole count is speculative without physical inspection.
+- **Directional ambiguity:** The single-channel encoder alone cannot determine rotation direction. Direction is resolved by the **IMU gyro** in the navigation pipeline (VacuumTiger dhruva-slam).
+- **Data format:** u16 LE wrapping counter at offsets 0x10 (left wheel) / 0x18 (right wheel) in the 96-byte GD32 status packet, streamed at 110 Hz. Confirmed from codetiger/VacuumTiger `sangam-io/src/devices/crl200s/gd32/reader.rs` and `SENSORSTATUS.md`.
+- **Calibrated odometry:** `ticks_per_meter = 4464.0`, `wheel_base = 0.233 m` — empirically calibrated on real hardware and confirmed in multiple VacuumTiger source files: `sangam-io/src/devices/mock/config.rs`, `dhruva-nav/dhruva.toml`, `dhruva-slam/src/sensors/odometry/wheel_odometry.rs`, and `dhruva-nav/src/odometry.rs`.
 
-### Connector (Wheel Module to Main Board)
+### Gearbox Ratio
 
-- **Connector type:** J25 (left wheel) / J26 (right wheel) — 16-pin, 1mm pitch SHD (shielded) connector
-- **Known pins:** 2-4 pins for encoder A/B channels, 2 pins for wheel-drop sensor, remaining for other sensors
-- **Full pinout:** ❔ **NOT CONFIRMED** — needs PCB tracing or oscilloscope probing
+- **Estimated ratio:** **~190:1** — derived from `VELOCITY_TO_DEVICE_UNITS = 523.0` (empirically calibrated in VacuumTiger `commands.rs`) and the verified max linear speed of 0.3 m/s. At 16,800 rpm no-load motor speed with 0.065 m wheels, a ~190:1 reduction produces a max wheel speed consistent with 0.3 m/s. Confirmed consistent with the calibrated ticks/m and 911 ticks/rev at the wheel shaft.
+- **Physical verification:** ❌ **Not yet confirmed via tooth counting** — requires disassembly.
 
-### Wheel-Drop Sensor
+### Connectors
 
-- **Model:** ❔ **NOT FOUND** — likely a microswitch or Hall-effect sensor within the wheel suspension assembly
-- **Pinout:** ❔ **NOT CONFIRMED**
+#### Wheel Module Connector (7-pin JST, cable side)
+
+Confirmed by Scowt PR #13 physical inspection (merged):
+
+| Pin | Wire Color | Function |
+|-----|-----------|----------|
+| 1 | Grey | Limit switch (wheel-drop, NC) |
+| 2 | Grey | Limit switch (wheel-drop, common) |
+| 3 | Orange | Encoder VCC (+5V) |
+| 4 | Blue | Encoder signal (single-channel pulse) |
+| 5 | Brown | Encoder GND |
+| 6 | Black | Motor power (-) |
+| 7 | Red | Motor power (+) |
+
+**Cable length:** ~250 mm (per Scowt observation).
+
+#### Mainboard Connectors (J25/J26 — 16-pin SHD 1.0mm)
+
+Motor power is on **separate connectors** (J24 left / J27 right, 2-pin PH 2.0mm) — NOT carried by J25/J26.
+
+**J25 (bottom, left wheel):** Left wheel encoder (3 wires) + Dustbox power + Left cliff sensor + Left bumper
+**J26 (top, right wheel):** Right wheel encoder (3 wires) + Sweeper motor power + Right cliff sensor + Right bumper
+
+Per codetiger/VacuumRobot reverse-engineering. **Full per-pin map** requires PCB continuity tracing (multimeter). The signal groups above are established; the exact pin-to-signal assignment within each group is hypothesis.
+
+### Motor Driver IC
+
+- **IC:** **TMI8870** (TOLL Microelectronic) — top mark "T8870", ESOP8 package
+- **Specs:** Single H-bridge, 3.6A peak, 6.8-45V, PWM with integrated current regulation
+- **Pin-compatible:** With TI DRV8870
+- **Confirmed via:** TMI8870 datasheet (taoic.oss-cn-hangzhou.aliyuncs.com) matching the "8870" marking on U25 on the motherboard (photographed in codetiger/VacuumRobot Component_Diagram.md)
+- **Dual ICs:** Since TMI8870 is a single-channel H-bridge and the robot has two wheels, a second matching IC should exist on the motherboard (near J27 for the right wheel)
+
+### Wheel Module Weight
+
+- **Pair:** ~463g (0.463 kg shipped pair — AliExpress listing for original Roborock S6 wheel module)
+- **Single:** ~230g (estimated from pair weight)
 
 ### What We Still Need
 
 | Item | Status |
 |---|---|
-| Encoder type (magnetic vs optical) | ❔ Unknown |
-| Encoder PPR (pulses per revolution) | ❔ Unknown — **critical for odometry** |
-| Gearbox ratio | ❔ Unknown |
-| Wheel module connector full pinout | ❔ Unknown |
-| Wheel-drop sensor model + pinout | ❔ Unknown |
-| Cable length | ❔ Unknown |
-| Module weight | ❔ Unknown |
-| Actual motor model in the production module | ❔ Needs teardown verification |
+| Exact gearbox ratio via tooth counting | ❌ Needs disassembly |
+| Full J25/J26 per-pin map | ❌ Needs PCB continuity tracing |
+| Wheel-drop sensor exact model | ❌ Needs physical inspection |
+| Cable length (exact) | ❌ Needs physical measurement |
+| Motor driver IC location for right wheel | ❌ Needs PCB inspection |
 
 ### References
 
 - [Nidec Robot Cleaner Motor Product Introduction PDF](https://file.elecfans.com/web1/M00/CC/89/o4YBAF-ZOBKAQBvyADDMAglsvTw020.pdf)
 - [codetiger/VacuumRobot — Mainboard Component Diagram](https://github.com/codetiger/VacuumRobot/blob/main/Research/Motherboard/Component_Diagram.md)
 - [codetiger/VacuumRobot — Connection Evidence](https://github.com/codetiger/VacuumRobot/blob/main/Research/Motherboard/Connection_Evidence.md)
-- [codetiger/VacuumTiger — Custom firmware implementing the protocol](https://github.com/codetiger/VacuumTiger)
+- [codetiger/VacuumTiger — Custom firmware with verified calibration](https://github.com/codetiger/VacuumTiger)
+- [Scowt PR #13 — Wheel module 7-pin connector physical inspection](https://github.com/makerspet/oomwoo/pull/13)
+- [TMI8870 Motor Driver Datasheet](https://www.taoic.com/product/28.html)
+- Companion file: [`io-board-wheel-connector-and-caster.md`](io-board-wheel-connector-and-caster.md) — OOMWOO I/O board 5-pin ZH wheel connector (J12/J13) and on-board DRV8870 analysis
 
 ---
 
@@ -138,11 +177,11 @@ From the catalog, the Nidec Smart_20N series BLDC motors support:
 
 | Item | Status |
 |---|---|
-| Full suction-assembly-level datasheet (including impeller housing) | ❔ Missing (we have bare motor specs) |
-| Specific connector model + pinout for each assembly variant | ❔ Unknown |
-| Cable length(s) | ❔ Unknown |
-| Signal waveforms (PWM, FG) | ❔ Unknown |
-| Weight of full assembly | ❔ Unknown |
+| Full suction-assembly-level datasheet (including impeller housing) | ❌ Missing (we have bare motor specs) |
+| Specific connector model + pinout for each assembly variant | ❌ Unknown |
+| Cable length(s) | ❌ Unknown |
+| Signal waveforms (PWM, FG) | ❌ Unknown |
+| Weight of full assembly | ❌ Unknown |
 
 ### References
 
@@ -229,7 +268,7 @@ Start byte `0xAA`, followed by:
 
 | Parameter | Value |
 |---|---|
-| **Type** | Time-of-F Flight, 8×8 multizone (64 zones) |
+| **Type** | Time-of-Flight, 8×8 multizone (64 zones) |
 | **Field of View** | 90° diagonal (65° × 65° typical) |
 | **Range** | Up to 350 cm (varies by target reflectivity and ambient) |
 | **I²C address** | 0x52 (default) — configurable |
@@ -332,14 +371,172 @@ Start byte `0xAA`, followed by:
 
 ---
 
+## 7. Caster Wheel
+
+**⚠️ BOM specifies a Roomba-style caster** (iRobot part #4624869, $2.50-$5 push-in ball-type). The Roborock S-family caster (50mm wheel-type, OEM #9.01.1272/1273) is a different part — verify which is selected before designing the mount.
+
+> **Note on Roborock caster SKUs:** replacement listings cite more than one OEM number for the S-family caster — `9.01.1272/1273` (~50mm wheel, ~45mm base) above, and `HA00021` (~46 × 52mm) in [`io-board-wheel-connector-and-caster.md`](io-board-wheel-connector-and-caster.md). These appear to be the same donor part under different reseller SKUs; the BOM's primary remains the Roomba-style iRobot 4624869. Confirm the exact SKU and dimensions against the selected part before designing the mount.
+
+### Roomba Caster (BOM Source)
+
+| Spec | Value |
+|---|---|
+| Part number | iRobot 4624869 / RM500CSA |
+| Type | Snap-in ball-type caster |
+| Wheel diameter | ~25mm |
+| Weight | ~30g (plastic) to ~61g (metal+plastic variant) |
+| Mounting | Push-in snap-fit |
+| Sensor | None (passive) |
+| Compatible with | Roomba i3/4/6/8/J7/e5/6/500-900 series |
+| Price | $2.50–$12.95 |
+| Availability | Abundant (iRobot official, Amazon, aftermarket) |
+
+### Roborock S-family Caster (Alternative / Other BOM Variant)
+
+| Spec | Value |
+|---|---|
+| OEM part numbers | 9.01.1272 (white) / 9.01.1273 (black) — confirmed via TechPunt.nl, Roborock India |
+| Type | Wheel-type caster |
+| Wheel height | ~50mm |
+| Base diameter | ~45mm |
+| Weight | ~45–70g |
+| Mounting | Clip-in/pop-in (older models) or bolted-on screw bracket (S5 Max, S6 MaxV, E4+) |
+| Sensor | None (passive) |
+| Price | $4–17 |
+
+### References
+
+- [TechPunt.nl — OEM part listing](https://www.techpunt.nl/en/robotic-vacuums/robotic-vacuum-parts/20-c2109-roborock-original-spare-parts_141225)
+- [Roborock India — OEM parts](https://www.roborockindia.in/)
+- [iRobot official store — part 4624869](https://store.irobot.com/)
+- [Thingiverse — Roomba caster 3D printable models](https://www.thingiverse.com/)
+- [Printables — Roborock caster bracket model (Uko, Jan 2021)](https://www.printables.com/)
+
+---
+
+## 8. Side Brush Motor (Roborock S-family)
+
+> **See detailed spec file:** [`side-brush-charging-contacts-specs.md`](side-brush-charging-contacts-specs.md)
+
+### Motor Type — Verified by Physical Teardown
+
+- **Brushed DC motor** (confirmed by Reddit teardown — carbon brushes, coal dust inside)
+- Sintered bronze self-lubricating bushings (not ball bearings)
+- 2-stage plastic gearbox with grease
+- Contact pads TP1/TP2 on motor PCB (simple 2-wire DC connection)
+- Weight: ~150g
+- Robot detects stalls via current sensing and shuts off motor as safety precaution
+
+### Firmware Control (VacuumTiger — verified from source code)
+
+| Parameter | Value | Source |
+|-----------|-------|--------|
+| Command | `CMD_SIDE_BRUSH = 0x69` | `constants.rs` line 19 |
+| Speed format | u8, 0-100% | `packet.rs` line 141-149 |
+| Component ID | `"side_brush"` | `commands.rs` line 75 |
+| Main brush command | `CMD_MAIN_BRUSH = 0x6A` (u8, 0-100%) | `constants.rs` line 20 |
+
+### BOM Variants
+
+| Type | Price | Notes |
+|------|-------|-------|
+| Fixed | $7-10 | Standard for S5/S6/S7 and many other models |
+| Extendable (FlexiArm) | $18-35 | For Qrevo Master/Edge, S8 MaxV Ultra, G20S, V20 |
+
+### Side Brushes
+
+| Type | Price | Notes |
+|------|-------|-------|
+| 5-arm | $2-8 | S5, S50, S51, S55, S6, S60, S6 Pure |
+| 3-arm | $3-9 | S8 and many other models |
+| 2-arm curved | $3-7 | Saros |
+
+Attachment: single Phillips #2 captive screw.
+
+---
+
+## 9. Charging Contacts
+
+> **See detailed spec file:** [`side-brush-charging-contacts-specs.md`](side-brush-charging-contacts-specs.md)
+
+### Robot Side
+
+| Spec | Value |
+|------|-------|
+| Material | Nickel-plated steel strip |
+| Dimensions | ~1mm wide, ~0.1mm thick, ~5cm long |
+| Price | $1.50-2.50 (pair) |
+
+### Dock Side
+
+| Spec | Value |
+|------|-------|
+| Type | Gold-plated pogo pins |
+| Current rating | 4A |
+| Price | TODO (BOM not yet priced) |
+
+### Charging System
+
+| Parameter | Value | Source |
+|-----------|-------|--------|
+| Dock power supply | 20V DC, 1.2A (24W) | Amazon/AliExpress replacement adapter |
+| Dock output at contacts | ~19.8-20V DC | Reddit user measurement |
+| Robot battery | 13.5-15.5V (4S Li-ion, 14.4V nominal) | VacuumTiger `constants.rs` |
+| Charging method | Contact-based (not inductive) | Standard Roborock |
+
+### Firmware Charging Detection (VacuumTiger — verified from source code)
+
+| Parameter | Value | Source |
+|-----------|-------|--------|
+| Charging flags offset | 0x07 (byte 7 in status packet) | `constants.rs` line 62 |
+| Dock connected flag | bit 0 (0x01) | `constants.rs` line 101 |
+| Charging flag | bit 1 (0x02) | `constants.rs` line 100 |
+| Battery voltage offset | 0x08 (raw / 10 = volts) | `constants.rs` line 63 |
+| Charger power command | `CMD_CHARGER_POWER = 0x9B` | `constants.rs` line 51 |
+
+---
+
+## 10. Wall & Carpet Sensors
+
+> **See detailed spec file:** [`wall-carpet-sensor-specs.md`](wall-carpet-sensor-specs.md)
+
+### Wall Sensor — TSOP38238 IR Receiver + 940nm IR LED
+
+Active reflective proximity sensor: a 940nm IR LED emits 38kHz-modulated bursts and the TSOP38238 detects the reflection off a nearby wall.
+
+| Parameter | Value | Source |
+|-----------|-------|--------|
+| IR receiver | Vishay TSOP38238 — 38kHz carrier, 2.0-5.5V, ~0.25mA typ, ±45° directivity, active-low output | Vishay datasheet (doc 82491) |
+| AGC variant | AGC2 (long-burst; drive LED with ≥10 cycles/burst) | Vishay datasheet (doc 82491) |
+| IR LED (representative) | Vishay TSAL6100 — 940nm, 170mW/sr, ±10° beam, 1.35V typ Vf, 100mA DC | Vishay datasheet (doc 81009); exact BOM part not specified |
+| Output | Active-low digital pulse when a valid 38kHz reflection is detected | TSOP38238 datasheet |
+| Premium alternative | VL53L7CX multizone ToF (true distance vs binary detection) | BOM note |
+
+### Carpet Sensor — Ultrasonic 300kHz
+
+| Parameter | Value | Source |
+|-----------|-------|--------|
+| Transducer | HTW HT-300PLTR1612-1 — 290±15kHz center, 16mm diameter, ~30mm target distance, ≤2mm precision, IP67 | HTW listing (Made-in-China) |
+| OEM alternative | Roborock OEM carpet sensor module (~$6.93) | AliExpress listing |
+| Principle | Echo-characteristic analysis to distinguish carpet from hard floor | — |
+
+---
+
 ## Summary of Found vs Missing
 
 | Part | Documentation Found | Critical Gaps |
 |---|---|---|
-| **Drive wheel** | Motor electrical specs (Nidec 20N704RC70), wheel diameter (65mm), connector type (16-pin SHD) | ❌ Encoder PPR, ❌ gearbox ratio, ❌ full connector pinout, ❌ wheel-drop sensor model |
+| **Drive wheel** | Motor electrical specs (Nidec 20N704RC70), wheel diameter (65mm), encoder type (single-channel Hall, ~228 PPR), gearbox ratio (~190:1), ticks/meter (4464), wheel module connector (7-pin JST with wire colors), mainboard connectors (J25/J26 16-pin SHD signal groups, J24/J27 2-pin PH motor power), motor driver IC (TMI8870), module weight (~463g pair) | ❌ Exact gearbox ratio via tooth count, ❌ full J25/J26 per-pin map, ❌ wheel-drop sensor model |
 | **Suction fan** | Complete Nidec catalog specs for many models, PWM/FG control, connector types (JST XH) | ❌ Impeller housing geometry, ❌ assembly weight, ❌ cable lengths |
 | **LiDAR (CRL-200S)** | ✅ Full specs, pinout, protocol, RPM/voltage relationship, power consumption | Minor: exact motor model inside, formal manufacturer datasheet |
 | **VL53L7CX ToF** | ✅ Full datasheet, I²C interface, pinout, FOV, range | None — standard ST component |
 | **IMU (MPU-6050)** | ✅ Full datasheet, I²C interface, pinout | None — standard InvenSense component |
 | **IR cliff sensor** | ✅ TCRT5000 specs, circuit, pinout | None — standard sensor, subject to final BOM choice |
-| **Caster wheel** | ❌ Nothing found | Everything — model, dimensions, mounting, weight, any embedded sensor |
+| **Caster wheel** | ✅ Roomba 4624869 specs (25mm ball-type, push-in); Roborock 9.01.1272/1273 (50mm wheel-type); both passive | ❌ Exact dimensional drawing for chosen variant; ❌ which BOM variant is selected |
+| **Side brush motor** | Brushed DC motor (teardown-verified), 2-stage plastic gearbox, TP1/TP2 contacts, ~150g, CMD 0x69 speed 0-100%, fixed ($7-10) and FlexiArm ($18-35) variants | ❌ Exact voltage, ❌ RPM, ❌ exact gearbox ratio, ❌ connector model |
+| **Side brushes** | 5-arm ($2-8), 3-arm ($3-9), 2-arm curved ($3-7); single Phillips screw attachment | None — standard consumable part |
+| **Charging contacts (robot)** | Nickel-plated steel strip, ~1mm×0.1mm×5cm, $1.50-2.50/pair | None — standard material |
+| **Charging contacts (dock)** | Gold-plated pogo pins, 4A rating; dock outputs 20V 1.2A (24W) | ❌ Exact pogo pin model/part number, ❌ pricing |
+| **Charging system** | CMD_CHARGER_POWER=0x9B, charging flags at offset 0x07 (dock=0x01, charging=0x02), battery voltage at 0x08 | None — firmware-level specs complete |
+| **Wall sensor** | TSOP38238 IR receiver (38kHz, AGC2, ±45°, active-low) + 940nm IR LED (TSAL6100 representative); reflective proximity design | ❌ Exact IR LED part in BOM, ❌ detection-range tuning |
+| **Carpet sensor** | HTW HT-300PLTR1612-1 ultrasonic (290±15kHz, IP67, ~30mm range); Roborock OEM module alternative | ❌ Manufacturer datasheet for exact BOM part, ❌ echo-analysis thresholds |
