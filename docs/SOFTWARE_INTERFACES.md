@@ -147,6 +147,13 @@ where possible.
 | `/oomwoo/io/cliff` | MCU -> CPU | Cliff bitfield or future OOMWOO message. |
 | `/oomwoo/io/wheel_drop` | MCU -> CPU | Wheel-drop bitfield or future OOMWOO message. |
 | `/oomwoo/safety/e_stop` | CPU -> MCU | Software e-stop request; MCU remains final safety authority. |
+| `/camera/obstacle/image_raw` | CPU -> ROS2 | Optional front obstacle camera stream, about 130 degree FoV in simulation. |
+| `/camera/obstacle/camera_info` | CPU -> ROS2 | Camera calibration for the front obstacle camera. |
+| `/oomwoo/dock_ir/front_left` | MCU -> CPU | Final-approach dock IR homing strength. |
+| `/oomwoo/dock_ir/front_right` | MCU -> CPU | Final-approach dock IR homing strength. |
+| `/oomwoo/dock_ir/search_left` | MCU -> CPU | Left-side dock beacon search strength. |
+| `/oomwoo/dock_ir/search_right` | MCU -> CPU | Right-side dock beacon search strength. |
+| `/oomwoo/dock/final_cmd_vel` | CPU -> MCU | Optional low-speed final-docking command after Nav2 reaches predock pose. |
 | `/diagnostics` | MCU/bridge -> CPU | Watchdog, CRC drops, reset reason, fault bits. |
 
 Hard safety events must be handled by the MCU even if ROS2 is down. ROS2 can

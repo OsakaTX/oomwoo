@@ -125,12 +125,36 @@ Pass criteria:
 - overcurrent produces a visible ROS2 diagnostic and status reason
 - recovery and dock-cycle modules can subscribe to the same public interfaces
 
+## Phase 6: dock and IR homing simulation
+
+Goal: validate the dock-cycle interface before dock hardware exists.
+
+Checks:
+
+- front obstacle camera appears in the URDF with about 130 degrees field of view
+- Gazebo dock model exposes an IR emitter
+- two front IR homing sensors produce separate left/right readings
+- left and right search sensors can detect the dock beacon from unknown poses
+- Nav2 can drive to a known predock pose
+- final approach can run without Nav2 using only IR homing and low-speed
+  setpoints
+- charge-contact and charging-active state are reported separately
+- undocking backs out to a known clear pose before handing motion back to Nav2
+
+Pass criteria:
+
+- final approach never exceeds the docking velocity clamp
+- loss of heartbeat or any hard safety event stops final approach
+- docking fails visibly if the IR emitter is absent, blocked, or ambiguous
+- a headless regression can run undock -> predock -> IR final approach -> charge
+  contact -> undock
+
 ## Artifacts to collect
 
 - firmware build ID and protocol version
 - bridge version and git SHA
 - serial log sample
 - ROS2 bag with `/cmd_vel`, `/odom`, `/joint_states`, `/battery_state`,
-  `/diagnostics`, and OOMWOO safety topics
+  `/diagnostics`, OOMWOO safety topics, and dock IR topics where applicable
 - compute benchmark CSV from the target SBC
 - short written decision note for any changed message field or timeout

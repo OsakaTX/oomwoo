@@ -32,6 +32,7 @@ Nav2 / recovery / jobs / diagnostics
 | `/oomwoo/cleaning/pump_pct` | `std_msgs/msg/UInt8` | Set water pump speed percent. | `CLEANING_MOTORS_SET` |
 | `/oomwoo/lidar/motor_pct` | `std_msgs/msg/UInt8` | Set LiDAR motor PWM if the MCU owns LiDAR motor control. | `LIDAR_MOTOR_SET` |
 | `/oomwoo/io/clear_faults` | `std_srvs/srv/Trigger` or custom service | Clear selected latched faults after safe conditions return. | `CLEAR_LATCHED_FAULT` |
+| `/oomwoo/dock/final_cmd_vel` | `geometry_msgs/msg/Twist` | Optional slow final-approach command after Nav2 reaches predock pose. | `DRIVE_SETPOINT` with tighter clamps. |
 
 ## Published ROS2 outputs
 
@@ -44,6 +45,11 @@ Nav2 / recovery / jobs / diagnostics
 | `/oomwoo/io/cliff` | `std_msgs/msg/UInt8` initially | `FAST_TELEMETRY`, `SAFETY_EVENT` | Bitfield for cliff sensors. |
 | `/oomwoo/io/wheel_drop` | `std_msgs/msg/UInt8` initially | `FAST_TELEMETRY`, `SAFETY_EVENT` | Bitfield for wheel-drop sensors. |
 | `/oomwoo/io/dock` | `std_msgs/msg/UInt8` initially | `POWER_TELEMETRY` | Dock-present and charging bits. |
+| `/oomwoo/dock_ir/front_left` | `std_msgs/msg/Float32` initially | `FAST_TELEMETRY` or sensor frame | Normalized final-approach IR beacon strength. |
+| `/oomwoo/dock_ir/front_right` | `std_msgs/msg/Float32` initially | `FAST_TELEMETRY` or sensor frame | Normalized final-approach IR beacon strength. |
+| `/oomwoo/dock_ir/search_left` | `std_msgs/msg/Float32` initially | `FAST_TELEMETRY` or sensor frame | Left-side dock search beacon strength. |
+| `/oomwoo/dock_ir/search_right` | `std_msgs/msg/Float32` initially | `FAST_TELEMETRY` or sensor frame | Right-side dock search beacon strength. |
+| `/oomwoo/dock/state` | `std_msgs/msg/String` initially | bridge + dock-cycle policy | JSON state for visible, aligned, contact made, and charging active. |
 | `/oomwoo/io/mcu_status` | `diagnostic_msgs/msg/DiagnosticArray` | `MCU_DIAGNOSTIC` | Watchdog, loop timing, CRC drops, reset reason. |
 | `/diagnostics` | `diagnostic_msgs/msg/DiagnosticArray` | All telemetry | Standard integration with ROS tooling. |
 | `/oomwoo/status` | `std_msgs/msg/String` initially | Bridge policy + safety frames | JSON status compatible with current recovery prototype. |
@@ -83,6 +89,11 @@ solve high-level arbitration; it should enforce low-level safety:
 - send zero setpoints on deactivate
 - stop forwarding motion while e-stop, cliff, wheel-drop, or CPU timeout is
   latched
+
+Docking has a special low-speed phase after Nav2 reaches a known predock pose.
+During that phase, the dock controller may publish `/oomwoo/dock/final_cmd_vel`;
+the bridge should apply tighter velocity clamps and shorter setpoint durations
+than normal navigation, while the MCU keeps the same hard-stop authority.
 
 ## Message evolution
 

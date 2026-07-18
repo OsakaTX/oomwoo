@@ -18,6 +18,7 @@ It is meant to unblock parallel work:
 |---|---|
 | [`docs/cpu_mcu_serial_contract.md`](docs/cpu_mcu_serial_contract.md) | Versioned serial framing, message catalog, watchdog rules, and payload shapes. |
 | [`docs/ros2_mapping.md`](docs/ros2_mapping.md) | Mapping between serial frames and ROS2 topics/services/diagnostics. |
+| [`docs/docking_ir_requirements.md`](docs/docking_ir_requirements.md) | Dock, IR homing, obstacle camera, and undocking requirements from maintainer feedback. |
 | [`docs/bringup_validation_plan.md`](docs/bringup_validation_plan.md) | Step-by-step validation from codec tests to bench robot bringup. |
 | [`docs/hardware_contract_gaps.md`](docs/hardware_contract_gaps.md) | Open conflicts between architecture docs, I/O PCB RFC, KiCad specs, and part specs. |
 | [`tools/oomwoo_mcu_frame.py`](tools/oomwoo_mcu_frame.py) | Dependency-free Python reference codec for the proposed frame format. |
@@ -65,3 +66,5 @@ python3 contributions/io-board-interface/xbattlax/tools/sim_mcu.py --count 3
    custom OOMWOO messages after the hardware stabilizes?
 4. Which timeout should be used for the MCU's hard motion stop after missed CPU
    heartbeats: 100 ms, 150 ms, or 250 ms?
+5. Should the dock IR sensors be reported as raw normalized intensity, thresholded
+   digital events, or both?

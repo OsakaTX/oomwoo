@@ -12,8 +12,12 @@ for mapping would make the regular product harder to build and use.
 
 The maintainer has clarified these current assumptions:
 
-- Pi 4 / CM4-class compute with 4 GB RAM is a realistic near-term baseline.
-- Reducing toward 2 GB while keeping ROS2 would be valuable.
+- Pi 4 2 GB is now a provisional measured baseline for headless Ubuntu 24.04
+  server SLAM from replayed rosbags. On July 18, 2026 the maintainer reported
+  about 1.1 GB physical memory free, with slam_toolbox measured at 105 MB RSS /
+  65 MB PSS using `jayadevrana/oomwoo-m1-ros2`.
+- Pi 4 / CM4-class compute with 4 GB RAM remains useful headroom once live MCU,
+  dock/IR homing, and camera workloads are added.
 - CM4/CM5 or compatible modules are the compute-module direction.
 - The older RK3562 reference schematic should be ignored for new compute-module
   planning.
@@ -26,7 +30,7 @@ The maintainer has clarified these current assumptions:
 
 Use this priority order for memory-reduction work:
 
-1. Measure the current Python/C++ ROS2 baseline.
+1. Reproduce the Pi 4 2 GB baseline and record idle, SLAM, and Nav phases.
 2. Try ROS2 composable nodes where supported, plus launch/process layout
    improvements first.
 3. Consider C++/rclcpp for selected memory-heavy or latency-sensitive custom
@@ -45,7 +49,9 @@ Rust/rclrs should be evaluated seriously, but only promoted if:
 
 - The first benchmark contribution can avoid adding Rust dependencies.
 - The benchmark still leaves a clear path for a later rclrs experiment.
-- The project can pursue the 4 GB -> 2 GB target with lower dependency risk.
+- The project can treat 2 GB as plausible for the headless SLAM/Nav baseline,
+  while still measuring live hardware and camera headroom before freezing the
+  minimum product profile.
 - Results should identify whether memory pressure comes from custom Python
   nodes, ROS2 process layout, Nav2/SLAM, or other runtime overhead.
 
@@ -55,4 +61,5 @@ Rust/rclrs should be evaluated seriously, but only promoted if:
 - Which ROS2 RMW should be the baseline for memory measurements?
 - Which node is the best first Rust/rclrs candidate if measurements justify it?
 - How should PSS be collected on target hardware when permissions differ?
-- What minimum headroom should qualify a 2 GB target as realistic?
+- How much headroom is required after live MCU serial, dock/IR homing, and
+  optional camera workloads are added?
