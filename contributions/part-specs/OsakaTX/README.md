@@ -1,7 +1,7 @@
 # Part Specs — Compiled Datasheets & Specifications
 
 > **Contributor:** OsakaTX
-> **Status:** Updated July 7, 2026 — encoder, gearbox, caster, connector findings consolidated from merged PRs, codetiger/VacuumTiger firmware analysis, and verified calibrations
+> **Status:** Updated July 17, 2026 — consolidated batch covering the I/O board wheel connector, caster wheel, side brush motor and brushes, charging contacts, and wall/carpet sensors (new BOM items Jul 12-16). Encoder, gearbox, caster, and connector findings drawn from merged PRs, codetiger/VacuumTiger firmware analysis, and verified calibrations
 > **Methodology:** Web research from manufacturer datasheets, public SDKs, open-source reverse-engineering projects (codetiger/VacuumTiger, codetiger/VacuumRobot), physical inspection data from merged contributor PRs (Scowt PR #13), Aliexpress listings, and VacuumTiger firmware empirical calibration
 >
 > 👉 **See the companion file for detailed methodology, derivation, and cross-referencing:**
@@ -119,6 +119,7 @@ Per codetiger/VacuumRobot reverse-engineering. **Full per-pin map** requires PCB
 - [codetiger/VacuumTiger — Custom firmware with verified calibration](https://github.com/codetiger/VacuumTiger)
 - [Scowt PR #13 — Wheel module 7-pin connector physical inspection](https://github.com/makerspet/oomwoo/pull/13)
 - [TMI8870 Motor Driver Datasheet](https://www.taoic.com/product/28.html)
+- Companion file: [`io-board-wheel-connector-and-caster.md`](io-board-wheel-connector-and-caster.md) — OOMWOO I/O board 5-pin ZH wheel connector (J12/J13) and on-board DRV8870 analysis
 
 ---
 
@@ -374,6 +375,8 @@ Start byte `0xAA`, followed by:
 
 **⚠️ BOM specifies a Roomba-style caster** (iRobot part #4624869, $2.50-$5 push-in ball-type). The Roborock S-family caster (50mm wheel-type, OEM #9.01.1272/1273) is a different part — verify which is selected before designing the mount.
 
+> **Note on Roborock caster SKUs:** replacement listings cite more than one OEM number for the S-family caster — `9.01.1272/1273` (~50mm wheel, ~45mm base) above, and `HA00021` (~46 × 52mm) in [`io-board-wheel-connector-and-caster.md`](io-board-wheel-connector-and-caster.md). These appear to be the same donor part under different reseller SKUs; the BOM's primary remains the Roomba-style iRobot 4624869. Confirm the exact SKU and dimensions against the selected part before designing the mount.
+
 ### Roomba Caster (BOM Source)
 
 | Spec | Value |
@@ -411,6 +414,114 @@ Start byte `0xAA`, followed by:
 
 ---
 
+## 8. Side Brush Motor (Roborock S-family)
+
+> **See detailed spec file:** [`side-brush-charging-contacts-specs.md`](side-brush-charging-contacts-specs.md)
+
+### Motor Type — Verified by Physical Teardown
+
+- **Brushed DC motor** (confirmed by Reddit teardown — carbon brushes, coal dust inside)
+- Sintered bronze self-lubricating bushings (not ball bearings)
+- 2-stage plastic gearbox with grease
+- Contact pads TP1/TP2 on motor PCB (simple 2-wire DC connection)
+- Weight: ~150g
+- Robot detects stalls via current sensing and shuts off motor as safety precaution
+
+### Firmware Control (VacuumTiger — verified from source code)
+
+| Parameter | Value | Source |
+|-----------|-------|--------|
+| Command | `CMD_SIDE_BRUSH = 0x69` | `constants.rs` line 19 |
+| Speed format | u8, 0-100% | `packet.rs` line 141-149 |
+| Component ID | `"side_brush"` | `commands.rs` line 75 |
+| Main brush command | `CMD_MAIN_BRUSH = 0x6A` (u8, 0-100%) | `constants.rs` line 20 |
+
+### BOM Variants
+
+| Type | Price | Notes |
+|------|-------|-------|
+| Fixed | $7-10 | Standard for S5/S6/S7 and many other models |
+| Extendable (FlexiArm) | $18-35 | For Qrevo Master/Edge, S8 MaxV Ultra, G20S, V20 |
+
+### Side Brushes
+
+| Type | Price | Notes |
+|------|-------|-------|
+| 5-arm | $2-8 | S5, S50, S51, S55, S6, S60, S6 Pure |
+| 3-arm | $3-9 | S8 and many other models |
+| 2-arm curved | $3-7 | Saros |
+
+Attachment: single Phillips #2 captive screw.
+
+---
+
+## 9. Charging Contacts
+
+> **See detailed spec file:** [`side-brush-charging-contacts-specs.md`](side-brush-charging-contacts-specs.md)
+
+### Robot Side
+
+| Spec | Value |
+|------|-------|
+| Material | Nickel-plated steel strip |
+| Dimensions | ~1mm wide, ~0.1mm thick, ~5cm long |
+| Price | $1.50-2.50 (pair) |
+
+### Dock Side
+
+| Spec | Value |
+|------|-------|
+| Type | Gold-plated pogo pins |
+| Current rating | 4A |
+| Price | TODO (BOM not yet priced) |
+
+### Charging System
+
+| Parameter | Value | Source |
+|-----------|-------|--------|
+| Dock power supply | 20V DC, 1.2A (24W) | Amazon/AliExpress replacement adapter |
+| Dock output at contacts | ~19.8-20V DC | Reddit user measurement |
+| Robot battery | 13.5-15.5V (4S Li-ion, 14.4V nominal) | VacuumTiger `constants.rs` |
+| Charging method | Contact-based (not inductive) | Standard Roborock |
+
+### Firmware Charging Detection (VacuumTiger — verified from source code)
+
+| Parameter | Value | Source |
+|-----------|-------|--------|
+| Charging flags offset | 0x07 (byte 7 in status packet) | `constants.rs` line 62 |
+| Dock connected flag | bit 0 (0x01) | `constants.rs` line 101 |
+| Charging flag | bit 1 (0x02) | `constants.rs` line 100 |
+| Battery voltage offset | 0x08 (raw / 10 = volts) | `constants.rs` line 63 |
+| Charger power command | `CMD_CHARGER_POWER = 0x9B` | `constants.rs` line 51 |
+
+---
+
+## 10. Wall & Carpet Sensors
+
+> **See detailed spec file:** [`wall-carpet-sensor-specs.md`](wall-carpet-sensor-specs.md)
+
+### Wall Sensor — TSOP38238 IR Receiver + 940nm IR LED
+
+Active reflective proximity sensor: a 940nm IR LED emits 38kHz-modulated bursts and the TSOP38238 detects the reflection off a nearby wall.
+
+| Parameter | Value | Source |
+|-----------|-------|--------|
+| IR receiver | Vishay TSOP38238 — 38kHz carrier, 2.0-5.5V, ~0.25mA typ, ±45° directivity, active-low output | Vishay datasheet (doc 82491) |
+| AGC variant | AGC2 (long-burst; drive LED with ≥10 cycles/burst) | Vishay datasheet (doc 82491) |
+| IR LED (representative) | Vishay TSAL6100 — 940nm, 170mW/sr, ±10° beam, 1.35V typ Vf, 100mA DC | Vishay datasheet (doc 81009); exact BOM part not specified |
+| Output | Active-low digital pulse when a valid 38kHz reflection is detected | TSOP38238 datasheet |
+| Premium alternative | VL53L7CX multizone ToF (true distance vs binary detection) | BOM note |
+
+### Carpet Sensor — Ultrasonic 300kHz
+
+| Parameter | Value | Source |
+|-----------|-------|--------|
+| Transducer | HTW HT-300PLTR1612-1 — 290±15kHz center, 16mm diameter, ~30mm target distance, ≤2mm precision, IP67 | HTW listing (Made-in-China) |
+| OEM alternative | Roborock OEM carpet sensor module (~$6.93) | AliExpress listing |
+| Principle | Echo-characteristic analysis to distinguish carpet from hard floor | — |
+
+---
+
 ## Summary of Found vs Missing
 
 | Part | Documentation Found | Critical Gaps |
@@ -422,3 +533,10 @@ Start byte `0xAA`, followed by:
 | **IMU (MPU-6050)** | ✅ Full datasheet, I²C interface, pinout | None — standard InvenSense component |
 | **IR cliff sensor** | ✅ TCRT5000 specs, circuit, pinout | None — standard sensor, subject to final BOM choice |
 | **Caster wheel** | ✅ Roomba 4624869 specs (25mm ball-type, push-in); Roborock 9.01.1272/1273 (50mm wheel-type); both passive | ❌ Exact dimensional drawing for chosen variant; ❌ which BOM variant is selected |
+| **Side brush motor** | Brushed DC motor (teardown-verified), 2-stage plastic gearbox, TP1/TP2 contacts, ~150g, CMD 0x69 speed 0-100%, fixed ($7-10) and FlexiArm ($18-35) variants | ❌ Exact voltage, ❌ RPM, ❌ exact gearbox ratio, ❌ connector model |
+| **Side brushes** | 5-arm ($2-8), 3-arm ($3-9), 2-arm curved ($3-7); single Phillips screw attachment | None — standard consumable part |
+| **Charging contacts (robot)** | Nickel-plated steel strip, ~1mm×0.1mm×5cm, $1.50-2.50/pair | None — standard material |
+| **Charging contacts (dock)** | Gold-plated pogo pins, 4A rating; dock outputs 20V 1.2A (24W) | ❌ Exact pogo pin model/part number, ❌ pricing |
+| **Charging system** | CMD_CHARGER_POWER=0x9B, charging flags at offset 0x07 (dock=0x01, charging=0x02), battery voltage at 0x08 | None — firmware-level specs complete |
+| **Wall sensor** | TSOP38238 IR receiver (38kHz, AGC2, ±45°, active-low) + 940nm IR LED (TSAL6100 representative); reflective proximity design | ❌ Exact IR LED part in BOM, ❌ detection-range tuning |
+| **Carpet sensor** | HTW HT-300PLTR1612-1 ultrasonic (290±15kHz, IP67, ~30mm range); Roborock OEM module alternative | ❌ Manufacturer datasheet for exact BOM part, ❌ echo-analysis thresholds |
