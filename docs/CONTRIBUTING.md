@@ -70,6 +70,28 @@ implementations of a module can coexist and be compared. The shared
 [SOFTWARE_INTERFACES.md](SOFTWARE_INTERFACES.md) contract is what keeps
 independently-built modules compatible.
 
+## Working in-tree (docs & specs)
+
+When your contribution lives in the tree (docs/specs, not a linked repo), two
+rules keep PRs clean and mergeable — most review friction comes from breaking
+them:
+
+- *Pull `main` before you branch, and rebase before you open the PR.* Stale
+  branches re-add files that already merged and re-touch files that moved, which
+  turns a small change into a pile of conflicts. If your PR's diff shows files
+  you didn't mean to change, your branch is behind `main`.
+- *Only edit files inside your own `contributions/<module>/<your-username>/`.*
+  Don't edit the module's top-level `README.md`, another contributor's folder,
+  the root `README.md` table, `ARCHITECTURE.md`, or `SOFTWARE_INTERFACES.md`
+  directly — those are maintainer-owned or belong to someone else. If your work
+  *implies* a change to one of them (a new module row, a new interface topic, an
+  architecture note), **describe it in the PR body** and let the maintainer apply
+  it. This keeps ownership clear and avoids two PRs fighting over the same lines.
+
+Also make sure your PR description matches your actual diff — if the summary says
+"one new file, no shared-file changes" but the diff touches five files, that's
+the stale-branch tell above.
+
 ## Hardware contributions
 
 For CAD and mechanical work, please include source files (not just exported STLs)

@@ -27,10 +27,24 @@ hardware in the [live-robot-bringup RFC](../live-robot-bringup).
 
 # Request for Contribution - Instructions
 
-- *wall following*
-  - detect walls from the LiDAR and drive a controlled offset along them so edges get cleaned, not just the room interior
+- *wall following* — a *map-then-reactive* approach works well:
+  - *(1) candidate walls:* from the map, find where walls are and plan an inward
+    *offset contour* to follow (LiDAR-level, deliberative)
+  - *(2) drive up to a wall* and *(3) confirm* the robot is actually beside it
+    using *side IR wall sensors* (below)
+  - *follow:* turn on a *side IR "wall illumination" emitter* and sense the
+    wall's reflection on the *side IR receiver*; drive forward holding a constant
+    reflected intensity (wall on the left: reflection *weaker* → steer slightly
+    *toward* the wall; *stronger* → steer *away*). Add ROS2 enable/disable calls
+    for the emitters.
   - integrate with [clean-and-map](../clean-and-map) coverage so edges *and* interior are both covered, without re-cleaning everything
   - post in [Project Discussions](https://github.com/makerspet/oomwoo/discussions?discussions_q=) to let everyone know you're working on it, and post your progress
+  - > *Shared hardware — coordinate with [dock-cycle](../dock-cycle).* The side IR
+    > receivers here are the same ones dock-cycle uses for dock detection (see the
+    > io-board `Side proximity IR L/R` + `IR LED PWM`, and the merged `part-specs`
+    > TSOP38238 + 940 nm). Caveat: reflected *intensity* also depends on wall
+    > colour/reflectivity, so it is not an absolute range — the map+confirm step
+    > (1–3) is what keeps intensity-following honest.
 - *carpet-edge following*
   - detect carpet boundaries and follow the edge to clean along them
 - *surface recognition (carpet vs hardwood)*

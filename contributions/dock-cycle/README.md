@@ -21,8 +21,41 @@ hardware in the [live-robot-bringup RFC](../live-robot-bringup).
 - Model a *generic basic charging dock* (charge contacts + a detectable marker). Exact dock geometry is TBD — the old teardown reference vacuum is no longer used.
 - [OOMWOO ROS2 development](https://github.com/makerspet/oomwoo-install) — build OOMWOO ROS2 Docker image(s) with your packages.
 - Nav2 docking (`opennav_docking`) is a good starting point for precise approach.
+- [wennycooper/Auto-Docking-Design](https://github.com/wennycooper/Auto-Docking-Design) — reference IR homing design (dock IR emitter + baffled robot-side receivers).
 - [Project discussions](https://github.com/makerspet/oomwoo/discussions?discussions_q=)
 - [Discord server](https://discord.gg/3y2JKz5T25)
+
+# Reference homing & dock-detection design (a good starting point)
+
+Use `opennav_docking` for the docking *state machine*; this design is how you
+*produce the dock pose* it needs, mirroring how consumer vacuums actually home.
+
+- *In the dock:* an *IR homing beacon*. Start minimal — one *modulated* IR
+  emitter (see [wennycooper/Auto-Docking-Design](https://github.com/wennycooper/Auto-Docking-Design)),
+  enough for a centered final approach. A more robust dock (later) uses *coded
+  left/right "buoy" beams + an omni "force-field" beam* (iRobot-style) so the
+  robot can tell which side of the dock it is on from a distance.
+- *On the robot, final approach:* *2× front IR receivers separated by a baffle* —
+  the differential signal steers the robot to center on the beacon.
+- *On the robot, search/acquisition:* *1× left + 1× right dock-detection IR
+  receiver* (wider field of view) so the robot can detect the dock beacon and
+  turn toward it *even when the dock location is unknown* (the find-the-dock case).
+
+> *Shared hardware — coordinate with [floor-care](../floor-care).* These left/right
+> side IR receivers do double duty: passive *dock detection* here, and active
+> *wall following* in floor-care (same receiver, plus a side IR emitter, sensing
+> the robot's own reflection). This matches the io-board GPIO (`Dock IR`,
+> `Side proximity IR L/R`, `IR LED PWM`) and the merged `part-specs` (TSOP38238 +
+> 940 nm). Because the beams are *modulated*, keep the dock beacon and the
+> wall-illumination emitter *distinguishable* (different mode / time-multiplexed)
+> so a wall reflection is never mistaken for the dock.
+
+> *Sim note.* Gazebo has no IR sensor. Simulate the beacon receivers with a small
+> *plugin / logical sensor* that computes line-of-sight + bearing (and a
+> range-attenuated "strength") to the dock model, and any active proximity IR
+> with a short-range narrow *ray* sensor. Add these inside your submission for now
+> and propose folding the stable ones back into
+> [urdf-gazebo-sim](../urdf-gazebo-sim) later — please don't rewrite that RFC.
 
 # Request for Contribution - Instructions
 
