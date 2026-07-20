@@ -60,11 +60,11 @@ Retail / low-qty prices, INCLUDES shipping, excludes tax. Read [how I calculate 
 | Mop motor assembly | 1 pair | $20 | Spin, lift, one swing | Rare/expensive retail, get 2x $5 RS385 12V motors, 2x $2.50 MG90S, wires, 3D print rest or order factory direct for kit; [AliExpress](https://www.aliexpress.us/w/wholesale-roborock-mop-motor.html) / [Amazon](https://www.amazon.com/s?k=roborock+mop+motor) / [eBay](https://www.ebay.com/sch/i.html?_nkw=roborock+mop+motor) |
 | Obstacle avoidance vis camera | 1 | $6-7 | OV5647 5M MIPI 16-pin cable, 130 deg, no IR-cut filter | For advanced obstacle avoidance, search "night vision" [AliExpress](https://www.aliexpress.us/w/wholesale-ov5647-night-vision.html) / [Amazon](https://www.amazon.com/s?k=ov5647+night+vision) / [eBay](https://www.ebay.com/sch/i.html?_nkw=ov5647+night+vision) |
 | Obstacle detection range camera | 1 | $8–15 | VL53L7CX or VL53L7CH, 8x8 obstacle detection (90° FoV) | Expensive if purchased on AliExpress. Sensor IC costs ~$5.50 at DigiKey/Mouser/STMicro. [AliExpress](https://www.aliexpress.us/w/wholesale-VL53L7CX.html) / [Amazon](https://www.amazon.com/s?k=VL53L7CX) / [eBay](https://www.ebay.com/sch/i.html?_nkw=VL53L7CX) |
-| Water pump + valve + tubing | 1 | 4–10 | mopping models only | |
+| Water pump | 1 | $3–6 | Peristaltic 6V DC ≥100ml/min, tube 2mm ID 4mm OD | Jiayin JYPDM-10 or similar [AliExpress](https://www.aliexpress.us/w/wholesale-water-pump-6v.html) / [Amazon](https://www.amazon.com/s?k=water+pump+6v) / [eBay](https://www.ebay.com/sch/i.html?_nkw=water+pump+6v) |
 | LiDAR tower bumper sensor | 2 | TODO | Microswitches | |
 | Speaker + amp, mic, LEDs, buttons | — | 3–8 | | |
 | Custom I/O PCB | 1 | ~40 | STM32 + motor drivers + sensor front-ends | |
-| Wiring, connectors, fasteners, magnets, gaskets, filter | — | 12–25 | | |
+| Wiring, connectors, fasteners, magnets, gaskets, filter, tubing | — | 12–25 | | |
 | Printed parts (filament) | — | 5–15 | you print these yourself | |
 | *Robot subtotal (sourced parts)* | | *~$130–270* | excludes SBC | |
 
