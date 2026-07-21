@@ -102,10 +102,12 @@ repo (docs and specs go in-tree), and send a short PR linking it from the module
 | Compute benchmark & memory reduction | [compute-benchmark](./contributions/compute-benchmark) | In progress | Measure ROS2/Nav2/SLAM memory, compare composable nodes, and track the 4 GB -> 2 GB target |
 | Floor-surface handling & edge cleaning | [floor-care](./contributions/floor-care) | Ready to start work | Wall/edge following, carpet vs hardwood, mop lift/lower |
 | Cleaning modes, zones & job orchestration | [cleaning-jobs](./contributions/cleaning-jobs) | Ready to start work | Modes (regular/spot), virtual walls, room segmentation, job splitting + resume |
+| Control app & UX (design-first) | [control-app](./contributions/control-app) | Ready to start work | Local-first control app/UI — a client of the ROS2 stack + Home Assistant; design-led (welcomes designers): prioritize features, concept the MVP surface (start/stop, live map, status, zones) |
 | Live robot bring-up & validation | [live-robot-bringup](./contributions/live-robot-bringup) | Ready to start work | Connect the placeholder Proscenic M6 Pro to ROS2, re-run sim tests on hardware |
 | Source 3D models (STEP) for BOM parts | [source-3d-models](./contributions/source-3d-models) | In progress | Obtain / measure / model STEP files of off-the-shelf parts (wheels, fans, caster…) so mounts fit |
 | Procure part specs & datasheets | [part-specs](./contributions/part-specs) | In progress | Find/measure/reverse-engineer specs (pinouts, encoder PPR, torque, how to drive fans…) for sourced parts |
 | I/O + motor-driver PCB | [io-pcb](./contributions/io-pcb) | In progress | I/O board with CM4/CM5 socket, STM32G070 MCU - motors, sensors, 4S2P charging, safety, FreeRTOS, custom serial to CM4/CM5, 2D LiDAR header, IMU, audio serial/amp/speaker, MIPI camera(s) i/f; KiCad, JLCPCB |
+| MCU I/O board firmware | [mcu-io-firmware](./contributions/mcu-io-firmware) | Ready to start work | STM32G473 firmware: Arduino (STM32duino) API + FreeRTOS + a HAL/ISR real-time safety core; motors, sensors, charging, custom serial to the CPU; [repo](https://github.com/makerspet/oomwoo-io-firmware) |
 | Fit software into ~~2GB~~ 1GB RAM | [compute-benchmark](./contributions/compute-benchmark) | In progress | ROS2 node composition, Rust; remove Gazebo, desktop UI |
 
 > Planned and on-hold modules (mechanical design, later-phase software) live in the
