@@ -52,9 +52,10 @@ Open Source Deliverables:
 - [x] [Software development environment](https://github.com/makerspet/oomwoo-install), robot [description package](https://github.com/makerspet/oomwoo-one/) and [tutorials](https://makerspet.com/blog/simulate-oomwoo-one-robot-vacuum-in-gazebo-with-ros-2/) (ROS2)
 - [x] Placeholder real [vacuum cleaner](https://github.com/makerspet/proscenic-m6pro) and [tutorials](https://makerspet.com/blog/tutorial-connect-robot-vacuum-cleaner-to-ros-2-proscenic-m6-pro/) (temporary while OOMWOO is being designed)
 - [ ] [Bill of materials (BoM)](BOM.md) (in progress)
-- [ ] 3D-printable files
-- [ ] Firmware
-- [ ] Motor drivers and sensors [I/O PCB](https://github.com/makerspet/oomwoo-io-board)
+- [ ] 3D-printable [files](https://github.com/makerspet/oomwoo-one-cad)
+- [ ] Raspberry Pi [software](https://github.com/makerspet/oomwoo-install)
+- [ ] Motor drivers, sensors [I/O PCB](https://github.com/makerspet/oomwoo-io-board)
+- [ ] I/O PCB [firmware](https://github.com/makerspet/oomwoo-io-firmware)
 - [ ] Build, setup, bringup and troubleshooting [instructions](BUILD_INSTRUCTIONS.md)
 - [ ] Demo video(s)
 
@@ -102,12 +103,14 @@ repo (docs and specs go in-tree), and send a short PR linking it from the module
 | Compute benchmark & memory reduction | [compute-benchmark](./contributions/compute-benchmark) | In progress | Measure ROS2/Nav2/SLAM memory, compare composable nodes, and track the 4 GB -> 2 GB target |
 | Floor-surface handling & edge cleaning | [floor-care](./contributions/floor-care) | Ready to start work | Wall/edge following, carpet vs hardwood, mop lift/lower |
 | Cleaning modes, zones & job orchestration | [cleaning-jobs](./contributions/cleaning-jobs) | Ready to start work | Modes (regular/spot), virtual walls, room segmentation, job splitting + resume |
+| Control app & UX (design-first) | [control-app](./contributions/control-app) | Ready to start work | Local-first control app/UI — a client of the ROS2 stack + Home Assistant; design-led (welcomes designers): prioritize features, concept the MVP surface (start/stop, live map, status, zones) |
 | Live robot bring-up & validation | [live-robot-bringup](./contributions/live-robot-bringup) | Ready to start work | Connect the placeholder Proscenic M6 Pro to ROS2, re-run sim tests on hardware |
 | Source 3D models (STEP) for BOM parts | [source-3d-models](./contributions/source-3d-models) | In progress | Obtain / measure / model STEP files of off-the-shelf parts (wheels, fans, caster…) so mounts fit |
 | Procure part specs & datasheets | [part-specs](./contributions/part-specs) | In progress | Find/measure/reverse-engineer specs (pinouts, encoder PPR, torque, how to drive fans…) for sourced parts |
 | I/O + motor-driver PCB | [io-pcb](./contributions/io-pcb) | In progress | I/O board with CM4/CM5 socket, STM32G070 MCU - motors, sensors, 4S2P charging, safety, FreeRTOS, custom serial to CM4/CM5, 2D LiDAR header, IMU, audio serial/amp/speaker, MIPI camera(s) i/f; KiCad, JLCPCB |
 | I/O board software interface | [io-board-interface](./contributions/io-board-interface) | Ready to start work | CPU/MCU serial contract, ROS2 bridge mapping, safety watchdog behavior, hardware signal ownership, and bringup validation |
-| Fit software into ~~2GB~~ 1GB RAM | [compute-benchmark](./contributions/compute-benchmark) | In progress | ROS2 node composition, Rust; remove Gazebo, desktop UI |
+| MCU I/O board firmware | [mcu-io-firmware](./contributions/mcu-io-firmware) | Ready to start work | STM32G473 firmware: Arduino (STM32duino) API + FreeRTOS + a HAL/ISR real-time safety core; motors, sensors, charging, custom serial to the CPU; [repo](https://github.com/makerspet/oomwoo-io-firmware) |
+| Fit software into 2GB RAM | [compute-benchmark](./contributions/compute-benchmark) | 2GB achieved | ROS2 node composition, Rust; remove Gazebo, desktop UI |
 
 > Planned and on-hold modules (mechanical design, later-phase software) live in the
 > [RFC backlog](docs/RFC_BACKLOG.md).
