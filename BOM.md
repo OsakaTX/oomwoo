@@ -72,6 +72,7 @@ Retail / low-qty prices, INCLUDES shipping, excludes tax. Read [how I calculate 
 
 | Item | Qty | ~USD | Notes | Source |
 |---|---|---|---|---|
+| Water pumps | 3 | $5-8 | Diaphragm 24 V self-priming clean-feed + dirty-evacuate + tank refill | [AliExpress](https://www.aliexpress.us/w/wholesale-water-pump-24v.html) / [Amazon](https://www.amazon.com/s?k=water+pump+24v) / [eBay](https://www.ebay.com/sch/i.html?_nkw=water+pump+24v) |
 | External 24 V DC brick | 1 | 20-25? | ~200–350 W (certified) |  |
 | Dock board | 1 | ~30 | DC inlet + fuse + TVS, ESP32 MCU/WiFi, high-side FET/relay for blower, IR homing beacon, push button(s), robot presence detect, charge contacts FET, pump/fan drivers |  |
 | Suction blower | 1 | 15-40? | 24–25.2 V DC | Stick-vac class (e.g. Dreame M10-E-4 25.2 V/310 W) |
@@ -79,7 +80,6 @@ Retail / low-qty prices, INCLUDES shipping, excludes tax. Read [how I calculate 
 | Dock exhaust filter | 1 | 3-8? | Washable/HEPA |  |
 | Suction port + gasket | 1 | 2-5 | Need a good seal |  |
 | Clean + dirty water tanks | 1 | n/a | 3D printed, removable |  |
-| Water pumps | 2 | 6-16 | Diaphragm, 12–24 V, clean-feed + dirty-evacuate | |
 | Wash tray | 1 | n/a | 3D printed, removable, w/scrub ribs |  |
 | Level sensors | 2-3 | 2-6 | Float/capacitive; clean-low, dirty-full |  |
 | Tubing, fittings, seals, gaskets, fasteners | 1 | 5-10? |  |  |

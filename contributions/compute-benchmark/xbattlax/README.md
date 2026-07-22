@@ -3,11 +3,21 @@
 This contribution turns the compute discussion in issue #18 into a concrete
 benchmark scaffold for OOMWOO.
 
-The immediate goal is to measure whether OOMWOO can keep onboard ROS2, Nav2, and
-SLAM while reducing the practical memory target from 4 GB toward 2 GB. The first
-optimization path should be ROS2 composable nodes where supported, plus
-launch/process layout. Rust with rclrs is kept as a serious optional spike for
-late August / September 2026, gated by measurements and dev-image
+The immediate goal is to keep OOMWOO's onboard ROS2, Nav2, and SLAM runtime
+measurable as hardware and launch files evolve. As of July 18, 2026, the
+maintainer reports that the Pi 4 2 GB Ubuntu 24.04 server runtime can run SLAM
+from replayed rosbags with about 1.1 GB physical memory free; the reported
+slam_toolbox measurement was 105 MB RSS / 65 MB PSS using
+[`jayadevrana/oomwoo-m1-ros2`](https://github.com/jayadevrana/oomwoo-m1-ros2)
+`deploy/pi_runtime/measure_pi_baseline.sh`.
+
+That makes Pi 4 2 GB a provisional baseline to reproduce and track, not merely a
+stretch target. The remaining caveat is live hardware: MCU serial, real sensors,
+dock/IR homing, and camera workloads still need measured headroom.
+
+The first optimization path should be ROS2 composable nodes where supported,
+plus launch/process layout. Rust with rclrs is kept as a serious optional spike
+for late August / September 2026, gated by measurements and dev-image
 reproducibility.
 
 ## Scope
@@ -24,7 +34,7 @@ Not included yet:
 
 - a Rust/rclrs node implementation
 - a C++/rclcpp equivalent node
-- physical Pi 4 / CM4 / CM5 results
+- independently repeated physical Pi 4 / CM4 / CM5 result submissions
 - automated launch files for full SLAM/Nav2 runs
 
 ## Hardware Profiles To Record
@@ -32,10 +42,11 @@ Not included yet:
 | Profile | Purpose | Notes |
 |---|---|---|
 | Dev machine | Reference only | Useful for repeatability, not a robot target. |
-| Pi 4 4 GB | Minimum prior-art target | Validate onboard SLAM/Nav2 feasibility. |
+| Pi 4 2 GB | Provisional minimum target | Maintainer reported SLAM with about 1.1 GB free on Ubuntu 24.04 server; reproduce before treating it as final. |
+| Pi 4 4 GB | Headroom target | Useful once live MCU, dock/IR, and camera workloads are added. |
 | CM4 4 GB | Consumer carrier-board target | Low profile and product-friendly. |
 | CM5 4 GB+ | Higher headroom target | Useful if camera/NPU alternatives are evaluated. |
-| 2 GB class SBC/module | Stretch target | Requires real measured headroom, not assumptions. |
+| 2 GB class SBC/module | Low-cost target | Needs repeated measurements across full live workload. |
 | ESP32 educational profile | Offboard ROS2/SLAM learning setup | Not a consumer autonomous vacuum profile. |
 
 ## Measurement Scenarios
@@ -48,7 +59,9 @@ Start with these scenarios:
 4. Recovery/safety node idle.
 5. Recovery/safety event burst.
 6. Same workload after composable-node or process-layout changes.
-7. Later: same selected custom node in Python, C++/rclcpp, and Rust/rclrs.
+7. Dock/IR homing simulation workload.
+8. Optional front obstacle camera workload.
+9. Later: same selected custom node in Python, C++/rclcpp, and Rust/rclrs.
 
 ## Using The Sampler
 
@@ -98,3 +111,5 @@ Each benchmark batch should end with a short note:
 - whether any Python node is worth porting to C++ or Rust
 - whether Rust/rclrs setup is reproducible enough to keep testing
 - what hardware profile the result supports
+- remaining headroom after live MCU serial, dock/IR homing, and optional camera
+  workloads are included
