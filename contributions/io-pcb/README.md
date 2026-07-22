@@ -1,21 +1,14 @@
 # I/O + Motor-Driver PCB (hardware / KiCad)
 
-The custom board that connects every OOMWOO motor and sensor to the compute module: an
-STM32 MCU, motor drivers, sensor front-ends, and battery charging on one PCB — plus a
-*socket for a CM4/CM5-class compute module*. The MCU runs *safety-critical firmware* and
-talks to the CM4/CM5 CPU over a *custom serial link* (not micro-ROS).
+The custom [I/O board](https://github.com/makerspet/oomwoo-io-board) that
+connects every OOMWOO motor and sensor to the SBC: an STM32 MCU,
+motor drivers, sensor front-ends, and battery charging on one PCB. Proposed
+software-interface contract: the MCU runs safety-critical firmware and talks to
+the CM4/CM5 CPU over a custom serial / USB link.
 
-> *This RFC defers to [oomwoo-io-board](https://github.com/makerspet/oomwoo-io-board) and
-> its [SPEC.md](https://github.com/makerspet/oomwoo-io-board/blob/main/docs/SPEC.md) for the
-> current, authoritative board spec* — the MCU (**STM32G473VCT6**), motors, sensors, charging,
-> and GPIO budget. Where this page and the SPEC disagree, the SPEC wins.
-
-> *Design basis:* OOMWOO v1 uses a *CM4/CM5-class compute module* for ROS2/Nav2/SLAM,
-> socketed onto this board — so this board is an *I/O + power carrier*: the STM32 I/O side
-> plus a CM4/CM5 socket, no soldered application processor. There is a starting-point
-> reference schematic (an RK3562 + STM32 combined design), but the on-board Rockchip SoC
-> and its whole subsystem are *removed*; the STM32 I/O side is kept and converted to KiCad,
-> and a *CM4/CM5 socket + support* is added, for review.
+> *Draft design basis:* OOMWOO v1 uses a *CM4/CM5-style CPU module* for ROS2, Nav2, SLAM,
+> so this board is an *I/O + power carrier* — no soldered application processor on it. There is a
+> starting-point Kicad schematic and [SPEC.md](https://github.com/makerspet/oomwoo-io-board/blob/main/docs/SPEC.md).
 
 # References
 
@@ -28,9 +21,14 @@ talks to the CM4/CM5 CPU over a *custom serial link* (not micro-ROS).
   [oomwoo-io-firmware](https://github.com/makerspet/oomwoo-io-firmware).
 - *Starting-point schematic (PDF)* —
   [makerspet/oomwoo-io-board](https://github.com/makerspet/oomwoo-io-board/blob/main/docs/oomwoo-io-board-RK3562-schematic.pdf).
-  An RK3562 + STM32 reference (Apache-2.0, *unvalidated* — a starting point, not a proven
-  design; note the current MCU pick is the **G473**, not the reference's G070). Trim it down
-  as described below.
+  An STM32G070 reference (Apache-2.0, *unvalidated* — a starting point, not a proven
+  design). Trim it down as described below.
+- *Current I/O board repository* —
+  [makerspet/oomwoo-io-board](https://github.com/makerspet/oomwoo-io-board), including
+  KiCad files and the evolving [SPEC.md](https://github.com/makerspet/oomwoo-io-board/blob/main/docs/SPEC.md).
+- *CPU/MCU software interface* —
+  [io-board-interface](../io-board-interface) drafts the custom serial contract, ROS2 bridge
+  mapping, watchdog behavior, and hardware/software decision ledger.
 - *Drive-wheel connector pinout* —
   [AlieksieievYurii vacuum-cleaner motherboard schematic](https://raw.githubusercontent.com/AlieksieievYurii/vacuum-cleaner/2bd7cf7f9af3ae9040373f667bab83e2e57c26b7/motherboard/circuit-pcb/SCHEMATIC_motherboard.svg)
   shows the drive-wheel assembly connectors: *JST PH2.0, 6-pin* —
@@ -46,7 +44,8 @@ talks to the CM4/CM5 CPU over a *custom serial link* (not micro-ROS).
 
   Verify against the *sourced* Roborock-family wheel module before layout — a submission in
   [part-specs](../part-specs) describes a variant with extra wheel-drop / limit-switch pins,
-  so confirm the pin count and pinout on a physical module.
+  while the current OOMWOO I/O board schematic uses a board-side 5-pin signal connector with
+  the H-bridge on the I/O board. Confirm the final connector and harness before layout.
 - [part-specs](../part-specs) — connector pinouts, encoder PPR, and datasheets for the sourced parts.
 - [design-document.md](../../docs/design-document.md) — the I/O-board section (MCU, pin budget,
   offloading the fan to an external ESC, etc.).
@@ -80,8 +79,9 @@ updated for OOMWOO, then *hold for review before PCB layout*.
 - *Move the battery from 3S to 4S* — OOMWOO targets *~14.8 V* (see [BOM.md](../../BOM.md)). The
   reference appears to be 3S; update the pack, the charge-IC configuration, the protection, and
   any cell-count-dependent dividers / thresholds to *4S*.
-- *Wire the drive-wheel connectors* to the JST PH2.0 6-pin pinout above (verified against the
-  sourced module).
+- *Reconcile the drive-wheel connectors* with the sourced wheel module and the current
+  OOMWOO I/O board KiCad reference before layout; document the final board-side connector,
+  harness, motor-power path, encoder pins, and wheel-drop handling.
 - assume battery Xiaomi/Roborock/Dreame BRR-2P4S-5200
 - *Convert the kept design to KiCad* (from Altium); keep a clean, readable, hierarchical schematic.
 - *Hold here for review.* Deliver the trimmed, 4S, KiCad *schematic* and stop — the maintainer
@@ -99,7 +99,8 @@ updated for OOMWOO, then *hold for review before PCB layout*.
   buttons / LEDs, the CM4/CM5 socket + support, and the custom-serial CPU link) are present,
   correct, and complete in *KiCad*.
 - Battery as specified
-- Drive-wheel connectors match the referenced pinout (JST PH2.0 6-pin), reconciled with part-specs.
+- Drive-wheel connectors are reconciled with the current KiCad reference and part-specs,
+  including motor-power path, encoder pins, and wheel-drop handling.
 - Delivered as a buildable *KiCad project*; *ERC clean*; a sub-BoM and short design notes included.
 - Stops at the reviewed *schematic* — no PCB layout yet.
 - Documented and reproducible.
