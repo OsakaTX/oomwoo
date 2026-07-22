@@ -109,6 +109,18 @@ Conventions are still being established. For now: keep it simple, readable, and
 consistent with the surrounding code. ROS2 packages should follow standard ROS2
 layout and naming. We'll formalize linting and style as the codebase grows.
 
+## AI usage
+
+OOMWOO is built with substantial AI assistance (Anthropic's Claude, via Claude
+Code), directed and reviewed by humans. AI helps draft and iterate RFCs and docs,
+write and review ROS2 code, debug the simulation, and write tutorials — but the
+maintainer makes the design and architecture calls, and nothing merges without
+human review and testing in simulation or on hardware.
+
+Using AI on your own contribution is welcome. In return: understand, test, and
+stand behind what you submit (you own it, not the tool), and note AI co-authorship
+in your commits — e.g. a `Co-Authored-By:` trailer — the way this project does.
+
 ## Licensing
 
 By contributing, you agree that your contributions are licensed under the
