@@ -120,7 +120,7 @@ repo (docs and specs go in-tree), and send a short PR linking it from the module
 
 - [OOMWOO ROS2 and Ubuntu installation](https://github.com/makerspet/oomwoo-install/) source code
 - [OOMWOO ROS2 URDF package and config](https://github.com/makerspet/oomwoo_urdf/) source code
-- [remakeai reference vacuum teardown](https://github.com/remakeai/vacuum-cleaner-teardown) — a consumer LiDAR vacuum with a basic dock and stationary mop.
+- [remakeai reference vacuum teardown](https://github.com/remakeai/vacuum_cleaner_teardown) — a consumer LiDAR vacuum with a basic dock and stationary mop.
 
 ## Related prior art
 
