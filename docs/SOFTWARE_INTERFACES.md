@@ -175,6 +175,18 @@ OOMWOO message package exists:
 | `/oomwoo/health/stack` | Health monitor | Diagnostics / app layer | Aggregated state: no roster, arming, healthy, healthy with advisory faults, or fault. |
 | `/oomwoo/health/mcu_heartbeat` | Health monitor / bridge | MCU bridge | Single stack-health heartbeat forwarded to the MCU only while all expected critical components are fresh and well. |
 
+QoS and clock rules:
+
+- `/oomwoo/health/roster` is reliable, transient-local, depth 1 so a monitor
+  started after the active roster publisher still receives the current task.
+- `/oomwoo/health/stack` is reliable, transient-local, depth 1 for late-joining
+  diagnostics consumers.
+- component and MCU heartbeats are reliable and volatile. In particular, an old
+  healthy MCU heartbeat must not be replayed to a late subscriber.
+- component `stamp_sec` values use the producer node's ROS clock, which must be
+  the same clock as the monitor. With `use_sim_time=true`, both follow `/clock`;
+  wall-clock and simulation timestamps must not be mixed.
+
 Fail-safe behavior:
 
 - no roster means no MCU heartbeat
@@ -184,6 +196,9 @@ Fail-safe behavior:
   critical roster is confirmed healthy
 - component heartbeats must be emitted from useful work paths, not from
   independent timers that can keep running while the component is wedged
+
+Reference implementation:
+[xbattlax/health-monitor](https://github.com/xbattlax/health-monitor).
 
 ## Validation Checklist
 

@@ -61,7 +61,7 @@ Retail / low-qty prices, INCLUDES shipping, excludes tax. Read [how I calculate 
 | Obstacle avoidance vis camera | 2 | $6-7 | OV5647 5M MIPI 16-pin cable, 130 deg, no IR-cut filter | Wide FoV depth-from-stereo for advanced obstacle avoidance, search "night vision" [AliExpress](https://www.aliexpress.us/w/wholesale-ov5647-night-vision.html) / [Amazon](https://www.amazon.com/s?k=ov5647+night+vision) / [eBay](https://www.ebay.com/sch/i.html?_nkw=ov5647+night+vision) |
 | ~~Obstacle detection range camera~~ | ~~1~~ | ~~$8–15~~ | ~~VL53L7CX or VL53L7CH, 8x8 obstacle detection (90° FoV)~~ | ~~Expensive if purchased on AliExpress. Sensor IC costs ~$5.50 at DigiKey/Mouser/STMicro. [AliExpress](https://www.aliexpress.us/w/wholesale-VL53L7CX.html) / [Amazon](https://www.amazon.com/s?k=VL53L7CX) / [eBay](https://www.ebay.com/sch/i.html?_nkw=VL53L7CX)~~ |
 | Water pump | 1 | $3–6 | Peristaltic 6V DC ≥50ml/min, tube 2mm ID 4mm OD | Jiayin JYPDM-10 or similar [AliExpress](https://www.aliexpress.us/w/wholesale-water-pump-6v.html) / [Amazon](https://www.amazon.com/s?k=water+pump+6v) / [eBay](https://www.ebay.com/sch/i.html?_nkw=water+pump+6v) |
-| LiDAR tower bumper sensor | 2 | TODO | Microswitches | |
+| LiDAR tower bumper sensor | 4 | $0.70 | Micro switches | SPDT or similar [AliExpress](https://www.aliexpress.us/w/wholesale-spdt-switches.html) / [Amazon](https://www.amazon.com/s?k=spdt+switches) / [eBay](https://www.ebay.com/sch/i.html?_nkw=spdt+switches) |
 | Speaker + amp, mic, LEDs, buttons | — | 3–8 | | |
 | Custom I/O PCB | 1 | ~40 | STM32 + motor drivers + sensor front-ends | |
 | Wiring, connectors, fasteners, magnets, gaskets, filter, tubing | — | 12–25 | | |
@@ -73,9 +73,11 @@ Retail / low-qty prices, INCLUDES shipping, excludes tax. Read [how I calculate 
 | Item | Qty | ~USD | Notes | Source |
 |---|---|---|---|---|
 | Water pumps | 3 | $5-8 | Diaphragm 24 V self-priming clean-feed + dirty-evacuate + tank refill | [AliExpress](https://www.aliexpress.us/w/wholesale-water-pump-24v.html) / [Amazon](https://www.amazon.com/s?k=water+pump+24v) / [eBay](https://www.ebay.com/sch/i.html?_nkw=water+pump+24v) |
-| External 24 V DC brick | 1 | 20-25? | ~200–350 W (certified) |  |
+| Auto-empty suction fan |   | $10-20 | 21.6–25.2V 65mm 350W | Budget stick-vac class like Dreame P10's BLDC M10-E-4 25.2V 310W motor; no particular model abundant, but multiple same-size/same-power models; BLDC motor Nidec 13F704P640, non-Nidec 64XC216-085D, MBD65. Weak-ish compared to consumer auto-empty docks, but can work with an external power adapter to keep mains wiring out of dock, away from mop water. [AliExpress](https://www.aliexpress.us/w/wholesale-fan-motor-350w.html) / [Amazon](https://www.amazon.com/s?k=fan+motor+350w) / [eBay](https://www.ebay.com/sch/i.html?_nkw=fan+motor+350w) |
+|                        |   | TBD | 110VAC 1200W | Match consumer auto-empty dock; requires mains inside dock enclosure. |
+| Power supply | 1 | $33 | 400W external | IP67 proof 24V "LED driver" [Amazon](https://www.amazon.com/s?k=24v+led+strip+power+supply+400w) / [eBay](https://www.ebay.com/sch/i.html?_nkw=24v+led+strip+power+supply+400w) |
+|              |   | TBD | Internal      |  |
 | Dock board | 1 | ~30 | DC inlet + fuse + TVS, ESP32 MCU/WiFi, high-side FET/relay for blower, IR homing beacon, push button(s), robot presence detect, charge contacts FET, pump/fan drivers |  |
-| Suction blower | 1 | 15-40? | 24–25.2 V DC | Stick-vac class (e.g. Dreame M10-E-4 25.2 V/310 W) |
 | Dust container | 1 | n/a | 3D printed |  |
 | Dock exhaust filter | 1 | 3-8? | Washable/HEPA |  |
 | Suction port + gasket | 1 | 2-5 | Need a good seal |  |
@@ -84,7 +86,7 @@ Retail / low-qty prices, INCLUDES shipping, excludes tax. Read [how I calculate 
 | Level sensors | 2-3 | 2-6 | Float/capacitive; clean-low, dirty-full |  |
 | Tubing, fittings, seals, gaskets, fasteners | 1 | 5-10? |  |  |
 | Blower fan | 1 | 3-8? | Ambient air, no heater for now |  |
-| PTC heater + thermal fuse + thermistor | 1 | 8-20 | Optional later, needs redundant thermal cutoff |  |
+| ~PTC heater + thermal fuse + thermistor~ | ~1~ | ~8-20~ | Not in first model. ~Needs redundant thermal cutoff~ |  |
 | Duct, alcove, ramp, housing | 1 | n/a | 3D printed |  |
 | Charging contacts | 2-4 | 2-6? | Gold-plated pogo pins ≥4A; rear-vertical, above water line | |
 
