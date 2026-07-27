@@ -1,0 +1,10 @@
+run_id,date,label,hardware,ram_gb,os,ros_distro,rmw,scenario,lidar_rate_hz,granularity,process_layout,duration_s,interval_s,commit_sha,operator,notes
+0001,TBD,slam_baseline_idle,Pi 4 Model B,2,Ubuntu 24.04 Server,Jazzy,cyclonedds,ROS graph idle after launch,N/A,Per-process RSS/PSS,Separate processes,60,2,TBD,OsakaTX,Reproduce maintainer July 18 baseline
+0002,TBD,slam_5hz_lidar,Pi 4 Model B,2,Ubuntu 24.04 Server,Jazzy,cyclonedds,SLAM + 5 Hz LiDAR input,5,Per-process RSS/PSS,Separate processes,120,2,TBD,OsakaTX,"5 Hz target — confirm no scan dropping"
+0003,TBD,nav2_known_map,Pi 4 Model B,2,Ubuntu 24.04 Server,Jazzy,cyclonedds,Nav2 navigating on known map,N/A,Per-process RSS/PSS,Separate processes,180,2,TBD,OsakaTX,Full Nav2 stack + known map
+0004,TBD,cm4_2gb_slam,CM4 Lite + IO Board,2,Ubuntu 24.04 Server,Jazzy,cyclonedds,SLAM + 5 Hz LiDAR,5,Per-process RSS/PSS,Separate processes,120,2,TBD,OsakaTX,Compare against Pi 4 B baseline
+0005,TBD,composable_vs_separate,Pi 4 Model B,2,Ubuntu 24.04 Server,Jazzy,cyclonedds,SLAM + Nav2 (scenario C),5,Per-process RSS/PSS,Composable containers,120,2,TBD,OsakaTX,Compare RSS/PSS composable vs separate
+0006,TBD,fastdds_comparison,Pi 4 Model B,2,Ubuntu 24.04 Server,Jazzy,fastdds,SLAM + Nav2 (scenario C),5,Per-process RSS/PSS,Composable containers,120,2,TBD,OsakaTX,Compare Cyclone DDS vs Fast DDS RSS on same hardware
+0007,TBD,recovery_burst,Pi 4 Model B,2,Ubuntu 24.04 Server,Jazzy,cyclonedds,Recovery event burst,N/A,Per-process RSS/PSS,Composable containers,60,1,TBD,OsakaTX,Trigger backup/spin/wait recovery sequence
+0008,TBD,dock_ir_workload,Pi 4 Model B,4,Ubuntu 24.04 Server,Jazzy,cyclonedds,Dock/IR homing simulation,N/A,Per-process RSS/PSS,Composable containers,120,2,TBD,OsakaTX,Add approximate dock-IR workload to main stack
+0009,TBD,full_product_4gb,CM4 + IO Board,4,Ubuntu 24.04 Server,Jazzy,cyclonedds,All onboard workloads,N/A,Per-process RSS/PSS,Composable containers,180,2,TBD,OsakaTX,Camera + dock + MCU serial + Nav2 + SLAM
