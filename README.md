@@ -2,22 +2,22 @@
 
 # OOMWOO
 
-*Open-source robot vacuum you build yourself.*
+*Open-source robot vacuum you build yourself*
 
-Clean well · Hackable · Raspberry Pi · ROS2 · Home Assistant · 2D LiDAR · 3D printed · ESP32 · Arduino
+Clean well · Hackable · Raspberry Pi · 3D printed · Local / No cloud required · Home Assistant · Arduino · ROS2 · ESP32
 
 ![License](https://img.shields.io/badge/license-Apache--2.0-blue)
 ![Status](https://img.shields.io/badge/status-early%20development-orange)
 
 </div>
 
-## What is this?
-
-OOMWOO is an *open-source home robot vacuum* you can build yourself, made for the
-Raspberry Pi, ROS2, Home Assistant, and 3D-printing communities. It uses an
+OOMWOO is an *open-source home robot vacuum* you can build yourself, built using
+Raspberry Pi, 3D-printing, Home Assistant, Arduino and ROS2. It uses an
 affordable 2D LiDAR to map your home and navigate on its own. Local, no
 cloud required for regular functionality, no vendor lock-in. Follow us building in public
 [Discord](https://discord.gg/3y2JKz5T25) | [X](https://x.com/@0OMWO0) | [Instagram](https://www.instagram.com/oomw0o/) | [Facebook](https://www.facebook.com/profile.php?id=61591466775035) | [Reddit](https://www.reddit.com/r/oomwoo/) | [newsletter](https://stats.sender.net/forms/bo2rAK/view) | [YouTube](https://www.youtube.com/@makerspet) | [oomwoo.com](https://oomwoo.com/) | [Tutorials](https://makerspet.com/learn/)
+
+> Early [build instructions](docs/BUILD_INSTRUCTIONS.md) will be available in Fall 2026.
 
 Reference design images - this is approximately how the finished design will look:
 
@@ -42,10 +42,10 @@ Reference design images - this is approximately how the finished design will loo
 
 *v0 target: bare-bones build:*
 
-- 3D-printed chassis
-- ROS2 Gazebo sim
-- LiDAR with manual SLAM
-- ROS2 on Raspberry Pi 5 AND/OR ESP32 running micro-ROS with ROS2 on local PC - decision TBD
+- 3D-printed chassis ([browse](https://github.com/makerspet/oomwoo-install))
+- ROS2 Gazebo sim ([install](https://github.com/makerspet/oomwoo-install))
+- Basic cleaning, mapping
+- Raspberry Pi CM4/CM5 running ROS2 ([install](https://github.com/makerspet/oomwoo-install))
 
 Open Source Deliverables:
 
@@ -56,7 +56,7 @@ Open Source Deliverables:
 - [ ] Raspberry Pi [software](https://github.com/makerspet/oomwoo-install)
 - [ ] Motor drivers, sensors [I/O PCB](https://github.com/makerspet/oomwoo-io-board)
 - [ ] I/O PCB [firmware](https://github.com/makerspet/oomwoo-io-firmware)
-- [ ] Build, setup, bringup and troubleshooting [instructions](BUILD_INSTRUCTIONS.md)
+- [ ] Build, setup, bringup and troubleshooting [instructions](docs/BUILD_INSTRUCTIONS.md)
 - [ ] Demo video(s)
 
 ## Contributing
@@ -173,10 +173,12 @@ Code is released under the [Apache License 2.0](LICENSE).
 Hardware design files, once added, to be released under an open hardware
 license (TBD).
 
-<a href="https://www.star-history.com/?type=date&repos=makerspet%2Foomwoo">
+<!-- Self-hosted star history (auto-refreshed by .github/workflows/star-history.yml).
+     No third-party embed / sealed token to expire. -->
+<a href="https://star-history.com/#makerspet/oomwoo&Date">
  <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=makerspet/oomwoo&type=date&theme=dark&legend=top-left&sealed_token=_pwRsmK4mVgCA-wKPZeTQOv6tMzrsQLXFfDoOVMTu1hralpzmceqsNPdBJLLFUfct1DSWAvFA9QaH7KIYC5aiVuC6IXHO76GC8BQlLPlJZB67Vvj6AiwS9neO5174BaYtLDETkKmv9_M8IYiGhFSHHUf29kTBt5pUhW6HQcLpPjQ0GufF2KDPONMJdzV" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=makerspet/oomwoo&type=date&legend=top-left&sealed_token=_pwRsmK4mVgCA-wKPZeTQOv6tMzrsQLXFfDoOVMTu1hralpzmceqsNPdBJLLFUfct1DSWAvFA9QaH7KIYC5aiVuC6IXHO76GC8BQlLPlJZB67Vvj6AiwS9neO5174BaYtLDETkKmv9_M8IYiGhFSHHUf29kTBt5pUhW6HQcLpPjQ0GufF2KDPONMJdzV" />
-   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=makerspet/oomwoo&type=date&legend=top-left&sealed_token=_pwRsmK4mVgCA-wKPZeTQOv6tMzrsQLXFfDoOVMTu1hralpzmceqsNPdBJLLFUfct1DSWAvFA9QaH7KIYC5aiVuC6IXHO76GC8BQlLPlJZB67Vvj6AiwS9neO5174BaYtLDETkKmv9_M8IYiGhFSHHUf29kTBt5pUhW6HQcLpPjQ0GufF2KDPONMJdzV" />
+   <source media="(prefers-color-scheme: dark)" srcset=".github/assets/star-history-dark.svg" />
+   <source media="(prefers-color-scheme: light)" srcset=".github/assets/star-history-light.svg" />
+   <img alt="OOMWOO star history" src=".github/assets/star-history-light.svg" width="820" />
  </picture>
 </a>

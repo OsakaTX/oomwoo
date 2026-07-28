@@ -4,13 +4,13 @@
 >
 > OOMWOO is currently at the *design / RFC stage*, not the build-it-yourself stage.
 > Step-by-step build instructions will arrive once the first
-> [Bill of Materials](BOM.md) and parts are validated (*first BoM targeted ~mid-July*)
+> [Bill of Materials](../BOM.md) and parts are validated (*first BoM targeted ~mid-July*)
 > and the modules are proven on real hardware.
 
 ## Where the project is right now
 
 - *Design + interfaces:* [ARCHITECTURE.md](docs/ARCHITECTURE.md)
-- *Parts list (draft):* [BoM.md](BOM.md)
+- *Parts list (draft):* [BoM.md](../BOM.md)
 - *Modules being built (RFCs):* [README → Requests for Contributions](README.md#requests-for-contributions)
 - *Design decisions + research:* [docs/design-document.md](docs/design-document.md)
 
