@@ -14,7 +14,8 @@
 6. [Status & Error Schema](#6-status--error-schema)
 7. [Integration with xbattlax RecoveryController](#7-integration-with-xbattlax-recoverycontroller)
 8. [Testing Strategy](#8-testing-strategy)
-9. [Open Questions](#9-open-questions)
+9. [Reference Modules](#9-reference-modules)
+10. [Open Questions](#10-open-questions)
 
 ---
 
@@ -650,7 +651,143 @@ def test_adaptive_ladder_always_terminates():
 
 ---
 
-## 9. Open Questions
+## 9. Reference Modules
+
+The `roe/` package now includes reference implementations for the full recovery-safety
+pipeline. Each module is headless (no ROS2 dependencies) and fully tested.
+
+| Module | File | Tests | Purpose |
+|---|---|---|---|
+| Situation Classifier | `roe/situation_analyzer.py` | 30 | BumperHistory, SituationClassifier, OdometryTracker |
+| Adaptive Ladder | `roe/adaptive_ladder.py` | 30 | AdaptiveLadder, ReentryMap, primary/panic ladders |
+| **Safety Handler** | `roe/safety_handler.py` | 26 | SafetyEvent arbitration, e-stop/cliff/wheel-drop/pickup lifecycle |
+| **Status Reporter** | `roe/status_reporter.py` | 16 | FullStatus, StatusHistory, HA discovery configs |
+| **Integration Adapter** | `roe/integration_adapter.py` | 14 | RecoveryIntegrationAdapter wiring all modules together |
+
+### 9.1 Safety Handler (`safety_handler.py`)
+
+Implements the safety sensor hierarchy from [§5](#5-safety-sensor-hierarchy):
+
+```python
+from roe import SafetyHandler, SafetyEvent
+
+handler = SafetyHandler()
+handler.trigger(SafetyEvent.cliff(time.time()))   # → ACTIVE
+handler.clear(time.time())                         # → PENDING_CLEAR
+handler.confirm_clear(time.time())                 # → CLEAR
+```
+
+Key features:
+- **Priority arbitration** — `prioritize_events()` selects the highest-priority event
+  from multiple simultaneous triggers (e-stop > cliff > wheel-drop > pickup > bumper-jam).
+- **Lifecycle management** — `trigger()` → `clear()` → `confirm_clear()` for
+  non-recoverable events; `hard_reset()` for e-stop recovery.
+- **HARD_LOCKED** state for e-stop — survives `clear()` and `confirm_clear()`;
+  only `hard_reset()` can return to CLEAR.
+- **Event history** — bounded log of past events for diagnostics.
+
+### 9.2 Status Reporter (`status_reporter.py`)
+
+Implements the extended status schema from [§6](#6-status--error-schema):
+
+```python
+from roe import make_status, make_extended
+
+status = make_status("paused", "RECOVERY_EXHAUSTED", "Stuck", True,
+    situation="wedged", behavior="panic_turn",
+    extended=make_extended(attempt_count=3, on_panic_ladder=True))
+payload = status.to_json()  # JSON for /oomwoo/status
+```
+
+Additional features:
+- **`compute_level()`** — maps reason codes to severity (ok / warning / error / critical).
+- **`StatusHistory`** — rolling window of recent status entries with `recent_errors()`.
+- **`generate_ha_discovery_configs()`** — produces 3 Home Assistant MQTT discovery
+  sensor configurations (state, reason_code, level).
+- **`generate_ha_automation_suggestions()`** — returns YAML snippets for HA
+  automations (critical alert, exhausted notification, recovery notification).
+
+### 9.3 Integration Adapter (`integration_adapter.py`)
+
+Wires the reactive layer (situation_analyzer, adaptive_ladder, safety_handler,
+status_reporter) into a single composable unit that maps to xbattlax's
+RecoveryController interface:
+
+```python
+from roe import RecoveryIntegrationAdapter, SafetyEvent
+
+adapter = RecoveryIntegrationAdapter()
+
+# Bumper event flows through classifier
+adapter.on_bumper_contact("left", time.time())
+decision = adapter.evaluate(time.time())
+
+# Safety event preempts everything
+adapter.on_safety_event(SafetyEvent.cliff(time.time()))
+decision = adapter.evaluate(time.time())  # → stop=True
+
+# Ladder progression with step succeeded/failed
+adapter.step_succeeded(time.time())   # advance ladder
+adapter.step_failed(time.time(), ...)  # escalate or exhaust
+```
+
+The `IntegrationDecision` return type tells the caller what to do:
+- `stop=True` → publish zero cmd_vel, enter paused/alert state
+- `should_recover=True` → `current_step` has the next recovery command
+- `reason_code` → publish on `/oomwoo/status`
+
+### 9.4 Test Coverage
+
+All 143 tests pass headless (no ROS2, no Gazebo):
+
+```
+test/situation_analyzer  ...... 30 tests
+test/adaptive_ladder     ...... 30 tests
+test/safety_handler      ...... 26 tests
+test/status_reporter     ...... 16 tests
+test/integration_adapter ...... 14 tests
+                         ------
+                    Total: 143 tests
+```
+
+Run with: `PYTHONPATH=roe python3 -m pytest test/`
+
+### 9.5 Integration into xbattlax's RecoverySafetyNode
+
+The recommended integration (Approach A from [§7](#7-integration-with-xbattlax-recoverycontroller))
+is to import `RecoveryIntegrationAdapter` into the existing `recovery_node.py`:
+
+```python
+# In recovery_node.py (modified):
+from oomwoo_recovery_safety.roe import RecoveryIntegrationAdapter
+
+class RecoverySafetyNode(Node):
+    def __init__(self):
+        super().__init__("recovery_safety")
+        self._adapter = RecoveryIntegrationAdapter()
+        # ... existing subscriptions ...
+
+    def _bumper_left_cb(self, msg):
+        if not self._has_real_contact(msg):
+            return
+        self._adapter.on_bumper_contact("left", self._now())
+        decision = self._adapter.evaluate(self._now())
+        self._apply_decision(decision)
+
+    def _apply_decision(self, decision):
+        if decision.stop:
+            self._stop_motion()
+            self._publish_status(decision.last_status or decision.current_status)
+            return
+        if decision.should_recover:
+            self._execute_step(decision.current_step)
+```
+
+The full adapter is `roe/integration_adapter.py` (380 lines, 14 tests).
+
+---
+
+## 10. Open Questions
 
 1. **Front bumper in Gazebo sim.** The oomwoo-one sim publishes left and right
    bumper contacts, but not a dedicated front bumper. The `FRONT_BUMPER_COMBINE`
