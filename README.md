@@ -51,7 +51,7 @@ Open Source Deliverables:
 
 - [x] [Software development environment](https://github.com/makerspet/oomwoo-install), robot [description package](https://github.com/makerspet/oomwoo-one/) and [tutorials](https://makerspet.com/blog/simulate-oomwoo-one-robot-vacuum-in-gazebo-with-ros-2/) (ROS2)
 - [x] Placeholder real [vacuum cleaner](https://github.com/makerspet/proscenic-m6pro) and [tutorials](https://makerspet.com/blog/tutorial-connect-robot-vacuum-cleaner-to-ros-2-proscenic-m6-pro/) (temporary while OOMWOO is being designed)
-- [ ] [Bill of materials (BoM)](BOM.md) (in progress)
+- [x] [Bill of materials (BoM)](BOM.md) (rough version available)
 - [ ] 3D-printable [files](https://github.com/makerspet/oomwoo-one-cad)
 - [ ] Raspberry Pi [software](https://github.com/makerspet/oomwoo-install)
 - [ ] Motor drivers, sensors [I/O PCB](https://github.com/makerspet/oomwoo-io-board)
@@ -93,13 +93,13 @@ repo (docs and specs go in-tree), and send a short PR linking it from the module
 | Module | ID | Status | Notes |
 |---|---|---|---|
 | ROS2 URDF + Gazebo sim | [urdf-gazebo-sim](./contributions/urdf-gazebo-sim) | In progress | Placeholder URDF + Gazebo sim (reference: [oomwoo-one](https://github.com/makerspet/oomwoo-one); [@alvarosamudio](https://github.com/alvarosamudio/oomwoo_gazebo) featured), refined when hardware lands |
-| First clean: coverage + mapping + exploration | [clean-and-map](./contributions/clean-and-map) | Ready to start work | Coverage cleaning while SLAM-mapping and exploring |
+| First clean: coverage + mapping + exploration | [clean-and-map](./contributions/clean-and-map) | In progress | Coverage cleaning while SLAM-mapping and exploring |
 | Auto cleaning |  | In progress | Clean the entire room using an existing map (using coverage path planning) |
 | Regression tests |  | In progress | Set up simulatior regression test framework (auto cleaning in Gazebo) |
 | Localization & navigation on a known map | [nav-localize](./contributions/nav-localize) | In progress | Nav2 nav, AMCL localization, relocalize when lost, resume map |
 | Dock cycle: undock, dock, recharge | [dock-cycle](./contributions/dock-cycle) | Ready to start work | Undock, return-to-dock, precise docking, station services, find dock when lost |
 | Recovery behaviors & safety | [recovery-safety](./contributions/recovery-safety) | Ready to start work | Recovery ladder, escalation, pause-and-alert, safety sensors, status reporting |
-| Stack health monitor & software watchdog | [health-monitor](./contributions/health-monitor) | Ready to start work | Per-component alive-and-well heartbeats + a roster-aware aggregator that feeds the MCU deadman; stops the robot when any critical node crashes / hangs / is missing — the soft-fault layer above the MCU's hard reflexes |
+| Stack health monitor & software watchdog | [health-monitor](./contributions/health-monitor) | In progress | Per-component alive-and-well heartbeats + a roster-aware aggregator that feeds the MCU deadman; stops the robot when any critical node crashes / hangs / is missing — the soft-fault layer above the MCU's hard reflexes |
 | Near-field obstacle avoidance (camera + ToF) | [obstacle-avoidance](./contributions/obstacle-avoidance) | Ready to start work | v2 "never gets stuck": front camera + VL53L7CX ToF detect below-LiDAR obstacles (cables, socks); detect-then-classify |
 | Compute benchmark & memory reduction | [compute-benchmark](./contributions/compute-benchmark) | In progress | Measure ROS2/Nav2/SLAM memory, compare composable nodes, and track the 4 GB -> 2 GB target |
 | Floor-surface handling & edge cleaning | [floor-care](./contributions/floor-care) | Ready to start work | Wall/edge following, carpet vs hardwood, mop lift/lower |
@@ -110,7 +110,7 @@ repo (docs and specs go in-tree), and send a short PR linking it from the module
 | Procure part specs & datasheets | [part-specs](./contributions/part-specs) | In progress | Find/measure/reverse-engineer specs (pinouts, encoder PPR, torque, how to drive fans…) for sourced parts |
 | I/O + motor-driver PCB | [io-pcb](./contributions/io-pcb) | In progress | I/O board with CM4/CM5 socket, STM32G070 MCU - motors, sensors, 4S2P charging, safety, FreeRTOS, custom serial to CM4/CM5, 2D LiDAR header, IMU, audio serial/amp/speaker, MIPI camera(s) i/f; KiCad, JLCPCB |
 | I/O board software interface | [io-board-interface](./contributions/io-board-interface) | Ready to start work | CPU/MCU serial contract, ROS2 bridge mapping, safety watchdog behavior, hardware signal ownership, and bringup validation |
-| MCU I/O board firmware | [mcu-io-firmware](./contributions/mcu-io-firmware) | Ready to start work | STM32G473 firmware: Arduino (STM32duino) API + FreeRTOS + a HAL/ISR real-time safety core; motors, sensors, charging, custom serial to the CPU; [repo](https://github.com/makerspet/oomwoo-io-firmware) |
+| MCU I/O board firmware | [mcu-io-firmware](./contributions/mcu-io-firmware) | In progress | STM32G473 firmware: Arduino (STM32duino) API + FreeRTOS + a HAL/ISR real-time safety core; motors, sensors, charging, custom serial to the CPU; [repo](https://github.com/makerspet/oomwoo-io-firmware) |
 | Fit software into 2GB RAM | [compute-benchmark](./contributions/compute-benchmark) | 2GB achieved | ROS2 node composition, Rust; remove Gazebo, desktop UI |
 
 > Planned and on-hold modules (mechanical design, later-phase software) live in the
@@ -124,39 +124,33 @@ repo (docs and specs go in-tree), and send a short PR linking it from the module
 
 ## Related prior art
 
-- [AlieksieievYurii/vacuum-cleaner](https://github.com/AlieksieievYurii/vacuum-cleaner) — a DIY 3D-printed robot vacuum (Raspberry
-  Pi Zero W, gyroscope-based, Fusion 360, Android control app, no dock)
+- [Valetudo](https://github.com/Hypfer/Valetudo) — cloud-free firmware replacement for commercial vacuums (local app-level control, not ROS2)
+- [codetiger/VacuumTiger](https://github.com/codetiger/VacuumTiger) - 3irobotix CRL-200-based vacuum low-level control reverse engineered
 - [kaiaai/LDS](https://github.com/kaiaai/LDS), [kaiaai/lds2d](https://github.com/kaiaai/lds2d) — open-source 2D LiDAR libraries (C++, Python) supporting 23+ LiDAR models
 - [remakeai/vacuum_ros2_bridge](https://github.com/remakeai/vacuum_ros2_bridge) — ROS2 bridge for a 3irobotix CRL-200-based vacuum (Proscenic), full ROS2 control
-- [Valetudo](https://github.com/Hypfer/Valetudo) — cloud-free firmware replacement for commercial vacuums (local app-level control, not ROS2)
 - [Dennis Giese / robotinfo.dev](https://robotinfo.dev) — teardowns and rootability of commercial robot vacuums.
-- [codetiger/VacuumTiger](https://github.com/codetiger/VacuumTiger) - 3irobotix CRL-200-based vacuum low-level control reverse engineered
 - [Build a ROS2/LiDAR robot crash course](https://makerspet.com/blog/build-arduino-self-driving-robot-video-instructions/) - watch this if you have no robotics experience
 - [Open Mower](openmower.de) - open-source outdoor lawn mower
+- [AlieksieievYurii/vacuum-cleaner](https://github.com/AlieksieievYurii/vacuum-cleaner) — a DIY 3D-printed robot vacuum (Raspberry
+  Pi Zero W, gyroscope-based, Fusion 360, Android control app, no dock)
 
-## Design research
+## User requirements &amp; Design research
 
-We reviewed the 2025–2026 consumer robot vacuum landscape (global + China-sourceable
-brands, all price tiers) to decide which solutions to copy and which to skip. Key
-takeaways for the build:
+Anecdotal prospective user requirements - collected mostly in [r/RobotVacuums](https://www.reddit.com/r/RobotVacuums/), [r/ROS](https://www.reddit.com/r/ROS/) and as [announcement post](https://makerspet.com/blog/building-an-open-source-robot-vacuum-meet-oomwoo/) comments:
 
-- *Suction is a sourcing problem, not an engineering one.* Real-world cleaning does
-  *not* track advertised suction (Pa); ~$500 mid-tier models beat flagships. A
-  moderate *sealed* sourced motor + a good brush + tight airflow sealing matches
-  flagships — *no custom impeller needed.*
-- *"Never gets stuck" needs camera + AI sensor fusion*, not LiDAR alone — LiDAR is
-  blind below its ~10 cm turret (cables, socks). v1 leans on the *bumper* for low
-  obstacles; vision-based avoidance is a later / experimental goal, not an MVP promise.
-- *Anti-tangle brush:* a *tapered rubber roller* resists hair-wrap best (a top user
-  complaint) and is easy to 3D-print.
-- *Mop:* a 3D-printed *dual-spinning* mop is competitive; the self-washing roller
-  mop's edge is overstated and hard to replicate — skip it for now.
-
-*Well-loved models worth studying:* Eufy Omni S2 (obstacle avoidance), Narwal Flow
-(roller mop), Ecovacs Deebot T90 Pro Omni (~$499 all-rounder), Dreame X40 Ultra
-(dual-spinning mop). *Dreame* is also the most [Valetudo](https://github.com/Hypfer/Valetudo)-rootable
-brand — the safest donor to study. *(Per-model rankings are directional, from
-single-run reviewer tests.)*
+- open-source
+- 3D printed first
+- cleans well, a first-class appliance, not a throwaway build
+  - never gets stuck
+  - hair tangle-free
+  - modern capabilities - no legacy drag mop; dual-spinning rotary mop or better/roller
+  - bagless
+- hackable, DIY fixable, upgrade-able
+  - examples: vacuum-only version, mop-only version
+  - Raspberry Pi
+  - Home Assistant integration
+- operates without cloud
+- later: ability to retrofit existing legacy vacuum cleaner robots
 
 ## About
 

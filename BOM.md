@@ -58,6 +58,7 @@ Retail / low-qty prices, INCLUDES shipping, excludes tax. Read [how I calculate 
 | Carpet sensor | 1 | $6-12 | Ultrasonic 300kHz | Low availability retail [AliExpress](https://www.aliexpress.us/w/wholesale-roborock-carpet-sensor.html) / [Amazon](https://www.amazon.com/s?k=roborock+carpet+sensor) / [eBay](https://www.ebay.com/sch/i.html?_nkw=roborock+carpet+sensor); purchase factory direct instead |
 | Charging contacts | 1 pair | $3-5 | Nickel-plated steel strip | ~1mm wide, ~0.1mm thick, ~5cm long [AliExpress](https://www.aliexpress.us/w/wholesale-nickel-strip.html) / [Amazon](https://www.amazon.com/s?k=nickel+strip) / [eBay](https://www.ebay.com/sch/i.html?_nkw=nickel+strip) |
 | Mop motor assembly | 1 pair | $20 | Spin, lift, one swing | Rare/expensive retail, get 2x $5 RS385 12V motors, 2x $2.50 MG90S, wires, 3D print rest or order factory direct for kit; [AliExpress](https://www.aliexpress.us/w/wholesale-roborock-mop-motor.html) / [Amazon](https://www.amazon.com/s?k=roborock+mop+motor) / [eBay](https://www.ebay.com/sch/i.html?_nkw=roborock+mop+motor) |
+| Mop disk           | 1 pair | n/a | Left, right | 3D print; refer to [AliExpress](https://www.aliexpress.us/w/wholesale-roborock-mop-holder.html) / [Amazon](https://www.amazon.com/s?k=roborock+mop+holder) / [eBay](https://www.ebay.com/sch/i.html?_nkw=roborock+mop+holder) |
 | Obstacle avoidance vis camera | 2 | $6-7 | OV5647 5M MIPI 16-pin cable, 130 deg, no IR-cut filter | Wide FoV depth-from-stereo for advanced obstacle avoidance, search "night vision" [AliExpress](https://www.aliexpress.us/w/wholesale-ov5647-night-vision.html) / [Amazon](https://www.amazon.com/s?k=ov5647+night+vision) / [eBay](https://www.ebay.com/sch/i.html?_nkw=ov5647+night+vision) |
 | ~~Obstacle detection range camera~~ | ~~1~~ | ~~$8–15~~ | ~~VL53L7CX or VL53L7CH, 8x8 obstacle detection (90° FoV)~~ | ~~Expensive if purchased on AliExpress. Sensor IC costs ~$5.50 at DigiKey/Mouser/STMicro. [AliExpress](https://www.aliexpress.us/w/wholesale-VL53L7CX.html) / [Amazon](https://www.amazon.com/s?k=VL53L7CX) / [eBay](https://www.ebay.com/sch/i.html?_nkw=VL53L7CX)~~ |
 | Water pump | 1 | $3–6 | Peristaltic 6V DC ≥50ml/min, tube 2mm ID 4mm OD | Jiayin JYPDM-10 or similar [AliExpress](https://www.aliexpress.us/w/wholesale-water-pump-6v.html) / [Amazon](https://www.amazon.com/s?k=water+pump+6v) / [eBay](https://www.ebay.com/sch/i.html?_nkw=water+pump+6v) |
@@ -78,12 +79,13 @@ Retail / low-qty prices, INCLUDES shipping, excludes tax. Read [how I calculate 
 | Power supply | 1 | $33 | 400W external | IP67 proof 24V "LED driver" [Amazon](https://www.amazon.com/s?k=24v+led+strip+power+supply+400w) / [eBay](https://www.ebay.com/sch/i.html?_nkw=24v+led+strip+power+supply+400w) |
 |              |   | TBD | Internal      |  |
 | Dock board | 1 | ~30 | DC inlet + fuse + TVS, ESP32 MCU/WiFi, high-side FET/relay for blower, IR homing beacon, push button(s), robot presence detect, charge contacts FET, pump/fan drivers |  |
+| Water level, canisters present sensors | 4 | $0.30 | Hall sensors KY-003, 2x (clean + dirty water) canister present + 2x (clean-low, dirty-full) floats | [AliExpress](https://www.aliexpress.us/w/wholesale-ky-003.html) / [Amazon](https://www.amazon.com/s?k=ky+003) / [eBay](https://www.ebay.com/sch/i.html?_nkw=ky+003) |
+|                                        | 4 | $0.10 | Magnets for hall sensors, size TBD | [AliExpress](https://www.aliexpress.us/w/wholesale-neodymium-magnet.html) / [Amazon](https://www.amazon.com/s?k=neodymium+magnet) / [eBay](https://www.ebay.com/sch/i.html?_nkw=neodymium+magnet) |
 | Dust container | 1 | n/a | 3D printed |  |
 | Dock exhaust filter | 1 | 3-8? | Washable/HEPA |  |
 | Suction port + gasket | 1 | 2-5 | Need a good seal |  |
 | Clean + dirty water tanks | 1 | n/a | 3D printed, removable |  |
 | Wash tray | 1 | n/a | 3D printed, removable, w/scrub ribs |  |
-| Level sensors | 2-3 | 2-6 | Float/capacitive; clean-low, dirty-full |  |
 | Tubing, fittings, seals, gaskets, fasteners | 1 | 5-10? |  |  |
 | Blower fan | 1 | 3-8? | Ambient air, no heater for now |  |
 | ~PTC heater + thermal fuse + thermistor~ | ~1~ | ~8-20~ | Not in first model. ~Needs redundant thermal cutoff~ |  |
