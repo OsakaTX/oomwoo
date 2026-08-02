@@ -1,0 +1,17 @@
+run_id,date_utc,git_sha,hardware_profile,ram_gb,ros_distro,rmw,scenario,node_strategy,lidar_hz,scan_dropping,command_or_launch,expected_duration_s,notes
+baseline_idle,,,pi4,4,jazzy,fastdds,ros_graph_idle,separate_processes,5,no,oomwoo launch baseline,60,Separate-process baseline. L0 in ADR-0002.
+baseline_slam_5hz,,,pi4,4,jazzy,fastdds,slam_mapping,separate_processes,5,no,oomwoo launch baseline,300,5 Hz LiDAR slam_toolbox. Measure before composition.
+baseline_nav_known_map,,,pi4,4,jazzy,fastdds,nav2_known_map,separate_processes,5,no,oomwoo launch baseline,300,Nav2 navigating known map. Separate processes.
+baseline_recovery_burst,,,pi4,4,jazzy,fastdds,recovery_safety_event_burst,separate_processes,5,no,oomwoo launch baseline,60,Observe recovery node peak RSS during event burst.
+nav_composed_mt,,,pi4,4,jazzy,fastdds,ros_graph_idle,composable_nav2_only_mt,5,no,component_container_mt + nav2,60,Nav2 nodes in MultiThreadedExecutor container. L1a.
+nav_composed_mt_slam,,,pi4,4,jazzy,fastdds,slam_mapping,composable_nav2_slam_mt,5,no,component_container_mt + nav2 + slam_toolbox,300,Nav2 + slam_toolbox in one container. L2.
+nav_composed_mt_slam_nav,,,pi4,4,jazzy,fastdds,nav2_known_map,composable_nav2_slam_mt,5,no,component_container_mt + nav2 + slam_toolbox,300,Same L2 config during active navigation.
+nav_composed_mt_recovery,,,pi4,4,jazzy,fastdds,recovery_safety_event_burst,composable_nav2_slam_mt,5,no,component_container_mt + recovery (separate),60,L2 with python recovery still separate. Burst test.
+nav_composed_full_mt,,,pi4,4,jazzy,fastdds,slam_mapping,composable_all_cpp_mt,5,no,component_container_mt + nav2 + slam + lidar_driver,300,L3: all C++ nodes in one container. LiDAR driver must support composition.
+nav_composed_st,,,pi4,4,jazzy,fastdds,ros_graph_idle,composable_nav2_slam_st,5,no,component_container_st + nav2 + slam_toolbox,60,L4: single-threaded container. Measure thread stack savings.
+nav_composed_st_slam,,,pi4,4,jazzy,fastdds,slam_mapping,composable_nav2_slam_st,5,no,component_container_st + nav2 + slam_toolbox,300,Single-threaded during SLAM. May show throughput bottleneck.
+target2gb_baseline,,,pi4,2,jazzy,fastdds,ros_graph_idle,separate_processes,5,no,oomwoo launch baseline,60,Repeat baseline on 2 GB Pi 4 to measure OS overhead difference.
+target2gb_nav_composed_mt,,,pi4,2,jazzy,fastdds,nav2_known_map,composable_nav2_slam_mt,5,no,component_container_mt + nav2 + slam_toolbox,300,Primary 2 GB viability test. Most optimistic config.
+target2gb_nav_composed_full_mt,,,pi4,2,jazzy,fastdds,slam_mapping,composable_all_cpp_mt,5,no,component_container_mt + nav2 + slam + lidar_driver,300,Full C++ composition on 2 GB. Stretch target.
+target2gb_cyclonedds,,,pi4,2,jazzy,cyclonedds,slam_mapping,composable_nav2_slam_mt,5,no,component_container_mt with rmw_cyclonedds,300,Test if cyclonedds RMW reduces memory further on 2 GB.
+target2gb_recovery_burst,,,pi4,2,jazzy,fastdds,recovery_safety_event_burst,composable_nav2_slam_mt,5,no,Safety event burst during composed nav2+slam on 2GB,60,Confirm composition doesn't degrade safety response on 2GB.
