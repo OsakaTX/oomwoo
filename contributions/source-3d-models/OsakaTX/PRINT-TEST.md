@@ -107,7 +107,84 @@ output shaft aligns with brush roller.
 
 ---
 
-## Jig 5: Wheelbase Alignment Jig
+## Jig 5: Battery Pack Pocket Fit Test
+
+**File:** `jigs-new/battery-pocket-fit.scad`
+**Purpose:** Verify the battery compartment pocket correctly fits a
+BRR-2P4S-5200 battery pack.
+
+### Print Instructions
+1. Open `jigs-new/battery-pocket-fit.scad` and set the `clearance` variable.
+2. Adjust to match your printer's dimensional accuracy:
+   - Start with `clearance = 1.0` mm
+   - If your printer typically over-extrudes, increase to 1.5 mm
+   - If under-extrudes, decrease to 0.6 mm
+3. Print with 2 perimeters, 15% infill.
+4. Insert the real battery pack into the pocket.
+
+### Pass Criteria
+- The battery pack slides into the pocket without forcing.
+- There is 0.5-1.5mm play on each side (for thermal expansion + foam padding).
+- The connector end protrudes at the correct side.
+- The battery can be removed without tools.
+
+### Fail Criteria & Fix
+- Too tight → increase `clearance` by 0.2mm, reprint.
+- Too loose → decrease `clearance` by 0.2mm.
+- Wrong orientation → verify `pack_length` and `pack_width` match actual
+  battery dimensions. The pack dimension referencing the BOM is **135mm long**
+  per Amazon listing, but another source says **137mm** — measure yours.
+
+---
+
+## Jig 6: Cliff Sensor Mounting Slot Test
+
+**File:** `jigs-new/cliff-sensor-fit.scad`
+**Purpose:** Verify TCRT5000 cliff sensor module fits in its chassis slot.
+
+### Print Instructions
+1. Open `jigs-new/cliff-sensor-fit.scad` and adjust `clearance` for your printer.
+2. Print (no supports needed).
+3. Insert the real cliff sensor module into the jig pocket.
+
+### Pass Criteria
+- The sensor PCB sits flush in the pocket.
+- The sensor body (TCRT5000, 10.2 × 5.8mm) protrudes through the bottom hole.
+- The 4 pins are clear (no interference with pocket walls).
+- The potentiometer adjust screw (if present) is accessible.
+
+### Fail Criteria & Fix
+- PCB too tight → increase `clearance`.
+- Sensor body doesn't fit through hole → verify `sensor_body_l` and `sensor_body_w`.
+
+---
+
+## Jig 7: Side Brush Sweep Clearance Template
+
+**File:** `jigs-new/side-brush-clearance.scad`
+**Purpose:** Quick visual check that the 5-arm side brush doesn't hit
+the chassis or bumper.
+
+### Print Instructions
+1. Open `jigs-new/side-brush-clearance.scad` and render.
+2. Export STL — prints as a thin ring (1mm thick), essentially the brush
+   sweep area.
+3. No supports, fast print.
+
+### Pass Criteria
+- Place the ring on the chassis at the side brush mount position.
+- The ring fits entirely within the chassis perimeter (no overhang).
+- The ring clears the main brush opening.
+- 10mm margin to nearest chassis protrusion (for bristle flex).
+
+### Fail Criteria & Fix
+- Ring overhangs chassis → move side brush mount inward or reduce brush
+  effective radius by 5mm.
+- Ring overlaps main brush opening → adjust brush position fore/aft.
+
+---
+
+## Jig 8: Wheelbase Alignment Jig
 
 **File:** `jigs/wheelbase-alignment.scad`
 **Purpose:** Verify the left and right drive wheels are parallel and

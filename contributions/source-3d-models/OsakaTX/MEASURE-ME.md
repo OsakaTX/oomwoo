@@ -114,6 +114,185 @@ Please take a photo of the drive wheel module next to a ruler/caliper showing:
 
 ---
 
+## 5. Suction Fan Module — Dreame MSD-C-3 / Nidec 20N709U020
+
+**AliExpress:** Search "Dreame L10s fan" ($10-23) for the 6 kPa variant.
+
+| # | What to Measure                          | Estimate | Unit | Notes |
+|---|------------------------------------------|----------|------|-------|
+| 1 | **Housing width** | 60 | mm | Per seller listing: 60×60×30mm |
+| 2 | **Housing depth** | 60 | mm | Same |
+| 3 | **Housing height** | 30 | mm | Same |
+| 4 | **Inlet trumpet diameter** (outer) | 38 | mm | Estimate — the round intake opening |
+| 5 | **Inlet trumpet height** (above housing) | 8 | mm | Estimate |
+| 6 | **Outlet duct width** | 20 | mm | Estimate — rectangular exhaust nozzle |
+| 7 | **Outlet duct height** | 8 | mm | Estimate |
+| 8 | **Mounting screw hole pattern** (4 holes) | 48×48 | mm | Estimate — center-to-center |
+| 9 | **Screw hole diameter** | 3.2 | mm | Estimate — M3 clearance |
+| 10 | **Motor core diameter** (visible bulge on back) | 36 | mm | Estimate |
+| 11 | **Motor core height** (protrusion) | 6 | mm | Estimate |
+| 12 | **Connector type** | JST XH 3-pin | mm | Estimate |
+| 13 | **Cable length** | 80 | mm | Estimate |
+
+### Photo Request
+- Top view (inlet trumpet visible)
+- Bottom view (motor core bulge)
+- Side view (overall height, outlet duct)
+- Connector closeup
+
+---
+
+## 6. Peristaltic Water Pump — JYPDM-10 / Generic 6V DC
+
+**AliExpress:** Search "water pump 6V peristaltic" ($3-6).
+
+| # | What to Measure                          | Estimate | Unit | Notes |
+|---|------------------------------------------|----------|------|-------|
+| 1 | **Motor body diameter** | 27.0 | mm | Standard RS-385 class |
+| 2 | **Motor body length** | 38.0 | mm | 7mm longer than RS-385 |
+| 3 | **Pump head width** | 20.0 | mm | Peristaltic rotor housing |
+| 4 | **Pump head length** | 25.0 | mm | Along motor axis |
+| 5 | **Pump head height** | 20.0 | mm | |
+| 6 | **Overall length** (motor + head) | 63.0 | mm | |
+| 7 | **Tube barb outer diameter** | 6.0 | mm | For 2mm ID / 4mm OD tube |
+| 8 | **Tube barb inner diameter** | 3.0 | mm | |
+| 9 | **Barb center-to-center spacing** | 12.0 | mm | |
+| 10 | **Mounting flange width** | 24.0 | mm | If present |
+| 11 | **Mounting flange screw hole spacing** | 18.0 | mm | If present |
+| 12 | **Screw hole diameter** | 3.0 | mm | If present |
+| 13 | **Motor shaft connection** | D-type | — | Check if D-flat or cross-pin |
+
+### Photo Request
+- Side view (motor + pump head together)
+- Top view (barbs visible)
+- Bottom view (mounting flange)
+- Connector/wire type
+
+---
+
+## 7. Battery Pack — BRR-2P4S-5200 (14.4V, 5200mAh)
+
+**AliExpress:** Search "BRR-2P4S-5200 battery" ($16-30).
+
+| # | What to Measure                          | Estimate | Unit | Notes |
+|---|------------------------------------------|----------|------|-------|
+| 1 | **Overall length** | 135 | mm | Per Amazon listing. Another source: 137. **VERIFY** |
+| 2 | **Overall width** | 38 | mm | Per Amazon listing. Another source: 43. **VERIFY** |
+| 3 | **Overall height** | 38 | mm | Per Amazon listing. Another source: 45. **VERIFY** |
+| 4 | **Corner radius** | 4 | mm | Estimate |
+| 5 | **Connector pin count** | 4 | — | BOM says 4-pin (B+, B-, NTC, sense). Aftermarket often 2-pin. **VERIFY** |
+| 6 | **Connector type** | JST? | — | Identify the connector model |
+| 7 | **Connector position** (from pack edge) | 20 | mm | Estimate — center of connector body |
+| 8 | **Connector body dimensions** | 10×8×8 | mm | Estimate (width × depth × height) |
+| 9 | **Cable length** (connector-to-pack entry) | 60 | mm | Estimate |
+| 10 | **Screw boss** present at ends? | No | — | Many S5 batteries don't have them |
+| 11 | **Pack weight** | 180-230 | g | Estimate (8× 18650 cells + BMS + wrapper) |
+| 12 | **Label / part number sticker dimensions** | 70×20 | mm | Estimate |
+
+### Critical Checks
+- The three data sources disagree: Amazon says **135×38×38mm**, AliExpress hardware blog says **137×43×45mm**. THIS MUST BE MEASURED on the actual part you receive, as it affects the battery compartment design significantly.
+- Confirm the connector pinout: B+, B−, NTC, sense (4-pin) vs just B+, B− (2-pin)
+- Measure connector orientation (which face of the pack the cable exits)
+
+---
+
+## 8. Cliff Sensor Module — TCRT5000 (Roomba 500-series)
+
+**BOM:** 4x cliff sensors bundle, $1.50-2.50 each (AliExpress).
+
+| # | What to Measure                          | Estimate | Unit | Notes |
+|---|------------------------------------------|----------|------|-------|
+| 1 | **Module PCB length** | 35 | mm | Estimate — generic MH-sensor module |
+| 2 | **Module PCB width** | 10 | mm | Estimate |
+| 3 | **Module PCB thickness** | 1.6 | mm | Standard FR4 |
+| 4 | **Sensor body L** (TCRT5000) | 10.2 | mm | Vishay datasheet — **confirmed** |
+| 5 | **Sensor body W** (TCRT5000) | 5.8 | mm | Vishay datasheet — **confirmed** |
+| 6 | **Sensor body H** (TCRT5000) | 7.0 | mm | Vishay datasheet — **confirmed** |
+| 7 | **Pin count** | 4 | — | Emitter A/C + Detector C/E |
+| 8 | **Pin spacing** | 2.54 | mm | Standard 0.1" header — **VERIFY** |
+| 9 | **Mounting hole diameter** | 2.5 | mm | Estimate — M2 clearance |
+| 10 | **Mounting hole spacing** (center-to-center) | 29 | mm | Estimate — along board |
+
+### Notes
+- Roomba uses these modules at ~20-30° from vertical, mounted near the chassis edge.
+- The TCRT5000 bare sensor is **10.2×5.8×7.0mm** (confirmed from Vishay datasheet DS83760).
+- Detect range: 0.2-15mm, peak at 2.5mm from sensor face.
+
+---
+
+## 9. Side Brush — 5-Arm (Roborock S5-family)
+
+**BOM:** $2-8 (AliExpress).
+
+| # | What to Measure                          | Estimate | Unit | Notes |
+|---|------------------------------------------|----------|------|-------|
+| 1 | **Overall diameter** (tip-to-tip across opposite arms) | 105 | mm | Per AliExpress wiki: "105mm length" |
+| 2 | **Hub diameter** | 28 | mm | Estimate |
+| 3 | **Hub thickness** | 5 | mm | Estimate |
+| 4 | **Arm width at root** | 8 | mm | Estimate |
+| 5 | **Arm width at tip** | 5 | mm | Estimate |
+| 6 | **Arm thickness** (material) | 3 | mm | Estimate |
+| 7 | **Bristle length** | 12 | mm | Estimate |
+| 8 | **Screw hole diameter** (center) | 3.2 | mm | Estimate — M3 clearance |
+| 9 | **Screw head diameter** (countersunk) | 7 | mm | Estimate |
+| 10 | **Number of arms** | 5 | — | **Confirmed** for S5-family |
+
+### Notes
+- BOM also lists 3-arm ($3-9) for S8-family and 2-arm curved ($3-7) for Saros.
+  Only the 5-arm is modeled here.
+- The brush material is flexible silicone rubber — the arm tips bend during rotation.
+
+---
+
+## 10. Wall Sensor PCB — TSOP38238 + 940nm IR LED
+
+**BOM:** Custom PCB, ~$3 each, 2 units.
+
+| # | What to Measure                          | Estimate | Unit | Notes |
+|---|------------------------------------------|----------|------|-------|
+| 1 | **PCB length** | 20 | mm | Estimate — custom board |
+| 2 | **PCB width** | 15 | mm | Estimate |
+| 3 | **PCB thickness** | 1.6 | mm | Standard FR4 |
+| 4 | **TSOP38238 body L** | 6.0 | mm | Vishay datasheet — **confirmed** |
+| 5 | **TSOP38238 body W** | 5.0 | mm | Vishay datasheet — **confirmed** |
+| 6 | **TSOP38238 body H** | 4.0 | mm | Vishay datasheet — **confirmed** |
+| 7 | **IR LED diameter** (TSAL6100 rep.) | 5.0 | mm | Standard 5mm T1¾ |
+| 8 | **IR LED height above PCB** | 8.6 | mm | Estimate — including dome and standoff |
+| 9 | **Connector type** | JST PH 4-pin | — | Estimate |
+| 10 | **Connector pin spacing** | 2.0 | mm | Estimate — JST PH 2.0mm |
+| 11 | **Mounting hole diameter** | 2.5 | mm | Estimate — M2 |
+
+---
+
+## 11. OV5647 Camera Module (obstacle avoidance)
+
+**BOM:** 2x OV5647 5MP MIPI, 130° FoV, no IR-cut filter, $6-7 each.
+
+| # | What to Measure                          | Estimate | Unit | Notes |
+|---|------------------------------------------|----------|------|-------|
+| 1 | **PCB length** | 25 | mm | Estimate — Pi Cam v1 proxy |
+| 2 | **PCB width** | 24 | mm | Estimate |
+| 3 | **PCB thickness** | 1.0 | mm | Estimate — thin PCB |
+| 4 | **Sensor package (×, y)** | 8×8 | mm | Estimate |
+| 5 | **Sensor package height above PCB** | 4.0 | mm | Estimate |
+| 6 | **Lens holder diameter** | 12 | mm | Estimate — M12 thread |
+| 7 | **Lens holder height** | 3.0 | mm | Estimate |
+| 8 | **Lens barrel height** (total above holder) | 8.0 | mm | Estimate |
+| 9 | **FFC connector width** | 10 | mm | Estimate — 16-pin, 0.5mm pitch |
+| 10 | **FFC connector depth** | 6 | mm | Estimate |
+| 11 | **Mounting hole diameter** | 2.2 | mm | Estimate — M2 |
+| 12 | **Mounting hole spacing (×)** | 21 | mm | Estimate — center-to-center lengthwise |
+| 13 | **Mounting hole spacing (y)** | 12 | mm | Estimate — center-to-center widthwise |
+
+### Notes
+- Physical dimensions vary between OV5647 module vendors. The Pi Camera v1 (OV5647) dimensions
+  are used as a proxy. The "night vision" variant (no IR-cut filter) may have a thinner PCB
+  and different lens barrel height.
+- Field of view: 130° DFoV (BOM spec). This requires a wide-angle M12 lens,
+  typically 2.0-2.4mm EFL on 1/4" sensor.
+
+---
+
 ## How to Submit Measurements
 
 1. **Open an issue** in [makerspet/oomwoo](https://github.com/makerspet/oomwoo/issues)
