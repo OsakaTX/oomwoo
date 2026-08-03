@@ -11,6 +11,14 @@ with additional gaps found. xbattlax's items are not reproduced here — see
 [`../xbattlax/docs/hardware_contract_gaps.md`](../xbattlax/docs/hardware_contract_gaps.md)
 for those.
 
+> **2026-08-03 note:** On that date upstream `oomwoo-io-board` commit `99edb37`
+> deleted the 60-row SPEC.md GPIO table this document quotes (`#31/#32`, `#55–58`,
+> `#20–23`, `#39/#40`, …). The GPIO numbering below is therefore **historical**
+> (finite as of Jul 25 `2233e54`); the canonical signal list now lives in the
+> KiCad schematic. See
+> [`spec_crosscheck_20260803.md`](spec_crosscheck_20260803.md) for the re-anchored
+> net-name inventory and updated statuses of OSK-001..006 plus new OSK-007..010.
+
 ## Gap index
 
 | ID | Topic | Severity | Status |

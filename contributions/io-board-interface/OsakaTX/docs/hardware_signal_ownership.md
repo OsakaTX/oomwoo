@@ -7,6 +7,13 @@ Source: [oomwoo-io-board/docs/SPEC.md](https://github.com/makerspet/oomwoo-io-bo
 (via the [io-pcb RFC](https://github.com/makerspet/oomwoo/tree/main/contributions/io-pcb)).
 GPIO numbers are the SPEC.md enumeration (`#1`–`#60`), not STM32 package pin numbers.
 
+> **2026-08-03 note:** Upstream `oomwoo-io-board` commit `99edb37` has since
+> **removed the SPEC.md GPIO table** this file enumerates (`#1`–`#60`); the
+> canonical signal list now lives in the KiCad schematic. The signal meanings
+> below remain valid where they were cross-checked against the schematic (see
+> [`spec_crosscheck_20260803.md`](spec_crosscheck_20260803.md) for the re-anchored
+> net-name inventory and part verifications).
+
 Owner legend:
 
 | Owner | Meaning |
