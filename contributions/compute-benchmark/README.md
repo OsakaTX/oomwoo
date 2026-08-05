@@ -22,8 +22,8 @@ layout changes, and later optional Rust experiments under the same workload.
   board; ignore the older RK3562 reference path.
 - The MCU owns motors, sensors, safety, battery/charging supervision, watchdogs,
   and the custom serial protocol.
-- STM32G070RBT6 is a strong MCU candidate because of its GPIO/ADC count, low
-  cost, and LQFP manufacturability, while the MCU choice remains reviewable.
+- STM32G473 is the selected base-controller MCU, superseding the earlier
+  STM32G070 candidate.
 - The MVP 2D LiDAR target is 5 Hz with no scan dropping.
 - Rust/rclrs is an optional late-summer integration candidate, not a baseline
   dependency today.
