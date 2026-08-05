@@ -9,6 +9,7 @@ framing, ROS2 mapping, docking requirements, and bringup plan. This namespace ad
 | [`docs/hardware_signal_ownership.md`](docs/hardware_signal_ownership.md) | Cross-references every I/O board SPEC.md GPIO to the serial message field it maps to — the hardware-signal-ownership doc the scope requested. |
 | [`docs/contract_gaps_supplement.md`](docs/contract_gaps_supplement.md) | Additional gaps discovered by cross-checking the authoritative SPEC.md against the contract: dock IR count mismatch, side-proximity gap, UART routing ambiguity, IMU ownership, MCU part discrepancy, and the wire v1→v2 transition now open in `oomwoo-io-firmware#1`. |
 | [`docs/spec_crosscheck_20260803.md`](docs/spec_crosscheck_20260803.md) | **2026-08-03 refresh.** Records that upstream `oomwoo-io-board` commit `99edb37` deleted the 60-row SPEC.md GPIO table (canonical GPIO list moved to the KiCad schematic), re-anchors every signal to schematic net names, and adds gaps OSK-007..010 (mop motors, MG90S servos, power-path charging, UART pinning). |
+| [`docs/wire_format_reconciliation_20260805.md`](docs/wire_format_reconciliation_20260805.md) | **2026-08-05 refresh.** Cross-checks the three *live* wire-format artifacts now in play (in-tree v1 codec, xbattlax `oomwoo-mcu-bridge` v2, and the JSON-Lines sim-MCU tool in `makerspet/oomwoo-install`) and flags the JSON-Lines-vs-binary framing divergence a new contributor could trip on, plus the firmware-track work items `oomwoo-io-firmware#1/#2/#3` this RFC must answer. See section 6 for the open decisions. |
 
 > **2026-08-03 note:** The GPIO `#N` numbers cited below and in the two docs above
 > refer to the SPEC.md GPIO table as of Jul 25 (`2233e54`). Upstream commit
@@ -69,3 +70,12 @@ This namespace:
    `SIDE BRUSH` header with a single DRV8870DDAR + one current-sense ADC. The old
    GPIO #39/#40 left/right PWM pair is obsolete. Keep the contract's single
    `side_brush_pct` for v1 (OSK-004).
+
+7. **Which wire format is canonical (new Aug 5)** — three live artifacts exist
+   with two incompatible wire formats: in-tree v1 codec (`xbattlax/tools/oomwoo_mcu_frame.py`,
+   binary `"OW"`+CRC-16), xbattlax's `oomwoo-mcu-bridge` v2 (binary, 21-byte
+   `FAST_TELEMETRY`), and the CI-tested sim-MCU in `makerspet/oomwoo-install`
+   (JSON-Lines over PTY — **not** the binary format). The firmware README points
+   developers at the oomwoo-install sim tool; a bridge written to JSON will not
+   match the binary contract the codec/mcu-bridge define. See
+   [`docs/wire_format_reconciliation_20260805.md`](docs/wire_format_reconciliation_20260805.md) §6 .
