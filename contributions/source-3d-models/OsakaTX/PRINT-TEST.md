@@ -210,6 +210,35 @@ at the correct distance from each other and from the caster.
 
 ---
 
+## Jig 9: LiDAR Tower Mount + Turret Clearance
+
+**File:** `jigs-new/lidar-tower-fit.scad`
+**Purpose:** Verify the X-WPFTB-V2.6.2 / Camsense X1-class LiDAR's 4 mounting
+screws line up with the chassis pattern, and that the rotating turret spins
+freely inside the chassis LiDAR tower opening.
+
+### Print Instructions
+1. Open `jigs-new/lidar-tower-fit.scad`, tune `clearance` for your printer
+   (start 1.0mm) and `hole_clr` for your screws (M3: 0.3mm → 3.35mm holes).
+2. Print with 3 perimeters, 20% infill, no supports.
+3. Screw the LiDAR module to the jig through the 4 holes (M3, from below).
+4. Confirm the turret rotates freely inside the printed tower ring.
+
+### Pass Criteria
+- All 4 screws seat without binding (holes align within ±0.5mm).
+- The housing overhang vs the footprint recess is ≤ 1mm on every side.
+- The turret turns through 360° with light finger force (1–3mm radial play).
+
+### Fail Criteria & Fix
+- Screws bind → raise `hole_clr`; holes misaligned → recalibrate the
+  `mount_holes` positions of the real module (×/−35, ×/±25 mm are STEP-derived
+  estimates) and update both this jig and `x-wpftb-v2.6.2.scad`.
+- Turret touches the ring → raise `clearance`; too loose → lower it.
+- Housing sits off-center → verify the `−14.25`mm scan-axis offset against the
+  real unit (see MEASURE-ME.md §12).
+
+---
+
 ## Printing Guidelines
 
 | Parameter | Setting |

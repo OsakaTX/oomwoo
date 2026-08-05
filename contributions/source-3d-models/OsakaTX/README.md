@@ -20,15 +20,16 @@ checklist.
 | **Side Brush (5-Arm)** | DRAFT — needs caliper verification | `side-brush-5arm/side-brush-5arm.scad` | ~105mm diameter clearance model for Roborock S5 |
 | **Wall Sensor PCB** (TSOP38238 + 940nm IR LED) | DRAFT — needs caliper verification | `wall-sensor-pcb/wall-sensor-pcb.scad` | Custom PCB estimate for wall-following sensor |
 | **OV5647 Camera Module** (obstacle avoidance) | DRAFT — needs caliper verification | `ov5647-camera/ov5647-camera.scad` | 5MP MIPI camera, ~25×24mm, 130° FoV, no IR-cut |
+| **2D LiDAR — X-WPFTB-V2.6.2** (Dreame/Xiaomi LDS, "possibly Camsense") | DRAFT — needs caliper verification | `lidar-xwpftb-v262/x-wpftb-v2.6.2.scad` | Camsense X1-class module: 95.3×70×43.2mm envelope, Ø63mm turret, 4-hole mount. Envelope from Camsense X1 datasheet; interface dims measured from the one-cad camsense_x1 STEP |
 
 ## Documentation
 
 | File | Purpose |
 |------|---------|
 | `MEASURE-ME.md` | Exact dimensions requiring caliper verification — ~100+ measurements across all parts |
-| `PRINT-TEST.md` | Fit-check jig print instructions and pass/fail criteria for 8 jigs |
+| `PRINT-TEST.md` | Fit-check jig print instructions and pass/fail criteria for 9 jigs |
 | `jigs/*.scad` | OpenSCAD jig files for testing part fit (drive wheel, caster, side brush motor, main brush motor) |
-| `jigs-new/*.scad` | OpenSCAD jig files for testing part fit (battery, cliff sensor, side brush clearance) |
+| `jigs-new/*.scad` | OpenSCAD jig files for testing part fit (battery, cliff sensor, side brush clearance, LiDAR tower) |
 
 ## Cross-Reference by BOM Item
 
@@ -46,6 +47,7 @@ checklist.
 | Side brush (5-arm) | `side-brush-5arm/side-brush-5arm.scad` | AliExpress wiki (~105mm diameter) | ⚠️ Estimate |
 | Wall sensors (×2) | `wall-sensor-pcb/wall-sensor-pcb.scad` | Vishay TSOP38238 datasheet (receiver ✓); PCB layout (estimate) | ✅ Partial |
 | Obstacle avoidance camera (×2) | `ov5647-camera/ov5647-camera.scad` | Pi Cam v1 form factor proxy (estimate) | ⚠️ Estimate |
+| 2D LiDAR (X-WPFTB-V2.6.2) | `lidar-xwpftb-v262/x-wpftb-v2.6.2.scad` | Camsense X1 official datasheet (envelope 70×95.3×43.2mm ✓); one-cad camsense_x1.step measured (94.6×70.5×43.3mm, hole pattern — approx); X-WPFTB protocol identity ✓ | ⚠️ Partial |
 
 ## Already Modeled Elsewhere (do not duplicate)
 
@@ -55,7 +57,14 @@ The following parts already have STEP models in `makerspet/oomwoo-one-cad/lib/`:
 |------|----------|-------------|
 | iRobot Roomba caster wheel | `lib/casters/irobot_caster.step` | IKsares / makers-pet |
 | Compute modules (CM4, CM5) | `lib/cm/` | Raspberry Pi official |
-| 2D LiDARs (Camsense, YDLIDAR, Xiaomi LDS02RR, LD06) | `lib/lidars/` | Various |
+| 2D LiDARs (Camsense X1, LD19, YDLIDAR, Xiaomi LDS02RR — see note below) | `lib/lidars/` | Various |
+
+> **LiDAR note (Aug 5):** the generic LiDARs in `lib/lidars/` do **not** include
+> the BOM's primary module, the Dreame-sourced **X-WPFTB-V2.6.2** — so it is
+> *not* a duplicate. My `lidar-xwpftb-v262/` draft models it using the Camsense
+> X1 geometry as the dimension base (the two share the same wire protocol and the
+> BOM flags "possibly Camsense"), with the one-cad `camsense_x1.step` cross-checked
+> by direct measurement. Verify the physical module against `MEASURE-ME.md` §12.
 
 ## Claimed by Others (in progress)
 

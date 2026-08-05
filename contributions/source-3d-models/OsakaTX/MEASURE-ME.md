@@ -293,7 +293,44 @@ Please take a photo of the drive wheel module next to a ruler/caliper showing:
 
 ---
 
-## How to Submit Measurements
+## 12. 2D LiDAR — X-WPFTB-V2.6.2 (Dreame / Xiaomi LDS)
+
+**BOM:** 2D LiDAR, PCB mark `X-WPFTB-V2.6.2`, "possibly Camsense", $16-26, fits Dreame L10s family / Xiaomi X10+/S20+.
+**Assumed dimension base:** Camsense X1 (official datasheet page, W×D×H = 70×95.3×43.2mm). The two share an identical wire protocol (55 AA 03 08 header, 36-byte packets, 115200 baud) — hardware-confirmed in BVLGARISSK/xiaomi-wpftb-lidar and Vidicon/camsense-X1. I also measured `makerspet/oomwoo-one-cad lib/lidars/camsense_x1.step` this session: 94.6×70.5×43.3mm.
+
+**Source links:**
+- Protocol / identity (HW-tested): https://github.com/BVLGARISSK/xiaomi-wpftb-lidar
+- Camsense X1 datasheet page: https://www.camsense.cn/en/robot/camsenseX1.html
+- Vendor unit listing (black Dreame / orange Xiaomi): ep-mediastore-ab.de (#77339 / #42740)
+
+| # | What to Measure                            | Estimate | Unit | Notes |
+|---|--------------------------------------------|----------|------|-------|
+| 1 | **PCB marking** — confirm it reads exactly `X-WPFTB-V2.6.2` | — | — | Identity check; front/back of board |
+| 2 | **Overall length** (long axis of housing) | 95.3 | mm | Datasheet 95.3 (Camsense X1 D); measured STEP 94.6 |
+| 3 | **Overall width** (short axis) | 70.0 | mm | Datasheet 70.0 (W); measured STEP 70.5 |
+| 4 | **Overall height** (base bottom to turret top) | 43.2 | mm | Datasheet 43.2; measured STEP 43.3 |
+| 5 | **Turret (rotating head) diameter** | 63.3 | mm | Measured from STEP r=31.65 (approx) |
+| 6 | **Turret height above housing** | 21.3 | mm | Estimate (43.2 − housing 22.0) |
+| 7 | **Mounting holes on base: count** | 4 | — | Measured from STEP (estimates) |
+| 8 | **Mounting hole diameter** (through) | 3.05 | mm | Measured from STEP — M3? |
+| 9 | **Mounting hole counterbore dia** | 6.1 | mm | Measured from STEP (approx) |
+| 10 | **Mounting hole positions** from scan axis | (22,±31) / (−35,±25) | mm | Measured from STEP (approx) — verify with calipers |
+| 11 | **Scan-axis offset** from housing-rect center | −14.25 | mm | Measured from STEP (housing spans −61.55..+33.04) |
+| 12 | **Connector type / pitch** | JST GH 1.25mm 4-pin | — | Per upstream SPEC.md + part-specs io-board doc (confirm on unit) |
+| 13 | **Wire colors / function** | GND black·brown, DOUT orange, VCC red | — | Per BVLGARISSK HW test (3-wire only) |
+| 14 | **Wire length to connector** | 100 | mm | Estimate |
+| 15 | **Housing color variant** | black (Dreame) / orange (Xiaomi) | — | Two variants known; record which you bought |
+
+### Notes
+- This is the BOM's *primary* LiDAR listing. It is **not** the same physical module as
+  the generic Camsense X1 / YDLIDAR / LD19 units already in the one-cad STEP library,
+  so this model is not a duplicate — but its geometry is currently an **assumption**:
+  if the real X-WPFTB differs from Camsense X1 in envelope, turret diameter, or hole
+  pattern, update the SCAD parameter block.
+- Sampling spec of the assumed Camsense X1 basis (official page): 0.1–8m range, 360°,
+  312±10 RPM, <2W, 50000 lux — electrical/range only, not geometry.
+
+---
 
 1. **Open an issue** in [makerspet/oomwoo](https://github.com/makerspet/oomwoo/issues)
    with `[measure]` prefix in the title, referencing this file.
