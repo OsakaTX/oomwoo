@@ -1,0 +1,31 @@
+slam_toolbox:
+  ros__parameters:
+    # OOMWOO benchmark params: 5 Hz scan, small house box room, tight-ish sampling
+    scan_topic: /scan
+    odom_frame: odom
+    map_frame: map
+    base_frame: base_link
+    mode: mapping            # online_async via launch mode arg
+    use_scan_matching: true
+    use_scan_barycenter: true
+    minimum_travel_distance: 0.05
+    minimum_travel_heading: 0.05
+    position_covariance_scale: 0.3
+    yaw_covariance_scale: 0.3
+    transform_publish_period: 0.05
+    map_update_interval: 3.0
+    resolution: 0.05
+    max_laser_range: 12.0
+    minimum_time_interval: 0.0
+    throttle_scans: 1
+    link_match_minimum_response_fine: 0.1
+    link_scan_maximum_distance: 3.0
+    do_loop_closing: true
+    loop_match_minimum_chain_size: 10
+    loop_match_maximum_variance_coarse: 3.0
+    loop_match_minimum_response_coarse: 0.35
+    loop_match_minimum_response_fine: 0.45
+    link_search_angle_offset: 0.1
+
+    # diagnostics - keep defaults otherwise; these control how often we publish
+    enable_interactive_mode: true
