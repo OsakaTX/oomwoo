@@ -21,15 +21,17 @@ checklist.
 | **Wall Sensor PCB** (TSOP38238 + 940nm IR LED) | DRAFT — needs caliper verification | `wall-sensor-pcb/wall-sensor-pcb.scad` | Custom PCB estimate for wall-following sensor |
 | **OV5647 Camera Module** (obstacle avoidance) | DRAFT — needs caliper verification | `ov5647-camera/ov5647-camera.scad` | 5MP MIPI camera, ~25×24mm, 130° FoV, no IR-cut |
 | **2D LiDAR — X-WPFTB-V2.6.2** (Dreame/Xiaomi LDS, "possibly Camsense") | DRAFT — needs caliper verification | `lidar-xwpftb-v262/x-wpftb-v2.6.2.scad` | Camsense X1-class module: 95.3×70×43.2mm envelope, Ø63mm turret, 4-hole mount. Envelope from Camsense X1 datasheet; interface dims measured from the one-cad camsense_x1 STEP |
+| **Main Brush Roller** (Roborock S5-family, code "A1") | DRAFT — needs caliper verification | `main-brush-roller/main-brush-roller.scad` | The cleaning ROLLER (not the gearmotor): ~176mm long, Ø45 bristle envelope. Drive stub Ø5.5 hex (mates gearmotor socket), journal Ø10. Interface to gearmotor cross-checked; all dims estimates |
+| **Mop Disk** (OOMWOO printed pad, 1 pair left/right) | DRAFT — needs caliper verification | `mop-disk/mop-disk.scad` | 3D-printed rotating mop pad for the RS385 mop motors. Mates RS385 Ø2.3 D-flat shaft + 16mm M2.5 pitch (datasheet); pad Ø98/retention are estimates |
 
 ## Documentation
 
 | File | Purpose |
 |------|---------|
 | `MEASURE-ME.md` | Exact dimensions requiring caliper verification — ~100+ measurements across all parts |
-| `PRINT-TEST.md` | Fit-check jig print instructions and pass/fail criteria for 9 jigs |
+| `PRINT-TEST.md` | Fit-check jig print instructions and pass/fail criteria for 11 jigs |
 | `jigs/*.scad` | OpenSCAD jig files for testing part fit (drive wheel, caster, side brush motor, main brush motor) |
-| `jigs-new/*.scad` | OpenSCAD jig files for testing part fit (battery, cliff sensor, side brush clearance, LiDAR tower) |
+| `jigs-new/*.scad` | OpenSCAD jig files for testing part fit (battery, cliff sensor, side brush clearance, LiDAR tower, main brush roller, mop disk) |
 
 ## Cross-Reference by BOM Item
 
@@ -42,6 +44,8 @@ checklist.
 | Peristaltic water pump | `peristaltic-pump/peristaltic-pump.scad` | RS-385 class dimensions | ⚠️ Estimate |
 | Side brush motor | `side-brush-motor-rf500c/side-brush-motor.scad` | RF-500C-13430 standard dimensions | ⚠️ Estimate |
 | Main brush motor | `main-brush-gearmotor/main-brush-gearmotor.scad` | Roborock S5 compatible parts dimensions | ⚠️ Estimate |
+| Main brush roller | `main-brush-roller/main-brush-roller.scad` | SmartRobotReviews accessory chart (code A1/A2); gearmotor hex socket 5.5 (est) | ⚠️ Estimate |
+| Mop disk | `mop-disk/mop-disk.scad` | RS385 datasheet (Ø2.3 D-flat shaft + 16mm M2.5 pitch ✓); pad Ø98 est | ✅ Interface / ⚠️ Pad |
 | Battery pack | `battery-pack-brr-2p4s/brr-2p4s-5200.scad` | Amazon listing (135×38×38mm) | ⚠️ Estimate |
 | Cliff sensors (×4) | `cliff-sensor-tcrt5000/cliff-sensor.scad` | Vishay TCRT5000 datasheet (sensor: 10.2×5.8×7mm ✓); module PCB (estimate) | ✅ Partial |
 | Side brush (5-arm) | `side-brush-5arm/side-brush-5arm.scad` | AliExpress wiki (~105mm diameter) | ⚠️ Estimate |

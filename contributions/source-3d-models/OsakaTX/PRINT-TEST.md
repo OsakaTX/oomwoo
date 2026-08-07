@@ -239,6 +239,65 @@ freely inside the chassis LiDAR tower opening.
 
 ---
 
+## Jig 10: Main Brush Roller Fit Test
+
+**File:** `jigs-new/main-brush-roller-fit.scad`
+**Purpose:** Verify the main brush ROLLER (BOM "Main brush", code A1) fits the
+brush bay end-to-end and that its two ends mate correctly: the hexagonal drive
+stub (∅5.5 across-flats, estimate) must match the gearmotor socket, and the
+journal (∅10, estimate) must seat the chassis bushing. Also marks the ∅45
+(estimate) bristle envelope the bay must clear.
+
+### Print Instructions
+1. Open `jigs-new/main-brush-roller-fit.scad`. Tune clearance values if your
+   printer runs large (start with defaults; re-tune after a calibration cube).
+2. Print flat with 3 perimeters, 100% infill (it's a dimensional gauge).
+3. With the robot upside down and the gearmotor in place, drop the roller's
+   drive stub into the jig's hex pocket and seat the journal end in the round
+   pocket. (Or place jig in the actual bay if the bay is open.)
+
+### Pass Criteria
+- The roller spans the two pockets with ≤ 1.0mm end slop (length verified).
+- Drive stub enters the hex pocket without force and indexes flat-to-flat.
+- Bristle envelope arc on the jig top fits within the bay floor-to-cover gap.
+
+### Fail Criteria & Fix
+- Stub does not enter hex pocket → verify the real stub is hexagonal (A1/A2
+  differ!); if triangular/cross-pin, update `main-brush-roller.scad`
+  `drive_stub_afl` and the jig's hex pocket, and report to MEASURE-ME §13.
+- Length wrong → update `roller_total_len` after caliper measurement.
+
+## Jig 11: Mop Disk Hub Fit Test (RS385)
+
+**File:** `jigs-new/mop-disk-hub-fit.scad`
+**Purpose:** Dry-fit verify the printed mop disk's RS385 interface BEFORE
+printing full disks: the D-bore (∅2.3 with flat, datasheet) must index on the
+motor shaft, and the two M2.5 holes at 16mm pitch (datasheet) must align with
+the motor face. The jig prints a POSITIVE replica of the RS385 shaft + mounting
+pegs; slide the disk over it.
+
+### Print Instructions
+1. Open `jigs-new/mop-disk-hub-fit.scad`. Print flat, 3 perimeters, 100% infill.
+2. Slide the printed/actual mop disk (from `mop-disk/mop-disk.scad`) over the
+   jig's D-shaped shaft replica and onto the two mounting pegs.
+3. Confirm the D-indexing: the disk should not rotate 180° — the flat must
+   engage on the +Y flat of the jig shaft.
+
+### Pass Criteria
+- Disk D-bore slides fully onto the shaft replica (≤ 0.5mm force) and indexes
+  on the flat (cannot be rotated 180° without lifting).
+- Both M2.5 holes align with the pegs; disk sits flat on the base plate.
+- The printed boss ∅40 (estimate) represents your chosen pad backing — confirm
+  the pad dry-fits (adjust `boss_dia` if not).
+
+### Fail Criteria & Fix
+- Bore too tight → increase bore clearance in `mop-disk.scad`; too loose →
+  decrease. The datasheet shaft is ∅2.3; the D-flat chord position is the
+  estimate to verify against the real motor (MEASURE-ME §14).
+- Hole pitch off → verify `rs385_hole_pitch` 16.0mm against the actual motor.
+
+---
+
 ## Printing Guidelines
 
 | Parameter | Setting |

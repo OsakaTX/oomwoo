@@ -330,6 +330,50 @@ Please take a photo of the drive wheel module next to a ruler/caliper showing:
 - Sampling spec of the assumed Camsense X1 basis (official page): 0.1–8m range, 360°,
   312±10 RPM, <2W, 50000 lux — electrical/range only, not geometry.
 
+## 13. Main Brush Roller — Roborock S5-family (single roller, code "A1")
+
+**BOM:** Main brush, single roller, rubber + bristles, $5-8. Fits Roborock S4/S4 Max/S5/S5 Max/S50/S55/S6/S6 Pure/MaxV/S60/S65, E2-E5, E20/E25/E35, C10, Xiaomi Mijia.
+**Note:** This is the ROLLER, not the gearmotor. The gearmotor (which drives it through a hex socket) is MEASURE-ME §4 `main-brush-gearmotor`. All dims below are estimates from the gearmotor interface + SmartRobotReviews accessory chart (A1 code for S5-family, A2 differs — see model header). **No datasheet exists** (Roborock publishes none) — everything is caliper-verification.
+
+| # | What to Measure                                    | Estimate | Unit | Notes |
+|---|----------------------------------------------------|----------|------|-------|
+| 1 | **Overall length** (drive stub tip → journal tip)  | 176.0 | mm | Must be < brush-bay internal width (~177 est) |
+| 2 | **Bristle envelope Ø** (cleaning diameter)         | 45.0 | mm | Controls bay floor + brush-cover clearance |
+| 3 | **Core body Ø** (under bristles)                   | 22.0 | mm | |
+| 4 | **Drive stub cross-section** (hex vs cross-pin vs triangle) | hex | — | ⚠️ Code A1/A2 differ here — confirm geometry & across-flats |
+| 5 | **Drive stub across-flats**                        | 5.5 | mm | Must match gearmotor socket (MEASURE-ME §4 socket_hex_size) |
+| 6 | **Drive stub length**                              | 12.0 | mm | |
+| 7 | **Shoulder disk Ø / thickness**                    | 16.0 / 2.5 | mm | Limits insertion, seals bay |
+| 8 | **Journal Ø**                                      | 10.0 | mm | Fits chassis bushing |
+| 9 | **Journal length / tip**                           | 14.0 / 3.0 | mm | Stepped tip (est) |
+| 10 | **Rib count on bristle core**                      | 8 | — | Pattern representative — confirm |
+| 11 | **Fine bristle/rib radial height**                 | 3.0 | mm | |
+
+### Critical Check
+- **Buy & measure the ACTUAL roller** (code A1 for S5/S6/Pure/MaxV-class per the accessory chart). Confirm all of the above with calipers — especially the drive-stub geometry (item 4/5) which is the single fit-critical interface to the already-modeled gearmotor, and which is the most likely place A1/A2 actually differ.
+
+## 14. Mop Disk — OOMWOO printed rotating pad (1 pair, left/right)
+
+**BOM:** "Mop disk | 1 pair | n/a | Left, right | 3D print" (sourced upstream 2026-07-29). The disk mounts on the RS385 mop motor of the BOM "Mop motor assembly" row.
+**Anchored interface (datasheet-confirmed, from the sibling mop-assembly branch / Foneacc RS385):** RS385 shaft Ø2.3mm with D-flat (flat width ≈1.8mm), 2× M2.5 face holes @16mm pitch. Everything else below is a DRAFT estimate — tune to your actual pad.
+
+| # | What to Measure                       | Estimate | Unit | Notes |
+|---|---------------------------------------|----------|------|-------|
+| 1 | **Mop pad backing Ø** (your pad)      | 98.0 | mm | Disk Ø should ≈ pad backing; cloth is ~ larger |
+| 2 | **Pad cloth Ø** (reference)           | ~115 | mm | Typical S-class rotating pad overall — verify |
+| 3 | **RS385 shaft Ø**                     | 2.3 | mm | (datasheet) D-bore in hub |
+| 4 | **D-flat width across flat**          | ~1.8 | mm | (datasheet) chord on bore |
+| 5 | **M2.5 hole pitch (c-c)**             | 16.0 | mm | (datasheet) must match motor face |
+| 6 | **M2.5 clearance hole Ø**             | 2.6 | mm | |
+| 7 | **Central boss Ø** (pad attachment)   | 40.0 | mm | Tune to pad backing hook-loop/stick dia |
+| 8 | **Retention slots count / len / wid** | 4 / 18 / 4 | —/mm | Straps or spring clip pass-through |
+| 9 | **Rim height / width**                | 4.0 / 2.0 | mm | Keeps pad off floor edge — vacuum clearance |
+| 10 | **Plate thickness**                   | 3.0 | mm | |
+
+### Critical Check
+- **Dry-fit on the real RS385 motor** using jig `jigs-new/mop-disk-hub-fit.scad` FIRST (prints a shaft+peg replica). Verify the D-bore indexes on the flat and the two M2.5 holes align before printing full disks.
+- **Left vs right**: disks are mechanically mirrors; most designs are axisymmetric so no model difference (mirror_side param exists if your retention is directional).
+
 ---
 
 1. **Open an issue** in [makerspet/oomwoo](https://github.com/makerspet/oomwoo/issues)
