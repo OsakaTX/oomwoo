@@ -14,6 +14,7 @@ hardware in the [live-robot-bringup RFC](../live-robot-bringup).
 
 # Important References
 - [clean-and-map RFC](../clean-and-map) — coverage cleaning that this refines at edges and surface transitions.
+- [obstacle-avoidance RFC](../obstacle-avoidance) — near-field (below-LiDAR) obstacle detection: the *avoid* neighbor to wall/edge *following*.
 - [urdf-gazebo-sim RFC](../urdf-gazebo-sim) — robot URDF; this package likely needs a *surface sensor* and a *mop lift/lower actuator* modeled.
 - [ROS2 software interfaces](../../docs/SOFTWARE_INTERFACES.md) — shared topic/action/service contract for simulation-first modules.
 - [OOMWOO ROS2 development](https://github.com/makerspet/oomwoo-install) — build OOMWOO ROS2 Docker image(s) with your packages.
@@ -24,6 +25,38 @@ hardware in the [live-robot-bringup RFC](../live-robot-bringup).
 > actuator). Add them inside your submission for now and propose folding the
 > stable ones back into [urdf-gazebo-sim](../urdf-gazebo-sim) later — please don't
 > rewrite that RFC.
+
+# Prior art — wall/edge-following approaches
+
+Wall following spans a spectrum from *no dedicated sensors* to *dedicated wall
+sensors* — pick what fits the hardware you model. Simplest to richest:
+
+- *Reactive bump-follow (no sensors).* The pre-sensor classic: cruise on a gentle
+  arc into the wall, and on a bumper contact back off and turn away — peeling
+  along the wall and rounding corners. A working reference already lives in
+  [oomwoo_clean](https://github.com/makerspet/oomwoo-ros2-tools) (`wall_clean`
+  node + `wall_clean.launch.py`: bumpers → `/cmd_vel`, live/`kaia`-tunable). Cheap
+  and honest, but it leaves a sawtooth gap — *randomize the turn amount* so it
+  can't limit-cycle
+  ([Brown CS148](https://cs.brown.edu/courses/cs148/documents/asgn1_enclosure/bgleib/index.html)).
+  Analog/multi-zone bumpers can do *compression feedback* (hold a near-constant
+  bumper depression); a *binary* bumper (the sim's) caps you at on/off.
+- *LiDAR distance following (uses the LiDAR you already have).* Get the wall
+  distance *and* angle from two laser rays, then hold a setpoint distance with
+  P/PID — smooth, no bumping. Canonical "two-ray" method:
+  [MIT RACECAR / F1TENTH lab](https://mit-racecar.github.io/icra2019-workshop/lab-wall-follow-sim),
+  [ssscassio](https://github.com/ssscassio/ros-wall-follower-2-wheeled-robot)
+  (wander → find wall → follow, `angular = p·e + d·Δe`),
+  [IvayloAsenov PID](https://github.com/IvayloAsenov/Wall-Follower-Robot-ROS),
+  [JayshKhan / TurtleBot3](https://github.com/JayshKhan/TurtleBot3-Wall-Following).
+- *Side-IR intensity following (dedicated wall sensor).* The *map-then-reactive*
+  approach detailed below — illuminate the wall with a side IR emitter and hold
+  constant reflected intensity. Most vacuum-like, but reflection depends on wall
+  colour, so the map+confirm step keeps it honest.
+
+Boundary following is also the core of the *Bug family* (Bug1/Bug2/TangentBug)
+for reactive obstacle circumnavigation, and it pairs with interior coverage in
+[clean-and-map](../clean-and-map): *perimeter edges first, then boustrophedon fill.*
 
 # Request for Contribution - Instructions
 

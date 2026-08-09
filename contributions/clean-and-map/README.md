@@ -10,18 +10,14 @@ physical robot isn't built yet, this is a *Gazebo simulation*.
 > [placeholder Proscenic M6 Pro](https://makerspet.com/blog/tutorial-connect-robot-vacuum-cleaner-to-ros-2-proscenic-m6-pro/).
 > Say so in the [discussions](https://github.com/makerspet/oomwoo/discussions) so we can coordinate.
 
-> *Scope.* This RFC is only the *first clean from scratch*. Operating on a *saved* map,
-> docking, recovery, floor-surface handling, and cleaning modes are deliberately *out of
-> scope* and live in their own RFCs:
-> [nav-localize](../nav-localize) (navigate / localize / resume a saved map),
-> [dock-cycle](../dock-cycle) (undock / dock / recharge),
-> [recovery-safety](../recovery-safety) (recovery & safety),
-> [floor-care](../floor-care) (wall/edge following, carpet vs hardwood, mop), and
-> [cleaning-jobs](../cleaning-jobs) (modes, zones, job orchestration).
-> Keep this package focused on producing a *complete map* and *full first-pass coverage*;
-> the others build on top of it.
+> *Scope.* This RFC is only the first clean *from scratch*, create a map.
 
-# Important References
+# Related work/pointers - please check
+- [nav-localize](../nav-localize) (navigate / localize / resume a saved map),
+- [dock-cycle](../dock-cycle) (undock / dock / recharge),
+- [recovery-safety](../recovery-safety) (recovery & safety),
+- [floor-care](../floor-care) (wall/edge following, carpet vs hardwood, mop), and
+- [cleaning-jobs](../cleaning-jobs) (modes, zones, job orchestration).
 - [urdf-gazebo-sim RFC](../urdf-gazebo-sim) — provides the robot URDF, the Gazebo world(s), and the *bumper* this package depends on.
 - [ROS2 software interfaces](../../docs/SOFTWARE_INTERFACES.md) — shared topic/action/service contract for simulation-first modules.
 - [m-explore-ros2 (kaiaai fork)](https://github.com/kaiaai/m-explore-ros2) — frontier exploration, tested and working. It maps and explores but does *not* clean — a good starting point to build on.
@@ -30,6 +26,25 @@ physical robot isn't built yet, this is a *Gazebo simulation*.
 - [OOMWOO ROS2 development](https://github.com/makerspet/oomwoo-install) — build OOMWOO ROS2 Docker image(s) with your packages.
 - [Project discussions](https://github.com/makerspet/oomwoo/discussions?discussions_q=)
 - [Discord server](https://discord.gg/3y2JKz5T25)
+
+# Prior art — coverage patterns
+
+Common floor-coverage strategies, simplest to most map-driven
+([overview + trade-offs](https://theroboticsclub.github.io/colab-Sakshay_Mahna/2019-12-22-coverage-algorithms-part-1/)):
+
+- *Random-walk + bump* — early Roomba; statistical coverage, no map. Simple, slow, leaves gaps.
+- *Spiral / backtracking-spiral* — expand outward, backtrack to an unvisited region when the spiral closes.
+- *Boustrophedon (back-and-forth rows)* — the workhorse; *boustrophedon cellular
+  decomposition* splits the free space into cells each covered by simple rows.
+  OOMWOO's map-based sweep already uses this
+  ([oomwoo_coverage](https://github.com/makerspet/oomwoo-ros2-tools)).
+- *Perimeter + interior* — follow walls to clean edges
+  ([floor-care](../floor-care)), then boustrophedon the middle — the standard
+  vacuum combo.
+
+Trade-offs to expect: spirals leave gaps near boundaries; boustrophedon pays a
+turn-overhead cost. Whatever the pattern, this RFC still owns the
+*SLAM-while-cleaning* and *frontier-exploration-to-done* parts below.
 
 # Request for Contribution - Instructions
 

@@ -70,6 +70,36 @@ implementations of a module can coexist and be compared. The shared
 [SOFTWARE_INTERFACES.md](SOFTWARE_INTERFACES.md) contract is what keeps
 independently-built modules compatible.
 
+## RFC lifecycle
+
+Each `contributions/<rfc>/` folder is an RFC with a `> **Status —**` line; the
+[RFC board](../contributions/README.md) is the at-a-glance index. RFCs move
+through:
+
+- **Active** — `exploratory` (a bounded experiment) → `ready to start work` /
+  `design-first` → `in progress`. Open to new contributions.
+- **Retired** — closed to new contributions, for one of four reasons:
+  `completed` (a contribution was selected and shipped), `superseded` (replaced by
+  a different approach — link the successor), `descoped` (parked / out of scope),
+  or `merged` (folded into another RFC — link it).
+
+**Retiring is a maintainer action, and RFCs are retired *in place* — never deleted
+or moved.** The submissions under a retired RFC are provenance and fallbacks and
+stay put; moving a folder would also break external links (GitHub doesn't redirect
+moved paths). To retire an RFC:
+
+1. Add a banner at the **top** of its `README.md` (before the intro) and set its
+   `Status` line to the retired state, e.g.:
+   `> 🏁 **Retired — completed.** Closed to new contributions. Selected work
+   shipped in [<package>](<url>) (contributor: @user, PR #NN). Kept for provenance;
+   follow-on work lives in [<successor-rfc>](../<successor-rfc>).`
+2. Move its row to **Retired** on the [RFC board](../contributions/README.md), with
+   the reason and a link to where the work went.
+3. Credit the selected contribution; leave the non-selected submissions in place.
+
+Retirement is reversible — reopen an RFC by flipping the banner/`Status` back if
+the shipped approach needs rework.
+
 ## Working in-tree (docs & specs)
 
 When your contribution lives in the tree (docs/specs, not a linked repo), two
@@ -82,8 +112,9 @@ them:
   you didn't mean to change, your branch is behind `main`.
 - *Only edit files inside your own `contributions/<module>/<your-username>/`.*
   Don't edit the module's top-level `README.md`, another contributor's folder,
-  the root `README.md` table, `ARCHITECTURE.md`, or `SOFTWARE_INTERFACES.md`
-  directly — those are maintainer-owned or belong to someone else. If your work
+  the root `README.md` table, the [RFC board](../contributions/README.md),
+  `ARCHITECTURE.md`, or `SOFTWARE_INTERFACES.md` directly — those are
+  maintainer-owned or belong to someone else. If your work
   *implies* a change to one of them (a new module row, a new interface topic, an
   architecture note), **describe it in the PR body** and let the maintainer apply
   it. This keeps ownership clear and avoids two PRs fighting over the same lines.

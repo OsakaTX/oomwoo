@@ -25,6 +25,7 @@ later re-validated on hardware in the [live-robot-bringup RFC](../live-robot-bri
 
 - [recovery-safety RFC](../recovery-safety) — the v1 bumper-based reaction this augments; a detected obstacle should feed the recovery/avoidance ladder.
 - [clean-and-map RFC](../clean-and-map) / [cleaning-jobs RFC](../cleaning-jobs) — coverage/nav that consumes the obstacle signal to slow, steer, or replan.
+- [floor-care RFC](../floor-care) — reactive wall/edge *following*: the near-field neighbor to obstacle *avoidance* (follow a boundary vs. steer around it), same reactive-sensing lineage.
 - [urdf-gazebo-sim RFC](../urdf-gazebo-sim) — robot URDF; this package needs a *front camera* and a *front ToF* modeled.
 - [ROS2 software interfaces](../../docs/SOFTWARE_INTERFACES.md) — shared topic/action/service contract for simulation-first modules.
 - [OOMWOO ROS2 development](https://github.com/makerspet/oomwoo-install) — build OOMWOO ROS2 Docker image(s) with your packages.
