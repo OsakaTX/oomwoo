@@ -23,15 +23,16 @@ checklist.
 | **2D LiDAR — X-WPFTB-V2.6.2** (Dreame/Xiaomi LDS, "possibly Camsense") | DRAFT — needs caliper verification | `lidar-xwpftb-v262/x-wpftb-v2.6.2.scad` | Camsense X1-class module: 95.3×70×43.2mm envelope, Ø63mm turret, 4-hole mount. Envelope from Camsense X1 datasheet; interface dims measured from the one-cad camsense_x1 STEP |
 | **Main Brush Roller** (Roborock S5-family, code "A1") | DRAFT — needs caliper verification | `main-brush-roller/main-brush-roller.scad` | The cleaning ROLLER (not the gearmotor): ~176mm long, Ø45 bristle envelope. Drive stub Ø5.5 hex (mates gearmotor socket), journal Ø10. Interface to gearmotor cross-checked; all dims estimates |
 | **Mop Disk** (OOMWOO printed pad, 1 pair left/right) | DRAFT — needs caliper verification | `mop-disk/mop-disk.scad` | 3D-printed rotating mop pad for the RS385 mop motors. Mates RS385 Ø2.3 D-flat shaft + 16mm M2.5 pitch (datasheet); pad Ø98/retention are estimates |
+| **Bumper / Tower Micro Switch** (SPDT snap-action, SS-5GL-class) | DRAFT — needs caliper verification | `micro-switch-ss5gl/micro-switch-ss5gl.scad` | Covers BOM "LiDAR tower bumper sensor" (×4) and "Bumper switches" (×2). Envelope from OMRON SS series datasheet (19.8×6.4×10.2mm, 3×Ø1.6 holes @9.5 pitch, lever FP/OP); actual AliExpress part identity unverified |
 
 ## Documentation
 
 | File | Purpose |
 |------|---------|
 | `MEASURE-ME.md` | Exact dimensions requiring caliper verification — ~100+ measurements across all parts |
-| `PRINT-TEST.md` | Fit-check jig print instructions and pass/fail criteria for 11 jigs |
+| `PRINT-TEST.md` | Fit-check jig print instructions and pass/fail criteria for 12 jigs |
 | `jigs/*.scad` | OpenSCAD jig files for testing part fit (drive wheel, caster, side brush motor, main brush motor) |
-| `jigs-new/*.scad` | OpenSCAD jig files for testing part fit (battery, cliff sensor, side brush clearance, LiDAR tower, main brush roller, mop disk) |
+| `jigs-new/*.scad` | OpenSCAD jig files for testing part fit (battery, cliff sensor, side brush clearance, LiDAR tower, main brush roller, mop disk, bumper/tower micro switch) |
 
 ## Cross-Reference by BOM Item
 
@@ -52,6 +53,8 @@ checklist.
 | Wall sensors (×2) | `wall-sensor-pcb/wall-sensor-pcb.scad` | Vishay TSOP38238 datasheet (receiver ✓); PCB layout (estimate) | ✅ Partial |
 | Obstacle avoidance camera (×2) | `ov5647-camera/ov5647-camera.scad` | Pi Cam v1 form factor proxy (estimate) | ⚠️ Estimate |
 | 2D LiDAR (X-WPFTB-V2.6.2) | `lidar-xwpftb-v262/x-wpftb-v2.6.2.scad` | Camsense X1 official datasheet (envelope 70×95.3×43.2mm ✓); one-cad camsense_x1.step measured (94.6×70.5×43.3mm, hole pattern — approx); X-WPFTB protocol identity ✓ | ⚠️ Partial |
+| LiDAR tower bumper sensor (×4, SPDT micro switch) | `micro-switch-ss5gl/micro-switch-ss5gl.scad` | OMRON SS series datasheet (en-ss.pdf p.5, fetched 2026-08-09: body 19.8×6.4×10.2 ✓, 3×Ø1.6 holes @9.5 ✓, lever FP 13.6/OP 8.8 ✓); actual AliExpress part identity unverified | ⚠️ Partial |
+| Bumper switches (×2, micro switch) | `micro-switch-ss5gl/micro-switch-ss5gl.scad` | Same SS-5GL-class model; BOM lists them as included in the cliff-sensor bundle (see `cliff-sensor-tcrt5000/`) | ⚠️ Partial |
 
 ## Already Modeled Elsewhere (do not duplicate)
 

@@ -374,6 +374,51 @@ Please take a photo of the drive wheel module next to a ruler/caliper showing:
 - **Dry-fit on the real RS385 motor** using jig `jigs-new/mop-disk-hub-fit.scad` FIRST (prints a shaft+peg replica). Verify the D-bore indexes on the flat and the two M2.5 holes align before printing full disks.
 - **Left vs right**: disks are mechanically mirrors; most designs are axisymmetric so no model difference (mirror_side param exists if your retention is directional).
 
+## 15. Bumper / Tower Micro Switch — SS-5GL-class SPDT snap-action
+
+**BOM:** "LiDAR tower bumper sensor | 4 | $0.70 | Micro switches | SPDT or
+similar" and "Bumper switches | 2 | $0 | Included in cliff sensors bundle".
+The BOM does not name a part number — treat as an unverified identity. The
+model (`micro-switch-ss5gl/micro-switch-ss5gl.scad`) is grounded to the OMRON
+SS series datasheet `en-ss.pdf` (fetched 2026-08-09,
+https://omronfs.omron.com/en_US/ecb/products/pdf/en-ss.pdf), p.5 "Hinge lever"
+outline + SS-5GL operating table, because SS-5 is the dominant form factor for
+this part class (identical to common end-stop switches). Verify the physical
+unit against this before relying on the mount.
+
+| # | What to Measure                       | Estimate | Unit | Notes |
+|---|---------------------------------------|----------|------|-------|
+| 1 | **Body length (X)**                   | 19.8 ±0.4 | mm | (datasheet) en-ss.pdf p.5 hinge-lever outline |
+| 2 | **Body width (Y)**                    | 6.4 ±0.4 | mm | (datasheet) |
+| 3 | **Body height (Z), incl. plunger boss** | 10.2 ±0.4 | mm | (datasheet) |
+| 4 | **Plunger Ø at top face**             | 2.5 ±0.07 | mm | (datasheet: "2.5±0.07 dia.") |
+| 5 | **Mounting holes: count**             | 3 | — | (datasheet: "3-1.6 dia. holes") |
+| 6 | **Mounting hole Ø**                   | 1.6 | mm | (datasheet) — M1.6-class screws |
+| 7 | **Mounting hole pitch (c-c)**         | 9.5 ±0.1 | mm | (datasheet: "9.5±0.1") — CONFIRM pattern/edges; drawing text extraction ambiguous (1.6 vs 2.35 callouts both on figure) |
+| 8 | **Mounting hole height above base**   | 3.0 | mm | (estimate) verify |
+| 9 | **Lever sheet thickness**             | 0.3 | mm | (datasheet: "t=0.3", stainless lever) |
+| 10 | **Lever width (Y)**                   | 5.0 | mm | (estimate) |
+| 11 | **Lever reach (X, hinge → tip)**      | 14.5 | mm | (datasheet: "14.5" dimension on outline) |
+| 12 | **Lever FREE position tip height**    | 13.6 max | mm | (datasheet: SS-5GL "FP Max." = 13.6) |
+| 13 | **Lever OPERATING position height**   | 8.8 ±0.8 | mm | (datasheet: SS-5GL "OP") |
+| 14 | **Overtravel (OT)**                   | 1.0 min | mm | (datasheet: SS-5GL OT) |
+| 15 | **Terminal count / layout**           | 3 / C-NO-NC | — | (datasheet labels C,NO,NC); pin dims estimate |
+| 16 | **Terminal pitch**                    | 2.5 | mm | (estimate) |
+| 17 | **Terminal length below body**        | 3.5 | mm | (estimate) |
+| 18 | **Actuator type** (hinge lever vs pin plunger vs roller) | — | — | Must match how the bumper/tower tab strikes it |
+| 19 | **Operating Force (OF)**              | 0.49 N max | N | (datasheet: SS-5GL OF max 0.49 N {50 gf}) — for bumper force budget |
+| 20 | **Actual part vendor / mark**         | — | — | e.g. “SS-5GL2”, generic end-stop switch, etc. |
+
+### Critical Check
+- **The $0.70 AliExpress part is NOT guaranteed to be Omron** — if any body
+  dimension differs from rows 1-3 by >0.5 mm, the whole mount envelope shifts:
+  re-verify rows 5-8 (hole pattern) before finalizing the housing pocket.
+- **Lever style matters for the mount.** A hinge-lever (GL) switch needs a
+  strike tab positioned to press the LEVER, not the body. If your unit is pin-
+  plunger (no lever), set `lever_style = 0` and verify OP at the plunger.
+- Use jig `jigs-new/tower-bumper-switch-fit.scad` (Jig 12) to confirm body fit,
+  hole-pattern registration, and lever sweep in the same pass.
+
 ---
 
 1. **Open an issue** in [makerspet/oomwoo](https://github.com/makerspet/oomwoo/issues)

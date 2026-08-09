@@ -296,6 +296,44 @@ pegs; slide the disk over it.
   estimate to verify against the real motor (MEASURE-ME §14).
 - Hole pitch off → verify `rs385_hole_pitch` 16.0mm against the actual motor.
 
+## Jig 12: Bumper / Tower Micro Switch Fit Test (SS-5GL-class SPDT)
+
+**File:** `jigs-new/tower-bumper-switch-fit.scad`
+**Purpose:** Verify the ACTUAL micro switch (the $0.70 “SPDT or similar” unit)
+matches the SS-5GL-class envelope the mount design assumes — body fit, the
+3×∅1.6 mounting-hole pattern, and lever sweep. Catches a wrong-form-factor
+part BEFORE the tower/bumper housing is finalized.
+
+### Print Instructions
+1. Open `jigs-new/tower-bumper-switch-fit.scad`. Print flat, 3 perimeters,
+   100% infill (it is a tight-tolerance pocket).
+2. Slide the real switch into the cove, plunger/lever side up, lever extending
+   toward the guide slot. Full-depth seat, no force.
+3. Sight through the three floor pilot holes — they must line up under the
+   switch body; verify screw-hole registration by inserting 1.6mm pins through
+   the switch and into the pilots.
+4. Press the lever down through its travel and confirm it moves inside the
+   guide slot without hitting the slot walls.
+
+### Pass Criteria
+- Switch seats fully into the cove with NO rocking (side-to-side play
+  ≤ 0.3mm).
+- All three datasheet hole positions register within the floor pilots (pin
+  drops through switch + jig freely).
+- Lever tip sweeps FP→OP inside the guide slot without binding.
+
+### Fail Criteria & Fix
+- Will not insert → increase `clearance_w` (start 0.6mm, go to 0.9mm) and/or
+  `clearance_h`; a long-force rock means `clearance_w` too small.
+- Rocks more than 0.3mm → decrease `clearance_w`. Body dims beyond ±0.5mm from
+  19.8×6.4×10.2 mean the part is a different class: update
+  `micro-switch-ss5gl.scad` body params first, re-verify MEASURE-ME §15.
+- Pilots do not register → your switch has a different hole pitch/pattern than
+  the SS-5’s 9.5mm/3-hole layout: measure row 7 of MEASURE-ME §15 and edit
+  `mtg_hole_pitch` / `mtg_hole_count` / `mtg_hole_dia`.
+- Lever binds in slot → open the slot (`slot_t`, `guide_z_gap`) or confirm the
+  real lever reach/FP match rows 11-12 (a long-lever GL111 unit is 22.6mm).
+
 ---
 
 ## Printing Guidelines
