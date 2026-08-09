@@ -122,8 +122,8 @@ Placed parts (parse of the raw sheet, this run):
 Placed parts (parse of the raw sheet, this run):
 
 - **RX1 = `TSOP38238`** (38 kHz IR receiver, dock detection).
-- **IR1 = `TSAL6200`** (Vishay 940 nm IR emitting diode) — an active IR
-  transmit path on the side board.
+- **IR1 = `TSAL6200`** (Vishay IR emitting diode, datasheet linked in the
+  sheet) — an active IR transmit path on the side board.
 - **U1 = `TLC555CDR`** (555 timer), **U2 = `SN74LVC2G08DCTR`** (2-input AND
   gate), **Q7 = `IRLML6344TRPBF`** (N-FET), **IR-L1 = `ZX-ZH1_5-4PWT`**
   (ZH 1.5 mm 4-pin connector), passives incl. 18.2 kΩ.
@@ -150,8 +150,10 @@ safety-watchdog behavior:
 | rails | `VCC-3V3-P` (×2), `VCC-5V-REG` | |
 
 Hierarchical labels on the sheet: `SDA`, `SCL`, `PULSE_OUT`, `LATCH_OUT`.
-`VCC-3V3-P` ("-P" suffix) is the battery/keep-alive 3V3 rail family also used on
-the STM32 sheet.
+`VCC-3V3-P` is a 3.3 V rail on this sheet; the "-P" suffix suggesting a
+permanent/keep-alive (battery-backed) rail is *inference* — it was not net-
+traced this run (note it differs from the `VCC3V3_SYS` / `VCC3V3_M2` symbols
+already seen on BMS sheets in the Aug-6 cross-check).
 
 **Impact on OSK-011 (RTC time-sync):** the board now has a *deliberate*
 external RTC (`PCF85063AT`) plus 32.768 kHz reference and two open-drain buffer
@@ -262,7 +264,8 @@ Frames verified this run (part parses above + prior cross-check anchors):
 | `side-sensors/IR sensor.kicad_sch` | **TSOP38238** ×1 + **TSAL6200** emitter ×1 | SPEC: `TSOP38238 for dock detection`; wall ToF options |
 
 That is **five 38 kHz receivers across three PCBs** (TSOP34138 ×2 on I/O,
-TSOP38238 ×2 front, TSOP38238 ×1 side) plus one 940 nm emitter, while the
+TSOP38238 ×2 front, TSOP38238 ×1 side) plus one Vishay IR emitter
+(TSAL6200), while the
 [`docking_ir_requirements.md`](../xbattlax/docs/docking_ir_requirements.md)
 still calls for 4 sensing elements (2 front homing + 2 side search). The
 redundancy/split between the I/O-board TSOP34138 pair and the new front-board
