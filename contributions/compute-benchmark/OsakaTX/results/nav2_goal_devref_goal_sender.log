@@ -1,0 +1,36 @@
+[INFO] [1786409335.342353674] [nav_goal_sender]: waiting for /navigate_to_pose action server...
+[INFO] [1786409336.846802939] [nav_goal_sender]: cycle 1: sending goal x=1.500 y=1.500 yaw=0.785
+[INFO] [1786409336.848626452] [nav_goal_sender]: cycle 1 goal ACCEPTED: True
+[INFO] [1786409350.839625472] [nav_goal_sender]: cycle 1 goal FINISHED: status=6 (re-sending after 1s pause)
+[INFO] [1786409351.843461287] [nav_goal_sender]: cycle 2: sending goal x=1.500 y=1.500 yaw=0.785
+[INFO] [1786409351.845516101] [nav_goal_sender]: cycle 2 goal ACCEPTED: True
+[INFO] [1786409353.796530340] [nav_goal_sender]: cycle 2 goal FINISHED: status=6 (re-sending after 1s pause)
+[INFO] [1786409354.801142854] [nav_goal_sender]: cycle 3: sending goal x=1.500 y=1.500 yaw=0.785
+[INFO] [1786409354.802677764] [nav_goal_sender]: cycle 3 goal ACCEPTED: True
+[INFO] [1786409364.693413133] [nav_goal_sender]: cycle 3 goal FINISHED: status=6 (re-sending after 1s pause)
+[INFO] [1786409365.697406819] [nav_goal_sender]: cycle 4: sending goal x=1.500 y=1.500 yaw=0.785
+[INFO] [1786409365.699211131] [nav_goal_sender]: cycle 4 goal ACCEPTED: True
+[INFO] [1786409388.739401777] [nav_goal_sender]: cycle 4 goal FINISHED: status=6 (re-sending after 1s pause)
+[INFO] [1786409389.743680814] [nav_goal_sender]: cycle 5: sending goal x=1.500 y=1.500 yaw=0.785
+[INFO] [1786409389.745596927] [nav_goal_sender]: cycle 5 goal ACCEPTED: True
+[INFO] [1786409392.796191280] [nav_goal_sender]: cycle 5 goal FINISHED: status=6 (re-sending after 1s pause)
+[INFO] [1786409393.799711404] [nav_goal_sender]: cycle 6: sending goal x=1.500 y=1.500 yaw=0.785
+[INFO] [1786409393.801350915] [nav_goal_sender]: cycle 6 goal ACCEPTED: True
+[INFO] [1786409407.841917282] [nav_goal_sender]: cycle 6 goal FINISHED: status=6 (re-sending after 1s pause)
+[INFO] [1786409408.846157680] [nav_goal_sender]: cycle 7: sending goal x=1.500 y=1.500 yaw=0.785
+[INFO] [1786409408.847848292] [nav_goal_sender]: cycle 7 goal ACCEPTED: True
+[INFO] [1786409409.098536364] [nav_goal_sender]: cycle 7 goal FINISHED: status=6 (re-sending after 1s pause)
+[INFO] [1786409410.102286657] [nav_goal_sender]: cycle 8: sending goal x=1.500 y=1.500 yaw=0.785
+[INFO] [1786409410.104148369] [nav_goal_sender]: cycle 8 goal ACCEPTED: True
+[INFO] [1786409420.494376635] [nav_goal_sender]: cycle 8 goal FINISHED: status=6 (re-sending after 1s pause)
+[INFO] [1786409421.498320207] [nav_goal_sender]: cycle 9: sending goal x=1.500 y=1.500 yaw=0.785
+[INFO] [1786409421.499955418] [nav_goal_sender]: cycle 9 goal ACCEPTED: True
+[INFO] [1786409427.600897522] [nav_goal_sender]: cycle 9 goal FINISHED: status=6 (re-sending after 1s pause)
+[INFO] [1786409428.605160283] [nav_goal_sender]: cycle 10: sending goal x=1.500 y=1.500 yaw=0.785
+[INFO] [1786409428.607097596] [nav_goal_sender]: cycle 10 goal ACCEPTED: True
+[INFO] [1786409429.507479166] [nav_goal_sender]: cycle 10 goal FINISHED: status=6 (re-sending after 1s pause)
+[INFO] [1786409430.512137525] [nav_goal_sender]: cycle 11: sending goal x=1.500 y=1.500 yaw=0.785
+[INFO] [1786409430.514027938] [nav_goal_sender]: cycle 11 goal ACCEPTED: True
+[INFO] [1786409431.215186285] [nav_goal_sender]: cycle 11 goal FINISHED: status=6 (re-sending after 1s pause)
+[INFO] [1786409432.219347438] [nav_goal_sender]: cycle 12: sending goal x=1.500 y=1.500 yaw=0.785
+[INFO] [1786409432.221149750] [nav_goal_sender]: cycle 12 goal ACCEPTED: True

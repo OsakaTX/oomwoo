@@ -1,4 +1,4 @@
-# Measured results (OsakaTX, 2026-08-04 … 2026-08-06)
+# Measured results (OsakaTX, 2026-08-04 … 2026-08-11)
 
 Raw sampler CSVs are in this directory. Every number below comes from a CSV
 analyzed by `scripts/analyze_csv.py` (or the per-process breakdown script for
@@ -113,3 +113,29 @@ and an independently instantiated benchmark run. The measurement method is
 stable; the deltas between configurations (the decision-relevant part) are far
 larger than run-to-run noise. This supports using the ADR-0002/0003/0004
 tables as the dev-reference basis for the 2 GB analysis in ADR-0005.
+
+## 7. Nav2 under an ACTIVE navigation goal with recovery bursts (2026-08-11)
+
+File: `nav2_goal_devref_20260811T004809Z.csv` (45 samples @ 2 s) — analyzed by
+`scripts/analyze_nav2_goal_csv.py` (goal-client and sampler-self rows excluded
+from the container total). Complements section 4/ADR-0004: that record is the
+no-goal localization baseline; this is the stack under a persistent
+`NavigateToPose` goal to (1.5, 1.5) that the synthetic 1.5 m-radius orbit never
+reaches, with the goal re-issued by `nav_goal_sender.py` on every abort.
+
+| Process | RSS mean MiB | PSS mean MiB | CPU mean % | samples |
+|---|---|---|---|---:|
+| `nav2_container` (full Nav2 stack, active goal + recovery) | 181.5 | 166.5 | 53.7 | 45 |
+| goal sender `nav_goal_sender.py` (python3, instrumentation) | 79.4 | 54.0 | 11.6 | 45 |
+| synthetic scan source (python3) | 74.0 | 48.8 | 6.3 | 45 |
+| ros2 launch + daemon (python3) | 153.5 | 104.0 | 2.8 | 45 |
+| whole matched graph | 406.9 | 316.5 | 71.7 | 45 |
+
+Run evidence: 12 goal cycles sent, 12 accepted, 11 aborted by bt_navigator
+(all 11 `Goal failed` inside the sampled window); recovery behaviors inside
+the window — 5x `Running spin` (2 completed in-window), 2x `Running backup`
+(both completed), 3x wait completions, 27 planner "failed to plan" attempts;
+amcl localized (200x200 map, initial pose set); 0 dropped scans, 0 transform
+errors; `/cmd_vel` at 20.0 Hz (controller active). This closes ADR-0005's open
+item on the dev-reference profile; a robot-class re-run remains. Full record:
+`docs/adr-0006-measured-nav2-active-goal-and-recovery.md`.

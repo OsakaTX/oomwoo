@@ -179,10 +179,14 @@ docker exec oomwoo-bench bash -c '
 - `workspace/` — probe package (`odom_probe`, composable fixture worker) and the
   Python workers + layout runner.
 - `results/` — raw sampler CSVs (`slam_5hz_devref_*.csv`, `layout_*.csv`,
-  `nav2_devref_*.csv`) and launch logs.
+  `nav2_devref_*.csv`, `nav2_goal_devref_*.csv`) and launch logs.
 - `docs/adr-0002-measured-dev-reference-slam-baseline.md`
 - `docs/adr-0003-worker-language-and-process-layout.md`
 - `docs/adr-0004-measured-nav2-stack-baseline.md`
 - `docs/adr-0005-memory-budget-2gb-analysis.md` — consolidated 2 GB budget &
   optimization analysis, measured-anchored; merges the earlier planning-branch
   ADR drafts (jul27 RMW, jul29 memory-budget, aug02 headroom-model).
+- `docs/adr-0006-measured-nav2-active-goal-and-recovery.md` — Nav2 under an
+  ACTIVE navigation goal with autonomous recovery bursts (the measured ceiling
+  complementing ADR-0004's no-goal floor); adds `run_nav2_goal_bench.sh` +
+  `nav_goal_sender.py` + `analyze_nav2_goal_csv.py`.

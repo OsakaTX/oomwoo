@@ -139,10 +139,14 @@ not measured anywhere yet.
 
 ## Open items (for the module run matrix)
 
+- ~~Nav2 with an active navigation goal + recovery-event bursts~~ — **closed on
+  the dev-reference profile by ADR-0006** (2026-08-11): composable Nav2 stack
+  under a persistent goal + 5 spin / 2 backup recoveries measured at ~167 MiB
+  PSS / ~181 MiB RSS / ~54 % CPU (45 samples). Robot-class re-run still open.
 - Reproduce the maintainer Pi 4 2 GB baseline with THIS module's sampler.
 - Measure O and R_idle on `oomwoo-install` minimal headless runtime.
-- Nav2 with an active navigation goal + recovery-event bursts.
-- Long-horizon mapping (pose-graph growth) and localization-only runs.
+- Long-horizon mapping (pose-graph growth) and localization-only runs
+  (localization-only is effectively ADR-0004's no-goal record).
 - Serial-bridge and dock-homing node baselines.
 
 ## References
