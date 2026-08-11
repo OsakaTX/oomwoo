@@ -421,6 +421,62 @@ unit against this before relying on the mount.
 
 ---
 
+## 16. Carpet Sensor — 300 kHz Ultrasonic Transducer (HTW HT-300PLTR1612-1 class)
+
+**BOM:** "Carpet sensor | 1 | $6-12 | Ultrasonic 300kHz | Low availability
+retail ... purchase factory direct instead". The BOM does not name a part
+number. The model (`carpet-sensor-htw-ht300/carpet-sensor-ht-300pltr1612.scad`)
+is grounded to TWO independently fetched primary sources (2026-08-11):
+
+- **S1 — HTW HT-300PLTR1612-1** (Made-in-China listing, fetched 2026-08-11):
+  spec table quotes "Diameter | mm | 16", "Height | mm | 12", "Working mode |
+  -- | Transceiver", "Nominal frequency | KHz | 290±15", "Directivity | Deg |
+  ≤12°", "Capacitance | pF | 1300±20%", "Target distance | mm | 30",
+  "Precision | mm | ≤2mm", "Housing | / | PC", price US$6.00 @20-199 pcs.
+  Attributes: "Specification: diameter-16mm wire-60mm", "Probe type: Dual
+  Probe", "IP67".
+- **S2 — ISSRSensor ISUB30-16GK12** (issrsensor.com, fetched 2026-08-11):
+  naming grid decodes the model as IS=ISSR, U=Ultrasonic, B=Basic, 30=30mm
+  range, 16="Tube diameter 16mm", GK="Plastic shell", 12="Shell length 12mm"
+  → body Ø16 × L12, matching S1. Spec table: "Detection Range | 30 ± 1 mm",
+  "Beam Angle | ±5°", "Sensor Frequency | Approx. 300 kHz", "Operating
+  Voltage | 5 V DC, ripple ≤ 10% Vpp", "No-Load Current | ≤ 11 mA", "IP65",
+  "Connection Type | VC connector, 1.25 mm pitch terminal, A1251H-4P/CJT".
+
+Only the Ø16 × 12mm body envelope is treated as datasheet-confirmed (both
+sources agree). All fit-critical geometry below the envelope is (estimate) and
+MUST be caliper-verified on the physical unit.
+
+| # | What to Measure                              | Estimate | Unit | Notes |
+|---|-----------------------------------------------|----------|------|-------|
+| 1 | **Body diameter**                            | 16.0 | mm | (datasheet: S1 "Diameter" 16; S2 naming "16") |
+| 2 | **Body height / length (axis)**              | 12.0 | mm | (datasheet: S1 "Height" 12; S2 naming "12") |
+| 3 | **Sensing-face recess depth**                | 2.0 | mm | (estimate) how far the active element sits below the −Z face plane |
+| 4 | **Active element aperture Ø**                | 12.0 | mm | (estimate) diameter of the emitting/receiving surface visible on the face |
+| 5 | **Plastic dome thickness over element**      | 0.8 | mm | (estimate) |
+| 6 | **Wire / cable Ø**                           | 1.5 | mm | (estimate) — actual lead gauge |
+| 7 | **Wire length (bare lead)**                  | 60.0 | mm | (datasheet: S1 "wire-60mm") |
+| 8 | **Termination type** (bare wire vs VC plug)  | — | — | S1 = bare 60mm wire; S2 = 1.25mm-pitch VC plug (A1251H-4P/CJT). CONFIRM which your unit has — drives chassis wire-routing |
+| 9 | **Retention feature** (flange / groove / none) | — | — | Neither source publishes a mount flange; these are usually grommet/interference retained. CONFIRM how it mounts before designing the bore |
+| 10 | **If HT-300PLT-A/-M/-MIR variant: PCBA footprint** | — | mm | (estimate) the A/M/MIR variants embed a PCBA/DSP board — measure its W×L×H and connector, then add a module to the SCAD |
+| 11 | **Actual part vendor / mark**                | — | — | e.g. HT-300PLTR1612-1, ISUB30-16GK12, or an AliExpress “ultrasonic carpet sensor” |
+
+### Critical Check
+- **Envelope Ø16 × 12 is cross-confirmed by two vendors but neither publishes
+  the retention geometry.** If your unit has a mounting flange, groove, or
+  threaded collar that the model lacks, the bore approach in Jig 13 is wrong —
+  re-design the mount around the measured retention feature (row 9).
+- **The termination (row 8) matters for packing:** a bare 60mm wire can be
+  routed through a narrow channel; a 1.25mm-pitch VC plug needs ~8×5×4 mm
+  headroom. Confirm before finalizing the chassis pocket.
+- **300 kHz units are the ONLY candidate for this BOM row** — do not accept a
+  40 kHz HC-SR04-style module; the frequency class is integral to sensing
+  (higher attenuation on carpet vs hard floor at 300 kHz).
+- Use jig `jigs-new/carpet-sensor-fit.scad` (Jig 13) to confirm bore fit and
+  retention in the same pass.
+
+---
+
 1. **Open an issue** in [makerspet/oomwoo](https://github.com/makerspet/oomwoo/issues)
    with `[measure]` prefix in the title, referencing this file.
 2. **Or post in** [Project Discussions](https://github.com/makerspet/oomwoo/discussions).

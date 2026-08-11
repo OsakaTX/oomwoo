@@ -336,6 +336,48 @@ part BEFORE the tower/bumper housing is finalized.
 
 ---
 
+## Jig 13: Carpet Sensor Bore-Fit Jig (HTW HT-300PLTR1612-1-class Ø16 × 12)
+
+**File:** `jigs-new/carpet-sensor-fit.scad`
+**Purpose:** Verify the ACTUAL 300 kHz ultrasonic carpet/material sensor (BOM
+“Carpet sensor — Ultrasonic 300kHz”, $6-12, factory direct) matches the Ø16 × 12
+envelope the mount assumes, and that a printed Ø(16+clearance) bore retains it
+(either grommet-style interference or a friction collar) with the wire able to
+exit. Catches a wrong-form-factor part (e.g. a 40 kHz HC-SR04 module) BEFORE the
+underside housing is finalized.
+
+### Print Instructions
+1. Open `jigs-new/carpet-sensor-fit.scad`. Print flat, 3 perimeters, 100%
+   infill (tight-tolerance bore).
+2. Slide the real sensor into the bore, sensing face down (−Z), until it
+   reaches the 12 mm seat marker. No forcing.
+3. Confirm the wire routes through the side slot with the part still fully
+   seated (90° bend clearance).
+4. Invert the jig and shake gently — the part must NOT fall out (retention
+   test). Then pull on the wire: the part must not pop out with a normal tug.
+
+### Pass Criteria
+- Sensor seats fully to the seat ring with NO gap at the face (body Ø
+  within ±0.3 mm of 16.0).
+- Bore holds the part when inverted (retention) but the part is removable
+  without tools (not glued-in tight).
+- Wire exits freely through the slot; part stays seated under wire tension.
+
+### Fail Criteria & Fix
+- Will not insert (diameter too tight) → increase `bore_clearance` (start 0.6,
+  go to 0.8-1.0 mm). Body Ø > 16.3 mm means a different part class: measure
+  MEASURE-ME §16 row 1 and update `body_dia` in both SCAD files first.
+- Falls out when inverted → decrease `bore_clearance` (0.4 mm) and/or increase
+  `collar_reduce` (0.3 → 0.5) for the interference band; if the real part has
+  NO retention flange (row 9), a plain bore never self-retains — plan a
+  printed snap ring / grommet pocket instead of relying on press fit.
+- Part seats only partially → bore depth is fine; check for debris/elephant
+  foot on the printed bore bottom; ream with 16 mm bit if needed.
+- Wire won't route → your unit has a VC plug (ISSR variant, row 8): widen
+  `wire_slot` to ≥ 9 mm for the A1251H-4P/CJT plug body.
+
+---
+
 ## Printing Guidelines
 
 | Parameter | Setting |
