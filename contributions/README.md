@@ -33,6 +33,7 @@ is the at-a-glance view.
 | [mcu-io-firmware](mcu-io-firmware) | MCU I/O board firmware (STM32G473) | ready to start work |
 | [io-board-interface](io-board-interface) | I/O board software interface | active |
 | [urdf-gazebo-sim](urdf-gazebo-sim) | oomwoo URDF + Gazebo simulation | active |
+| [mac-dev-env](mac-dev-env) | macOS (Apple Silicon) dev environment (pixi) | in progress (experimental) |
 | [io-pcb](io-pcb) | I/O + motor-driver PCB (KiCad) | active |
 | [dust-bin](dust-bin) | Dust bin (mechanical module) | active |
 | [vacuum-fan](vacuum-fan) | Blower fan assembly (mechanical module) | active |
