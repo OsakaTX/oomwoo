@@ -1,4 +1,4 @@
-# Measured results (OsakaTX, 2026-08-04 … 2026-08-11)
+# Measured results (OsakaTX, 2026-08-04 … 2026-08-13)
 
 Raw sampler CSVs are in this directory. Every number below comes from a CSV
 analyzed by `scripts/analyze_csv.py` (or the per-process breakdown script for
@@ -139,3 +139,55 @@ amcl localized (200x200 map, initial pose set); 0 dropped scans, 0 transform
 errors; `/cmd_vel` at 20.0 Hz (controller active). This closes ADR-0005's open
 item on the dev-reference profile; a robot-class re-run remains. Full record:
 `docs/adr-0006-measured-nav2-active-goal-and-recovery.md`.
+
+## 8. House-scale long-horizon SLAM mapping (15 m x 15 m, 5 Hz, 480 s) — 2026-08-13
+
+File: `slam_15m_5hz_480s_20260813T030736Z.csv` (207 samples @ 2 s). Scene
+15 m x 15 m (2 423 sq ft, inside the 2 200-2 900 sq ft product band), 2 pillars
+scaled 1.5x with the room, otherwise the canonical 5 Hz / 360-beam / 40 s-loop
+stimulus. This closes ADR-0005's "long-horizon mapping (pose-graph growth)"
+open item for the dev-reference profile. Details: `docs/adr-0007-*.md`.
+
+| Process | RSS mean (min–max) MiB | PSS mean (min–max) MiB | CPU mean % | samples |
+|---|---|---|---|---:|
+| `slam_toolbox` async node | 82.2 (54.9–110.2) | 70.1 (42.8–98.0) | 22.1 | 207 |
+| synthetic scan source (python3, control) | 70.1 (flat) | 51.4 (flat) | 4.9 | 207 |
+| whole matched graph | 228.6 | 176.0 | 27.8 | 207 |
+
+Growth (least-squares vs sample index, R^2 = 0.9995): **+8.05 MiB/min** for
+both PSS and RSS; monotonically rising per-quarter means 46.0 → 52.4 → 58.8 →
+65.7 → 72.5 → 79.0 → 85.5 → 93.1 → 97.3 MiB (first/last PSS 42.8/98.0), no
+plateau in the sampled window. The control publisher is flat, so the growth is
+inside slam_toolbox (retained scan + pose-graph storage, not the ~90 k-cell
+occupancy grid). 0 odom-pose failures / 0 errors across the run.
+
+Map validation (separate live `/map` snapshot, same scene): **301 x 301 @
+0.05 m**, 892 occupied / 76 631 free / 13 078 unknown cells.
+
+Headline (measured): slam_toolbox has a small **floor** (~41-43 MiB PSS in
+every run) but a large **unbounded linear growth** at product scale — a
+30 min clean at 5 Hz extrapolates (linear, R^2 = 0.9995) to ~+240 MiB PSS
+above the floor. Any 2 GB budget must treat slam memory as time-dependent and
+bound it (rate reduction per section 9, or map-save + localization-only).
+
+## 9. LiDAR scan-rate sensitivity for slam_toolbox (10 m x 10 m scene) — 2026-08-13
+
+Files: `slam_10m_2_5hz_300s_20260813T031537Z.csv` (128 samples) and
+`slam_10m_1_25hz_240s_20260813T032039Z.csv` (102 samples); canonical 10 m
+scene, only `--hz` changed. Addresses the maintainer's issue #18 open question
+on LiDAR update rate. Details: `docs/adr-0008-*.md`.
+
+| Rate | File (date) | PSS mean (min–max) MiB | CPU mean % | PSS growth | samples |
+|---|---|---|---|---|---:|
+| 5 Hz | slam_5hz_devref_20260804T192258Z.csv | 46.2 (41.1–51.1) | 13.7 | +5.3 MiB/min | 50 |
+| 5 Hz | slam_5hz_devref_20260808T225153Z.csv | 47.1 (40.8–53.6) | 12.5 | +7.7 MiB/min | 50 |
+| 2.5 Hz | slam_10m_2_5hz_300s_20260813T*.csv | 50.1 (41.7–58.5) | 7.7 | +4.0 MiB/min | 128 |
+| 1.25 Hz | slam_10m_1_25hz_240s_20260813T*.csv | 44.8 (41.3–48.1) | 4.1 | +2.0 MiB/min | 102 |
+
+Headline (measured): slam CPU is close to linear in LiDAR rate over this range
+(−39% for a 5→2.5 Hz halving vs the 2026-08-08 repro, −46% for 2.5→1.25 Hz),
+and memory growth scales with it (≈ +4.0 → +2.0 MiB/min as rate halves 2.5 →
+1.25 Hz); the memory **floor** (~41-43 MiB PSS) does not change with rate.
+Lowering the LiDAR rate is a real, now-measured CPU/memory lever for the
+2 GB target — with the caveat that mapping/navigation quality at 2.5/1.25 Hz
+is a slam-behaviour question outside this measurement.

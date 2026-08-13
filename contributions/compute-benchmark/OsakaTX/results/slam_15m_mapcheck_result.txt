@@ -1,0 +1,2 @@
+MAP 301x301 res=0.05 cells=90601 unknown=13078 free=76631 occupied=892
+OCCUPIED_CELLS_PRESENT=yes

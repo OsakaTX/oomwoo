@@ -12,6 +12,8 @@
 #
 # The synthetic scan generator (synthetic_scan_publisher.py) deterministically
 # produces a 10x10 m box room with 2 pillars and closes a loop every 40 s.
+# --hz and --room-half are forwarded to the publisher unchanged; defaults
+# (5.0 / 5.0) reproduce the canonical 10 m x 10 m @ 5 Hz stimulus bit-for-bit.
 #
 set -euo pipefail
 
@@ -23,10 +25,13 @@ PARAMS="$HERE/slam_toolbox_params.yaml"
 label="slam_5hz_devref"
 duration=120
 outdir="$HERE/../results"
+hz=5.0
+room_half=5.0
 
 usage() {
   cat <<EOF
 Usage: run_slam_bench.sh [--label LABEL] [--duration SECONDS] [--outdir DIR]
+                         [--hz HZ] [--room-half METRES]
 EOF
 }
 
@@ -35,6 +40,8 @@ while [[ $# -gt 0 ]]; do
     --label) label="${2:-}"; shift 2;;
     --duration) duration="${2:-}"; shift 2;;
     --outdir) outdir="${2:-}"; shift 2;;
+    --hz) hz="${2:-5.0}"; shift 2;;
+    --room-half) room_half="${2:-5.0}"; shift 2;;
     *) usage; exit 2;;
   esac
 done
@@ -47,7 +54,7 @@ if [[ ! -x /opt/ros/jazzy/lib/slam_toolbox/async_slam_toolbox_node ]]; then
 fi
 
 # 1) start the deterministic scan source
-python3 "$PUBLISHER" --duration $((duration + 25)) --loop-s 40 &
+python3 "$PUBLISHER" --duration $((duration + 25)) --loop-s 40 --hz "$hz" --room-half "$room_half" &
 pub_pid=$!
 sleep 2
 

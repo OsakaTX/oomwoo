@@ -38,7 +38,8 @@ idealised scans plus the real overhead of the publishing processes.
 Usage
 -----
   python3 synthetic_scan_publisher.py [--hz 5] [--duration 120] [--loop-s 40]
-                                      [--lookback 0.1]
+                                      [--lookback 0.1] [--room-half 5.0]
+                                                                 [--rot 2]
 """
 
 import argparse
@@ -70,15 +71,23 @@ ANGLE_MAX = math.pi
 ANGLE_INC = (ANGLE_MAX - ANGLE_MIN) / N_BEAMS
 
 
-def build_segments():
+def build_segments(_room_half=None, _pillars=None):
+    """Line segments for the room walls + pillars.
+
+    OOMWOO scene is deterministic and reproducible from (room_half, pillars).
+    A non-default room_half scales the pillar layout proportionally so the
+    obstacle *pattern* is preserved while the room area changes (used to
+    emulate larger house-scale floor plans, see ADR-0007).
+    """
+    h = ROOM_HALF if _room_half is None else _room_half
+    pillars = PILLARS if _pillars is None else _pillars
     segs = []
-    h = ROOM_HALF
     # room walls
     walls = [
         (-h, -h, h, -h), (h, -h, h, h), (h, h, -h, h), (-h, h, -h, -h),
     ]
     segs.extend(walls)
-    for (cx, cy, hx, hy) in PILLARS:
+    for (cx, cy, hx, hy) in pillars:
         x0, x1 = cx - hx, cx + hx
         y0, y1 = cy - hy, cy + hy
         segs.extend([
@@ -132,7 +141,7 @@ def quat_from_yaw(yaw):
 
 
 class SyntheticScanNode(Node):
-    def __init__(self, hz, duration, loop_s, radius, rot, lookback):
+    def __init__(self, hz, duration, loop_s, radius, rot, lookback, room_half=ROOM_HALF):
         super().__init__('synthetic_scan_publisher')
         self.hz = hz
         self.duration = duration
@@ -141,7 +150,12 @@ class SyntheticScanNode(Node):
         self.radius = radius
         self.rot = rot
         self.lookback = lookback
-        self.segs = build_segments()
+        # scale the obstacle layout with the room so larger scenes keep the
+        # same obstacle *pattern* (deterministic for any given --room-half)
+        scale = room_half / ROOM_HALF
+        pillars = [(cx * scale, cy * scale, hx * scale, hy * scale)
+                   for (cx, cy, hx, hy) in PILLARS]
+        self.segs = build_segments(_room_half=room_half, _pillars=pillars)
 
         qos = QoSProfile(
             depth=5,
@@ -243,11 +257,15 @@ def main():
     ap.add_argument('--rot', type=int, default=2, help='extra scan spins per loop')
     ap.add_argument('--lookback', type=float, default=0.1,
                     help='seconds between scan acquisition and publish callback')
+    ap.add_argument('--room-half', type=float, default=ROOM_HALF,
+                    help='room half-extent in metres (scene size); scales the '
+                         'pillar layout proportionally. Default 5.0 = 10 m x 10 m.')
     args = ap.parse_args()
 
     rclpy.init()
     node = SyntheticScanNode(args.hz, args.duration, args.loop_s,
-                             args.radius, args.rot, args.lookback)
+                             args.radius, args.rot, args.lookback,
+                             room_half=args.room_half)
     try:
         rclpy.spin(node)
     except KeyboardInterrupt:
