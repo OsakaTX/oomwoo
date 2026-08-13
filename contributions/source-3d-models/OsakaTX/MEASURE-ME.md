@@ -477,6 +477,64 @@ MUST be caliper-verified on the physical unit.
 
 ---
 
+## 17. Charging Contacts — Robot Nickel Strip + Dock Pogo Pins
+
+**BOM (current upstream/main, fetched 2026-08-13):**
+- Robot side — BOM.md line 59: "Charging contacts | 1 pair | $3-5 |
+  Nickel-plated steel strip | ≥10mm wide, ≥0.1mm thick, ~5cm long".
+- Dock side — BOM.md line 93: "Charging contacts | 2-4 | 2-6? | Gold-plated
+  pogo pins ≥4A; rear-vertical, above water line".
+
+Model file: `charging-contacts/charging-contacts.scad`.
+
+**Provenance + a data conflict you should know about:** the CURRENT BOM
+(primary source) says the robot strip is **≥10mm wide**. A pre-existing
+part-specs doc
+(`part-specs/OsakaTX/side-brush-charging-contacts-specs.md`, compiled
+2026-07-16) instead says the strip is "~1mm wide" (and prices it $1.50-2.50
+vs the BOM's $3-5). The two figures CONFLICT. The model follows the **current
+BOM**; treat the part-specs "1mm" figure as stale unless the maintainer
+re-verifies it from a physical strip. The BOM gives NO pogo barrel dimensions
+— all pogo geometry below is (estimate) to be identified from the actual pins
+(Jig 15 bore row).
+
+| # | What to Measure                              | Estimate | Unit | Notes |
+|---|-----------------------------------------------|----------|------|-------|
+| 1 | **Robot strip width**                        | 10.0 | mm | (BOM: "≥10mm wide", modeled at the stated lower bound) — if your stock measures <10mm, the BOM floor is violated |
+| 2 | **Robot strip thickness**                    | 0.3 | mm | (estimate) BOM floor "≥0.1mm"; 0.1mm foil is too flimsy to spring-load vs pogo pins. Jig 14 feeler steps 0.1-0.5mm identify the real stock; update `strip_t` |
+| 3 | **Robot strip length**                       | 50.0 | mm | (BOM: "~5cm long") |
+| 4 | **Bend leg height above chassis floor**      | 4.0 | mm | (estimate) `bend_h` — the vertical 90° leg |
+| 5 | **Contact blade length (bend → free tip)**   | 34.0 | mm | (estimate) `blade_l` — set so blade+tab+bend ≈ BOM "~5cm" (50mm); only the tip region is dock-facing |
+| 6 | **Contact bump Ø (blade underside)**         | 1.8 | mm | (estimate) `lip_dia` |
+| 7 | **Contact bump protrusion below floor**      | 0.8 | mm | (estimate) `lip_raise` — the bump must reach the dock pogo plunger contact plane when parked |
+| 8 | **Tab screw-hole Ø** (if screw-mount)        | 3.2 | mm | (estimate) `screw_dia` M3; a soldered tab has none — set `screw_dia = 0` |
+| 9 | **Tab screw-hole pitch (along tab)**         | 8.0 | mm | (estimate) `screw_pitch` |
+| 10 | **⛔ Contact pitch — L/R strip pair**         | 45.0 | mm | (estimate) `contact_pitch`. THE critical mated dimension: MUST equal the dock pogo pin pitch (row 16). If you reuse a consumer-dock chassis, match ITS strip/pin spacing FIRST |
+| 11 | **Plating / material markings**              | — | — | nickel plating (BOM); note brand/stock gauge if legible |
+| 12 | **Dock pogo barrel Ø**                       | 3.0 | mm | (estimate) `pogo_barrel_d`; identify the real barrel with Jig 15 bore row (Ø2.0-4.0) |
+| 13 | **Dock pogo barrel length**                  | 12.0 | mm | (estimate) `pogo_barrel_l` |
+| 14 | **Dock pogo plunger (tip) Ø**                | 1.5 | mm | (estimate) `pogo_plunger_d` |
+| 15 | **Dock pogo plunger working stroke**         | 2.0 | mm | (estimate) `pogo_stroke`; part-specs doc (secondary, vendor guides) cites 1.5-3mm as typical for robot-vacuum charging — measure free vs fully-compressed length |
+| 16 | **⛔ Dock pogo pin-to-pin pitch**             | 45.0 | mm | (estimate) MUST equal robot row 10 (`contact_pitch`) — mismatch = no charge contact |
+| 17 | **Dock pogo current rating / plating**       | ≥4A, gold | — | (BOM: "Gold-plated pogo pins ≥4A") — verify the printed/claimed rating of the pins you buy |
+
+### Critical Check
+- **The 10mm-vs-1mm width conflict must be resolved on a physical strip**
+  (row 1) before the chassis contact-slot is cut. Everything downstream (slot
+  width in the print, Jig 14) uses the model's 10mm (BOM) value.
+- **contact pitch is the single point of failure in the whole charging
+  interface.** Measure rows 10 and 16 against each other (and against any
+  consumer-dock chassis you reuse) before designing either pocket. The SCAD
+  exposes one shared `contact_pitch` for exactly this reason.
+- **Dock pins are mounted "rear-vertical, above water line"** (BOM line 93) —
+  a dock enclosure constraint, not a pin dimension; keep the pin axis vertical
+  and the plunger above the mop-water line.
+- Use jig `jigs-new/charger-strip-slot-gauge.scad` (Jig 14) to validate strip
+  width/thickness/length and pair pitch, and `jigs-new/pogo-barrel-gauge.scad`
+  (Jig 15) to identify the actual pogo barrel Ø and length.
+
+---
+
 1. **Open an issue** in [makerspet/oomwoo](https://github.com/makerspet/oomwoo/issues)
    with `[measure]` prefix in the title, referencing this file.
 2. **Or post in** [Project Discussions](https://github.com/makerspet/oomwoo/discussions).

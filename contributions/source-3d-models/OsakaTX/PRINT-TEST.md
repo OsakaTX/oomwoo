@@ -378,6 +378,103 @@ underside housing is finalized.
 
 ---
 
+## Jig 14: Charger Strip Slot-Gauge (BOM "Charging contacts" — robot nickel strip)
+
+**File:** `jigs-new/charger-strip-slot-gauge.scad`
+**Purpose:** Validate the ACTUAL nickel-plated steel strip(s) ordered for the
+BOM "Charging contacts" row (BOM.md line 59: "≥10mm wide, ≥0.1mm thick, ~5cm
+long") against the envelope the chassis contact-slot assumes, and identify the
+REAL strip thickness — settling the model's 0.3mm (estimate) vs the BOM's
+0.1mm floor before the slot is cut into the printed chassis.
+
+### Print Instructions
+1. Open `jigs-new/charger-strip-slot-gauge.scad`. Here it differs from
+   previous jigs: it has THREE test zones —
+   - **A — single-strip groove** (left): lay/seat the strip into the groove.
+     It must rest flat on the groove floor along its FULL length — bound by
+     the groove end-walls — with no forcing.
+   - **B — pair-registration grooves** (middle): lay BOTH strips of the pair
+     in simultaneously, spaced `contact_pitch` apart; they must both seat
+     flush together.
+   - **C — thickness feeler stairs** (right, gaps engraved 0.1→0.5mm): slide
+     the strip edge-on under each stair roof; the LARGEST gap it passes
+     through cleanly bounds the real strip thickness.
+2. Print flat, 3 perimeters, 100% infill (tight-tolerance groove/stairs).
+   Clean groove floors and roof undersides of elephant foot before testing.
+3. Record: measured width (MEASURE-ME §17 row 1), thickness (row 2), and
+   whether both strips register at `contact_pitch` (row 10).
+
+### Pass Criteria
+- Strip slides into slot A without forcing and seats to the end-stop; side
+  play across the width ≤ 0.3 mm.
+- BOTH strips seat together in zone B — confirms the pair pitch matches
+  `contact_pitch`.
+- Exactly one feeler step in zone C fits the strip; the adjacent smaller step
+  does not.
+
+### Fail Criteria & Fix
+- Strip too wide/tight → body is wider than 10 mm (or the BOM's "≥10mm" is
+  not a real stock size): measure MEASURE-ME §17 row 1, update `strip_w` in
+  BOTH `charging-contacts.scad` and this jig, and report the BOM conflict.
+- Strip rattles (>0.3mm side play) → `width_clear` too large or your strip is
+  narrower than 10mm — reduce `width_clear`, and if row 1 measures <10mm the
+  part-specs "1mm" figure may actually be right: STOP and resolve before
+  cutting the chassis slot.
+- Both strips will not seat together → `contact_pitch` (row 10 / row 16)
+  wrong for your pair: measure the real L/R spacing and update the shared
+  `contact_pitch` in the model and THIS jig.
+- Strip does not seat along its full length → it is longer than the groove
+  end-walls (strip_l bound): measure row 3; if the real strip is >50mm update
+  `strip_l` in the model, this jig, and the chassis slot.
+- Feeler result ambiguous (strip passes two adjacent gaps) → the strip is
+  bent/twisted; measure thickness with calipers at 3 points and use the
+  largest reading; update `strip_t`.
+
+---
+
+## Jig 15: Dock Pogo Barrel-Gauge (BOM "Charging contacts" — dock pogo pins)
+
+**File:** `jigs-new/pogo-barrel-gauge.scad`
+**Purpose:** The dock shield pogo pins (BOM.md line 93: "Gold-plated pogo pins
+≥4A; rear-vertical, above water line") have NO published geometry — the barrel
+Ø and length of the ACTUAL pins must be identified before the dock housing is
+drilled/mounted. This jig gives a deterministic barrel identification (bore
+row) plus an overall-length reference and a pair-pitch check.
+
+### Print Instructions
+1. Open `jigs-new/pogo-barrel-gauge.scad`. Print flat, 3 perimeters, 100%
+   infill (bore accuracy matters).
+2. **A — barrel identification:** insert a pogo pin, plunger first, into each
+   bore of the LEFT row (engraved Ø2.0 / 2.5 / 3.0 / 3.5). It drops cleanly
+   through only its matching bore. The engraved value = real barrel Ø.
+3. **B — length reference:** with the barrel seated in its matching bore, read
+   the engraved 10-25 mm ruler — the overall pin length as installed.
+4. **C — pair pitch:** repeat A for the RIGHT pin. If the two pins have the
+   same barrel Ø AND their matching bores are spaced `contact_pitch` apart,
+   the pair pitch registers. Record MEASURE-ME §17 rows 12-16.
+
+### Pass Criteria
+- Each pin drops cleanly through exactly ONE bore (no forcing, no wobble in
+  the next size down).
+- Both pins in a pair read the same barrel Ø.
+- The two matched bores sit at the engraved pair separation, i.e. the pin
+  pair pitch equals `contact_pitch` (45mm est) → matches the robot strips.
+
+### Fail Criteria & Fix
+- Pin fits two bores / neither → adjust `bore_clear` (printed-hole shrinkage
+  varies by printer; start 0.2mm, test 0.3-0.4 if tight) and/or extend
+  `max_barrel_d` if your pin is Ø>4.
+- Pins in the pair differ in barrel Ø → the dock may use mixed pins; note
+  each size and re-check the robot-side slots (a Ø mismatch is fine as long
+  as contact areas align).
+- Pair pitch doesn't register → the pin spacing differs from `contact_pitch`:
+  measure the real installed spacing and set the SHARED `contact_pitch` in
+  `charging-contacts.scad`, this jig, and the robot chassis slot to ONE value.
+- Barrel Ø identified ≠ 3.0mm model default → update `pogo_barrel_d` in the
+  model and, if mounting bores are printed, drill to the measured Ø.
+
+---
+
 ## Printing Guidelines
 
 | Parameter | Setting |

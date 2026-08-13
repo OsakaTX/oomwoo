@@ -25,15 +25,16 @@ checklist.
 | **Mop Disk** (OOMWOO printed pad, 1 pair left/right) | DRAFT — needs caliper verification | `mop-disk/mop-disk.scad` | 3D-printed rotating mop pad for the RS385 mop motors. Mates RS385 Ø2.3 D-flat shaft + 16mm M2.5 pitch (datasheet); pad Ø98/retention are estimates |
 | **Bumper / Tower Micro Switch** (SPDT snap-action, SS-5GL-class) | DRAFT — needs caliper verification | `micro-switch-ss5gl/micro-switch-ss5gl.scad` | Covers BOM "LiDAR tower bumper sensor" (×4) and "Bumper switches" (×2). Envelope from OMRON SS series datasheet (19.8×6.4×10.2mm, 3×Ø1.6 holes @9.5 pitch, lever FP/OP); actual AliExpress part identity unverified |
 | **Carpet Sensor** (Ultrasonic 300kHz, HTW HT-300PLTR1612-1-class) | DRAFT — needs caliper verification | `carpet-sensor-htw-ht300/carpet-sensor-ht-300pltr1612.scad` | BOM "Carpet sensor — Ultrasonic 300kHz". Envelope Ø16×12 cross-confirmed by TWO primary sources fetched 2026-08-11: HTW Made-in-China spec table (Ø16×12, transceiver, 290±15kHz, wire 60mm, IP67) and ISSRSensor ISUB30-16GK12 naming decode (16=Ø16mm, 12=L12mm, plastic shell, 300kHz). Face recess / wire Ø / termination = (estimate) |
+| **Charging Contacts** (robot nickel strip + dock pogo pin) | DRAFT — needs caliper verification | `charging-contacts/charging-contacts.scad` | BOM "Charging contacts": robot strip envelope ≥10×~50mm (BOM-confirmed line 59; thickness 0.3 est vs BOM floor ≥0.1); dock pogo Ø3×12 barrel est, ≥4A gold (BOM-confirmed line 93). Shared `contact_pitch`=45 est is the critical mated dimension. Jigs 14+15. ⚠ NOTE: in-tree part-specs doc claims strip "~1mm wide" — conflicts with current BOM, flag for resolution (see MEASURE-ME §17) |
 
 ## Documentation
 
 | File | Purpose |
 |------|---------|
 | `MEASURE-ME.md` | Exact dimensions requiring caliper verification — ~100+ measurements across all parts |
-| `PRINT-TEST.md` | Fit-check jig print instructions and pass/fail criteria for 13 jigs |
+| `PRINT-TEST.md` | Fit-check jig print instructions and pass/fail criteria for 15 jigs |
 | `jigs/*.scad` | OpenSCAD jig files for testing part fit (drive wheel, caster, side brush motor, main brush motor) |
-| `jigs-new/*.scad` | OpenSCAD jig files for testing part fit (battery, cliff sensor, side brush clearance, LiDAR tower, main brush roller, mop disk, bumper/tower micro switch, carpet sensor) |
+| `jigs-new/*.scad` | OpenSCAD jig files for testing part fit (battery, cliff sensor, side brush clearance, LiDAR tower, main brush roller, mop disk, bumper/tower micro switch, carpet sensor, charger strip, pogo barrel) — **15 jigs total** |
 
 ## Cross-Reference by BOM Item
 
@@ -57,6 +58,8 @@ checklist.
 | LiDAR tower bumper sensor (×4, SPDT micro switch) | `micro-switch-ss5gl/micro-switch-ss5gl.scad` | OMRON SS series datasheet (en-ss.pdf p.5, fetched 2026-08-09: body 19.8×6.4×10.2 ✓, 3×Ø1.6 holes @9.5 ✓, lever FP 13.6/OP 8.8 ✓); actual AliExpress part identity unverified | ⚠️ Partial |
 | Bumper switches (×2, micro switch) | `micro-switch-ss5gl/micro-switch-ss5gl.scad` | Same SS-5GL-class model; BOM lists them as included in the cliff-sensor bundle (see `cliff-sensor-tcrt5000/`) | ⚠️ Partial |
 | Carpet sensor (ultrasonic 300kHz) | `carpet-sensor-htw-ht300/carpet-sensor-ht-300pltr1612.scad` | HTW HT-300PLTR1612-1 Made-in-China spec (Ø16×12, 290±15kHz, wire 60mm ✓); ISSRSensor ISUB30-16GK12 naming decode cross-check (16=Ø16, 12=L12mm, 300kHz); actual unit identity/termination unverified | ⚠️ Partial |
+| Charging contacts — robot strip (×2) | `charging-contacts/charging-contacts.scad` | BOM.md L59 (current, 2026-08-13): "≥10mm wide, ≥0.1mm thick, ~5cm long" — width/length BOM-confirmed; thickness 0.3 est vs floor ≥0.1; tab/bend/lip (estimate); ⚠ in-tree part-specs claims "~1mm wide" (conflict, likely stale) | ⚠️ Partial |
+| Charging contacts — dock pogo pins (×2-4) | `charging-contacts/charging-contacts.scad` | BOM.md L93 (current): "Gold-plated pogo pins ≥4A; rear-vertical, above water line" — rating/plating BOM-confirmed; barrel Ø3×L12 est (identify w/ Jig 15); pitch must equal robot `contact_pitch` | ⚠️ Partial |
 
 ## Already Modeled Elsewhere (do not duplicate)
 
