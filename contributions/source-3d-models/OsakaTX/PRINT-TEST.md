@@ -475,6 +475,59 @@ row) plus an overall-length reference and a pair-pitch check.
 
 ---
 
+## Jig 16: Dock-Homing Receiver Pair-Template (BOM "Dock homing sensor" — 2x TSOP38238)
+
+**File:** `jigs-new/dock-homing-receiver-fit.scad`
+**Purpose:** The dock-homing board (BOM.md line 57: custom PCB with 2x TSOP38238
+IR receivers) has NO fabricated geometry yet — every PCB dim is (estimate). This
+template verifies the only two things that exist physically RIGHT NOW against
+the model: (a) the datasheet-cited TSOP38238 envelope (5.0 x 4.8 x 6.95 mm,
+Vishay Doc. 82491 fetched 2026-08-15) on your ACTUAL purchased modules, and
+(b) the receiver pair spacing `rx_pitch` (16 mm est — the critical dock-centering
+dimension). A four-feeler column (0.8 / 1.2 / 1.6 / 2.0 mm) tags the FR4
+thickness assumption for whenever a board is fabricated.
+
+### Print Instructions
+1. Open `jigs-new/dock-homing-receiver-fit.scad`. Print flat, 3 perimeters, 100%
+   infill. Note the two receiver slots are spaced `rx_pitch` apart (engraved
+   witness marks on the front-left edge confirm the spacing off the printed part).
+2. **A — receiver envelope:** insert each TSOP38238, window-forward (+X, into
+   the side with the datum recess on the front edge), lead row toward the rear
+   channel. Each must drop cleanly through only its matching slot (opening =
+   body + 0.5 mm/side clearance).
+3. **B — pair pitch:** with one receiver seated, slide the second into the
+   other slot. If BOTH drop cleanly and simultaneously, the printed spacing
+   registers at `rx_pitch` = 16 mm. Measure the witness marks with calipers and
+   record MEASURE-ME §18 row 5.
+4. **C — PCB thickness feeler:** insert the eventual fabricated dock-homing
+   board edge (or a 1.6 mm FR4 scrap as a stand-in) into the feeler column; it
+   must enter only its matching step slot.
+
+### Pass Criteria
+- Each TSOP38238 drops cleanly through exactly ONE slot (no forcing, no wobble
+  in the next size down), consistent with the datasheet envelope.
+- Both modules seat simultaneously → pair spacing confirmed at `rx_pitch` up to
+  the printed tolerance (±0.2 mm).
+- 1.6 mm FR4 scrap enters only the 1.6 step (if the two adjacent slots also
+  accept it, the print shrank — see fail path).
+
+### Fail Criteria & Fix
+- Module fits two slots / neither → adjust `clear` in the jig (currently 0.5 mm
+  per side; try 0.3 if loose, 0.6-0.7 if the real part is proud of the datasheet
+  — some AliExpress "TSOP38238" clones measure bigger).
+- Pair spacing won't register (both drop through only when forced apart) → the
+  intended `rx_pitch` differs from 16 mm: re-derive from the dock IR design and
+  set `rx_pitch` to ONE value in `dock-homing-sensor.scad`, this jig, and any
+  future chassis pocket. Record MEASURE-ME §18 row 5.
+- Feeler ambiguous (1.6 scrap enters 1.2 step too) → printed shrinkage: reprint
+  with 0.15 mm layers or enlarge the feeler `step_width` cut; do NOT change the
+  1.6 mm FR4 assumption on that evidence.
+- Your real module measures off the datasheet envelope → caliper rows 1-4 of
+  MEASURE-ME §18 and report; update `tsop_w / rxsop_d / tsop_h` in the model
+  and this jig together.
+
+---
+
 ## Printing Guidelines
 
 | Parameter | Setting |

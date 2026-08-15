@@ -253,9 +253,9 @@ Please take a photo of the drive wheel module next to a ruler/caliper showing:
 | 1 | **PCB length** | 20 | mm | Estimate — custom board |
 | 2 | **PCB width** | 15 | mm | Estimate |
 | 3 | **PCB thickness** | 1.6 | mm | Standard FR4 |
-| 4 | **TSOP38238 body L** | 6.0 | mm | Vishay datasheet — **confirmed** |
-| 5 | **TSOP38238 body W** | 5.0 | mm | Vishay datasheet — **confirmed** |
-| 6 | **TSOP38238 body H** | 4.0 | mm | Vishay datasheet — **confirmed** |
+| 4 | **TSOP38238 envelope L (boresight depth)** | 4.8 | mm | Vishay TSOP382/384 datasheet (Doc. 82491 rev 2.1, fetched 2026-08-15) — **confirmed**: Minicast "5.0 W x 6.95 H x 4.8 D". Corrects the old 6.0 mm value |
+| 5 | **TSOP38238 envelope W** | 5.0 | mm | Same datasheet — **confirmed** |
+| 6 | **TSOP38238 envelope H (total)** | 6.95 | mm | Same datasheet — **confirmed**; overall with leads 8.25 ± 0.3. Corrects the old 4.0 mm value |
 | 7 | **IR LED diameter** (TSAL6100 rep.) | 5.0 | mm | Standard 5mm T1¾ |
 | 8 | **IR LED height above PCB** | 8.6 | mm | Estimate — including dome and standoff |
 | 9 | **Connector type** | JST PH 4-pin | — | Estimate |
@@ -532,6 +532,54 @@ re-verifies it from a physical strip. The BOM gives NO pogo barrel dimensions
 - Use jig `jigs-new/charger-strip-slot-gauge.scad` (Jig 14) to validate strip
   width/thickness/length and pair pitch, and `jigs-new/pogo-barrel-gauge.scad`
   (Jig 15) to identify the actual pogo barrel Ø and length.
+
+## 18. Dock Homing Sensor PCB — 2x TSOP38238 IR Receivers
+
+**BOM (2026-08-15):** BOM.md line 57 — "Dock homing sensor | 1 | $3 | Custom
+PCB | 2x TSOP38238 IR receivers". Model: `dock-homing-sensor/dock-homing-sensor.scad`;
+jig: `jigs-new/dock-homing-receiver-fit.scad` (Jig 16).
+
+> **Context.** This board is the robot-side beacon detector for the final dock
+> approach. The DOCK carries an "IR homing beacon" (BOM.md line 81) — the robot
+> board only RECEIVES, there is no IR LED on it. The two-receiver pair is what
+> gives lateral (left/right) alignment information. (Function reasoning is
+> (estimate) inferred from BOM lines 57 + 81 + L93 charging-contact alignment
+> need — confirm with the dock/firmware design before wiring anything.)
+
+| # | What to Measure                                                        | Estimate | Unit | Notes |
+|---|------------------------------------------------------------------------|----------|------|-------|
+| 1 | **TSOP38238 package W**                                               | 5.0  | mm | (datasheet: Vishay TSOP382/384, Doc. 82491 rev 2.1, 27-May-2025, fetched 2026-08-15) Minicast "5.0 W x 6.95 H x 4.8 D" |
+| 2 | **TSOP38238 package D (boresight depth)**                             | 4.8  | mm | (datasheet, same source) |
+| 3 | **TSOP38238 package H (total)**                                       | 6.95 | mm | (datasheet, same source); overall with leads 8.25 ± 0.3 |
+| 4 | **TSOP38238 lead pitch**                                              | 2.54 | mm | (datasheet) "2.54 nom."; verify pinning 1=OUT, 2=GND, 3=VS before layout |
+| 5 | **⛔ Receiver pair pitch `rx_pitch`**                                  | 16.0 | mm | (estimate) center-to-center spacing of the two receivers. THE critical dock-centering dimension. Re-derive from the actual dock IR beacon geometry/beam test — see model note (2) |
+| 6 | **PCB length (boresight)**                                            | 25   | mm | (estimate) conjectural layout; fabricate + confirm |
+| 7 | **PCB width (cross-axis)**                                            | 26   | mm | (estimate) sized to contain pair + margins: 2*tsop_w + rx_pitch + edges |
+| 8 | **PCB thickness**                                                     | 1.6  | mm | (estimate) FR4; identify with Jig 16 feeler steps (0.8/1.2/1.6/2.0) |
+| 9 | **Receiver inset from board front edge**                              | 4.0  | mm | (estimate) `rx_inset` |
+| 10 | **Mounting hole Ø**                                                   | 2.5  | mm | (estimate) M2 screw clearance; relocatable per chassis |
+| 11 | **Connector**                                                         | JST PH 4-pin 2.0mm | — | (estimate) VCC, GND, OUT1, OUT2 (receivers share supply; verify firmware GPIO count) |
+| 12 | **Dock beacon carrier frequency / protocol**                          | 38 kHz | — | (datasheet) TSOP38238 is 38 kHz AGC2 — the dock beacon MUST use 38 kHz + ≥10-cycle bursts (datasheet min burst length) or the receiver never triggers |
+
+### Critical Check
+- **rx_pitch is the single point of failure in dock centering** (row 5), in
+  the same class as `contact_pitch` on the charging contacts (MEASURE-ME §17).
+  If the robot squares to the dock by beacon-signal parity, wider spacing
+  sharpens centering but narrows the capture window; if it only needs
+  last-millimeter "beacon seen", spacing just has to clear the charge-contact
+  pitch gap (45 mm est). Derive it from the dock IR design and a beam test on
+  the floor — do NOT ship the 16 mm estimate.
+- The TSOP38238 (datasheet) has φ1/2 = ±45° half-transmission directivity and
+  AGC that suppresses steady light; a lit-room test must still be done (Figure
+  6 of the datasheet: threshold rises with ambient DC irradiance).
+- **Cross-file correction (2026-08-15):** the pre-existing `wall-sensor-pcb`
+  model used a TSOP38238 envelope of 6.0 x 5.0 x 4.0 mm marked "(datasheet)".
+  The official datasheet (fetched this run) gives the Minicast package as
+  5.0 W x 6.95 H x 4.8 D — the wall-sensor model was corrected on the aug15
+  branch. If you have a physical TSOP38238, caliper rows 1-4 here and confirm.
+- Use jig `jigs-new/dock-homing-receiver-fit.scad` (Jig 16) to verify the two
+  modules drop through the datasheet-envelope slots at the printed `rx_pitch`,
+  and the feeler steps to tag the real PCB thickness.
 
 ---
 

@@ -26,15 +26,16 @@ checklist.
 | **Bumper / Tower Micro Switch** (SPDT snap-action, SS-5GL-class) | DRAFT — needs caliper verification | `micro-switch-ss5gl/micro-switch-ss5gl.scad` | Covers BOM "LiDAR tower bumper sensor" (×4) and "Bumper switches" (×2). Envelope from OMRON SS series datasheet (19.8×6.4×10.2mm, 3×Ø1.6 holes @9.5 pitch, lever FP/OP); actual AliExpress part identity unverified |
 | **Carpet Sensor** (Ultrasonic 300kHz, HTW HT-300PLTR1612-1-class) | DRAFT — needs caliper verification | `carpet-sensor-htw-ht300/carpet-sensor-ht-300pltr1612.scad` | BOM "Carpet sensor — Ultrasonic 300kHz". Envelope Ø16×12 cross-confirmed by TWO primary sources fetched 2026-08-11: HTW Made-in-China spec table (Ø16×12, transceiver, 290±15kHz, wire 60mm, IP67) and ISSRSensor ISUB30-16GK12 naming decode (16=Ø16mm, 12=L12mm, plastic shell, 300kHz). Face recess / wire Ø / termination = (estimate) |
 | **Charging Contacts** (robot nickel strip + dock pogo pin) | DRAFT — needs caliper verification | `charging-contacts/charging-contacts.scad` | BOM "Charging contacts": robot strip envelope ≥10×~50mm (BOM-confirmed line 59; thickness 0.3 est vs BOM floor ≥0.1); dock pogo Ø3×12 barrel est, ≥4A gold (BOM-confirmed line 93). Shared `contact_pitch`=45 est is the critical mated dimension. Jigs 14+15. ⚠ NOTE: in-tree part-specs doc claims strip "~1mm wide" — conflicts with current BOM, flag for resolution (see MEASURE-ME §17) |
+| **Dock Homing Sensor PCB** (2× TSOP38238 IR receivers) | DRAFT — needs caliper verification | `dock-homing-sensor/dock-homing-sensor.scad` | BOM "Dock homing sensor" (line 57: custom PCB, 2x TSOP38238). Receiver envelope FROM the Vishay TSOP382/384 datasheet (Doc. 82491, fetched 2026-08-15): 5.0 W × 6.95 H × 4.8 D ✓; lead pitch 2.54 ✓. PCB outline/layout + `rx_pitch`=16 pair spacing are (estimate) — THE critical dock-centering dim. No IR LED (dock emits beacon, BOM L81). Jig 16 |
 
 ## Documentation
 
 | File | Purpose |
 |------|---------|
 | `MEASURE-ME.md` | Exact dimensions requiring caliper verification — ~100+ measurements across all parts |
-| `PRINT-TEST.md` | Fit-check jig print instructions and pass/fail criteria for 15 jigs |
+| `PRINT-TEST.md` | Fit-check jig print instructions and pass/fail criteria for 16 jigs |
 | `jigs/*.scad` | OpenSCAD jig files for testing part fit (drive wheel, caster, side brush motor, main brush motor) |
-| `jigs-new/*.scad` | OpenSCAD jig files for testing part fit (battery, cliff sensor, side brush clearance, LiDAR tower, main brush roller, mop disk, bumper/tower micro switch, carpet sensor, charger strip, pogo barrel) — **15 jigs total** |
+| `jigs-new/*.scad` | OpenSCAD jig files for testing part fit (battery, cliff sensor, side brush clearance, LiDAR tower, main brush roller, mop disk, bumper/tower micro switch, carpet sensor, charger strip, pogo barrel, dock homing receiver) — **16 jigs total** |
 
 ## Cross-Reference by BOM Item
 
@@ -52,7 +53,7 @@ checklist.
 | Battery pack | `battery-pack-brr-2p4s/brr-2p4s-5200.scad` | Amazon listing (135×38×38mm) | ⚠️ Estimate |
 | Cliff sensors (×4) | `cliff-sensor-tcrt5000/cliff-sensor.scad` | Vishay TCRT5000 datasheet (sensor: 10.2×5.8×7mm ✓); module PCB (estimate) | ✅ Partial |
 | Side brush (5-arm) | `side-brush-5arm/side-brush-5arm.scad` | AliExpress wiki (~105mm diameter) | ⚠️ Estimate |
-| Wall sensors (×2) | `wall-sensor-pcb/wall-sensor-pcb.scad` | Vishay TSOP38238 datasheet (receiver ✓); PCB layout (estimate) | ✅ Partial |
+| Wall sensors (×2) | `wall-sensor-pcb/wall-sensor-pcb.scad` | Vishay TSOP38238 datasheet (receiver ✓; envelope corrected to 5.0×6.95×4.8 on aug15); PCB layout (estimate) | ✅ Partial |
 | Obstacle avoidance camera (×2) | `ov5647-camera/ov5647-camera.scad` | Pi Cam v1 form factor proxy (estimate) | ⚠️ Estimate |
 | 2D LiDAR (X-WPFTB-V2.6.2) | `lidar-xwpftb-v262/x-wpftb-v2.6.2.scad` | Camsense X1 official datasheet (envelope 70×95.3×43.2mm ✓); one-cad camsense_x1.step measured (94.6×70.5×43.3mm, hole pattern — approx); X-WPFTB protocol identity ✓ | ⚠️ Partial |
 | LiDAR tower bumper sensor (×4, SPDT micro switch) | `micro-switch-ss5gl/micro-switch-ss5gl.scad` | OMRON SS series datasheet (en-ss.pdf p.5, fetched 2026-08-09: body 19.8×6.4×10.2 ✓, 3×Ø1.6 holes @9.5 ✓, lever FP 13.6/OP 8.8 ✓); actual AliExpress part identity unverified | ⚠️ Partial |
@@ -60,6 +61,7 @@ checklist.
 | Carpet sensor (ultrasonic 300kHz) | `carpet-sensor-htw-ht300/carpet-sensor-ht-300pltr1612.scad` | HTW HT-300PLTR1612-1 Made-in-China spec (Ø16×12, 290±15kHz, wire 60mm ✓); ISSRSensor ISUB30-16GK12 naming decode cross-check (16=Ø16, 12=L12mm, 300kHz); actual unit identity/termination unverified | ⚠️ Partial |
 | Charging contacts — robot strip (×2) | `charging-contacts/charging-contacts.scad` | BOM.md L59 (current, 2026-08-13): "≥10mm wide, ≥0.1mm thick, ~5cm long" — width/length BOM-confirmed; thickness 0.3 est vs floor ≥0.1; tab/bend/lip (estimate); ⚠ in-tree part-specs claims "~1mm wide" (conflict, likely stale) | ⚠️ Partial |
 | Charging contacts — dock pogo pins (×2-4) | `charging-contacts/charging-contacts.scad` | BOM.md L93 (current): "Gold-plated pogo pins ≥4A; rear-vertical, above water line" — rating/plating BOM-confirmed; barrel Ø3×L12 est (identify w/ Jig 15); pitch must equal robot `contact_pitch` | ⚠️ Partial |
+| Dock homing sensor (×1 custom PCB, 2× TSOP38238) | `dock-homing-sensor/dock-homing-sensor.scad` | BOM.md L57 (current): "2x TSOP38238 IR receivers"; receiver envelope from Vishay TSOP382/384 datasheet (Doc. 82491, fetched 2026-08-15: 5.0×6.95×4.8 mm, 2.54 lead pitch, pinning 1=OUT/2=GND/3=VS, 38 kHz AGC2) ✓; PCB outline/`rx_pitch`=16 (estimate) | ⚠️ Partial (receiver envelope datasheet ✓, board config est) |
 
 ## Already Modeled Elsewhere (do not duplicate)
 

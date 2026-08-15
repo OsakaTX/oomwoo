@@ -14,13 +14,17 @@ pcb_l      = 20;   // mm (estimate: PCB length / width)
 pcb_w      = 15;   // mm (estimate)
 pcb_thick  =  1.6; // mm (estimate: standard FR4)
 
-// ---- TSOP38238 (datasheet: Vishay) ----
-tsop_l     =  6.0; // mm (datasheet: TSOP38238 body length)
-tsop_w     =  5.0; // mm (datasheet: TSOP38238 body width)
-tsop_h     =  4.0; // mm (datasheet: TSOP38238 height including moulding)
-tsop_pins  =  3;   // (datasheet: GND, VOUT, VS — left to right when
-                    //  facing the sensor window)
-tsop_pin_pitch = 1.8; // mm (estimate: standard for TSOP package)
+// ---- TSOP38238 (datasheet: Vishay TSOP382/384, Doc. 82491 rev 2.1, 27-May-2025, fetched 2026-08-15) ----
+// NOTE 2026-08-15: envelope corrected to the official datasheet. Previous
+// block read 6.0 x 5.0 x 4.0 mm (stale estimate) — the datasheet gives the
+// Minicast package as "5.0 W x 6.95 H x 4.8 D" mm (overall with leads
+// 8.25 ± 0.3; lead pitch 2.54 nom.; pinning 1 = OUT, 2 = GND, 3 = VS).
+tsop_d     =  4.8; // mm (datasheet) package D — depth along boresight (X)
+tsop_w     =  5.0; // mm (datasheet) package W (Y)
+tsop_h     =  6.95; // mm (datasheet) package H total (leaded Minicast; overall
+                    //  with leads 8.25 ± 0.3 mm)
+tsop_pins  =  3;   // (datasheet: 1 = OUT, 2 = GND, 3 = VS)
+tsop_pin_pitch = 2.54; // mm (datasheet) lead pitch "2.54 nom."
 
 // ---- IR LED (Vishay TSAL6100 — representative, datasheet) ----
 led_dia    =  5.0; // mm (datasheet: TSAL6100 5mm round LED — standard T1¾)
@@ -55,9 +59,9 @@ module tsop38238() {
     color("DimGray") {
         // Body
         translate([3, pcb_w/2 - tsop_w/2, pcb_thick])
-            cube([tsop_l, tsop_w, tsop_h]);
+            cube([tsop_d, tsop_w, tsop_h]);
         // IR window (front face)
-        translate([3 + tsop_l, pcb_w/2 - tsop_w/2 + 1, pcb_thick + 1])
+        translate([3 + tsop_d, pcb_w/2 - tsop_w/2 + 1, pcb_thick + 1])
             color("DarkRed", 0.6)
                 cube([0.5, tsop_w - 2, tsop_h - 2]);
         // Pins below PCB
