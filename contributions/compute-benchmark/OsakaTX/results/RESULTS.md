@@ -191,3 +191,29 @@ and memory growth scales with it (≈ +4.0 → +2.0 MiB/min as rate halves 2.5 �
 Lowering the LiDAR rate is a real, now-measured CPU/memory lever for the
 2 GB target — with the caveat that mapping/navigation quality at 2.5/1.25 Hz
 is a slam-behaviour question outside this measurement.
+
+## 10. LiDAR scan-rate sensitivity for the Nav2 stack (amcl + costmaps, localization-only) — 2026-08-15
+
+Files: `nav2_rate_5hz_20260815T044712Z.csv`, `nav2_rate_2_5hz_20260815T044932Z.csv`,
+`nav2_rate_1_25hz_20260815T045151Z.csv` (39 samples each @ 2 s); canonical 10 m
+scene, `run_nav2_bench.sh --hz` (new in this run, mirroring the slam harness).
+Closes ADR-0008's open item: Nav2/amcl+costmap rate sensitivity was unmeasured.
+All three stacks health-verified: amcl received the 200x200@0.05 m map, initial
+pose applied, 0 "AMCL cannot publish a pose", 0 [ERROR], 0 in-window transform
+errors. Details: `docs/adr-0009-*.md`.
+
+| Rate | File (date) | `nav2_container` PSS mean MiB | RSS mean MiB | CPU mean % | samples |
+|---|---|---|---|---|---:|
+| 5.0 Hz | nav2_rate_5hz_20260815T044712Z.csv | 158.6 | 171.9 | 43.6 | 39 |
+| 2.5 Hz | nav2_rate_2_5hz_20260815T044932Z.csv | 158.7 | 172.1 | 41.2 | 39 |
+| 1.25 Hz | nav2_rate_1_25hz_20260815T045151Z.csv | 158.8 | 172.2 | 40.5 | 39 |
+
+Headline (measured): Nav2 stack memory is rate-INDEPENDENT (PSS 158.6 → 158.8
+MiB across a 4x rate range; no slam-style growth in localization mode) and CPU
+is only mildly rate-sensitive (5→2.5 Hz −2.4 pp, 5→1.25 Hz −3.1 pp) — in
+sharp contrast to slam_toolbox's near-linear CPU response (section 9/
+ADR-0008). Nav2's dominant CPU in this no-goal baseline is timer-driven
+controller/costmap/BT activity at its own rate, not scan ingestion. Lowering
+LiDAR rate is therefore a slam/mapping lever, NOT a Nav2-baseline lever; the
+measured deltas are small relative to the ~3 pp run-to-run 5 Hz band
+(46.7 / 44.5 / 43.6 % across 2026-08-06 / 08-08 / 08-15).

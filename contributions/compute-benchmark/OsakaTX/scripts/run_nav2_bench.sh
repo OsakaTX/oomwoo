@@ -1,7 +1,12 @@
 #!/usr/bin/env bash
 #
 # run_nav2_bench.sh - measure the Nav2 navigation stack RSS/PSS/CPU under the
-# same deterministic synthetic 5 Hz LiDAR stimulus used by run_slam_bench.sh.
+# same deterministic synthetic LiDAR stimulus used by run_slam_bench.sh.
+#
+# --hz is forwarded to the publisher (default 5.0) so the stack can be
+# measured at reduced LiDAR rates, mirroring run_slam_bench.sh. This makes the
+# Nav2 rate-sensitivity study (ADR-0009) directly comparable to the slam-only
+# ADR-0008 numbers.
 #
 # This closes the module's "ROS2/Nav2/SLAM memory + CPU" mandate for the Nav2
 # half: nothing in this module measured Nav2 before. Everything reuses the
@@ -23,11 +28,12 @@ MAPBASE="nav2_map"
 
 label="nav2_devref"
 duration=120
+hz=5.0
 outdir="$HERE/../results"
 
 usage() {
   cat <<EOF
-Usage: run_nav2_bench.sh [--label LABEL] [--duration SECONDS] [--outdir DIR]
+Usage: run_nav2_bench.sh [--label LABEL] [--duration SECONDS] [--hz HZ] [--outdir DIR]
 EOF
 }
 
@@ -35,6 +41,7 @@ while [[ $# -gt 0 ]]; do
   case "$1" in
     --label) label="${2:-}"; shift 2;;
     --duration) duration="${2:-}"; shift 2;;
+    --hz) hz="${2:-5.0}"; shift 2;;
     --outdir) outdir="${2:-}"; shift 2;;
     *) usage; exit 2;;
   esac
@@ -55,7 +62,7 @@ OUTCSV="$outdir/${label}_$(date -u +%Y%m%dT%H%M%SZ).csv"
 python3 "$MAPGEN" --out "$MAPDIR/$MAPBASE"
 
 # 1) start the deterministic scan / odom / tf source
-python3 "$PUBLISHER" --duration $((duration + 40)) --loop-s 40 &
+python3 "$PUBLISHER" --duration $((duration + 40)) --loop-s 40 --hz "$hz" &
 pub_pid=$!
 sleep 2
 
