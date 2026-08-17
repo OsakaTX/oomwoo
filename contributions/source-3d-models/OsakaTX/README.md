@@ -27,15 +27,16 @@ checklist.
 | **Carpet Sensor** (Ultrasonic 300kHz, HTW HT-300PLTR1612-1-class) | DRAFT — needs caliper verification | `carpet-sensor-htw-ht300/carpet-sensor-ht-300pltr1612.scad` | BOM "Carpet sensor — Ultrasonic 300kHz". Envelope Ø16×12 cross-confirmed by TWO primary sources fetched 2026-08-11: HTW Made-in-China spec table (Ø16×12, transceiver, 290±15kHz, wire 60mm, IP67) and ISSRSensor ISUB30-16GK12 naming decode (16=Ø16mm, 12=L12mm, plastic shell, 300kHz). Face recess / wire Ø / termination = (estimate) |
 | **Charging Contacts** (robot nickel strip + dock pogo pin) | DRAFT — needs caliper verification | `charging-contacts/charging-contacts.scad` | BOM "Charging contacts": robot strip envelope ≥10×~50mm (BOM-confirmed line 59; thickness 0.3 est vs BOM floor ≥0.1); dock pogo Ø3×12 barrel est, ≥4A gold (BOM-confirmed line 93). Shared `contact_pitch`=45 est is the critical mated dimension. Jigs 14+15. ⚠ NOTE: in-tree part-specs doc claims strip "~1mm wide" — conflicts with current BOM, flag for resolution (see MEASURE-ME §17) |
 | **Dock Homing Sensor PCB** (2× TSOP38238 IR receivers) | DRAFT — needs caliper verification | `dock-homing-sensor/dock-homing-sensor.scad` | BOM "Dock homing sensor" (line 57: custom PCB, 2x TSOP38238). Receiver envelope FROM the Vishay TSOP382/384 datasheet (Doc. 82491, fetched 2026-08-15): 5.0 W × 6.95 H × 4.8 D ✓; lead pitch 2.54 ✓. PCB outline/layout + `rx_pitch`=16 pair spacing are (estimate) — THE critical dock-centering dim. No IR LED (dock emits beacon, BOM L81). Jig 16 |
+| **KY-003 Hall Magnetic Sensor Module** (dock water-level / canister-present, ×4) | DRAFT — needs caliper verification | `ky003-hall-sensor/ky003-hall-sensor.scad` | BOM Dock table "Water level, canisters present sensors | 4 | $0.30 | Hall sensors KY-003". A3144-IC envelope FROM the Allegro A3144 datasheet (D.S. 27621.6B fetched 2026-08-17, UA pkg: 4.04–4.17 × 2.97–3.10 × 1.47–1.57 mm, lead pitch 1.27 BSC ✓); unipolar S-pole-on-marked-face active-low ✓. ⚠ "KY-003" is a clone name — TWO PCB envelope variants in-model: standard 18.5×15 (secondary: arduinomodules.info) vs JOY-IT 30×15 (datasheet). Layout/positions (estimate). Jigs 17+18 |
 
 ## Documentation
 
 | File | Purpose |
 |------|---------|
 | `MEASURE-ME.md` | Exact dimensions requiring caliper verification — ~100+ measurements across all parts |
-| `PRINT-TEST.md` | Fit-check jig print instructions and pass/fail criteria for 16 jigs |
+| `PRINT-TEST.md` | Fit-check jig print instructions and pass/fail criteria for 18 jigs |
 | `jigs/*.scad` | OpenSCAD jig files for testing part fit (drive wheel, caster, side brush motor, main brush motor) |
-| `jigs-new/*.scad` | OpenSCAD jig files for testing part fit (battery, cliff sensor, side brush clearance, LiDAR tower, main brush roller, mop disk, bumper/tower micro switch, carpet sensor, charger strip, pogo barrel, dock homing receiver) — **16 jigs total** |
+| `jigs-new/*.scad` | OpenSCAD jig files for testing part fit (battery, cliff sensor, side brush clearance, LiDAR tower, main brush roller, mop disk, bumper/tower micro switch, carpet sensor, charger strip, pogo barrel, dock homing receiver, KY-003 hall module fit, KY-003 standoff kit) — **18 jigs total** |
 
 ## Cross-Reference by BOM Item
 
@@ -62,6 +63,8 @@ checklist.
 | Charging contacts — robot strip (×2) | `charging-contacts/charging-contacts.scad` | BOM.md L59 (current, 2026-08-13): "≥10mm wide, ≥0.1mm thick, ~5cm long" — width/length BOM-confirmed; thickness 0.3 est vs floor ≥0.1; tab/bend/lip (estimate); ⚠ in-tree part-specs claims "~1mm wide" (conflict, likely stale) | ⚠️ Partial |
 | Charging contacts — dock pogo pins (×2-4) | `charging-contacts/charging-contacts.scad` | BOM.md L93 (current): "Gold-plated pogo pins ≥4A; rear-vertical, above water line" — rating/plating BOM-confirmed; barrel Ø3×L12 est (identify w/ Jig 15); pitch must equal robot `contact_pitch` | ⚠️ Partial |
 | Dock homing sensor (×1 custom PCB, 2× TSOP38238) | `dock-homing-sensor/dock-homing-sensor.scad` | BOM.md L57 (current): "2x TSOP38238 IR receivers"; receiver envelope from Vishay TSOP382/384 datasheet (Doc. 82491, fetched 2026-08-15: 5.0×6.95×4.8 mm, 2.54 lead pitch, pinning 1=OUT/2=GND/3=VS, 38 kHz AGC2) ✓; PCB outline/`rx_pitch`=16 (estimate) | ⚠️ Partial (receiver envelope datasheet ✓, board config est) |
+| Water level / canister-present hall sensors (×4, KY-003) — dock | `ky003-hall-sensor/ky003-hall-sensor.scad` | BOM.md Dock table (current): "Hall sensors KY-003"; A3144 IC envelope from Allegro A3144 datasheet (D.S. 27621.6B fetched 2026-08-17, UA pkg 4.04–4.17×2.97–3.10×1.47–1.57 mm, pitch 1.27 BSC) ✓; PCB envelope is clone-variant: standard 18.5×15 (secondary: arduinomodules.info) v. JOY-IT 30×15 (datasheet) — set `variant` per real unit | ⚠️ Partial (IC envelope datasheet ✓, PCB envelope variant-dependent) |
+| Dock float/canister magnet gap (sensing standoff) | `jigs-new/ky003-standoff-kit.scad` (Jig 18) | — measured with YOUR magnet; not a sourced dimension. Operate 35–450 G / release 25–430 G (A3144 datasheet) bound it | ⚠️ Measured on hardware |
 
 ## Already Modeled Elsewhere (do not duplicate)
 

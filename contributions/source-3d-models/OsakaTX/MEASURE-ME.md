@@ -581,6 +581,59 @@ jig: `jigs-new/dock-homing-receiver-fit.scad` (Jig 16).
   modules drop through the datasheet-envelope slots at the printed `rx_pitch`,
   and the feeler steps to tag the real PCB thickness.
 
+## 19. KY-003 Hall Magnetic Sensor Module (dock water-level / canister-present, ×4)
+
+**BOM (2026-08-17):** BOM.md Dock table — "Water level, canisters present
+sensors | 4 | $0.30 | Hall sensors KY-003, 2x (clean + dirty water) canister
+present + 2x (clean-low, dirty-full) floats". Model:
+`ky003-hall-sensor/ky003-hall-sensor.scad` (TWO envelope variants); jigs:
+`jigs-new/ky003-hall-fit.scad` (Jig 17, envelope fit) and
+`jigs-new/ky003-standoff-kit.scad` (Jig 18, sensing-axis standoff).
+
+> **Read this first.** "KY-003" is a **clone name** shared by many vendors: the
+> JOY-IT SEN-KY003HMS datasheet gives **30 x 15 x 7 mm**, while the common
+> AliExpress/37-in-1 board is **18.5 x 15 mm** (arduinomodules.info). The
+> physical unit you source may match NEITHER exactly. The A3144 sensing IC is
+> the one constant (datasheet). So the critical step is rows 1-3 below, then
+> the envelope is fixed for the dock pocket. The chip is a **unipolar**
+> Hall-effect switch: it responds to the **SOUTH pole presented to the MARKED
+> face** of the IC only (Allegro D.S. 27621.6B). If your float profiles magnet
+> sticks to a dock insert with the wrong pole, the sensor never toggles.
+
+| # | What to Measure                                                        | Estimate | Unit | Notes |
+|---|------------------------------------------------------------------------|----------|------|-------|
+| 1 | **⛔ PCB outline (length × width)**                                   | 18.5 × 15 | mm | (secondary: arduinomodules.info board dims) OR 30 × 15 (datasheet: JOY-IT SEN-KY003HMS "Dimensions 30 x 15 x 7 mm"); caliper the REAL sourced unit, set `variant`/`pcb_l`/`pcb_w` to match — do not ship the dock pocket against an assumed envelope |
+| 2 | **PCB thickness**                                                     | 1.6  | mm | (estimate) standard FR4; verify with a feeler/caliper (Jig 17 recess is pcb_t deep) |
+| 3 | **Overall height (board + tallest component)**                        | 3.5  | mm | (estimate) `comp_h` clearance budget above PCB; JOY-IT datasheet gives its whole-module height as 7 mm (incl. header pins) |
+| 4 | **A3144 body W × L × H**                                             | 4.10 × 3.03 × 1.52 | mm | (datasheet: Allegro A3144 D.S. 27621.6B, UA package Dwg. MH-014E: W 4.04–4.17, L 2.97–3.10, H 1.47–1.57; nominal shown). Marked face = sensing face, +Z up (layout estimate) |
+| 5 | **A3144 lead pitch**                                                  | 1.27 | mm | (datasheet) UA package "0.050 BSC"; lead width 0.36–0.48, thickness 0.35–0.44 |
+| 6 | **A3144 overall length incl. formed leads**                           | 15.75 | mm | (datasheet) 15.24–16.26 mm per Dwg. MH-014E; only matters if board mounts standoff from a wall |
+| 7 | **Header pin row: position from board edge + pin pitch**              | 0.82·L / 2.54 | mm | (estimate position, standard 2.54 pitch) pin order on generic boards "–/VCC/S" with S on the outside (arduinomodules.info) — confirm on yours; the S pin is open-collector active-low |
+| 8 | **Mounting hole pattern (Ø + positions)**                             | Ø3.2, pair @ 0.66·W, x 0.15·L | mm | (estimate) M3 clearance proposal; many clones have NO clean M3 pattern → dock pocket may retain by envelope lips/adhesive instead (model `mtg` toggle) |
+| 9 | **⛔ Sensing-axis: max magnet-to-marked-face standoff that toggles**    | measure | — | THE dock design number. Use Jig 18 cubes + your ACTUAL float magnet. Unipolar switch: operate 35–450 G / release 25–430 G (datasheet selection table) — with a small float magnet usable gap is usually ~0–10 mm. Do not proceed to dock cast-wall/float-travel design until measured |
+| 10 | **Detection confirmation: south-pole → LOW on S**                    | verify | — | (datasheet) unipolar, non-latching; output LOW only when south pole faces the MARKED face; power 4.5–24 V (5 V typical, sensorkit.joy-it.net labels +V=5V due to LED) |
+| 11 | **Actual vendor part identity**                                       | unverified | — | BOM sources generic AliExpress; the real unit may be Elegoo/Keyes/other clone. Photograph + record vendor before measuring — this decides which envelope the dock pocket gets |
+| 12 | **Status LED / pull-up (functional)**                                 | present | — | (secondary: arduinomodules.info — A3144 + 680 Ω + LED) electrical only, no geometry impact |
+
+### Critical Check
+- **Rows 1 + 11 are the make-or-break.** The dock mounts FOUR of these in
+  cavities; a wall built to 18.5 × 15 will not accept a 30 × 15 JOY-IT board or
+  vice-versa. Measure the actual unit's outline FIRST, set
+  `variant`/`pcb_l`/`pcb_w` in the model, then rebuild Jig 17 (it derives its
+  recess from the same params).
+- **Magnet polarity (row 10):** the A3144 is unipolar and its operate point
+  depends on the SOUTH pole hitting the marked face. If your float/canister
+  magnet presents the north pole, flip the magnet before blaming the sensor or
+  the printed standoff — this is the single most common KY-003 "doesn't work"
+  cause (also the top troubleshooting item in the arduminmodules.info guide).
+- **Row 9 is what actually gates a workable float design**, not the PCB mm.
+  Jig 18 measures it with your hardware. Keep the cast wall between sensor and
+  magnet as thin as practical and design the float travel so the NEAREST
+  magnet position beats the release-level gap by ≥20% margin.
+- The mounted IC may sit slightly off my (estimate) centered position — the
+  Jig 17 recess-floor ring marks the assumed spot; verify with the real board
+  before locating a fixed dock cavity.
+
 ---
 
 1. **Open an issue** in [makerspet/oomwoo](https://github.com/makerspet/oomwoo/issues)

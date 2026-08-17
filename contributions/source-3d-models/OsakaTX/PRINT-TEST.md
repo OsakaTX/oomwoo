@@ -528,6 +528,105 @@ thickness assumption for whenever a board is fabricated.
 
 ---
 
+## Jig 17: KY-003 Hall Module Envelope Fit Gauge (BOM "Hall sensors KY-003" — dock ×4)
+
+**Files:** `jigs-new/ky003-hall-fit.scad` (this jig) and
+`jigs-new/ky003-standoff-kit.scad` (Jig 18, separate print for Feature B).
+**Purpose:** The dock mounts FOUR generic "KY-003" hall modules whose ONLY
+unambiguous identity is the A3144 chip. The module model has TWO envelope
+variants (standard 18.5 × 15 mm per arduinomodules.info v. JOY-IT 30 × 15 mm
+per datasheet) because the clone vendors differ. This jig verifies the
+**actual sourced board's envelope** against a drop-in recess so the dock
+cavity can be drafted against the right number. Feature B (Jig 18) measures
+the sensing-axis standoff with YOUR float magnet — the number that sets dock
+cast-wall thickness and float travel.
+
+### Print Instructions
+1. Open `jigs-new/ky003-hall-fit.scad`. **Set `variant` the SAME as you are
+   testing** ("standard" for a common 18.5 × 15 board, "joyit" for a
+   JOY-IT-sized 30 × 15 board). Print flat, 3 perimeters, 100% infill. The
+   recess derives from `pcb_l/pcb_w + pocket_clearance`.
+2. **A — envelope fit:** place the KY-003 module face-up into the recess. It
+   must seat flat and level, fully home against the recess floor with the
+   entire outline inside the recess walls, no rocking and no excess side play.
+3. **B — repeat for the other variant:** if you are unsure which variant the
+   unit is, print the OTHER `variant` too; only one should accept the board.
+4. **C — sensing marker:** (Jig 18 print) proceed to Jig 18 for the standoff
+   measurement; the recess-floor ring on THIS jig marks the assumed A3144
+   spot if you want to pre-locate a magnet during any functional check.
+
+### Pass Criteria
+- Board seats fully and flat in the recess; fits with a small controlled amount
+  of play (±0.2 mm), consistent with pocket_clearance = 0.5 mm. Acceptable.
+- Neither variant accepts the board OR both do → the envelope assumption is
+  wrong; follow the FAIL→FIX path and re-measure before drafting the dock
+  cavity.
+
+### Fail Criteria & Fix
+- Board won't seat (too tight / high spots) → increase `pocket_clearance`
+  (0.5 → 0.7-0.8) and reprint; if it ALWAYS binds at the outline regardless
+  of clearance, the real envelope is NOT 18.5 × 15 or 30 × 15 — caliper rows
+  1-2 of MEASURE-ME §19, set `pcb_l`/`pcb_w` to the REAL values and reprint.
+- Board rattles badly (>0.5 mm play) → the recess is loose: decrease
+  `pocket_clearance` (0.5 → 0.3). If seats only in the larger variant's
+  recess, you have a JOY-IT-export-variant board and the standard recess is
+  the wrong target.
+- Printed recess differs from SCAD (measure with calipers ±0.2 mm) → printer
+  calibration; print the tolerance check cube from the Printing Guidelines
+  before trusting any conclusion.
+
+---
+
+## Jig 18: KY-003 Sensing-Axis Standoff Cube Kit (BOM "Hall sensors KY-003" — magnet gap)
+
+**File:** `jigs-new/ky003-standoff-kit.scad`
+**Purpose:** Measures the ONLY number the dock float design actually needs:
+**max reliable magnet-to-marked-face standoff at which YOUR float magnet
+still toggles the A3144.** The operate/release points are datasheet values
+(Allegro A3144 D.S. 27621.6B: operate 35–450 G, release 25–430 G) but the
+usable gap depends on the magnet nobody has specced — so it must be measured.
+Calipers-then-magnets, no electronics beyond the module.
+
+### Print Instructions
+1. Print `jigs-new/ky003-standoff-kit.scad` flat, 2 perimeters, 100% infill.
+2. Pop the 2/3/4/6/8 mm cubes off the base slab. **Caliper-verify each cube's
+   height** — printed layer height is never exact; a 2 mm print measuring
+   2.15 mm is still usable (record it), but don't assume nominal.
+3. Power the KY-003 (5 V, GND, and a pull-up on S to +5 V; LED lights when
+   toggle) or watch the module's status LED if your clone exposes it.
+4. Place the jig-recess board (Jig 17) or just the bare module on the bench,
+   sensitive face up. Start with the 6 mm cube standing on the A3144 marked
+   face, float magnet on top, SOUTH pole down. If it toggles, the gap works at
+   ≥ ~6 mm; step down to 4/3/2 mm only as needed, step up to 8 mm to find the
+   true ceiling. Never trust a single trial — move the magnet around the face
+   and take the worst-case (smallest working) standoff.
+5. Remember the release/bistable gap is not the trigger gap (unipolar
+   hysteresis); record BOTH the largest standoff that toggles ON and the
+   standoff at which it stays OFF on removal (release).
+
+### Pass Criteria
+- You can state a worst-case working gap for YOUR magnet (e.g. "8 mm cube
+  toggles, 6 mm toggles, measured at ≥4 distinct positions"). That number goes
+  straight into MEASURE-ME §19 row 9 and the dock cast-wall/float-travel
+  design.
+- South-pole-on-marked-face triggers; north-pole-or-flip does NOT (confirms
+  unipolar polarity before you blame a dock cavity).
+
+### Fail Criteria & Fix
+- Nothing toggles even at 2 mm → likely wrong pole (flip the magnet), or the
+  module is dead / needs the 680-Ω pull-up circuit (open-collector output
+  cannot drive a load alone) — see the model notes on pinning. Do NOT change
+  the dock-cavity geometry on this evidence yet.
+- Toggles at every standoff including 8 mm → magnet over-strong for float
+  design; not a failure, but record it and plan a slightly weaker float magnet
+  or a thicker cast wall so canister-present vs. not-present states are cleanly
+  separable.
+- Cube heights print non-uniform (differ >0.2 mm from nominal) → reprint with
+  0.15 mm layers; adjust PIC settings; the measurement is only as good as the
+  cubes.
+
+---
+
 ## Printing Guidelines
 
 | Parameter | Setting |
