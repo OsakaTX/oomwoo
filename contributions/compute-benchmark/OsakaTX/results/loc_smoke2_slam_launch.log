@@ -1,0 +1,29 @@
+[INFO] [launch]: All log files can be found below /root/.ros/log/2026-08-17-06-36-45-964477-d137359281ae-309976
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [localization_slam_toolbox_node-1]: process started with pid [309993]
+[localization_slam_toolbox_node-1] [INFO] [1786948606.152007651] [slam_toolbox]: Node using stack size 40000000
+[localization_slam_toolbox_node-1] [INFO] [1786948606.583473904] [slam_toolbox]: Configuring
+[localization_slam_toolbox_node-1] [INFO] [1786948606.589902547] [slam_toolbox]: Using solver plugin solver_plugins::CeresSolver
+[localization_slam_toolbox_node-1] Load From File /oomwoo/contributions/compute-benchmark/OsakaTX/scripts/../results/localize_anchor_map.posegraph 
+[localization_slam_toolbox_node-1] Mapper <- Module
+[localization_slam_toolbox_node-1] Mapper <- m_pSequentialScanMatcher
+[localization_slam_toolbox_node-1] Mapper <- m_pGraph
+[localization_slam_toolbox_node-1] MapperGraph <- Graph; Graph <- m_Edges; Graph <- m_Vertices
+[localization_slam_toolbox_node-1] MapperGraph <- m_pMapper; MapperGraph <- m_pLoopScanMatcher; MapperGraph <- m_pTraversal
+[localization_slam_toolbox_node-1] Mapper <- m_pMapperSensorManager
+[localization_slam_toolbox_node-1] MapperSensorManager <- m_ScanManagers; MapperSensorManager <- m_Scans
+[localization_slam_toolbox_node-1] Mapper <- m_Listeners
+[localization_slam_toolbox_node-1] **Finished serializing Mapper**
+[localization_slam_toolbox_node-1] Load From File
+[localization_slam_toolbox_node-1] **Serializing Dataset**
+[localization_slam_toolbox_node-1] Dataset <- m_SensorNameLookup
+[localization_slam_toolbox_node-1] Dataset <- m_Data
+[localization_slam_toolbox_node-1] Dataset <- m_Lasers
+[localization_slam_toolbox_node-1] Dataset <- m_pDatasetInfo
+[localization_slam_toolbox_node-1] **Finished serializing Dataset**
+[localization_slam_toolbox_node-1] Registering sensor: [Custom Described Lidar]
+[localization_slam_toolbox_node-1] WARNING: Logging before InitGoogleLogging() is written to STDERR
+[localization_slam_toolbox_node-1] W20260817 06:36:46.681038 309993 preprocessor.cc:67] Specified options.num_threads: 50 exceeds maximum available from the threading model Ceres was compiled with: 8.  Bounding to maximum number available.
+[INFO] [launch.user]: [LifecycleLaunch] Slamtoolbox node is activating.
+[localization_slam_toolbox_node-1] [INFO] [1786948606.692379424] [slam_toolbox]: Activating
+[localization_slam_toolbox_node-1] Registering sensor: [Custom Described Lidar]

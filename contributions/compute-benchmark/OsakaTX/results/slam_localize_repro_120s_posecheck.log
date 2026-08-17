@@ -1,0 +1,22 @@
+localization pose check (/pose): 20 samples
+  r=1.501 m  radial_err=0.001 m
+  r=1.501 m  radial_err=0.001 m
+  r=1.500 m  radial_err=0.000 m
+  r=1.500 m  radial_err=0.000 m
+  r=1.497 m  radial_err=0.003 m
+  r=1.499 m  radial_err=0.001 m
+  r=1.499 m  radial_err=0.001 m
+  r=1.500 m  radial_err=0.000 m
+  r=1.500 m  radial_err=0.000 m
+  r=1.500 m  radial_err=0.000 m
+  r=1.505 m  radial_err=0.005 m
+  r=1.506 m  radial_err=0.006 m
+  r=1.507 m  radial_err=0.007 m
+  r=1.500 m  radial_err=0.000 m
+  r=1.500 m  radial_err=0.000 m
+  r=1.501 m  radial_err=0.001 m
+  r=1.501 m  radial_err=0.001 m
+  r=1.506 m  radial_err=0.006 m
+  r=1.506 m  radial_err=0.006 m
+  r=1.506 m  radial_err=0.006 m
+mean radial error=0.002 m, max=0.007 m  (orbit=1.5 m)

@@ -1,0 +1,11 @@
+[INFO] [launch]: All log files can be found below /root/.ros/log/2026-08-17-06-29-32-294602-d137359281ae-305827
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [localization_slam_toolbox_node-1]: process started with pid [305844]
+[localization_slam_toolbox_node-1] [INFO] [1786948172.517073109] [slam_toolbox]: Node using stack size 40000000
+[localization_slam_toolbox_node-1] [INFO] [1786948172.701068082] [slam_toolbox]: Configuring
+[localization_slam_toolbox_node-1] [INFO] [1786948172.707456629] [slam_toolbox]: Using solver plugin solver_plugins::CeresSolver
+[localization_slam_toolbox_node-1] [ERROR] [1786948172.724577057] [slam_toolbox]: serialization::Read: Failed to open requested file: /oomwoo/contributions/compute-benchmark/OsakaTX/scripts/../results/localize_anchor_map.
+[localization_slam_toolbox_node-1] [ERROR] [1786948172.724654858] [slam_toolbox]: DeserializePoseGraph: Failed to read file: /oomwoo/contributions/compute-benchmark/OsakaTX/scripts/../results/localize_anchor_map.
+[INFO] [launch.user]: [LifecycleLaunch] Slamtoolbox node is activating.
+[localization_slam_toolbox_node-1] [INFO] [1786948172.727977582] [slam_toolbox]: Activating
+[localization_slam_toolbox_node-1] Registering sensor: [Custom Described Lidar]

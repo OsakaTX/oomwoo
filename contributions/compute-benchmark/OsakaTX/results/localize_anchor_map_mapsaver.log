@@ -1,0 +1,16 @@
+[INFO] [1786948512.696963000] [map_saver]: 
+	map_saver lifecycle node launched. 
+	Waiting on external lifecycle transitions to activate
+	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[INFO] [1786948512.697601804] [map_saver]: Creating
+[INFO] [1786948512.697710905] [map_saver]: Configuring
+[INFO] [1786948512.701351129] [map_saver]: Saving map from 'map' topic to '/oomwoo/contributions/compute-benchmark/OsakaTX/scripts/../results/localize_anchor_map' file
+[WARN] [1786948512.701383730] [map_saver]: Free threshold unspecified. Setting it to default value: 0.250000
+[WARN] [1786948512.701393130] [map_saver]: Occupied threshold unspecified. Setting it to default value: 0.650000
+[WARN] [1786948513.202858610] [map_io]: Image format unspecified. Setting it to: pgm
+[INFO] [1786948513.202938211] [map_io]: Received a 201 X 201 map @ 0.05 m/pix
+[INFO] [1786948513.214648889] [map_io]: Writing map occupancy data to /oomwoo/contributions/compute-benchmark/OsakaTX/scripts/../results/localize_anchor_map.pgm
+[INFO] [1786948513.215290194] [map_io]: Writing map metadata to /oomwoo/contributions/compute-benchmark/OsakaTX/scripts/../results/localize_anchor_map.yaml
+[INFO] [1786948513.215361594] [map_io]: Map saved
+[INFO] [1786948513.215369494] [map_saver]: Map saved successfully
+[INFO] [1786948513.216092699] [map_saver]: Destroying

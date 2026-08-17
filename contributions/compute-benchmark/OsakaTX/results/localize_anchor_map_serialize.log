@@ -1,0 +1,6 @@
+waiting for service to become available...
+requester: making request: slam_toolbox.srv.SerializePoseGraph_Request(filename='/oomwoo/contributions/compute-benchmark/OsakaTX/scripts/../results/localize_anchor_map')
+
+response:
+slam_toolbox.srv.SerializePoseGraph_Response(result=0)
+

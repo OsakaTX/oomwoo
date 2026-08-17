@@ -217,3 +217,40 @@ controller/costmap/BT activity at its own rate, not scan ingestion. Lowering
 LiDAR rate is therefore a slam/mapping lever, NOT a Nav2-baseline lever; the
 measured deltas are small relative to the ~3 pp run-to-run 5 Hz band
 (46.7 / 44.5 / 43.6 % across 2026-08-06 / 08-08 / 08-15).
+
+## 11. slam_toolbox localization-only (navigation phase) memory is BOUNDED — 2026-08-17
+
+Files: `localize_anchor_map.posegraph/.data/.pgm/.yaml` (anchor pose graph,
+built by `scripts/build_and_save_map.sh`, 100 s mapping on the canonical 10 m
+scene, serialized via the `serialize_map` service = 14,425,123 B posegraph +
+7,370,261 B data); `slam_localize_5hz_120s_20260817T064440Z.csv` (Run B, cold
+start, no relocalization), `slam_localize_5hz_120s_20260817T065545Z.csv` (Run A,
+relocalize + verified), `slam_localize_repro_120s_20260817T070034Z.csv` (Run C,
+replication of A). Both A and C passed the localization-correctness gate
+(`scripts/check_localization_pose.py`: mean radial error 0.003 m / 0.002 m on
+the 1.5 m orbit); all runs 0 "Failed to compute odom pose" and 0 launch-log
+errors. This answers ADR-0007's open question #2 with measured data: does the
+navigation-only phase need unbounded loop-closure storage? NO. Details:
+`docs/adr-0010-*.md`; harness `scripts/run_slam_localize_bench.sh` +
+`periodic_relocalize.py` (rig) + `analyze_localize_csv.py`.
+
+| Run | Config | PSS mean MiB (min-max) | RSS mean MiB | PSS growth MiB/min (R^2) | CPU % | samples |
+|---|---|---|---|---|---|---:|
+| A (verified) | relocalize 2 s | 63.52 (62.61-63.69) | 78.26 | +1.47 (0.52) | 32.0 | 46 |
+| C (repro, verified) | relocalize 2 s | 63.52 (63.10-63.76) | 78.08 | +2.14 (0.95) | 53.0 | 36 |
+| B (cold start) | no relocalize | 64.57 (64.50-64.58) | 78.26 | +0.09 (0.28) | 93.6 | 45 |
+
+Headline (measured, dev-reference): localization-only slam_toolbox memory is
+BOUNDED — PSS flat in a 62.6-64.6 MiB band across three 120 s runs with drift
++0.09 .. +2.14 MiB/min (total first→last ≤ +1.1 MiB per window), vs mapping's
++5.3-8.05 MiB/min (ADR-0002/0007). The map-save + switch-to-localization
+bounding strategy from ADR-0007 analysis #4 is therefore MEASURED to work:
+navigation does not carry the unbounded pose-graph growth of mapping. Two
+honest caveats: (1) the localization floor is ~63-65 MiB PSS / ~78 MiB RSS
+because the whole ~20.8 MiB pose graph is resident — higher than mapping's
+~43 MiB fresh start but fixed; (2) slam_toolbox 2.8.5 localization is run-to-
+run sensitive in cold start on this symmetric noiseless scene (Run B drifted
+up to ~1.1 m at ~94 % CPU while memory stayed flat) and wants a periodic pose
+prior — the rig's periodic relocalization is the production analog of
+re-acquiring a rough pose from a dock/landmark, with which tracking locks to
+<1 cm.

@@ -1,0 +1,159 @@
+[INFO] [launch]: All log files can be found below /root/.ros/log/2026-08-17-06-55-48-241335-d137359281ae-349477
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [localization_slam_toolbox_node-1]: process started with pid [349509]
+[localization_slam_toolbox_node-1] [INFO] [1786949748.726929633] [slam_toolbox]: Node using stack size 40000000
+[localization_slam_toolbox_node-1] [INFO] [1786949748.913900622] [slam_toolbox]: Configuring
+[localization_slam_toolbox_node-1] [INFO] [1786949748.920214572] [slam_toolbox]: Using solver plugin solver_plugins::CeresSolver
+[localization_slam_toolbox_node-1] Load From File /oomwoo/contributions/compute-benchmark/OsakaTX/scripts/../results/localize_anchor_map.posegraph 
+[localization_slam_toolbox_node-1] Mapper <- Module
+[localization_slam_toolbox_node-1] Mapper <- m_pSequentialScanMatcher
+[localization_slam_toolbox_node-1] Mapper <- m_pGraph
+[localization_slam_toolbox_node-1] MapperGraph <- Graph; Graph <- m_Edges; Graph <- m_Vertices
+[localization_slam_toolbox_node-1] MapperGraph <- m_pMapper; MapperGraph <- m_pLoopScanMatcher; MapperGraph <- m_pTraversal
+[localization_slam_toolbox_node-1] Mapper <- m_pMapperSensorManager
+[localization_slam_toolbox_node-1] MapperSensorManager <- m_ScanManagers; MapperSensorManager <- m_Scans
+[localization_slam_toolbox_node-1] Mapper <- m_Listeners
+[localization_slam_toolbox_node-1] **Finished serializing Mapper**
+[localization_slam_toolbox_node-1] Load From File
+[localization_slam_toolbox_node-1] **Serializing Dataset**
+[localization_slam_toolbox_node-1] Dataset <- m_SensorNameLookup
+[localization_slam_toolbox_node-1] Dataset <- m_Data
+[localization_slam_toolbox_node-1] Dataset <- m_Lasers
+[localization_slam_toolbox_node-1] Dataset <- m_pDatasetInfo
+[localization_slam_toolbox_node-1] **Finished serializing Dataset**
+[localization_slam_toolbox_node-1] Registering sensor: [Custom Described Lidar]
+[localization_slam_toolbox_node-1] WARNING: Logging before InitGoogleLogging() is written to STDERR
+[localization_slam_toolbox_node-1] W20260817 06:55:49.008415 349509 preprocessor.cc:67] Specified options.num_threads: 50 exceeds maximum available from the threading model Ceres was compiled with: 8.  Bounding to maximum number available.
+[INFO] [launch.user]: [LifecycleLaunch] Slamtoolbox node is activating.
+[localization_slam_toolbox_node-1] [INFO] [1786949749.013655717] [slam_toolbox]: Activating
+[localization_slam_toolbox_node-1] Registering sensor: [Custom Described Lidar]
+[localization_slam_toolbox_node-1] [INFO] [1786949750.235565245] [slam_toolbox]: LocalizePoseCallback: Localizing to: (1.22 0.87), theta=-2.86
+[localization_slam_toolbox_node-1] W20260817 06:55:50.316468 349509 preprocessor.cc:67] Specified options.num_threads: 50 exceeds maximum available from the threading model Ceres was compiled with: 8.  Bounding to maximum number available.
+[localization_slam_toolbox_node-1] [INFO] [1786949752.235633860] [slam_toolbox]: LocalizePoseCallback: Localizing to: (0.89 1.21), theta=-1.91
+[localization_slam_toolbox_node-1] W20260817 06:55:52.343328 349509 preprocessor.cc:67] Specified options.num_threads: 50 exceeds maximum available from the threading model Ceres was compiled with: 8.  Bounding to maximum number available.
+[localization_slam_toolbox_node-1] [INFO] [1786949754.235607760] [slam_toolbox]: LocalizePoseCallback: Localizing to: (0.48 1.42), theta=-0.97
+[localization_slam_toolbox_node-1] W20260817 06:55:54.312868 349509 preprocessor.cc:67] Specified options.num_threads: 50 exceeds maximum available from the threading model Ceres was compiled with: 8.  Bounding to maximum number available.
+[localization_slam_toolbox_node-1] [INFO] [1786949756.237066258] [slam_toolbox]: LocalizePoseCallback: Localizing to: (0.01 1.50), theta=-0.03
+[localization_slam_toolbox_node-1] W20260817 06:55:56.319527 349509 preprocessor.cc:67] Specified options.num_threads: 50 exceeds maximum available from the threading model Ceres was compiled with: 8.  Bounding to maximum number available.
+[localization_slam_toolbox_node-1] [INFO] [1786949758.236948131] [slam_toolbox]: LocalizePoseCallback: Localizing to: (-0.45 1.43), theta=0.91
+[localization_slam_toolbox_node-1] W20260817 06:55:58.317757 349509 preprocessor.cc:67] Specified options.num_threads: 50 exceeds maximum available from the threading model Ceres was compiled with: 8.  Bounding to maximum number available.
+[localization_slam_toolbox_node-1] [INFO] [1786949760.235692782] [slam_toolbox]: LocalizePoseCallback: Localizing to: (-0.87 1.22), theta=1.86
+[localization_slam_toolbox_node-1] W20260817 06:56:00.317588 349509 preprocessor.cc:67] Specified options.num_threads: 50 exceeds maximum available from the threading model Ceres was compiled with: 8.  Bounding to maximum number available.
+[localization_slam_toolbox_node-1] [INFO] [1786949762.235807331] [slam_toolbox]: LocalizePoseCallback: Localizing to: (-1.21 0.89), theta=2.80
+[localization_slam_toolbox_node-1] W20260817 06:56:02.327849 349509 preprocessor.cc:67] Specified options.num_threads: 50 exceeds maximum available from the threading model Ceres was compiled with: 8.  Bounding to maximum number available.
+[localization_slam_toolbox_node-1] [INFO] [1786949764.236444071] [slam_toolbox]: LocalizePoseCallback: Localizing to: (-1.42 0.48), theta=-2.54
+[localization_slam_toolbox_node-1] W20260817 06:56:04.332312 349509 preprocessor.cc:67] Specified options.num_threads: 50 exceeds maximum available from the threading model Ceres was compiled with: 8.  Bounding to maximum number available.
+[localization_slam_toolbox_node-1] [INFO] [1786949766.235795788] [slam_toolbox]: LocalizePoseCallback: Localizing to: (-1.50 0.01), theta=-1.60
+[localization_slam_toolbox_node-1] W20260817 06:56:06.319406 349509 preprocessor.cc:67] Specified options.num_threads: 50 exceeds maximum available from the threading model Ceres was compiled with: 8.  Bounding to maximum number available.
+[localization_slam_toolbox_node-1] [INFO] [1786949768.235760996] [slam_toolbox]: LocalizePoseCallback: Localizing to: (-1.43 -0.45), theta=-0.66
+[localization_slam_toolbox_node-1] W20260817 06:56:08.317705 349509 preprocessor.cc:67] Specified options.num_threads: 50 exceeds maximum available from the threading model Ceres was compiled with: 8.  Bounding to maximum number available.
+[localization_slam_toolbox_node-1] [INFO] [1786949770.236205596] [slam_toolbox]: LocalizePoseCallback: Localizing to: (-1.22 -0.87), theta=0.28
+[localization_slam_toolbox_node-1] W20260817 06:56:10.338713 349509 preprocessor.cc:67] Specified options.num_threads: 50 exceeds maximum available from the threading model Ceres was compiled with: 8.  Bounding to maximum number available.
+[localization_slam_toolbox_node-1] [INFO] [1786949772.235702576] [slam_toolbox]: LocalizePoseCallback: Localizing to: (-0.89 -1.21), theta=1.23
+[localization_slam_toolbox_node-1] W20260817 06:56:12.337146 349509 preprocessor.cc:67] Specified options.num_threads: 50 exceeds maximum available from the threading model Ceres was compiled with: 8.  Bounding to maximum number available.
+[localization_slam_toolbox_node-1] [INFO] [1786949774.235719146] [slam_toolbox]: LocalizePoseCallback: Localizing to: (-0.48 -1.42), theta=2.17
+[localization_slam_toolbox_node-1] W20260817 06:56:14.317976 349509 preprocessor.cc:67] Specified options.num_threads: 50 exceeds maximum available from the threading model Ceres was compiled with: 8.  Bounding to maximum number available.
+[localization_slam_toolbox_node-1] [INFO] [1786949776.236013907] [slam_toolbox]: LocalizePoseCallback: Localizing to: (-0.01 -1.50), theta=3.11
+[localization_slam_toolbox_node-1] W20260817 06:56:16.320057 349509 preprocessor.cc:67] Specified options.num_threads: 50 exceeds maximum available from the threading model Ceres was compiled with: 8.  Bounding to maximum number available.
+[localization_slam_toolbox_node-1] [INFO] [1786949778.235790450] [slam_toolbox]: LocalizePoseCallback: Localizing to: (0.45 -1.43), theta=-2.23
+[localization_slam_toolbox_node-1] W20260817 06:56:18.315259 349509 preprocessor.cc:67] Specified options.num_threads: 50 exceeds maximum available from the threading model Ceres was compiled with: 8.  Bounding to maximum number available.
+[localization_slam_toolbox_node-1] [INFO] [1786949780.235688482] [slam_toolbox]: LocalizePoseCallback: Localizing to: (0.87 -1.22), theta=-1.28
+[localization_slam_toolbox_node-1] W20260817 06:56:20.313998 349509 preprocessor.cc:67] Specified options.num_threads: 50 exceeds maximum available from the threading model Ceres was compiled with: 8.  Bounding to maximum number available.
+[localization_slam_toolbox_node-1] [INFO] [1786949782.235776503] [slam_toolbox]: LocalizePoseCallback: Localizing to: (1.21 -0.89), theta=-0.34
+[localization_slam_toolbox_node-1] W20260817 06:56:22.340405 349509 preprocessor.cc:67] Specified options.num_threads: 50 exceeds maximum available from the threading model Ceres was compiled with: 8.  Bounding to maximum number available.
+[localization_slam_toolbox_node-1] [INFO] [1786949784.235705910] [slam_toolbox]: LocalizePoseCallback: Localizing to: (1.42 -0.48), theta=0.60
+[localization_slam_toolbox_node-1] W20260817 06:56:24.316886 349509 preprocessor.cc:67] Specified options.num_threads: 50 exceeds maximum available from the threading model Ceres was compiled with: 8.  Bounding to maximum number available.
+[localization_slam_toolbox_node-1] [INFO] [1786949786.235727906] [slam_toolbox]: LocalizePoseCallback: Localizing to: (1.50 -0.01), theta=1.54
+[localization_slam_toolbox_node-1] W20260817 06:56:26.324220 349509 preprocessor.cc:67] Specified options.num_threads: 50 exceeds maximum available from the threading model Ceres was compiled with: 8.  Bounding to maximum number available.
+[localization_slam_toolbox_node-1] [INFO] [1786949788.235753089] [slam_toolbox]: LocalizePoseCallback: Localizing to: (1.43 0.45), theta=2.48
+[localization_slam_toolbox_node-1] W20260817 06:56:28.317863 349509 preprocessor.cc:67] Specified options.num_threads: 50 exceeds maximum available from the threading model Ceres was compiled with: 8.  Bounding to maximum number available.
+[localization_slam_toolbox_node-1] [INFO] [1786949790.236180562] [slam_toolbox]: LocalizePoseCallback: Localizing to: (1.22 0.87), theta=-2.86
+[localization_slam_toolbox_node-1] W20260817 06:56:30.341203 349509 preprocessor.cc:67] Specified options.num_threads: 50 exceeds maximum available from the threading model Ceres was compiled with: 8.  Bounding to maximum number available.
+[localization_slam_toolbox_node-1] [INFO] [1786949792.236008219] [slam_toolbox]: LocalizePoseCallback: Localizing to: (0.89 1.21), theta=-1.91
+[localization_slam_toolbox_node-1] W20260817 06:56:32.333316 349509 preprocessor.cc:67] Specified options.num_threads: 50 exceeds maximum available from the threading model Ceres was compiled with: 8.  Bounding to maximum number available.
+[localization_slam_toolbox_node-1] [INFO] [1786949794.235822064] [slam_toolbox]: LocalizePoseCallback: Localizing to: (0.48 1.42), theta=-0.97
+[localization_slam_toolbox_node-1] W20260817 06:56:34.317217 349509 preprocessor.cc:67] Specified options.num_threads: 50 exceeds maximum available from the threading model Ceres was compiled with: 8.  Bounding to maximum number available.
+[localization_slam_toolbox_node-1] [INFO] [1786949796.236491803] [slam_toolbox]: LocalizePoseCallback: Localizing to: (0.01 1.50), theta=-0.03
+[localization_slam_toolbox_node-1] W20260817 06:56:36.331663 349509 preprocessor.cc:67] Specified options.num_threads: 50 exceeds maximum available from the threading model Ceres was compiled with: 8.  Bounding to maximum number available.
+[localization_slam_toolbox_node-1] [INFO] [1786949798.235878920] [slam_toolbox]: LocalizePoseCallback: Localizing to: (-0.45 1.43), theta=0.91
+[localization_slam_toolbox_node-1] W20260817 06:56:38.317538 349509 preprocessor.cc:67] Specified options.num_threads: 50 exceeds maximum available from the threading model Ceres was compiled with: 8.  Bounding to maximum number available.
+[localization_slam_toolbox_node-1] [INFO] [1786949800.235886229] [slam_toolbox]: LocalizePoseCallback: Localizing to: (-0.87 1.22), theta=1.86
+[localization_slam_toolbox_node-1] W20260817 06:56:40.320395 349509 preprocessor.cc:67] Specified options.num_threads: 50 exceeds maximum available from the threading model Ceres was compiled with: 8.  Bounding to maximum number available.
+[localization_slam_toolbox_node-1] [INFO] [1786949802.236070328] [slam_toolbox]: LocalizePoseCallback: Localizing to: (-1.21 0.89), theta=2.80
+[localization_slam_toolbox_node-1] W20260817 06:56:42.339251 349509 preprocessor.cc:67] Specified options.num_threads: 50 exceeds maximum available from the threading model Ceres was compiled with: 8.  Bounding to maximum number available.
+[localization_slam_toolbox_node-1] [INFO] [1786949804.235759311] [slam_toolbox]: LocalizePoseCallback: Localizing to: (-1.42 0.48), theta=-2.54
+[localization_slam_toolbox_node-1] W20260817 06:56:44.313643 349509 preprocessor.cc:67] Specified options.num_threads: 50 exceeds maximum available from the threading model Ceres was compiled with: 8.  Bounding to maximum number available.
+[localization_slam_toolbox_node-1] [INFO] [1786949806.235548983] [slam_toolbox]: LocalizePoseCallback: Localizing to: (-1.50 0.01), theta=-1.60
+[localization_slam_toolbox_node-1] W20260817 06:56:46.311214 349509 preprocessor.cc:67] Specified options.num_threads: 50 exceeds maximum available from the threading model Ceres was compiled with: 8.  Bounding to maximum number available.
+[localization_slam_toolbox_node-1] [INFO] [1786949808.235712446] [slam_toolbox]: LocalizePoseCallback: Localizing to: (-1.43 -0.45), theta=-0.66
+[localization_slam_toolbox_node-1] W20260817 06:56:48.317489 349509 preprocessor.cc:67] Specified options.num_threads: 50 exceeds maximum available from the threading model Ceres was compiled with: 8.  Bounding to maximum number available.
+[localization_slam_toolbox_node-1] [INFO] [1786949810.235827696] [slam_toolbox]: LocalizePoseCallback: Localizing to: (-1.22 -0.87), theta=0.29
+[localization_slam_toolbox_node-1] W20260817 06:56:50.319767 349509 preprocessor.cc:67] Specified options.num_threads: 50 exceeds maximum available from the threading model Ceres was compiled with: 8.  Bounding to maximum number available.
+[localization_slam_toolbox_node-1] [INFO] [1786949812.236105136] [slam_toolbox]: LocalizePoseCallback: Localizing to: (-0.89 -1.21), theta=1.23
+[localization_slam_toolbox_node-1] W20260817 06:56:52.339088 349509 preprocessor.cc:67] Specified options.num_threads: 50 exceeds maximum available from the threading model Ceres was compiled with: 8.  Bounding to maximum number available.
+[localization_slam_toolbox_node-1] [INFO] [1786949814.235870261] [slam_toolbox]: LocalizePoseCallback: Localizing to: (-0.48 -1.42), theta=2.17
+[localization_slam_toolbox_node-1] W20260817 06:56:54.325994 349509 preprocessor.cc:67] Specified options.num_threads: 50 exceeds maximum available from the threading model Ceres was compiled with: 8.  Bounding to maximum number available.
+[localization_slam_toolbox_node-1] [INFO] [1786949816.236181177] [slam_toolbox]: LocalizePoseCallback: Localizing to: (-0.01 -1.50), theta=3.11
+[localization_slam_toolbox_node-1] W20260817 06:56:56.336488 349509 preprocessor.cc:67] Specified options.num_threads: 50 exceeds maximum available from the threading model Ceres was compiled with: 8.  Bounding to maximum number available.
+[localization_slam_toolbox_node-1] [INFO] [1786949818.235821077] [slam_toolbox]: LocalizePoseCallback: Localizing to: (0.45 -1.43), theta=-2.23
+[localization_slam_toolbox_node-1] W20260817 06:56:58.312727 349509 preprocessor.cc:67] Specified options.num_threads: 50 exceeds maximum available from the threading model Ceres was compiled with: 8.  Bounding to maximum number available.
+[localization_slam_toolbox_node-1] [INFO] [1786949820.235835468] [slam_toolbox]: LocalizePoseCallback: Localizing to: (0.87 -1.22), theta=-1.28
+[localization_slam_toolbox_node-1] W20260817 06:57:00.320312 349509 preprocessor.cc:67] Specified options.num_threads: 50 exceeds maximum available from the threading model Ceres was compiled with: 8.  Bounding to maximum number available.
+[localization_slam_toolbox_node-1] [INFO] [1786949822.239147773] [slam_toolbox]: LocalizePoseCallback: Localizing to: (1.21 -0.89), theta=-0.34
+[localization_slam_toolbox_node-1] W20260817 06:57:02.341933 349509 preprocessor.cc:67] Specified options.num_threads: 50 exceeds maximum available from the threading model Ceres was compiled with: 8.  Bounding to maximum number available.
+[localization_slam_toolbox_node-1] [INFO] [1786949824.236138318] [slam_toolbox]: LocalizePoseCallback: Localizing to: (1.42 -0.48), theta=0.60
+[localization_slam_toolbox_node-1] W20260817 06:57:04.318655 349509 preprocessor.cc:67] Specified options.num_threads: 50 exceeds maximum available from the threading model Ceres was compiled with: 8.  Bounding to maximum number available.
+[localization_slam_toolbox_node-1] [INFO] [1786949826.235739571] [slam_toolbox]: LocalizePoseCallback: Localizing to: (1.50 -0.01), theta=1.54
+[localization_slam_toolbox_node-1] W20260817 06:57:06.319389 349509 preprocessor.cc:67] Specified options.num_threads: 50 exceeds maximum available from the threading model Ceres was compiled with: 8.  Bounding to maximum number available.
+[localization_slam_toolbox_node-1] [INFO] [1786949828.237055826] [slam_toolbox]: LocalizePoseCallback: Localizing to: (1.43 0.45), theta=2.48
+[localization_slam_toolbox_node-1] W20260817 06:57:08.325161 349509 preprocessor.cc:67] Specified options.num_threads: 50 exceeds maximum available from the threading model Ceres was compiled with: 8.  Bounding to maximum number available.
+[localization_slam_toolbox_node-1] [INFO] [1786949830.235811050] [slam_toolbox]: LocalizePoseCallback: Localizing to: (1.22 0.87), theta=-2.86
+[localization_slam_toolbox_node-1] W20260817 06:57:10.314544 349509 preprocessor.cc:67] Specified options.num_threads: 50 exceeds maximum available from the threading model Ceres was compiled with: 8.  Bounding to maximum number available.
+[localization_slam_toolbox_node-1] [INFO] [1786949832.235784972] [slam_toolbox]: LocalizePoseCallback: Localizing to: (0.89 1.21), theta=-1.91
+[localization_slam_toolbox_node-1] W20260817 06:57:12.334872 349509 preprocessor.cc:67] Specified options.num_threads: 50 exceeds maximum available from the threading model Ceres was compiled with: 8.  Bounding to maximum number available.
+[localization_slam_toolbox_node-1] [INFO] [1786949834.237272894] [slam_toolbox]: LocalizePoseCallback: Localizing to: (0.48 1.42), theta=-0.97
+[localization_slam_toolbox_node-1] W20260817 06:57:14.317950 349509 preprocessor.cc:67] Specified options.num_threads: 50 exceeds maximum available from the threading model Ceres was compiled with: 8.  Bounding to maximum number available.
+[localization_slam_toolbox_node-1] [INFO] [1786949836.237437395] [slam_toolbox]: LocalizePoseCallback: Localizing to: (0.01 1.50), theta=-0.03
+[localization_slam_toolbox_node-1] W20260817 06:57:16.318111 349509 preprocessor.cc:67] Specified options.num_threads: 50 exceeds maximum available from the threading model Ceres was compiled with: 8.  Bounding to maximum number available.
+[localization_slam_toolbox_node-1] [INFO] [1786949838.235773670] [slam_toolbox]: LocalizePoseCallback: Localizing to: (-0.45 1.43), theta=0.91
+[localization_slam_toolbox_node-1] W20260817 06:57:18.323390 349509 preprocessor.cc:67] Specified options.num_threads: 50 exceeds maximum available from the threading model Ceres was compiled with: 8.  Bounding to maximum number available.
+[localization_slam_toolbox_node-1] [INFO] [1786949840.235743847] [slam_toolbox]: LocalizePoseCallback: Localizing to: (-0.87 1.22), theta=1.86
+[localization_slam_toolbox_node-1] W20260817 06:57:20.319367 349509 preprocessor.cc:67] Specified options.num_threads: 50 exceeds maximum available from the threading model Ceres was compiled with: 8.  Bounding to maximum number available.
+[localization_slam_toolbox_node-1] [INFO] [1786949842.236306917] [slam_toolbox]: LocalizePoseCallback: Localizing to: (-1.21 0.89), theta=2.80
+[localization_slam_toolbox_node-1] W20260817 06:57:22.336861 349509 preprocessor.cc:67] Specified options.num_threads: 50 exceeds maximum available from the threading model Ceres was compiled with: 8.  Bounding to maximum number available.
+[localization_slam_toolbox_node-1] [INFO] [1786949844.236043170] [slam_toolbox]: LocalizePoseCallback: Localizing to: (-1.42 0.48), theta=-2.54
+[localization_slam_toolbox_node-1] W20260817 06:57:24.316138 349509 preprocessor.cc:67] Specified options.num_threads: 50 exceeds maximum available from the threading model Ceres was compiled with: 8.  Bounding to maximum number available.
+[localization_slam_toolbox_node-1] [INFO] [1786949846.235778211] [slam_toolbox]: LocalizePoseCallback: Localizing to: (-1.50 0.01), theta=-1.60
+[localization_slam_toolbox_node-1] W20260817 06:57:26.313129 349509 preprocessor.cc:67] Specified options.num_threads: 50 exceeds maximum available from the threading model Ceres was compiled with: 8.  Bounding to maximum number available.
+[localization_slam_toolbox_node-1] [INFO] [1786949848.235818844] [slam_toolbox]: LocalizePoseCallback: Localizing to: (-1.43 -0.45), theta=-0.66
+[localization_slam_toolbox_node-1] W20260817 06:57:28.338269 349509 preprocessor.cc:67] Specified options.num_threads: 50 exceeds maximum available from the threading model Ceres was compiled with: 8.  Bounding to maximum number available.
+[localization_slam_toolbox_node-1] [INFO] [1786949850.236214669] [slam_toolbox]: LocalizePoseCallback: Localizing to: (-1.22 -0.87), theta=0.29
+[localization_slam_toolbox_node-1] W20260817 06:57:30.319087 349509 preprocessor.cc:67] Specified options.num_threads: 50 exceeds maximum available from the threading model Ceres was compiled with: 8.  Bounding to maximum number available.
+[localization_slam_toolbox_node-1] [INFO] [1786949852.235803677] [slam_toolbox]: LocalizePoseCallback: Localizing to: (-0.89 -1.21), theta=1.23
+[localization_slam_toolbox_node-1] W20260817 06:57:32.344475 349509 preprocessor.cc:67] Specified options.num_threads: 50 exceeds maximum available from the threading model Ceres was compiled with: 8.  Bounding to maximum number available.
+[localization_slam_toolbox_node-1] [INFO] [1786949854.236283980] [slam_toolbox]: LocalizePoseCallback: Localizing to: (-0.48 -1.42), theta=2.17
+[localization_slam_toolbox_node-1] W20260817 06:57:34.325706 349509 preprocessor.cc:67] Specified options.num_threads: 50 exceeds maximum available from the threading model Ceres was compiled with: 8.  Bounding to maximum number available.
+[localization_slam_toolbox_node-1] [INFO] [1786949856.235666465] [slam_toolbox]: LocalizePoseCallback: Localizing to: (-0.01 -1.50), theta=3.11
+[localization_slam_toolbox_node-1] W20260817 06:57:36.314478 349509 preprocessor.cc:67] Specified options.num_threads: 50 exceeds maximum available from the threading model Ceres was compiled with: 8.  Bounding to maximum number available.
+[localization_slam_toolbox_node-1] [INFO] [1786949858.235602442] [slam_toolbox]: LocalizePoseCallback: Localizing to: (0.45 -1.43), theta=-2.23
+[localization_slam_toolbox_node-1] W20260817 06:57:38.315399 349509 preprocessor.cc:67] Specified options.num_threads: 50 exceeds maximum available from the threading model Ceres was compiled with: 8.  Bounding to maximum number available.
+[localization_slam_toolbox_node-1] [INFO] [1786949860.236012613] [slam_toolbox]: LocalizePoseCallback: Localizing to: (0.87 -1.22), theta=-1.28
+[localization_slam_toolbox_node-1] W20260817 06:57:40.321352 349509 preprocessor.cc:67] Specified options.num_threads: 50 exceeds maximum available from the threading model Ceres was compiled with: 8.  Bounding to maximum number available.
+[localization_slam_toolbox_node-1] [INFO] [1786949862.235775668] [slam_toolbox]: LocalizePoseCallback: Localizing to: (1.21 -0.89), theta=-0.34
+[localization_slam_toolbox_node-1] W20260817 06:57:42.344276 349509 preprocessor.cc:67] Specified options.num_threads: 50 exceeds maximum available from the threading model Ceres was compiled with: 8.  Bounding to maximum number available.
+[localization_slam_toolbox_node-1] [INFO] [1786949864.235780614] [slam_toolbox]: LocalizePoseCallback: Localizing to: (1.42 -0.48), theta=0.60
+[localization_slam_toolbox_node-1] W20260817 06:57:44.323446 349509 preprocessor.cc:67] Specified options.num_threads: 50 exceeds maximum available from the threading model Ceres was compiled with: 8.  Bounding to maximum number available.
+[localization_slam_toolbox_node-1] [INFO] [1786949866.235793549] [slam_toolbox]: LocalizePoseCallback: Localizing to: (1.50 -0.01), theta=1.54
+[localization_slam_toolbox_node-1] W20260817 06:57:46.316886 349509 preprocessor.cc:67] Specified options.num_threads: 50 exceeds maximum available from the threading model Ceres was compiled with: 8.  Bounding to maximum number available.
+[localization_slam_toolbox_node-1] [INFO] [1786949868.235741974] [slam_toolbox]: LocalizePoseCallback: Localizing to: (1.43 0.45), theta=2.48
+[localization_slam_toolbox_node-1] W20260817 06:57:48.311932 349509 preprocessor.cc:67] Specified options.num_threads: 50 exceeds maximum available from the threading model Ceres was compiled with: 8.  Bounding to maximum number available.
+[localization_slam_toolbox_node-1] [INFO] [1786949870.235660287] [slam_toolbox]: LocalizePoseCallback: Localizing to: (1.22 0.87), theta=-2.86
+[localization_slam_toolbox_node-1] W20260817 06:57:50.312413 349509 preprocessor.cc:67] Specified options.num_threads: 50 exceeds maximum available from the threading model Ceres was compiled with: 8.  Bounding to maximum number available.
+[localization_slam_toolbox_node-1] [INFO] [1786949872.235841492] [slam_toolbox]: LocalizePoseCallback: Localizing to: (0.89 1.21), theta=-1.91
+[localization_slam_toolbox_node-1] W20260817 06:57:52.329079 349509 preprocessor.cc:67] Specified options.num_threads: 50 exceeds maximum available from the threading model Ceres was compiled with: 8.  Bounding to maximum number available.
+[localization_slam_toolbox_node-1] [INFO] [1786949874.237730000] [slam_toolbox]: LocalizePoseCallback: Localizing to: (0.48 1.42), theta=-0.97
+[localization_slam_toolbox_node-1] W20260817 06:57:54.333233 349509 preprocessor.cc:67] Specified options.num_threads: 50 exceeds maximum available from the threading model Ceres was compiled with: 8.  Bounding to maximum number available.
+[localization_slam_toolbox_node-1] [INFO] [1786949876.235821068] [slam_toolbox]: LocalizePoseCallback: Localizing to: (0.01 1.50), theta=-0.03
+[localization_slam_toolbox_node-1] W20260817 06:57:56.319276 349509 preprocessor.cc:67] Specified options.num_threads: 50 exceeds maximum available from the threading model Ceres was compiled with: 8.  Bounding to maximum number available.
+[localization_slam_toolbox_node-1] [INFO] [1786949878.236051142] [slam_toolbox]: LocalizePoseCallback: Localizing to: (-0.45 1.43), theta=0.91
+[localization_slam_toolbox_node-1] W20260817 06:57:58.317685 349509 preprocessor.cc:67] Specified options.num_threads: 50 exceeds maximum available from the threading model Ceres was compiled with: 8.  Bounding to maximum number available.
