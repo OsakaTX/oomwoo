@@ -55,7 +55,7 @@ Open Source Deliverables:
 - [x] 3D-scanned [sourced parts](https://github.com/makerspet/oomwoo-one-cad/tree/main/lib)
 - [ ] 3D-printable [files](https://github.com/makerspet/oomwoo-one-cad)
 - [ ] Raspberry Pi [software](https://github.com/makerspet/oomwoo-install)
-- [ ] Motor drivers, sensors [I/O PCB](https://github.com/makerspet/oomwoo-io-board)
+- [ ] Motor drivers, sensors [PCB boards](https://github.com/makerspet/oomwoo-pcb)
 - [ ] I/O PCB [firmware](https://github.com/makerspet/oomwoo-io-firmware)
 - [ ] Build, setup, bringup and troubleshooting [instructions](docs/BUILD_INSTRUCTIONS.md)
 - [ ] Demo video(s)
@@ -170,10 +170,8 @@ license (TBD).
 
 <!-- Self-hosted star history (auto-refreshed by .github/workflows/star-history.yml).
      No third-party embed / sealed token to expire. -->
-<a href="https://star-history.com/#makerspet/oomwoo&Date">
- <picture>
-   <source media="(prefers-color-scheme: dark)" srcset=".github/assets/star-history-dark.svg" />
-   <source media="(prefers-color-scheme: light)" srcset=".github/assets/star-history-light.svg" />
-   <img alt="OOMWOO star history" src=".github/assets/star-history-light.svg" width="820" />
- </picture>
-</a>
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset=".github/assets/star-history-dark.svg" />
+  <source media="(prefers-color-scheme: light)" srcset=".github/assets/star-history-light.svg" />
+  <img alt="OOMWOO star history" src=".github/assets/star-history-light.svg" width="820" />
+</picture>
