@@ -4,13 +4,18 @@
 analyze_slam_trend.py - growth/trend analysis for a slam_toolbox bench CSV.
 
 Usage:
-  python3 analyze_slam_trend.py results/<slam_bench_csv>
+  python3 analyze_slam_trend.py results/<slam_bench_csv> [--node <comm-substr>]
 
-For every async_slam_toolbox row it reports RSS/PSS min-mean-max plus a
+For every matching process row it reports RSS/PSS min-mean-max plus a
 least-squares linear trend of PSS (and RSS) vs. the sampler's sample_index,
 converted to MiB per minute. This is the honest way to talk about
 "pose-graph / memory growth" on a long-horizon mapping: a slope and the
 first/last sample values, not just a mean.
+
+--node selects which rows to analyze by matching a substring against the
+process comm field (which /proc truncates to 15 chars). Default
+'async_slam_tool' preserves prior behavior for async mapping CSVs; pass
+'lifelong_slam_t' for lifelong mapping runs.
 
 Pure stdlib (no numpy); matches analyze_csv.py's field names.
 """
@@ -40,10 +45,14 @@ def main():
         print(__doc__)
         return 1
     path = sys.argv[1]
+    node = 'async_slam_tool'
+    args = sys.argv[2:]
+    if args and args[0] == '--node':
+        node = args[1]
     rows = list(csv.DictReader(open(path)))
-    slam = [r for r in rows if 'async_slam_tool' in r['comm'] and r['pid']]
+    slam = [r for r in rows if node in r['comm'] and r['pid']]
     if not slam:
-        print('no async_slam_toolbox rows found in %s' % path)
+        print('no rows matching comm substring %r found in %s' % (node, path))
         return 1
 
     def mb(k):

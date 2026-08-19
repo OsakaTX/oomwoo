@@ -1,0 +1,7 @@
+image: slam_lifelong_5hz_480s_map.pgm
+mode: trinary
+resolution: 0.050
+origin: [-7.614, -7.666, 0]
+negate: 0
+occupied_thresh: 0.65
+free_thresh: 0.196

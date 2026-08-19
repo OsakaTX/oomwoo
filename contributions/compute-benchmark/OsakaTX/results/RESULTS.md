@@ -254,3 +254,38 @@ up to ~1.1 m at ~94 % CPU while memory stayed flat) and wants a periodic pose
 prior — the rig's periodic relocalization is the production analog of
 re-acquiring a rough pose from a dock/landmark, with which tracking locks to
 <1 cm.
+
+## 12. Experimental lifelong mapping: bounds the mapping-phase memory growth (~16x) at ~2.6x CPU — 2026-08-19
+
+Files: `slam_lifelong_5hz_480s_20260819T085559Z.csv` (raw sampler, 195 samples
+@ 2 s, single pid), `slam_lifelong_5hz_480s_slam_launch.log` (18,106 lines),
+`slam_lifelong_5hz_480s_map.pgm/.yaml` (306 x 309 @ 0.05 m, 2868 occupied
+cells, map_check PASS) — all from `scripts/run_slam_lifelong_bench.sh
+--label slam_lifelong_5hz_480s --duration 480 --room-half 7.5` on the SAME
+canonical 15 m house scene @ 5 Hz used by section 8 (ADR-0007). The ONLY
+difference vs the async mapping runs is the processor: experimental
+`lifelong_slam_toolbox_node` (slam_toolbox 2.8.5) with stock lifelong scoring
+params; every other mapped parameter is bit-identical. Details:
+`docs/adr-0011-*.md`; harness `scripts/lifelong_launch.py`,
+`scripts/lifelong_slam_params.yaml`.
+
+| metric | async (section 8, re-derived) | lifelong (this run) |
+|---|---:|---:|
+| PSS mean (min-max) MiB | 70.1 (42.8-98.0) | 50.6 (47.0-51.8) |
+| RSS mean (min-max) MiB | 82.2 (54.9-110.2) | 64.2 (60.6-65.4) |
+| PSS growth MiB/min (R^2) | +8.050 (0.9995) | +0.493 |
+| PSS first->last MiB | 42.8 -> 98.0 (+55.2) | 47.0 -> 51.8 (+4.8) |
+| CPU mean (min-max) % | 22.1 (13.6-29.6) | 58.2 (29.3-64.6) |
+
+Headline (measured, dev-reference): the experimental lifelong processor is the
+first measured lever that flattens the previously-unbounded mapping-phase slam
+memory term — total in-window PSS growth ~11.5x lower and slope ~16x lower than
+async, with a visible plateau (last 80 samples +~0.2-0.4 MiB/40 s). Mechanism
+confirmed at the branch level from the 2.8.5 source + 6,246 depreciation
+evaluations in the log (all scores <= 0.0 < removal threshold 0.04): nodes are
+automatically removed, freeing graph+scan+dataset memory. The price is CPU:
+~2.6x async (58.2% vs 22.1% mean). Two honest caveats: the noiseless synthetic
+scene is a BEST case for removal (real noisy LiDAR lowers IOU and the removal
+rate on real data is UNKNOWN), and the slope bounds RE-EXPLORED area — genuinely
+new exploration still accumulates nodes. Open: repeatability, rate sweep,
+noise sensitivity, and the Pi-class re-run that gates every ADR in this module.
