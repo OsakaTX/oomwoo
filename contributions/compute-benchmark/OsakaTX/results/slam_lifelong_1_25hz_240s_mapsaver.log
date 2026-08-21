@@ -1,0 +1,16 @@
+[INFO] [1787309690.819971604] [map_saver]: 
+	map_saver lifecycle node launched. 
+	Waiting on external lifecycle transitions to activate
+	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[INFO] [1787309690.820079704] [map_saver]: Creating
+[INFO] [1787309690.820135405] [map_saver]: Configuring
+[INFO] [1787309690.823341822] [map_saver]: Saving map from 'map' topic to '/oomwoo/contributions/compute-benchmark/OsakaTX/scripts/../results/slam_lifelong_1_25hz_240s_map' file
+[WARN] [1787309690.823367922] [map_saver]: Free threshold unspecified. Setting it to default value: 0.250000
+[WARN] [1787309690.823382422] [map_saver]: Occupied threshold unspecified. Setting it to default value: 0.650000
+[WARN] [1787309690.999546175] [map_io]: Image format unspecified. Setting it to: pgm
+[INFO] [1787309690.999617675] [map_io]: Received a 301 X 301 map @ 0.05 m/pix
+[INFO] [1787309691.020021186] [map_io]: Writing map occupancy data to /oomwoo/contributions/compute-benchmark/OsakaTX/scripts/../results/slam_lifelong_1_25hz_240s_map.pgm
+[INFO] [1787309691.020713290] [map_io]: Writing map metadata to /oomwoo/contributions/compute-benchmark/OsakaTX/scripts/../results/slam_lifelong_1_25hz_240s_map.yaml
+[INFO] [1787309691.020870990] [map_io]: Map saved
+[INFO] [1787309691.020878790] [map_saver]: Map saved successfully
+[INFO] [1787309691.021566594] [map_saver]: Destroying

@@ -289,3 +289,47 @@ scene is a BEST case for removal (real noisy LiDAR lowers IOU and the removal
 rate on real data is UNKNOWN), and the slope bounds RE-EXPLORED area — genuinely
 new exploration still accumulates nodes. Open: repeatability, rate sweep,
 noise sensitivity, and the Pi-class re-run that gates every ADR in this module.
+
+## 13. lifelong processor: reproducibility at 5 Hz + rate sensitivity (5/2.5/1.25 Hz) + async negative control — 2026-08-21
+
+Files (all raw, committed under `results/`):
+`slam_lifelong_5hz_480s_rep_20260821T105543Z.csv` (R1, 193 samples),
+`slam_lifelong_2_5hz_300s_20260821T104542Z.csv` (R2, 121 samples),
+`slam_lifelong_1_25hz_240s_20260821T105047Z.csv` (R3, 96 samples),
+`slam_async_15m_2_5hz_300s_ctl_20260821T110632Z.csv` (async negative
+control, 121 samples), each + `_slam_launch.log` + `_map.pgm/.yaml`. Same
+canonical 15 m house scene, same `lifelong_slam_params.yaml`, same xbattlax
+sampler, `scripts/run_slam_lifelong_bench.sh --hz 5.0/2.5/1.25`. 0 odom-pose
+fails in all four; every map verified occupied cells. Steady-state slopes are
+last-half least-squares fits (`scripts/plateau_analysis.py`). All values MiB.
+
+| run | rate | PSS mean (min-max) | CPU mean % | PSS last-half slope MiB/min (R²) | samples |
+|---|---:|---:|---:|---:|---:|
+| R1 lifelong rep | 5 Hz | 51.9 (48.2-53.1) | 58.8 | +0.248 (0.76) | 193 |
+| R2 lifelong | 2.5 Hz | 49.4 (42.7-50.0) | 22.7 | +0.179 (0.87) | 121 |
+| R3 lifelong | 1.25 Hz | 48.2 (42.4-49.2) | 9.5 | +0.170 (0.76) | 96 |
+| async control | 2.5 Hz | 50.7 (42.5-58.9) | (n/a) | **+4.08 (no plateau)** | 121 |
+
+Three findings (all measured, dev-reference):
+
+1. **Reproducibility:** the 5 Hz plateau reproduces within ~1-2 MiB of
+   ADR-0011 (R1 PSS mean 51.9 vs 50.6; CPU 58.8% vs 58.2%). ADR-0011 is
+   repeatable run-to-run.
+2. **Rate sensitivity:** the memory plateau HOLDS at 2.5 and 1.25 Hz
+   (steady-state PSS +0.17-0.25 MiB/min — flat), while the CPU cost scales
+   almost linearly with scan rate (58.8 -> 22.7 -> 9.5%). The ~2.6x CPU
+   penalty of ADR-0011 is not a fixed tax; it is dial-downable via scan rate.
+   The async negative control on the SAME 15 m scene @ 2.5 Hz still grows
+   +4.08 MiB/min (no plateau) — so the flattening is processor-specific, not
+   a fully-explored-scene artifact.
+3. **CORRECTION to ADR-0011's mechanism claim:** ADR-0011 stated "2,176
+   evaluate to -1.0 and 4,070 to 0.0 ... every evaluated candidate sat on the
+   removal branch". Re-checking its own committed log
+   (`slam_lifelong_5hz_480s_slam_launch.log`) this run: `outcome score:
+   0.000000` appears **0 times** and only 2,192/6,246 (35%) of evaluations
+   were at/below the 0.04 removal threshold; ~65% scored 0.99-0.999 and were
+   retained. ADR-0012's R1 independently reproduces the corrected picture
+   (2,180/8,027 = 27% at/below threshold). Both runs still measure a flat
+   plaque despite minority removal — the corrected mechanism interpretation
+   is "minority removal", not mass deletion. See
+   `docs/adr-0012-measured-lifelong-rate-sensitivity.md`.
