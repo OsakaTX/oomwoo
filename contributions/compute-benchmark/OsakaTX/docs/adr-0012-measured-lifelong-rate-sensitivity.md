@@ -80,7 +80,7 @@ over the sampled window, first vs last values reported explicitly).
 | CPU min/mean/max (%) | 29.3 / 58.2 / 64.6 | 28.3 / 58.8 / 62.4 |
 | PSS first-10 mean -> last-half mean (MiB) | 47.7 -> 51.4 | 48.9 -> 52.7 |
 | PSS last-half linear trend (MiB/min, R²) | (n/a, not computed) | **+0.248 (R²=0.76)** |
-| PSS total in-window delta (MiB) | +4.8 | +5.1 |
+| PSS total in-window delta (first -> last, MiB) | +4.8 | +4.9 |
 
 **Reproducibility verdict:** the 5 Hz plateau reproduces within ~1-2 MiB on
 PSS/RSS and ~0.5 pp on CPU. PSS mean 51.9 vs 50.6, CPU mean 58.8% vs 58.2%.
@@ -155,9 +155,9 @@ Two facts stand out:
    at 5 Hz -> 22.7% at 2.5 Hz -> 9.5% at 1.25 Hz. This is the FIRST measured
    evidence that the ~2.6x CPU penalty of ADR-0011 is not a fixed tax — it
    tracks the number of scans per second, exactly as ADR-0008 showed for async
-   CPU (though lifelong's absolute CPU stays ~4-8x higher than async at the
+   CPU (though lifelong's absolute CPU stays ~2.3-3x higher than async at the
    same rate: 22.7 vs 7.7 at 2.5 Hz, 9.5 vs 4.1 at 1.25 Hz, from ADR-0008's
-   10 m scene).
+   10 m scene; ~2.6x at 5 Hz from ADR-0011's same-scene numbers).
 
 ### 3. CORRECTION to ADR-0011's mechanism claim (re-checked against ITS log)
 
