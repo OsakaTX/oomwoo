@@ -692,6 +692,61 @@ present + 2x (clean-low, dirty-full) floats". Model:
   later rotation) will re-parameterize the SCAD to measured values and produce
   a fitted Jig 19 A/B.
 
+## 21. Dock Water Pump — 24 V Mini Diaphragm (BOM Dock "Water pumps", 3 qty)
+
+> BOM.md Dock table, line 76 (fetched 2026-08-21): "Water pumps | 3 | $5-8 |
+> Diaphragm 24 V self-priming clean-feed + dirty-evacuate + tank refill". The
+> BOM names no part — the model is a two-variant class draft in
+> `dock-water-pump-24v/dock-water-pump-24v.scad`:
+> - **p370 (small, default):** envelope ANCHORED to Amazon listing B0DMFKYQQG
+>   (fetched 2026-08-21, $12.00). Seller spec block: "Motor diameter: 24.4mm /
+>   Pump head diameter: 27mm / Inlet-Outlet diameter: 7.8mm / Height: 66.6mm /
+>   Weight: 70g / Rated voltage: DC 24V" — rows 2-5 below mirror those.
+> - **p385 (large):** ELECTRICAL from the CHANCS OEM page
+>   chancsmotor.com/product/385-pump/ (fetched 2026-08-21): "Voltage: DC 24V /
+>   Power: 7W / Flow: 1.7 +/- 0.1 L/MIN / Maximum Suction: 3 m / Weight
+>   0.13 kg" (same figures on Amazon B07QSDR1PW). PHYSICAL envelope is NOT
+>   OEM-published; two aftermarket vendors quote DIFFERENT boxes (both fetched
+>   2026-08-21): Phipps Electronics "Size: 88mm x 34.7mm x 51 mm"; RoboticsDNA
+>   "Pump Size: 90 mm * 40 mm * 35 mm; Outlet diameter: inside diameter of 6 mm,
+>   outer diameter of 8.5 mm".
+>
+> Jig 20A (`jigs-new/dock-pump-gauge.scad`) tests head_od, barb pitch and
+> barb-OD class; rows 1 and 6 gate EVERYTHING — see Critical Check.
+
+| # | What to Measure                                                                | Estimate | Unit | Notes |
+|---|------------------------------------------------------------------------------|----------|------|-------|
+| 1 | **⛔ ACTUAL PART IDENTITY — vendor, model, sticker, photos with ruler**       | unverified | — | Which class did you buy: 370-class small (p370) vs 385-class (p385) vs something else? The dock uses 3 of these (clean-feed / dirty-evacuate / tank-refill) — you may legitimately need two sizes; record which unit each row below refers to |
+| 2 | **⛔ Motor housing outer diameter**                                            | 24.4 / 34.7 | mm | p370: (listing B0DMFKYQQG "Motor diameter: 24.4mm"). p385: (estimate, from vendor width 34.7/40). This is what any cradle must grip |
+| 3 | **Head disc outer diameter** (the +Z face that carries the barbs)             | 27 / 40 | mm | p370: (listing "Pump head diameter: 27mm"); p385: (estimate, RoboticsDNA width 40). Row checked by Jig 20A feature A |
+| 4 | **⛔ Total length motor base → barb tip**, and separately **base → head face** | 66.6 / 88 | mm | p370: (listing "Height: 66.6mm" — interpretation as base→barb-tip axis is an ESTIMATE; measure both to confirm). p385: Vendors conflict 88 (Phipps) vs 90 (RoboticsDNA) — MEASURE which; update total_len |
+| 5 | **⛔ Barb geometry: OUTER diameter, INNER bore, tubing OD that fits**          | 7.8 / 4.5 ; 8.5 / 6.0 | mm | p370: barb OD (listing "Inlet/Outlet diameter: 7.8mm"), bore (estimate). p385: (RoboticsDNA "inside 6 mm / outside 8.5 mm"). Gauge by Jig 20A feature C, then caliper; selects tubing + printed manifold barbs |
+| 6 | **⛔ Barb center-to-center PITCH and exit orientation** (both +Z? 90° apart? side-exit?) | 12 / 16 | mm | (estimate) THE critical dim for any printed manifold/cradle. Checked by Jig 20A feature B only if the real barbs match the assumed orientation — if they exit differently, redesign the manifold datum |
+| 7 | **Head thickness along axis** (excludes barbs)                                 | 18 / 20 | mm | (estimate) split of total_len |
+| 8 | **Barb exposed length beyond head face**                                       | 13 | mm | (estimate) |
+| 9 | **Wire exit: leads length, exit position, connector, gauge**                  | 8×4 @z6 | mm | (estimate position/size) judges whether the dock board can be nearby |
+| 10 | **Mass**                                                                      | 70 / 130 | g | p370: (listing "Weight: 70g"); p385: (CHANCS "Weight 0.13 kg") — quick sanity |
+| 11 | **Retention / mounting features** (screw ears? cradle? zip-tie groove?)        | none modeled | — | (estimate) deliberately left OUT of the model — add bosses/cradle once you know how you will hold it in the dock |
+| 12 | **Bench check @24 V: does it self-prime? free-flow L/min @ 0 head? noise**    | 1.7±0.1 | L/min | p385: (CHANCS claim) verify the claim when you have the unit wired; the dock needs self-priming (BOM) |
+
+### Critical Check
+- **Rows 1 + 6 are the make-or-break.** Row 1 fixes WHICH class the dock was
+  designed around (a 370-class clean-feed pump and a 385-class dirty-evac pump
+  are different cradles); row 6 (pitch + barb orientation) is the dimension
+  any printed manifold must match and it is currently an estimate. Until the
+  unit is in hand, do not commit the dock pump-manifold geometry.
+- **The p385 envelope is vendor-locked, not OEM.** Phipps (88×34.7×51) and
+  RoboticsDNA (90×40×35) disagree — one is mis-measured, and 385-clone pumps
+  genuinely differ. Do not design dock space against either until calipered;
+  the model parameterizes both (total_len/motor_od/head_od).
+- **3 pumps, possibly 2 classes.** The dock's clean-feed and tank-refill
+  duties are low-flow; the dirty-evacuate duty needs self-priming + head.
+  Buying three identical small pumps may be wrong for dirty-evacuate — confirm
+  before you source (modules/Discussions are open on this module).
+- **Don't inherit the 66.6 mm "height" blindly.** The listing's "Height"
+  could be base→head-face or base→barb-tip; the caliper (row 4) decides how
+  `total_len` is interpreted in the SCAD.
+
 ---
 
 1. **Open an issue** in [makerspet/oomwoo](https://github.com/makerspet/oomwoo/issues)

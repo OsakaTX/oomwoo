@@ -684,6 +684,53 @@ which is the point.
 - Record how the unit is retained in the dock (row 10) — retention is NOT
   modeled yet and this jig won't test it.
 
+## Jig 20: Dock Water Pump GAUGE (BOM Dock "Water pumps" — 24 V mini diaphragm, 3 qty)
+
+Jig file: `jigs-new/dock-pump-gauge.scad`. Mirrors `dock-water-pump-24v/
+dock-water-pump-24v.scad` (p370 default; set the params for p385 / your part).
+Three checks on one plate — **each PASS confirms one estimate and one print
+tolerance**; each FAIL maps to a specific SCAD parameter below, never to a
+printer setting guess.
+
+### Print Instructions
+
+| # | Feature | What it tests | Clearance param to keep in sync |
+|---|---------|---------------|----------------------------------|
+| A | Head-disc through-bore (Ø27.3 default) | head_od | `head_clearance` (start 0.3 mm) |
+| B | Barb PAIR bores, Ø8.2, spaced 12 mm | port_pitch + port_od together | `barb_clearance` (start 0.4 mm), `port_pitch` |
+| C | Barb-OD go/no-go bores (Ø6.15 / 7.95 / 8.65) | barb OD class for tubing | `notch_noms` + `notch_clearance` (0.15 mm) |
+
+- Print flat, 0.2 mm layers, 100 % infill, 3 perimeters. Do NOT scale the
+  plate in the slicer — the gauge bores are calibrated to the SCAD values.
+- First verify your printer with the 20×20×10 mm calibration cube (±0.2 mm).
+
+### Pass Criteria
+
+- **A:** the pump head (+Z barbs face) drops through the bore with a light
+  slide — not forced, not rattling. Confirms head_od estimate within
+  `head_clearance`.
+- **B:** BOTH barb tips drop into their bores simultaneously when the pump is
+  held with the head face flush over the plate. Confirms the pitch `port_pitch`
+  AND the barb OD together. (If the real barbs exit at 90° or side-exit, this
+  test cannot be used until the manifold datum is redesigned — see Fail.)
+- **C:** the barb falls through the largest bore it fits and is stopped by the
+  next-tightest. E.g. a 7.8 mm barb passes 7.95 and 8.65, stalls at 6.15 →
+  OD class ≈7.8 mm. Record which bore it stops at.
+
+### Fail Criteria & Fix
+
+| Symptom | Likely cause | Fix (which SCAD param) |
+|---------|--------------|------------------------|
+| Head won't enter bore A / rattles loose | `head_clearance` wrong for YOUR printer tolerance | Increase → 0.5, or decrease → 0.1; re-print only after calipered head_od (MEASURE-ME §21 r3) |
+| Only one barb drops into B, or neither | `port_pitch` estimate is wrong (12/16), or barbs exit differently | Caliper real pitch → set `port_pitch`; if orientation differs, redesign the manifold datum and this template |
+| Barb doesn't fit ANY bore C | Barb OD is not in {6, 7.8, 8.5} (or printer shrunk holes) | Caliper barb OD; add it to `notch_noms`; if printer shrinks holes systematically, widen `notch_clearance` |
+| Barb passes EVERY bore C | Barb < 6 mm OD (never true for 7.8/8.5-class) — usually a mis-measure | Re-caliper; if a genuinely smaller barrel exists, add 5.0 to `notch_noms` |
+
+Report results per the module's `MEASURE-ME.md` §21 rows 1–12 (identity,
+motor OD, head OD, length, barb OD/bore, pitch/orientation). Only a caliper on
+the physical unit locks these; the jig is the quick daily-check companion, not
+precise metrology.
+
 ---
 
 ## Printing Guidelines
