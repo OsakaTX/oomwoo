@@ -37,7 +37,10 @@ Sheet attribution (by sheet-block position in the fetched file):
 - `UART5_RX` / `UART5_TX` / `LiDAR-M-CTRL` belong to the **`MCU-STM32`** sheet.
 - `LiDAR-RXD` / `LiDAR-TXD` / `LiDAR-MOTOR-CTRL` belong to the **`LiDAR`** sheet.
 - The **`CM5-GPIO`** sheet exposes `UART2_RX` (306.070,223.520) / `UART2_TX`
-  (306.070,220.980) only — **no CM5 pin on any of the three LiDAR nets.**
+  (306.070,220.980) — the CPU↔MCU control link — and `UART4_RX` (351.155,
+  190.500) / `UART4_TX` (353.695,190.500), which are **stub-wired only** (their
+  root wires dead-end in free space; no other sheet pin, label, or no-connect on
+  them — see §7). **No CM5 pin sits on any of the three LiDAR nets.**
 
 Directionality is consistent with a normal MCU↔sensor UART: `UART5_TX` is an
 output and connects to `LiDAR-RXD` (the LiDAR board's RX side, labelled as an
@@ -133,8 +136,8 @@ datasheet is pulled (flagged in §7, open decision 2).
   contract; payload sizes from the frame/payload tables; `FAST_TELEMETRY`
   payload size is not fixed in the contract, `(estimate ≤ 32 B)`):
   HEARTBEAT ≤ 0.85 kB/s, DRIVE_SETPOINT ≤ 1.0 kB/s, CLEANING_MOTORS_SET +
-  POWER_TELEMETRY + events ≤ ~0.3 kB/s, FAST_TELEMETRY ≤ ~3.2 kB/s ⇒ **≤ ~5 kB/s
-  worst case, commonly ~1–3 kB/s (estimate)**.
+  POWER_TELEMETRY + events ≤ ~0.3 kB/s, FAST_TELEMETRY ≤ ~4.4 kB/s (100 Hz)
+  ⇒ **≤ ~7 kB/s worst case, commonly ~1–3 kB/s (estimate)**.
 - Scan forwarding at **115,200 baud** (link capacity `115200/10 = 11,520 B/s`):
   the 15.7 kB/s stream **already exceeds link capacity** (136%). **Forwarding is
   not viable on the 115.2 k "early bench" link** — it must run at 1 Mbaud
@@ -216,9 +219,11 @@ spec). Firmware must drain UART5 continuously:
 
 ### 5.7 Rate/priority on the shared control link
 
-- Scan streaming (~18 kB/s on-link) would dominate routine control traffic
-  (~1–5 kB/s `(estimate)`), but is far from saturating the 100 kB/s 1-Mbaud
-  link (≤ ~20% total `(estimate)`).
+- Scan streaming dominates routine control traffic (scan ~18 kB/s on-link vs
+  control ~1–3 kB/s typical / ≤ ~7 kB/s worst case, all `(estimate)`), but
+  remains well within the 100 kB/s 1-Mbaud link: planning figure ~20% total at
+  the spec-bound 15.7 kB/s stream; ≤ ~33% total even at the absolute wire
+  ceiling (23.0 kB/s scan `(estimate)`).
 - The contract today has **no streaming lane** — all messages are event or
   low-rate. The bridge must schedule control frames (DRIVE_SETPOINT,
   FAST_TELEMETRY, HEARTBEAT) **ahead of scan chunks**; scan chunks are
@@ -245,8 +250,10 @@ see open decision 5.
 ## 7. Open decisions (flag for maintainer / PCB designer — not answered here)
 
 1. **Option choice.** (1) forward over the contract (this doc), **(2) re-route
-   the LiDAR UART to a free CM5 UART** — CM5-GPIO exposes `UART2` (busy: the
-   robot-control link) and `UART4` (verified free this run) — or (3) confirm on
+   the LiDAR UART to a free CM5 UART** — `UART2` is consumed by the robot-control
+   link; `UART4_RX/TX` are present on CM5-GPIO but **unused at root level**
+   (stub-wired only, no consuming net — verified this run), so a re-route would
+   be a schematic change to connect UART4 to the LiDAR — or (3) confirm on
    the physical robot (Proscenic M6 Pro placeholder) how the fitted LiDAR
    actually wires. Contract work is moot if (2)/(3) is chosen.
 2. **Fitted LiDAR part identity and true baud.** SPEC pins only the "LD14P

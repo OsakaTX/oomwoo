@@ -24,8 +24,11 @@ source this run.
    (y=123.825), `LiDAR-M-CTRL` ↔ `LiDAR-MOTOR-CTRL` (y=126.365), with no
    other sheet pin on any of the three rails. Sheet attribution (by sheet-block
    position): `UART5_*`/`LiDAR-M-CTRL` → **`MCU-STM32`**; `LiDAR-*` →
-   **`LiDAR`**; `CM5-GPIO` exposes only `UART2_RX/TX` on unrelated rails. **The
-   LiDAR serial data path is on the STM32, not the CM5 — confirmed.**
+   **`LiDAR`**; `CM5-GPIO` exposes `UART2_RX/TX` (the robot-control link) and
+   **`UART4_RX/TX` which are stub-wired only** (dead-end wires; no consuming
+   net, label, or no-connect at root level — i.e., the only unused CM5 UART, a
+   candidate for a re-route). **The LiDAR serial data path is on the STM32, not
+   the CM5 — confirmed.**
 3. **LiDAR board sheet inventoried for the first time** (fetched
    `kicad/main/LiDAR .kicad_sch`, 2719 lines): its only root interfaces are the
    three hierarchical labels above; connector `LIDAR1` = `WAFER-GH1_25-6PWB`
