@@ -157,8 +157,9 @@ Plateau shape — per 20-sample (40 s) block, SUT PSS delta (plateau_analysis.py
    *cause*.
 5. **2 GB implication.** The navigation-phase term is confirmed negligible for
    realistic duty cycles: even a multi-hour session adds tens of MiB at the
-   measured rates, against the ~1.1-1.4 GB of free RAM the Pi 4 2 GB
-   secondary report (ADR-0001) observes occupied by the full stack. The
+   measured rates, against the ~1.1 GB of physical memory free that the Pi 4 2
+   GB baseline report (ADR-0001, secondary — still pending a reproduction run
+   with this module's sampler) records for the whole headless stack. The
    budget-driving slam term remains the MAPPING phase (+8.05 MiB/min,
    ADR-0007), which is addressed separately by the lifelong processor
    (ADR-0011/0012) and by map-save-then-localize (ADR-0010 + this run).
