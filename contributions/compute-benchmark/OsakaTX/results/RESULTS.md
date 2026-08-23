@@ -1,4 +1,4 @@
-# Measured results (OsakaTX, 2026-08-04 … 2026-08-13)
+# Measured results (OsakaTX, 2026-08-04 … 2026-08-23)
 
 Raw sampler CSVs are in this directory. Every number below comes from a CSV
 analyzed by `scripts/analyze_csv.py` (or the per-process breakdown script for
@@ -333,3 +333,40 @@ Three findings (all measured, dev-reference):
    plaque despite minority removal — the corrected mechanism interpretation
    is "minority removal", not mass deletion. See
    `docs/adr-0012-measured-lifelong-rate-sensitivity.md`.
+
+## 14. long-horizon localization-only (navigation-phase) memory: 480 s / 8-minute run — 2026-08-23
+
+Files (all raw, committed under `results/`):
+`slam_localize_5hz_480s_20260823T124356Z.csv` (187 samples @ 2 s, SUT pid
+813016 `localization_sl`), `slam_localize_5hz_480s_slam_launch.log`,
+`slam_localize_5hz_480s_relocalize.log`, `slam_localize_5hz_480s_posecheck.log`,
+`slam_localize_5hz_480s_localization_params.yaml` — produced by the UNCHANGED
+ADR-0010 harness (`scripts/run_slam_localize_bench.sh --label
+slam_localize_5hz_480s --duration 480`) against the SAME committed anchor pose
+graph (`results/localize_anchor_map.posegraph/.data`); localization mode
+confirmed by `Load From File ...localize_anchor_map.posegraph` in the launch
+log and by the committed params (`mode: localization`), 0 `Failed to compute
+odom pose`, periodic relocalize rig ON. End-state localization verified
+(post-hoc pose gate): **mean radial error 0.003 m, max 0.007 m** on the 1.5 m
+orbit. This answers ADR-0010's explicit open question ("whether it plateaus
+beyond 120 s"). Details: `docs/adr-0013-*.md`; per-block shape + last-half fit
+computed with the module's committed `scripts/plateau_analysis.py`.
+
+| metric | value |
+|---|---:|
+| window | 2026-08-23T12:44:06Z -> 12:51:55Z (~469 s), 187 samples |
+| SUT PSS mean (min-max) MiB | 63.482 (62.541-63.811) |
+| SUT RSS mean (min-max) MiB | 78.255 (77.297-78.578) |
+| SUT CPU mean (min-max) % | 32.87 (31.1-33.0) |
+| SUT PSS first -> last MiB | 62.541 -> 63.807 (**+1.266 total**) |
+| SUT PSS slope whole-window MiB/min (R^2) | **+0.4675 (0.7193)** |
+| SUT PSS slope LAST-HALF steady-state MiB/min (R^2) | **+0.120 (0.8401)** |
+
+Measured finding (dev-reference): the residual navigation-phase drift does NOT
+hard-plateau — a small positive steady-state trend (+0.120 MiB/min, R^2=0.84)
+persists past 8 minutes — but it is ~17x (whole-window) to ~67x (steady-state)
+lower growth than mapping's +8.05 MiB/min (ADR-0007) and the absolute growth
+was +1.266 MiB over the whole window. Navigation-phase memory is "bounded in
+practice over realistic duty cycles", not zero-growth; the 2 GB-relevant
+unbounded slam term remains the mapping phase (ADR-0007, addressed by
+ADR-0011/0012 and map-save-then-localize ADR-0010/0013).
