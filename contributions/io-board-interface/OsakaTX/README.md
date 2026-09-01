@@ -1,0 +1,154 @@
+# CPU/MCU Interface Complement — OsakaTX
+
+> **⚠️ 2026-08-18 repo rename:** the upstream I/O-board repository
+> `makerspet/oomwoo-io-board` was renamed to **`makerspet/oomwoo-pcb`** (old name
+> still 301-redirects; verified this run). References to the old name throughout
+> this module are historical records of the repo as it then was. New work should
+> point at `makerspet/oomwoo-pcb`; the sweep itself is tracked as **OSK-022** in
+> [`docs/spec_crosscheck_20260818.md`](docs/spec_crosscheck_20260818.md).
+
+This contribution **complements** [xbattlax's interface contract draft](../xbattlax/)
+(merged as oomwoo#27) rather than duplicating it. xbattlax established the serial
+framing, ROS2 mapping, docking requirements, and bringup plan. This namespace adds:
+
+| File | Fills |
+|---|---|
+| [`docs/hardware_signal_ownership.md`](docs/hardware_signal_ownership.md) | Cross-references every I/O board SPEC.md GPIO to the serial message field it maps to — the hardware-signal-ownership doc the scope requested. |
+| [`docs/contract_gaps_supplement.md`](docs/contract_gaps_supplement.md) | Additional gaps discovered by cross-checking the authoritative SPEC.md against the contract: dock IR count mismatch, side-proximity gap, UART routing ambiguity, IMU ownership, MCU part discrepancy, and the wire v1→v2 transition now open in `oomwoo-io-firmware#1`. |
+| [`docs/spec_crosscheck_20260803.md`](docs/spec_crosscheck_20260803.md) | **2026-08-03 refresh.** Records that upstream `oomwoo-io-board` commit `99edb37` deleted the 60-row SPEC.md GPIO table (canonical GPIO list moved to the KiCad schematic), re-anchors every signal to schematic net names, and adds gaps OSK-007..010 (mop motors, MG90S servos, power-path charging, UART pinning). |
+| [`docs/wire_format_reconciliation_20260805.md`](docs/wire_format_reconciliation_20260805.md) | **2026-08-05 refresh.** Cross-checks the three *live* wire-format artifacts now in play (in-tree v1 codec, xbattlax `oomwoo-mcu-bridge` v2, and the JSON-Lines sim-MCU tool in `makerspet/oomwoo-install`) and flags the JSON-Lines-vs-binary framing divergence a new contributor could trip on, plus the firmware-track work items `oomwoo-io-firmware#1/#2/#3` this RFC must answer. See section 6 for the open decisions. |
+| [`docs/spec_crosscheck_20260806.md`](docs/spec_crosscheck_20260806.md) | **2026-08-07 refresh.** Records the Aug 6 upstream `oomwoo-io-board` commit `436f90ef` "RTC clock, signal integrity" that was **new since the Aug 3/5 cross-checks**: an RTC 32.768 kHz crystal (ABS07-120, LSE on the STM32) and an ST L6205D013TR dual full-bridge driver **imported to the JLCImport library but not placed in any sheet**, plus the motor-rail relabel `BAT-VCC`→`VM-VBAT`. Adds gaps **OSK-011 (RTC time-sync, no message exists)** and **OSK-012 (L6205D intent — likely mop-pair, unconfirmed)**. All claims verified against fetched sheets/commits this run; motor-driver architecture (DRV8870DDAR everywhere) confirmed unchanged since Jul 24. |
+| [`docs/spec_crosscheck_20260809.md`](docs/spec_crosscheck_20260809.md) | **2026-08-09 refresh.** Records the **Aug 8/9 upstream changes** new since the Aug 6 cross-check: `a545e447bb` (SPEC `## Sensors`), `44faa47445` (new `RTC_WATCHDOG` sheet: NXP **PCF85063AT** external RTC + ABS07 32.768 kHz + 2× 74LVC1G07, labels `SDA/SCL/PULSE_OUT/LATCH_OUT`), `b643b3b0e7` (**board restructure** `kicad/`→`kicad/main/` + new `front-sensors/` and `side-sensors/` projects: TSOP38238 ×2 front / TSOP38238 + TSAL6200 + TLC555 + SN74LVC2G08 side; SPEC adds `## Front sensors module board` + `## Side sensors module board`), `a0de488ec7` (VL6180V1NR / VL53L0CX / VL53L4CD wall-ToF options). Adds gaps **OSK-013 (RTC/watchdog ownership + no time message)**, **OSK-014 (dock-IR spans 3 boards / 5 receivers)**, **OSK-015 (RK3562 sheets present but NOT wired into the active CM5 hierarchy)**, **OSK-016 (wall-sensor: analog IR vs I2C ToF)**, **OSK-017 (stale `kicad/PDF` link post-restructure)**, and flags the **wheel-pinout numbering mirror** (SPEC numbers = 180° flip of Scowt's physical numbering; wire order agrees). All quotes/commits verified against files fetched this run. |
+| [`docs/spec_crosscheck_20260812.md`](docs/spec_crosscheck_20260812.md) | **2026-08-12 refresh.** Records the **Aug 11 upstream commits** (`5f76bd0a48` "Side sensor VL6180" — 55 files; `6314edd596` CI rename to `Main`) new since the Aug 9 cross-check, and **traces the CPU↔MCU serial link wire-by-wire on the root sheet**: STM32 **USART1 (PC4/PC5)** ↔ CM5 **GPIO UART2** (TTL crossed, no transceiver) — the pinned-link evidence OSK-010 needed. Also traces the **RTC_WATCHDOG authority**: PCF85063AT I2C is on **CM5 I2C1** (`SDA1`/`SCL1`), `PULSE_OUT`→CM5 **`PMIC_EN2`** (hardware path to power-cycle the CPU), `LATCH_OUT`→BMS **`V-MOTORS-EN`** (hardware path to cut motor power) — advances OSK-013 into **OSK-019**. Records the **side-sensor VL6180 I2C ToF landing** on the satellite board (I/O-board analog IR stage removed; STM32 **I2C4** master reaches the satellite connector — verified wire-level) advancing **OSK-016**, confirms **G473VCT6** as the MCU part despite the stale `STM32G070RBT6.kicad_sch` file name (**OSK-018**), and the **M.2/PCIE slot now wired** into the root (OSK-015 unchanged: CM5 active). |
+| [`docs/spec_crosscheck_20260814.md`](docs/spec_crosscheck_20260814.md) | **2026-08-14 re-verification (no-drift check).** Re-fetched every live primary source this run: upstream `oomwoo-io-board` HEAD is **unchanged** since 2026-08-11 (`6314edd596` still tip), `docs/SPEC.md` still **9454 bytes / 202 lines** (sha1 `721a4415...`), root schematic still **6494 lines** with the USART1↔UART2 link, RTC_WATCHDOG sheet still **4608 lines** with PCF85063AT, side-sensor VL6180 ×12, firmware **#1/#2/#3 all still open**, and no new PRs touching this module (newest merged main-repo PR is **#57**, 2026-08-12, `mcu-io-firmware` README). **Conclusion: no upstream drift — every Aug 12 claim still stands.** |
+| [`docs/spec_crosscheck_20260816.md`](docs/spec_crosscheck_20260816.md) | **2026-08-16 refresh.** **First upstream movement since 2026-08-11**: `makerspet/oomwoo-io-board` gained commit `2dcfafde13` (2026-08-15, "Charging-only dock schematic") — the **first dock hardware artifact** in the repo (`kicad/charging-dock/`). SPEC.md itself is unchanged (still 9454 B/202 L, sha1 `721a4415...`). New dock project inventory (verbatim from fetched `.kicad_sch`): 555-driven **TSAL6200 (940 nm)** IR beacon with IRLML6344, **H11L1S** opto presence-detect (`DETECTED`), power entry (DC-005 barrel, AP64501 buck, +24 V/`POWER_EN`), plus **orphaned** (unwired) `IR sensor` (TSOP38238 ×3) and `TOF` (VL6180 ×2) sheets. Adds gaps **OSK-020** (dock project is charging-only WIP — no ESP32/pumps/fans/level sensors yet; dock↔robot root connector not drawn) and **OSK-021** (beacon carrier timing unverified: ~38.5 kHz vs ~3.85 kHz estimates from R/C values in the sheet; netlist/PCB not rendered — must match the robot's 38 kHz TSOP38238 receivers). Prior OSK-001..019 unchanged/open. |
+| [`docs/spec_crosscheck_20260818.md`](docs/spec_crosscheck_20260818.md) | **2026-08-18 refresh.** **Upstream repo renamed** `makerspet/oomwoo-io-board` → **`makerspet/oomwoo-pcb`** (301-verified this run; no content drift — SPEC.md sha1 `721a4415…` matches, tip still `2dcfafde13`, firmware #1/#2/#3 open). **OSK-021 partially resolved** via a pin-level wire trace of the fetched `IR Beacon.kicad_sch`: the timing capacitor is **C11 = 1 nF** (→ ≈38.5 kHz estimate, the robot-compatible band); **C10 = 10 nF is bypass** on pin 8 — but the as-drawn 555 pins 1/4/5/8 hookup is non-standard and must be reconciled against the TLC555CDR datasheet by the PCB designer. Also verified the dock root **does wire `DETECTED → POWER_EN`** (bare wire, no debounce/latch). Adds **OSK-022** (stale-name sweep: 9 main-repo files / 28 occurrences + pcb-repo SPEC.md line 200 link). |
+| [`docs/spec_crosscheck_20260820.md`](docs/spec_crosscheck_20260820.md) | **2026-08-20 refresh.** No upstream drift (pcb-repo tip still `2dcfafde13`; SPEC.md sha1 `721a4415…`; firmware #1/#2/#3 open). **New: electrical-netlist verification** of the root schematic (union-find over sheet pins + wires) proving **OSK-023 — the LiDAR serial data path is on STM32 `UART5`, not the CM5** (contradicts the in-tree CPU-ownership rows and the "CM5 UART5 per the I/O spreadsheet" note; resolves xbattlax HW-SW-003 toward STM32), plus watchdog authority pairs (PULSE_OUT↔PMIC_EN2, LATCH_OUT↔V-MOTORS-EN, RTC I2C = CM5 I2C1 only), MCU power/reset nets (PI-RESET↔PMIC_EN, PMIC_PWRON↔RUN_PG), and other ownership pairs (front TSOP38238→MCU UART3, side-proxi→MCU I2C4, charger→MCU I2C3). Adds **OSK-023/024/025**; LiDAR data-path decision in §5.1. |
+| [`docs/safety_watchdog_behavior.md`](docs/safety_watchdog_behavior.md) | **2026-08-20.** The scope's "safety-watchdog behavior" deliverable as a complement (not duplicate) to xbattlax's contract-level rules: maps the contract rules onto the **verified** hardware watchdog authority tiers (MCU software → MCU `PI-RESET`/`PMIC_PWRON` → external RTC `PULSE_OUT`/`LATCH_OUT`), gives a failsafe-coverage matrix, and flags who feeds/configures the RTC and the no-MCU-hang-rail-cut gap as open decisions. |
+| [`docs/spec_crosscheck_20260822.md`](docs/spec_crosscheck_20260822.md) | **2026-08-22 re-verification (no-drift check) + design run.** No upstream drift (pcb-repo tip still `2dcfafde13`; SPEC.md sha1 `721a4415…`; firmware #1/#2/#3 open; no new PRs). **OSK-023 re-verified at wire-segment level** with direct evidence from the re-fetched `Main.kicad_sch` (`UART5_RX`↔`LiDAR-RXD`, `UART5_TX`↔`LiDAR-TXD`, `LiDAR-M-CTRL`↔`LiDAR-MOTOR-CTRL`; no CM5 tap). LiDAR sub-sheet inventoried (`LIDAR1` WAFER-GH 6P, `Q20` AO3400). New: makerspet LD14P protocol facts (230,400 baud, 47-B packets, 4K pts/s). Adds **OSK-026/027**; points to the new LiDAR-forwarding design doc. |
+| [`docs/spec_crosscheck_20260824.md`](docs/spec_crosscheck_20260824.md) | **2026-08-24 refresh.** **First pcb-repo movement since Aug-15**: `makerspet/oomwoo-pcb` gained commit `c70c9447` (2026-08-23, "Fix edge cut; no-CM STEP"; child of the previously-recorded tip). **Interface no-drift for this module's scope**: root hierarchy unchanged (20 wired sheets), SPEC.md byte-identical (202 L / 9454 B / sha1 `721a4415…`), CM5-GPIO UART2/UART4/PMIC_EN/PMIC_EN2/RUN_PG surface unchanged, MCU sheet unchanged. One functional net change found: `V-MOTORS-EN` converted from a plain sheet-local label to hierarchical label in `BMS-SYSTEM-POWER` (×2) — a drawing-level **connectivity fix** (the root's POWER::V-MOTORS-EN pin was previously dangling at the hierarchy boundary); net name unchanged, so the OSK-024 watchdog pair `LATCH_OUT→V-MOTORS-EN` is unaffected. New firmware primary source: `oomwoo-io-firmware` commit `0ad93b8e19` RFC (STM32G473 + Arduino + FreeRTOS + ISR core) **independently confirms STM32G473VCT6** and documents the G0→G4 migration (OSK-018 strengthened); still no UART5-DMA detail (OSK-027 open). **Standing-doc corrections**: two stale LiDAR-ownership rows in `hardware_signal_ownership.md` corrected to the verified STM32-UART5 path. New flags for maintainer/PCB: rename stale `STM32G070RBT6.kicad_sch` sheet, confirm `V-MOTORS-EN` semantics, confirm no-CM STEP is mechanical-only, UART5 transport decision. |
+| [`docs/spec_crosscheck_20260901.md`](docs/spec_crosscheck_20260901.md) | **2026-09-01 refresh.** **First SPEC.md change since 2026-08-16**: `makerspet/oomwoo-pcb` commit `e479719` "Suction fans pinout" (2026-09-01) rewrites the 4S-fan section — the four 14.4–15 V 4S candidates now carry a JST **PH2.0 4-pin** pinout (verbatim: `pin 4 VMOT / pin 3 GND / pin 2 PWM, low == off; drive at 5V? / pin 1 TACH open collector`), replacing four "Pinout TBD" rows; the 5-/6-pin latch fans get a `(PA?)` annotation (maintainer's own uncertainty). Schematic tree **byte-identical** to Aug-24 (diff `c70c944..e479719` touches only `README.md` + `docs/SPEC.md`) — all prior schematic-derived claims stand. **New pin-level primary evidence** from the maintainer's IO spreadsheet (`STM32G473VCT6_IOs.xlsx`, parsed): `PD0=MAIN-FAN-V-CTRL`, `PD1=MAIN-FAN-S-CTRL` (TIM8_CH4), `PE9=MAIN-FAN-S-SENSE` (ADC3_IN2), and **`PC12=UART5_TX`, `PD2=UART5_RX`** (LiDAR pads — OSK-027 gains pin identity, transport still open). **New OSK-028** (fan electrical reconciliation, open): board connector is a PH2.0-4p wafer matching the 4S family but NOT SPEC's first-listed 5-pin `BL24131607`; SPEC's own "drive at 5V?" vs 3.3 V MCU; PWM idle/failsafe state; TACH pull-up; and the layout netlist (`Main.kicad_pcb`) nets fan pad4=`MAIN-FAN-S-SENSE`, pad2=diode — not 1:1 with the new SPEC pinout — PCB-designer DRC item. Standing docs updated: `hardware_signal_ownership.md` (MCU pin allocation + fan interface), `safety_watchdog_behavior.md` (fan failsafe note). Firmware #1/#2/#3 and the known OSK-022 stale `oomwoo-io-board` link in SPEC.md unchanged. |
+| [`docs/lidar_data_forwarding_design.md`](docs/lidar_data_forwarding_design.md) | **2026-08-22. OSK-023 contract-side design (option 1).** A concrete LiDAR data-forwarding design for the CPU↔MCU contract: `0x8005 LIDAR_DATA` passthrough proposal (raw UART5 bytes → CM5), labeled bandwidth estimates from makerspet's own LD14P numbers (≥15.7 kB/s scan; ~18 kB/s on-link at 1 Mbaud; impossible on the 115.2 k bench link), chunking/CRC/error policy, ROS2 integration options (incl. official `ldlidar_sl_ros2` driver), and 7 open decisions for the maintainer/PCB designer. Complements xbattlax's contract (which has no LiDAR data message). |
+
+> **2026-08-03 note:** The GPIO `#N` numbers cited below and in the two docs above
+> refer to the SPEC.md GPIO table as of Jul 25 (`2233e54`). Upstream commit
+> `99edb37` (Aug 3) **removed that table**; the canonical signal list now lives
+> in the KiCad schematic (`kicad/PDF/oomwoo-kicad.pdf` + `.kicad_sch` sheets).
+> See [`docs/spec_crosscheck_20260803.md`](docs/spec_crosscheck_20260803.md) for
+> the re-anchored net-name inventory and updated open decisions.
+
+## Relationship to xbattlax's work
+
+xbattlax delivered:
+- Serial framing (v1/v2), message catalog, watchdog rules
+- ROS2 bridge topic mapping
+- Docking and IR homing requirements (from maintainer feedback)
+- Bringup/validation plan (7 phases, codec→bench→dock)
+- 9-item hardware/software decision ledger (HW-SW-001 through HW-SW-009)
+- Python/C codec, simulator, tests, golden vectors
+
+This namespace:
+- Anchors every GPIO from the real `oomwoo-io-board/docs/SPEC.md` to the contract
+- Flags 6 additional gaps the cross-check exposed
+- Documents the wire v1→v2 evolution and the open firmware RFC
+- Does **not** repeat xbattlax's framing, ROS2 mapping, dock requirements, or validation plan
+
+## Key open decisions (for maintainer / PCB designer)
+
+1. **Wire v1 vs v2** — xbattlax's v1 `safety_latched_flags` (8-bit) overflows with
+   10 defined safety events. The reference bridge uses v2 with a 16-bit `fault_flags`
+   + `motion_flags`. Awaiting maintainer direction in [oomwoo-io-firmware#1](https://github.com/makerspet/oomwoo-io-firmware/issues/1).
+
+2. **Dock IR sensor count** — *Reframed by the Aug 3 SPEC.md change.* The old SPEC
+   table provisioned **2 ADC channels** for dock IR (GPIO #31, #32); the table is
+   now deleted. The schematic carries **2 × TSOP34138** receivers
+   (`DOC-IR-SENS1`/`DOC-IR-SENS2`) plus `USART4-IR-L/R-TX/RX` nets. The docking
+   requirements still call for **4 IR sensing elements** (2 front homing + 2 side
+   search). Confirm how 2 receivers cover front homing + side search, or whether
+   search relies on different sensors. See OSK-001/OSK-010.
+
+3. **Side proximity IR** — Confirmed present in the schematic
+   (`SIDE-PROXI-LEFT`/`SIDE-PROXI-RIGHT` on `SIDE-PROXIMITY-IR-SENSOR .kicad_sch`,
+   IRLML6344 + RTR030N05HZGTL drivers). Still **absent from** the contract and
+   ARCHITECTURE.md sensor list (gap OSK-002).
+
+4. **LiDAR UART ownership** — Still open. The schematic now exposes multiple UARTs
+   (`STM32-UART1-TX/RX`, `STM_UART3_TX/RX` on the STM32; `UART2/3/4/5` on
+   `CM5-GPIO.kicad_sch`), so the "one UART pair" premise of the old table is
+   obsolete — the CPU↔MCU link and LiDAR UART can use different peripherals.
+   Pin the serial-link UART before freezing the bridge config (OSK-010).
+
+5. **IMU SPI ownership** — Resolved to **MCU** by the schematic: `IMU-ICM-4267-P
+   .kicad_sch` shows an **ICM-42607-P** on the MCU SPI with `IMU-SPI-SCLK/MOSI/
+   MISO/CS`, `IMU-INT#1/#2`, `IMU-FSYNC`. ARCHITECTURE.md still says IMU attaches to
+   the CPU — the contract must either forward IMU over serial or document a
+   separate CPU SPI lane (OSK-003).
+
+6. **Side brush count** — *Resolved to one in v1.* The Aug 3 SPEC.md row reads
+   `| Side brush | 1 |`, and `SIDE-BRUSH-MOTORs .kicad_sch` shows one 2-pin
+   `SIDE BRUSH` header with a single DRV8870DDAR + one current-sense ADC. The old
+   GPIO #39/#40 left/right PWM pair is obsolete. Keep the contract's single
+   `side_brush_pct` for v1 (OSK-004).
+
+7. **Which wire format is canonical (new Aug 5)** — three live artifacts exist
+   with two incompatible wire formats: in-tree v1 codec (`xbattlax/tools/oomwoo_mcu_frame.py`,
+   binary `"OW"`+CRC-16), xbattlax's `oomwoo-mcu-bridge` v2 (binary, 21-byte
+   `FAST_TELEMETRY`), and the CI-tested sim-MCU in `makerspet/oomwoo-install`
+   (JSON-Lines over PTY — **not** the binary format). The firmware README points
+   developers at the oomwoo-install sim tool; a bridge written to JSON will not
+   match the binary contract the codec/mcu-bridge define. See
+   [`docs/wire_format_reconciliation_20260805.md`](docs/wire_format_reconciliation_20260805.md) §6 .
+
+8. **RTC time-sync (new Aug 6)** — The Aug 6 schematic adds a 32.768 kHz LSE
+   crystal (ABS07-120, X2 on the STM32 sheet, `VBAT` pin present). The contract
+   has **no time-sync message** (only the CPU→MCU `HEARTBEAT.u32 cpu_time_ms`).
+   Flag: does the MCU need `TIME_SET`/`TIME_GET` (docked schedules, event
+   timestamps)? Who powers `VBAT`? See **OSK-011** in
+   [`docs/spec_crosscheck_20260806.md`](docs/spec_crosscheck_20260806.md).
+
+9. **L6205D dual-bridge intent (new Aug 6)** — ST L6205D013TR (2×2.8 A, 8–52 V,
+   SO-20) imported to the JLCImport library but **not placed in any sheet**.
+   SPEC.md lists `Mop | 2 | GM-RS385Y-24065` — a 2-channel brushed motor
+   application with no sheet. Confirm whether L6205D is the mop-pair driver
+   (→ two independent mop channels in `CLEANING_MOTORS_SET`, extends OSK-007) or
+   an uncommitted H-bridge variant. See **OSK-012** in
+   [`docs/spec_crosscheck_20260806.md`](docs/spec_crosscheck_20260806.md).
+
+10. **Rail naming (new Aug 6)** — Motor sheets now label the supply rail
+    `VM-VBAT` (was `BAT-VCC`). Use `VM-VBAT` in any future signal-ownership,
+    test-fixture, or bridge-config naming. See the `spec_crosscheck_20260806.md`
+    §3 rail-relabel note (naming-only, no functional change).
+
+11. **Aug 9 refresh — new hardware, new gaps.** The Aug 8/9 upstream commits
+    (`a545e447bb`, `44faa47445`, `b643b3b0e7`, `a0de488ec7`, `db1f93cbad`)
+    added an external RTC + watchdog subsystem (NXP PCF85063AT + 32.768 kHz +
+    2× 74LVC1G07 on the new `RTC_WATCHDOG` sheet), moved dock-homing and
+    wall/distance sensors onto dedicated `front-sensors/` and `side-sensors/`
+    PCBs (TSOP38238; TSAL6200; VL6180V1NR/VL53L0CX/VL53L4CD ToF options), and
+    restructured the KiCad tree (`kicad/main/`). See
+    [`docs/spec_crosscheck_20260809.md`](docs/spec_crosscheck_20260809.md) for
+    OSK-013..017, the wheel-pinout numbering-mirror finding, and the RK3562
+    sheets that are present but **not wired into the active CM5 hierarchy**.
+
+12. **Aug 12 refresh — serial link pinned, watchdog authority traced.** See
+    [`docs/spec_crosscheck_20260812.md`](docs/spec_crosscheck_20260812.md):
+    the CPU↔MCU link is now wire-traced as STM32 **USART1 (PC4/PC5)** ↔ CM5
+    **GPIO UART2** (TTL crossed); the external RTC sits on **CM5 I2C1** and its
+    `PULSE_OUT`→`PMIC_EN2` / `LATCH_OUT`→`V-MOTORS-EN` outputs give hardware
+    paths to power-cycle the CPU and cut motor power (OSK-013→**OSK-019**); the
+    side wall sensor landed as **VL6180 I2C ToF** on a satellite board fed by
+    STM32 **I2C4** (OSK-016 → a wall-distance serial message + topic is now
+    clearly required); and the MCU sheet's stale `STM32G070RBT6` name vs the
+    confirmed **G473VCT6** part is flagged for rename (**OSK-018**).
+
+13. **Aug 14 re-verification — no upstream drift.** See
+    [`docs/spec_crosscheck_20260814.md`](docs/spec_crosscheck_20260814.md):
+    this run re-fetched every live primary source (io-board commit log, raw
+    `docs/SPEC.md`, root + RTC_WATCHDOG + side-sensor sheets, firmware issue
+    tracker, main-repo PR list) and confirmed **none moved since 2026-08-11**
+    — HEAD still `6314edd596`, SPEC.md still 9454 bytes/202 lines, all key
+    Aug 12 pins/sheets present verbatim, firmware **#1/#2/#3 still open**, and
+    no new PRs touching this module (newest merged main-repo PR is **#57**
+    `mcu-io-firmware`, 2026-08-12). All prior cron-shifted claims stand;
+    open decisions (OSK-002/010/014/016/017/018/019 + SPEC GPIO 36/46 TODO)
+    remain flagged for maintainer/PCB-designer, none resolved upstream.
