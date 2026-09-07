@@ -787,6 +787,53 @@ answered.**
 
 ---
 
+## Jig 22: Drive-Wheel Harness Plug Pitch GAUGE + Jig 23: Dock-Fan Class Rings (`drive-wheel` harness; BOM "Auto-empty suction fan")
+
+Jig file: `jigs-new/drive-wheel-plug-and-fan-class-gauge.scad` (both gauges on
+one plate; render/print whole or split via the `translate([...])` at file end).
+
+**Jig 22 — 7-way plug pitch (drive wheel harness).** IKsares measured the
+module connector at 7 conductors, 1.5 mm pitch (9.0 mm pin1→pin7 ÷ 6), JST ZH
+family with no brand marking (`part-specs/IKsares/drive-wheel/README.md` §2,
+merged upstream PR #61). The plate carries TWO slot rows: ZH 1.5 mm and
+PH 2.0 mm as the wrong-pitch control (upstream already ruled out the XH 2.5
+guess on the 9.0/6 arithmetic; PH is the nearest neighbour worth a physical
+re-check). PASS = the harness plug seats fully into the ZH row; the same plug
+perches visibly proud on the PH row. BOTH rows failing ⇒ XH-2.5-class or
+worse: stop, caliper, and re-open the family call — that would contradict the
+measured 9.0 mm span, so treat the *plug*, not the README, as suspect first.
+
+**Jig 23 — dock-fan 65 class rings.** `BOM.md` "Auto-empty suction fan" row
+specifies the class **21.6–25.2 V, 65 mm, 350 W** (upstream main, read
+2026-09-06). Two wall rings: GO bore Ø65.6 (fan`s largest body must pass) and
+MIN Ø63.8 (a fan passing BOTH rings is under 63.8 — not the declared class;
+re-check the listing before it reaches MEASURE-ME §20). Ring walls are
+reference-only: blade/housing corners may touch any wall.
+
+### Print Instructions (both jigs)
+
+- Print flat, 0.2 mm layers, 3 perimeters; 100 % infill only under the slot
+  rows. Do NOT scale the plate in the slicer — slot/ring IDs are calibrated to
+  the SCAD constants.
+- Slots/rings are sized with +0.2 mm print allowance for the pins
+  (`slot_w = 1.2` on 1.0 mm-style headers [pin dia is the [E] element — the
+  1.5 pitch itself is measured]); if YOUR printer runs wide, re-cut
+  `slot_w`/ring bores, don't sand the gauge first.
+
+### Pass/Fail summary
+
+| Gauge | PASS means | FAIL action |
+|-------|------------|-------------|
+| Jig 22 ZH row seats, PH row perches | pitch 1.5 confirmed on the physical plug | both seat/perch oddly → caliper row pitch, update `mating row`, and re-check against IKsares photo |
+| Jig 22 both rows fail | the family chain broke | plug may be XH 2.5: escalate to calipers + photo |
+| Jig 23 passes GO, stops at MIN | OD in [63.8, 65.6] ⇒ 65-class OK | under 63.8 ⇒ re-check vendor listing; over 65.6 ⇒ measure actual, update ring |
+| Jig 23 passes both | fan below class | re-check listing / measure the unit |
+
+Report results against `MEASURE-ME.md` §1 row 11 (connector family
+confirmation) and §20 row 1 (fan identity) respectively.
+
+---
+
 ## Printing Guidelines
 
 | Parameter | Setting |
