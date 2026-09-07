@@ -9,7 +9,7 @@ checklist.
 
 | Part | Status | File | Notes |
 |------|--------|------|-------|
-| **Roborock S5 Drive Wheel Assembly** | DRAFT — needs caliper verification | `roborock-s5-drive-wheel/drive-wheel.scad` | Complete assembly: motor, gearbox, tire, suspension, mounting bracket, wheel-drop limit switch |
+| **Roborock S5 Drive Wheel Assembly** | v2 rebuilt on merged measured data (2026-09-06) | `roborock-s5-drive-wheel/drive-wheel.scad` | Gear train 11/36·13/42·12/34·11/24 = 65.36:1, helical stage-1 (mn 0.5, β≈27.5°), CDM GM-RS360-16248 Ø27.5×34+10.3, wheel Ø71.5, 7-way 1.5 mm harness — ALL from `part-specs/IKsares/drive-wheel/` (upstream PR #61). Chassis-side shell/bores still (estimate); MEASURE-ME §1 holds the caliper gates (stage-1 centre distance is the key one) |
 | **Roborock S5 Caster Wheel (HA00021)** | DRAFT — needs caliper verification | `roborock-s5-caster/caster.scad` | Omnidirectional snap-in caster for Roborock S5-family |
 | **Side Brush Motor RF-500C-13430** | DRAFT — needs caliper verification | `side-brush-motor-rf500c/side-brush-motor.scad` | Common 500-series DC gearmotor used in side brush assemblies |
 | **Main Brush Gearmotor** | DRAFT — needs caliper verification | `main-brush-gearmotor/main-brush-gearmotor.scad` | Right-angle worm/wheel gearmotor with hex brush socket |
@@ -38,9 +38,9 @@ checklist.
 | File | Purpose |
 |------|---------|
 | `MEASURE-ME.md` | Exact dimensions requiring caliper verification — ~100+ measurements across all parts |
-| `PRINT-TEST.md` | Fit-check jig print instructions and pass/fail criteria for 21 jigs |
+| `PRINT-TEST.md` | Fit-check jig print instructions and pass/fail criteria for 23 jigs |
 | `jigs/*.scad` | OpenSCAD jig files for testing part fit (drive wheel, caster, side brush motor, main brush motor) |
-| `jigs-new/*.scad` | OpenSCAD jig files for testing part fit (battery, cliff sensor, side brush clearance, LiDAR tower, main brush roller, mop disk, bumper/tower micro switch, carpet sensor, charger strip, pogo barrel, dock homing receiver, KY-003 hall module fit, KY-003 standoff kit, dock auto-empty fan envelope + port gauge, dock water-pump gauge, CJWP12 water-pump gauge) — **21 jigs total** |
+| `jigs-new/*.scad` | OpenSCAD jig files for testing part fit (battery, cliff sensor, side brush clearance, LiDAR tower, main brush roller, mop disk, bumper/tower micro switch, carpet sensor, charger strip, pogo barrel, dock homing receiver, KY-003 hall module fit, KY-003 standoff kit, dock auto-empty fan envelope + port gauge, dock water-pump gauge, CJWP12 water-pump gauge, drive-wheel ZH-pitch plug gauge + dock-fan 65-class rings [Jigs 22+23]) — **23 jigs total** |
 
 ## Cross-Reference by BOM Item
 
