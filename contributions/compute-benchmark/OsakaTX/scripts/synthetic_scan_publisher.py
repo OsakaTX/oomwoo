@@ -31,19 +31,21 @@ Two design details mirror how a real LiDAR driver ships data:
 * Odometry and transforms are broadcast at 50 Hz so the tf buffer always has
   entries bracketing any 5 Hz scan lookup time.
 
-This is a *benchmark stimulus generator*, not a LiDAR model. It intentionally
-ignores noise, reflectance and beam divergence; every reported number uses these
-idealised scans plus the real overhead of the publishing processes.
+This is a *benchmark stimulus generator*, not a full LiDAR model: reflectance
+and beam divergence are ignored.  --noise adds a deterministic Gaussian range
+noise (sigma in metres, seeded per scan) so SLAM stacks can also be exercised
+with non-idealised ranges; noise 0 keeps the historical noiseless behaviour.
 
 Usage
 -----
   python3 synthetic_scan_publisher.py [--hz 5] [--duration 120] [--loop-s 40]
                                       [--lookback 0.1] [--room-half 5.0]
-                                                                 [--rot 2]
+                                      [--rot 2] [--noise 0.0]
 """
 
 import argparse
 import math
+import random
 import sys
 
 import rclpy
@@ -140,10 +142,31 @@ def quat_from_yaw(yaw):
     return math.sin(yaw / 2.0), math.cos(yaw / 2.0)
 
 
+def noise_scan(ranges, i_scan, sigma):
+    """Add N(0, sigma) range noise, deterministic per scan index (ADR-0014).
+
+    Stateless seeding: the RNG is re-seeded from (i_scan, sigma) for every
+    scan, so scan i depends only on (i, sigma) -- not on wall clock, publisher
+    restarts, or the configured rate.  Same sigma + same rate => identical scan
+    sequence run to run; different rates still share a reproducible prefix
+    (the first min(n1, n2) scans match).  A redraw can push a range to <= 0;
+    those samples are clamped to the 0.05 m message floor, mirroring the
+    degenerate-geometry floor in scan_at().  On this scene the raw minimum
+    range over the whole trajectory is 0.876 m, so the floor never binds for
+    sigma <= 0.15 (measured, ADR-0014 sec 2); the clamp is robustness only.
+    """
+    if sigma <= 0.0:
+        return ranges
+    rng = random.Random('%d:%s' % (i_scan, sigma))
+    return [max(0.05, r + rng.gauss(0.0, sigma)) for r in ranges]
+
+
 class SyntheticScanNode(Node):
-    def __init__(self, hz, duration, loop_s, radius, rot, lookback, room_half=ROOM_HALF):
+    def __init__(self, hz, duration, loop_s, radius, rot, lookback,
+                 room_half=ROOM_HALF, noise=0.0):
         super().__init__('synthetic_scan_publisher')
         self.hz = hz
+        self.noise = noise
         self.duration = duration
         self.scan_period = 1.0 / hz
         self.loop_s = loop_s
@@ -224,6 +247,8 @@ class SyntheticScanNode(Node):
         t_acq = max(t - self.lookback, 0.0)
         px, py, yaw = pose_at(t_acq, self.loop_s, self.radius, self.rot)
         ranges = scan_at(px, py, yaw, self.segs)
+        if self.noise > 0.0:
+            ranges = noise_scan(ranges, self.i_scan, self.noise)
 
         stamp = now - Duration(seconds=self.lookback)   # acquisition time
         scan = LaserScan()
@@ -255,6 +280,9 @@ def main():
     ap.add_argument('--loop-s', type=float, default=40.0)
     ap.add_argument('--radius', type=float, default=1.5)
     ap.add_argument('--rot', type=int, default=2, help='extra scan spins per loop')
+    ap.add_argument('--noise', type=float, default=0.0,
+                    help='per-sample Gaussian range-noise sigma in metres '
+                         '(deterministic, seeded per scan; 0 = noiseless)')
     ap.add_argument('--lookback', type=float, default=0.1,
                     help='seconds between scan acquisition and publish callback')
     ap.add_argument('--room-half', type=float, default=ROOM_HALF,
@@ -265,7 +293,7 @@ def main():
     rclpy.init()
     node = SyntheticScanNode(args.hz, args.duration, args.loop_s,
                              args.radius, args.rot, args.lookback,
-                             room_half=args.room_half)
+                             room_half=args.room_half, noise=args.noise)
     try:
         rclpy.spin(node)
     except KeyboardInterrupt:

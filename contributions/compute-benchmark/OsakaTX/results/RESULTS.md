@@ -370,3 +370,34 @@ was +1.266 MiB over the whole window. Navigation-phase memory is "bounded in
 practice over realistic duty cycles", not zero-growth; the 2 GB-relevant
 unbounded slam term remains the mapping phase (ADR-0007, addressed by
 ADR-0011/0012 and map-save-then-localize ADR-0010/0013).
+
+## 15. stimulus range-noise: lifelong plateau is noise-robust; CPU is the noise-sensitive axis — 2026-09-08
+
+Five 480 s runs (`scripts/run_slam_bench.sh` / `run_slam_lifelong_bench.sh`
+--noise SIGMA, new flag this ADR) on the ADR-0007 15 m house scene @5 Hz:
+async 0.00/0.05, lifelong 0.00/0.05/0.15. Raw artifacts `slam15m_noise_*`;
+analysis `scripts/plateau_analysis.py` on the committed CSVs.
+
+| stage | sigma m | last-half PSS slope MiB/min (R2) | PSS first->last | CPU mean % |
+|---|---:|---|---|---:|
+| async n000 | 0.00 | +7.694 (0.998) | 41.5 -> 97.0 | 21.9 |
+| async n005 | 0.05 | +7.673 (0.998) | 41.8 -> 97.5 | 24.8 |
+| lifelong n000 | 0.00 | +0.432 (0.897) | 46.8 -> 52.4 | 54.8 |
+| lifelong n005 | 0.05 | +0.622 (0.980) | 46.8 -> 54.1 | 103.8 |
+| lifelong n015 | 0.15 | +0.513 (0.975) | 47.0 -> 54.0 | 116.2 |
+
+Headlines: (1) ADR-0011/0012's core result — lifelong bounds mapping memory
+(~12-17x lower slope than async) — REPRODUCES under realistic per-sample range
+noise at both tested strengths; the open "noisy LiDAR removal rate UNKNOWN"
+caveat is closed at the dev-reference level. (2) Async growth is
+noise-insensitive (previous async numbers were not noiseless-stage artifacts).
+(3) lifelong CPU is NOT noise-insensitive: 54.8 -> 103.8 -> 116.2% mean
+(16-thread container; see ADR-0014 CPU-interpretation note) — the ADR-0012
+"CPU is the tunable lever" trade must now carry a noise interaction term.
+(4) Mechanism (log-derived): absolute below-threshold removal evaluations stay
+~2.1k across sigma (2182/2084/2092) while total evaluations grow to 21318 at
+sigma 0.15 — the removal machinery keeps firing; more candidates are simply
+scored per window. Harness note: `run_slam_bench.sh` gained the map-check +
+snapshot gate (was async-absent); stimulus `--noise` is deterministic
+(stateless per-scan seeding; paired-delta sd validated 0.07065 vs 0.07071
+theory at sigma 0.05). Details: `docs/adr-0014-*.md`.

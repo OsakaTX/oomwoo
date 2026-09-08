@@ -1,0 +1,7 @@
+image: slam15m_noise_n005_async_map.pgm
+mode: trinary
+resolution: 0.050
+origin: [-8.718, -9.189, 0]
+negate: 0
+occupied_thresh: 0.65
+free_thresh: 0.196

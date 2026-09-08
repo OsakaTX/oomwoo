@@ -164,9 +164,12 @@ docker exec oomwoo-bench bash -c '
 ## Files
 
 - `scripts/synthetic_scan_publisher.py` — deterministic 5 Hz /scan + 50 Hz /odom
-  + tf source (box room, two pillars, loop every 40 s).
+  + tf source (box room, two pillars, loop every 40 s). `--noise SIGMA_M` adds
+  deterministic per-scan Gaussian range noise (ADR-0014); 0 = historical
+  noiseless streams, bit-exact.
 - `scripts/slam_toolbox_params.yaml` — benchmark parameters.
-- `scripts/run_slam_bench.sh` — publisher + slam_toolbox + sampler driver.
+- `scripts/run_slam_bench.sh` — publisher + slam_toolbox + sampler driver
+  (with post-run map-check/map-snapshot gate, ADR-0014).
 - `scripts/map_check.py` — proves /map has real occupied cells.
 - `scripts/tf_probe.py`, `scripts/tf_audit.py` — diagnosis/connectivity checks.
 - `scripts/analyze_csv.py` — mean/min/max RSS/PSS/CPU from sampler CSVs.
@@ -190,3 +193,27 @@ docker exec oomwoo-bench bash -c '
   ACTIVE navigation goal with autonomous recovery bursts (the measured ceiling
   complementing ADR-0004's no-goal floor); adds `run_nav2_goal_bench.sh` +
   `nav_goal_sender.py` + `analyze_nav2_goal_csv.py`.
+- `docs/adr-0007-measured-house-scale-long-horizon-slam-mapping.md` — 15 m
+  house-scale long-horizon mapping growth (+8.05 MiB/min PSS, R2 0.9995).
+- `docs/adr-0008-measured-lidar-scan-rate-sensitivity.md` — slam CPU/memory
+  vs scan rate; memory floor rate-invariant.
+- `docs/adr-0009-measured-nav2-lidar-rate-sensitivity.md` — Nav2 stack
+  memory/CPU vs scan rate (flat memory; not a Nav2 lever).
+- `docs/adr-0010-measured-localization-only-slam-memory-bounded.md` —
+  localization-only phase bounded (harness: `build_and_save_map.sh`,
+  `run_slam_localize_bench.sh`, `localization_slam_params.yaml`,
+  `check_localization_pose.py`, `periodic_relocalize.py`,
+  `analyze_localize_csv.py`).
+- `docs/adr-0011-measured-lifelong-mapping-bounds-memory-growth.md` —
+  EXPERIMENTAL lifelong processor bounds mapping memory (~16x lower slope) at
+  ~2.6x CPU (harness: `lifelong_launch.py`, `lifelong_slam_params.yaml`,
+  `run_slam_lifelong_bench.sh`; `analyze_slam_trend.py --node`).
+- `docs/adr-0012-measured-lifelong-rate-sensitivity.md` — lifelong plateau
+  reproduces and holds at 2.5/1.25 Hz; ADR-0011 mechanism-claim correction
+  (`plateau_analysis.py`; minority removal, not mass deletion).
+- `docs/adr-0013-measured-long-horizon-localization-memory-drift.md` — 480 s
+  localization: no hard plateau; +0.120 MiB/min steady-state (bounded in
+  practice, not zero-growth).
+- `docs/adr-0014-measured-lifelong-plateau-noise-robustness.md` — stimulus
+  range noise (`--noise`): lifelong memory plateau noise-robust; CPU is the
+  noise-sensitive axis; async harness gains the map gate.

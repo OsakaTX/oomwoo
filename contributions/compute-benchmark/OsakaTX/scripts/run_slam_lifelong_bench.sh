@@ -38,11 +38,12 @@ duration=120
 outdir="$HERE/../results"
 hz=5.0
 room_half=5.0
+noise=0.0
 
 usage() {
   cat <<EOF
 Usage: run_slam_lifelong_bench.sh [--label LABEL] [--duration SECONDS] [--outdir DIR]
-                                  [--hz HZ] [--room-half METRES]
+                                  [--hz HZ] [--room-half METRES] [--noise SIGMA_M]
 EOF
 }
 
@@ -53,6 +54,7 @@ while [[ $# -gt 0 ]]; do
     --outdir) outdir="${2:-}"; shift 2;;
     --hz) hz="${2:-5.0}"; shift 2;;
     --room-half) room_half="${2:-5.0}"; shift 2;;
+    --noise) noise="${2:-0.0}"; shift 2;;
     *) usage; exit 2;;
   esac
 done
@@ -65,7 +67,7 @@ if [[ ! -x /opt/ros/jazzy/lib/slam_toolbox/lifelong_slam_toolbox_node ]]; then
 fi
 
 # 1) start the deterministic scan source (canonical scene, --room-half metres)
-python3 "$PUBLISHER" --duration $((duration + 25)) --loop-s 40 --hz "$hz" --room-half "$room_half" &
+python3 "$PUBLISHER" --duration $((duration + 25)) --loop-s 40 --hz "$hz" --room-half "$room_half" --noise "$noise" &
 pub_pid=$!
 sleep 2
 

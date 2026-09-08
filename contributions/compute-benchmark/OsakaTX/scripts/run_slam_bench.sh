@@ -27,11 +27,12 @@ duration=120
 outdir="$HERE/../results"
 hz=5.0
 room_half=5.0
+noise=0.0
 
 usage() {
   cat <<EOF
 Usage: run_slam_bench.sh [--label LABEL] [--duration SECONDS] [--outdir DIR]
-                         [--hz HZ] [--room-half METRES]
+                         [--hz HZ] [--room-half METRES] [--noise SIGMA_M]
 EOF
 }
 
@@ -42,6 +43,7 @@ while [[ $# -gt 0 ]]; do
     --outdir) outdir="${2:-}"; shift 2;;
     --hz) hz="${2:-5.0}"; shift 2;;
     --room-half) room_half="${2:-5.0}"; shift 2;;
+    --noise) noise="${2:-0.0}"; shift 2;;
     *) usage; exit 2;;
   esac
 done
@@ -54,7 +56,7 @@ if [[ ! -x /opt/ros/jazzy/lib/slam_toolbox/async_slam_toolbox_node ]]; then
 fi
 
 # 1) start the deterministic scan source
-python3 "$PUBLISHER" --duration $((duration + 25)) --loop-s 40 --hz "$hz" --room-half "$room_half" &
+python3 "$PUBLISHER" --duration $((duration + 25)) --loop-s 40 --hz "$hz" --room-half "$room_half" --noise "$noise" &
 pub_pid=$!
 sleep 2
 
@@ -79,6 +81,25 @@ if [[ $SAMPLING -lt 30 ]]; then SAMPLING=$duration; fi
   --label "$label" \
   --output "$OUTCSV" || true
 
+# 5) health / correctness gate (same as run_slam_lifelong_bench.sh): the async
+#    mapping must actually publish an occupancy map with occupied cells, and
+#    we snapshot /map as the retained artifact. Runs BEFORE teardown so slam
+#    and the publisher are still up.
+MAPBASE="$outdir/${label}_map"
+mapcheck_rc=1
+if timeout 60 python3 "$HERE/map_check.py" >"$outdir/${label}_mapcheck.log" 2>&1; then
+  mapcheck_rc=0
+  echo "map_check: occupancy grid with occupied cells PRESENT"
+  cat "$outdir/${label}_mapcheck.log"
+else
+  echo "map_check WARN: no /map with occupancy (rc=$mapcheck_rc) - see ${label}_mapcheck.log"
+fi
+if ros2 run nav2_map_server map_saver_cli -f "$MAPBASE" >"$outdir/${label}_mapsaver.log" 2>&1; then
+  echo "map snapshot saved: ${MAPBASE}.pgm/.yaml"
+else
+  echo "map_saver_cli FAILED - see ${label}_mapsaver.log"
+fi
+
 echo "=== stopping slam_toolbox + publisher ==="
 kill "$launch_pid" 2>/dev/null || true
 pkill -f async_slam_toolbox_node 2>/dev/null || true
@@ -87,3 +108,7 @@ kill "$pub_pid" 2>/dev/null || true
 
 sleep 1
 echo "=== CSV written: $OUTCSV ==="
+
+echo "--- health: 'Failed to compute odom pose' count ---"
+grep -c "Failed to compute odom pose" "$outdir/${label}_slam_launch.log" || true
+

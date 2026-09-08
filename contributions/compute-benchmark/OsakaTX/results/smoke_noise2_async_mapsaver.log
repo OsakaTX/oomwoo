@@ -1,0 +1,16 @@
+[INFO] [1788878792.017022861] [map_saver]: 
+	map_saver lifecycle node launched. 
+	Waiting on external lifecycle transitions to activate
+	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[INFO] [1788878792.017153562] [map_saver]: Creating
+[INFO] [1788878792.017219162] [map_saver]: Configuring
+[INFO] [1788878792.033104644] [map_saver]: Saving map from 'map' topic to '/oomwoo/contributions/compute-benchmark/OsakaTX/scripts/../results/smoke_noise2_async_map' file
+[WARN] [1788878792.033144444] [map_saver]: Free threshold unspecified. Setting it to default value: 0.250000
+[WARN] [1788878792.033158344] [map_saver]: Occupied threshold unspecified. Setting it to default value: 0.650000
+[WARN] [1788878792.210106959] [map_io]: Image format unspecified. Setting it to: pgm
+[INFO] [1788878792.211675467] [map_io]: Received a 310 X 310 map @ 0.05 m/pix
+[INFO] [1788878792.252609379] [map_io]: Writing map occupancy data to /oomwoo/contributions/compute-benchmark/OsakaTX/scripts/../results/smoke_noise2_async_map.pgm
+[INFO] [1788878792.253508284] [map_io]: Writing map metadata to /oomwoo/contributions/compute-benchmark/OsakaTX/scripts/../results/smoke_noise2_async_map.yaml
+[INFO] [1788878792.253670884] [map_io]: Map saved
+[INFO] [1788878792.253680884] [map_saver]: Map saved successfully
+[INFO] [1788878792.254778590] [map_saver]: Destroying
