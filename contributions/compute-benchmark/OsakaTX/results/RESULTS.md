@@ -401,3 +401,32 @@ scored per window. Harness note: `run_slam_bench.sh` gained the map-check +
 snapshot gate (was async-absent); stimulus `--noise` is deterministic
 (stateless per-scan seeding; paired-delta sd validated 0.07065 vs 0.07071
 theory at sigma 0.05). Details: `docs/adr-0014-*.md`.
+
+## 16. Nav2 + mapping SLAM as ONE system (combo A/B): async climbs, lifelong flat — 2026-09-10
+
+First co-residency measurement (`scripts/run_nav2_slam_combo_bench.sh`
++ `scripts/analyze_combo_bench.py`, both new): full composable Nav2
+(`bringup_launch.py slam:=False use_localization:=False` — slam node owns
+`map->odom` and `/map`, verified from the installed bringup source) + slam
+mapping arm (async vs lifelong), ADR-0006 unreachable-goal traffic, canonical
+10 m/5 Hz stimulus, xbattlax sampler unchanged. Raw artifacts `combo/`;
+analysis `combo/combo_analysis.json`. Details: `docs/adr-0015-*.md`.
+
+| arm | nav2_container last-half PSS / cpu | slam last-half PSS / cpu | SYSTEM last-half PSS (sum) | system last-half slope |
+|---|---|---|---|---:|
+| async 480 s (208 samples) | 144.8 MiB / 51.2% | 86.7 MiB / 21.9% | 331.3 MiB [315.3..345.6] | +8.341 MiB/min (R2 0.939) |
+| lifelong 240 s (97 samples) | 144.2 MiB / 54.8% | 49.0 MiB / 45.9% | 292.8 MiB [290.0..295.2] | +1.083 MiB/min (R2 0.112, flat) |
+
+Cross-checks vs solo-run ADRs: async slam in-combo +8.085 MiB/min whole-window
+(solo protocol +8.05, ADR-0007); lifelong in-combo +0.556 whole-window (solo
+band +0.432..+0.622, ADR-0011/0012/0014) — co-residency changes neither
+number; nav2_container stats across arms differ by <1 MiB / 3.6 pp. Declared
+asymmetry: async arm ran 8 accept->ABORTED(goal-status 6) goal cycles; the
+lifelong window held a single long-RUNNING goal (no abort cycles in-window).
+Hoisted result for the 2 GB matrix: the first MEASURED combined steady-state
+(rather than assembled-from-parts) is ~293 MiB PSS dev-reference on the
+lifelong arm; async remains the linear term (~+8.3 MiB/min system-level).
+Pitfalls banked: `pkill -f` self-match kills the driver (mode/label in its own
+cmdline — fixed with PID-excluding safe_pkill); launch files run via
+`ros2 launch`, never `python3 <launch>.py` (silently exits; the first attempt
+is kept as `combo/attempt1_lifelong_*` evidence).

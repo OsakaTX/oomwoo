@@ -217,3 +217,7 @@ docker exec oomwoo-bench bash -c '
 - `docs/adr-0014-measured-lifelong-plateau-noise-robustness.md` — stimulus
   range noise (`--noise`): lifelong memory plateau noise-robust; CPU is the
   noise-sensitive axis; async harness gains the map gate.
+- `docs/adr-0015-measured-combo-nav2-slam-system.md` — Nav2 + mapping SLAM as
+  ONE system (combo A/B): async combined sum climbs +8.3 MiB/min system-level;
+  lifelong combined steady ~293 MiB flat (harness: `run_nav2_slam_combo_bench.sh`,
+  `analyze_combo_bench.py`; Pitfalls: pkill self-match, launch-file-via-python3).

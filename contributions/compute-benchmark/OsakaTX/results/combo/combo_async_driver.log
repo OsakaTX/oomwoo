@@ -1,0 +1,48 @@
+WARNING: 3 bench-matching process(es) still alive after pre-clean:
+139138 bash -c source /opt/ros/jazzy/setup.bash && bash /oomwoo/contributions/compute-benchmark/OsakaTX/scripts/run_nav2_slam_combo_bench.sh --mode async --label combo_async_devref --duration 480 --outdir /oomwoo/contributions/compute-benchmark/OsakaTX/results > /oomwoo/contributions/compute-benchmark/OsakaTX/results/combo/combo_async_driver.log 2>&1
+139152 bash /oomwoo/contributions/compute-benchmark/OsakaTX/scripts/run_nav2_slam_combo_bench.sh --mode async --label combo_async_devref --duration 480 --outdir /oomwoo/contributions/compute-benchmark/OsakaTX/results
+wrote /oomwoo/contributions/compute-benchmark/OsakaTX/scripts/../results/combo/combo_nav2_map.pgm/.yaml (200x200, 912 occupied cells @ 0.05 m)
+=== goal sender pid 139307 (regime: ADR-0006 repeat/unreachable) ===
+=== node list ===
+/behavior_server
+/bt_navigator
+/bt_navigator_navigate_through_poses_rclcpp_node
+/bt_navigator_navigate_to_pose_rclcpp_node
+/collision_monitor
+/controller_server
+/docking_server
+/global_costmap/global_costmap
+/lifecycle_manager_navigation
+/local_costmap/local_costmap
+/nav2_container
+/nav_goal_sender
+/planner_server
+/route_server
+/smoother_server
+/synthetic_scan_publisher
+/transform_listener_impl_7c8428002080
+/transform_listener_impl_7c84300020e0
+/velocity_smoother
+/waypoint_follower
+=== map topic hz (nav2 map_server && slam both publish /map) ===
+WARNING: topic [/map] does not appear to be published yet
+=== tf map->odom publishers ===
+At time 1789063729.570083986
+- Translation: [-0.003, 0.004, 0.000]
+- Rotation: in Quaternion (xyzw) [0.000, 0.000, -0.002, 1.000]
+- Rotation: in RPY (radian) [0.000, 0.000, -0.003]
+=== stopping stack (goal sender, nav2, slam, publisher) ===
+=== CSV: /oomwoo/contributions/compute-benchmark/OsakaTX/scripts/../results/combo/combo_async_devref_20260910T180755Z.csv ===
+=== slam launch log health ===
+0
+=== nav2 launch log health ===
+[component_container_isolated-1] [INFO] [1789063678.588544012] [controller_server]: Creating controller server
+[component_container_isolated-1] [INFO] [1789063678.602194682] [local_costmap.local_costmap]: Creating Costmap
+[component_container_isolated-1] [INFO] [1789063678.629036719] [smoother_server]: Creating smoother server
+[component_container_isolated-1] [INFO] [1789063678.650099627] [planner_server]: Creating
+[component_container_isolated-1] [INFO] [1789063678.661403085] [global_costmap.global_costmap]: Creating Costmap
+[component_container_isolated-1] [INFO] [1789063678.802184807] [bt_navigator]: Creating
+[component_container_isolated-1] [INFO] [1789063678.839427198] [waypoint_follower]: Creating
+[component_container_isolated-1] [INFO] [1789063678.954214386] [docking_server]: Creating docking_server
+=== goal sender summary ===
+0

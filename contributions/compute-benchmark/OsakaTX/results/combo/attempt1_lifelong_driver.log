@@ -1,0 +1,43 @@
+WARNING: 3 bench-matching process(es) still alive after pre-clean:
+182523 bash -c source /opt/ros/jazzy/setup.bash && bash /oomwoo/contributions/compute-benchmark/OsakaTX/scripts/run_nav2_slam_combo_bench.sh --mode lifelong --label combo_lifelong_devref --duration 240 --outdir /oomwoo/contributions/compute-benchmark/OsakaTX/results > /oomwoo/contributions/compute-benchmark/OsakaTX/results/combo/combo_lifelong_driver.log 2>&1
+182536 bash /oomwoo/contributions/compute-benchmark/OsakaTX/scripts/run_nav2_slam_combo_bench.sh --mode lifelong --label combo_lifelong_devref --duration 240 --outdir /oomwoo/contributions/compute-benchmark/OsakaTX/results
+wrote /oomwoo/contributions/compute-benchmark/OsakaTX/scripts/../results/combo/combo_nav2_map.pgm/.yaml (200x200, 912 occupied cells @ 0.05 m)
+=== goal sender pid 182663 (regime: ADR-0006 repeat/unreachable) ===
+=== node list ===
+/behavior_server
+/bt_navigator
+/bt_navigator_navigate_through_poses_rclcpp_node
+/bt_navigator_navigate_to_pose_rclcpp_node
+/collision_monitor
+/controller_server
+/docking_server
+/global_costmap/global_costmap
+/launch_ros_182592
+/lifecycle_manager_navigation
+/local_costmap/local_costmap
+/nav2_container
+/planner_server
+/route_server
+/smoother_server
+/synthetic_scan_publisher
+/transform_listener_impl_7e5f2c002080
+/transform_listener_impl_7e5f400020e0
+/velocity_smoother
+/waypoint_follower
+=== map topic hz (nav2 map_server && slam both publish /map) ===
+=== tf map->odom publishers ===
+=== stopping stack (goal sender, nav2, slam, publisher) ===
+=== CSV: /oomwoo/contributions/compute-benchmark/OsakaTX/scripts/../results/combo/combo_lifelong_devref_20260910T184017Z.csv ===
+=== slam launch log health ===
+0
+=== nav2 launch log health ===
+[component_container_isolated-1] [INFO] [1789065620.804128013] [controller_server]: Creating controller server
+[component_container_isolated-1] [INFO] [1789065620.813316260] [local_costmap.local_costmap]: Creating Costmap
+[component_container_isolated-1] [INFO] [1789065620.830710149] [smoother_server]: Creating smoother server
+[component_container_isolated-1] [INFO] [1789065620.846413129] [planner_server]: Creating
+[component_container_isolated-1] [INFO] [1789065620.857003483] [global_costmap.global_costmap]: Creating Costmap
+[component_container_isolated-1] [INFO] [1789065620.913431472] [bt_navigator]: Creating
+[component_container_isolated-1] [INFO] [1789065620.931750965] [waypoint_follower]: Creating
+[component_container_isolated-1] [INFO] [1789065620.996300995] [docking_server]: Creating docking_server
+=== goal sender summary ===
+0
