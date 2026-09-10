@@ -177,6 +177,28 @@ from .status_observability_align import (
     yueqin22_kpi_spec,
 )
 
+from .mcu_safety_state import (
+    EVENTS_FULL,
+    PR63_PROVENANCE,
+    SAFETY_EVENT_MESSAGE_ID,
+    SAFETY_STATE_MESSAGE_ID,
+    SAFETY_STATE_STRUCT_FORMAT,
+    ClearAdmission,
+    NodeSafetyView,
+    SafetyEvent,
+    SafetyStateFrame,
+    SafetyStateLiveness,
+    active_events,
+    admit_clear,
+    event_by_name,
+    flags_for,
+    latched_events,
+    node_pause_reason,
+    parse_safety_state,
+    project_to_node_inputs,
+    recoverable,
+)
+
 __all__ = [
     # situation_analyzer
     "BumperHistory", "BumperSide", "ClassifierParams", "ContactEvent",
@@ -232,4 +254,11 @@ __all__ = [
     "YUEQIN22_RECORD_STATUS_VERBATIM", "evaluate_kpi_fireability",
     "yueqin22_kpi_spec",
     "reason_seen_paused_alert", "verify_deployed_alert_surface",
+    # mcu_safety_state
+    "EVENTS_FULL", "PR63_PROVENANCE", "SAFETY_EVENT_MESSAGE_ID",
+    "SAFETY_STATE_MESSAGE_ID", "SAFETY_STATE_STRUCT_FORMAT",
+    "ClearAdmission", "NodeSafetyView", "SafetyEvent", "SafetyStateFrame",
+    "SafetyStateLiveness", "active_events", "admit_clear", "event_by_name",
+    "flags_for", "latched_events", "node_pause_reason",
+    "parse_safety_state", "project_to_node_inputs", "recoverable",
 ]
