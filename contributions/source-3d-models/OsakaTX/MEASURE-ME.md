@@ -666,9 +666,11 @@ present + 2x (clean-low, dirty-full) floats". Model:
 > row 1 answered, do not design the dock airbox/pocket against these numbers.
 >
 > **2026-09-11 addendum — model rebuilt with source-anchored presets
-> `nidec_blv55 | bg26 | legacy_generic`.** No dimension datasheet surfaced for the
-> BOM-named 13F704P640 / 64XC216-085D / MBD65 (re-checked this run; see
-> below). Two SOURCE-ANCHORED candidate classes were added instead, from
+> `nidec_blv55 | bg26 | legacy_generic`.** Still no dimension datasheet for the
+> BOM-named 13F704P640 / 64XC216-085D / MBD65 — upstream PR #64 (merged
+> 2026-09-11) reports the same and asks where those numbers come from; NOT
+> re-searched independently this run. Two SOURCE-ANCHORED candidate classes
+> were added instead, from
 > primary vendor documents fetched & read 2026-09-11 — the model's presets
 > now carry the anchors:
 >
