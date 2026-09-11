@@ -106,9 +106,10 @@ art but speaks Espressif ROM protocols, so it needs a separate STM32 backend.
 - Does a minimal native ESP-IDF SLAM meet the 200 ms / 32 MB budget at all?
 - Is the LP core enough isolation, or is a dedicated hardware-gate IC still
   required as the final cutoff? (Leaning: keep the external gate regardless.)
-- Motor type: 2× BLDC with FOC on the P4 vs. DC. Safety implication — if P4-side
-  FOC stops executing, a BLDC coasts to a stationary hold as its fields stop
-  rotating, which is not true for DC motors.
+- The current drive wheels are brushed DC motors controlled by STM32-owned
+  H-bridges. The P4 must never run wheel PWM/H-bridge control or become part of the
+  motor-stop path; its loss only removes high-level commands, while the STM32 and
+  external watchdog force the safe state.
 
 ## Request for contribution
 

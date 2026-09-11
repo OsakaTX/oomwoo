@@ -30,6 +30,7 @@ class MessageType(IntEnum):
     HEARTBEAT = 0x0001
     ESTOP_SET = 0x0002
     CLEAR_LATCHED_FAULT = 0x0003
+    IDENTIFY_REQUEST = 0x0004
     DRIVE_SETPOINT = 0x0101
     CLEANING_MOTORS_SET = 0x0102
     LIDAR_MOTOR_SET = 0x0103
@@ -41,6 +42,7 @@ class MessageType(IntEnum):
     SAFETY_EVENT = 0x8002
     POWER_TELEMETRY = 0x8003
     MCU_DIAGNOSTIC = 0x8004
+    SAFETY_STATE = 0x8005
 
 
 class SafetyEvent(IntEnum):
@@ -162,7 +164,10 @@ class StreamDecoder:
         while True:
             magic_at = self._buffer.find(MAGIC)
             if magic_at < 0:
-                self._buffer.clear()
+                if self._buffer.endswith(MAGIC[:1]):
+                    self._buffer[:] = MAGIC[:1]
+                else:
+                    self._buffer.clear()
                 break
             if magic_at:
                 del self._buffer[:magic_at]
@@ -246,6 +251,33 @@ def pack_safety_event(event: int | SafetyEvent, active: bool, detail: int = 0) -
     _check_uint("event", int(event), 0xFFFF)
     _check_uint("detail", detail, 0xFFFF)
     return struct.pack("<HBH", int(event), int(active), detail)
+
+
+def safety_event_flag(event: int | SafetyEvent) -> int:
+    """Return the protocol bit for a 1-based safety event code."""
+
+    _check_int("event", int(event), 1, 16)
+    return 1 << (int(event) - 1)
+
+
+def pack_safety_state(
+    *, timestamp_ms: int, active_flags: int = 0, latched_flags: int = 0
+) -> bytes:
+    _check_uint("timestamp_ms", timestamp_ms, 0xFFFFFFFF)
+    _check_uint("active_flags", active_flags, 0xFFFF)
+    _check_uint("latched_flags", latched_flags, 0xFFFF)
+    return struct.pack("<IHH", timestamp_ms, active_flags, latched_flags)
+
+
+def unpack_safety_state(payload: bytes) -> dict[str, int]:
+    if len(payload) != struct.calcsize("<IHH"):
+        raise ValueError("invalid SAFETY_STATE payload length")
+    timestamp_ms, active_flags, latched_flags = struct.unpack("<IHH", payload)
+    return {
+        "timestamp_ms": timestamp_ms,
+        "active_flags": active_flags,
+        "latched_flags": latched_flags,
+    }
 
 
 def pack_fast_telemetry(

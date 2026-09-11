@@ -169,7 +169,7 @@ unchanged.
 - **No measured worst-case reaction time.** Simulator timing is laptop timing under a preemptive
   scheduler and says nothing about the real part.
 - **Encoder and wheel-base constants are placeholders,** labelled as such in the source, because
-  [`SPEC.md`](https://github.com/makerspet/oomwoo-io-board/blob/main/docs/SPEC.md) does not fix
+  [`SPEC.md`](https://github.com/makerspet/oomwoo-pcb/blob/main/docs/SPEC.md) does not fix
   gearbox ratio or encoder resolution yet. Odometry *distance* from the simulator is meaningless;
   direction, sign, and the fact that it stops when safety says stop are not.
 - **`POWER_TELEMETRY` and `MCU_DIAGNOSTIC` have no payload layout** in the contract, which is what
@@ -177,22 +177,23 @@ unchanged.
   topics. Those are left unpublished rather than filled with plausible values — a fabricated
   `battery.percentage` on a standard ROS 2 topic is worse than a missing one.
 
-## Open questions, and three contract gaps found by building both ends
+## Contract gaps found by building both ends
 
 These are the useful output of having implemented the CPU side and the MCU side against the same
-document. None is a blocker; all three want a decision from someone who owns the contract.
+document. The interface contract now resolves all three findings while preserving existing
+protocol-v1 frames:
 
-1. **`FAST_TELEMETRY.safety_latched_flags` is one byte, but `SafetyEvent` runs 1..10.**
-   `CPU_HEARTBEAT_TIMEOUT` (9) and `ESTOP` (10) cannot appear in the periodic snapshot at all. Both
-   ends currently work around it by tracking those two from their `SAFETY_EVENT` frames instead, so
-   latch state arrives by two different routes. Widening the field would fix it properly.
-2. **A CPU that attaches late misses `MCU_HELLO`,** and the message catalog has no CPU→MCU
-   "identify" request to ask again with. On a pseudo-terminal the frame waits in the buffer; on a
-   real UART it is simply gone. A `CPU_HELLO` or an identify request would close this.
-3. **The reference codec's own `StreamDecoder` loses a frame when a read ends on a lone `O`** —
-   it clears its buffer when it cannot find `OW`, discarding a trailing partial magic byte. Both
-   implementations here deliberately diverge and keep it, with a test that fails if upstream ever
-   fixes it, so the workaround gets deleted rather than outliving its reason.
+1. **Complete safety snapshot:** `SAFETY_STATE` carries 16-bit active and latched masks. The old
+   `FAST_TELEMETRY.safety_latched_flags` byte remains as a compatibility field, while events 9 and
+   10 are represented in the authoritative periodic snapshot.
+2. **Late CPU attachment:** `IDENTIFY_REQUEST` lets the CPU request a fresh `MCU_HELLO` after every
+   connect or reconnect without arming outputs or refreshing the heartbeat.
+3. **Split magic:** the reference `StreamDecoder` now preserves a trailing lone `O`, with a
+   regression test that completes the frame when `W` arrives in the next read.
+
+Implementations still need to adopt the two new message IDs before their temporary workarounds can
+be removed. The undefined `POWER_TELEMETRY`, `MCU_DIAGNOSTIC`, and dock-IR payloads remain a separate
+contract decision tied to board bring-up measurements.
 
 On the **CPU-heartbeat timeout**: @makers-pet answered in
 [#49](https://github.com/makerspet/oomwoo/discussions/49) with **~5 minutes, for CPU boot time**.
@@ -210,7 +211,7 @@ spoken, that is a small change and worth deciding.
 - Contract this is built against: [io-board-interface](../../io-board-interface) — @xbattlax's
   [serial contract](../../io-board-interface/xbattlax/docs/cpu_mcu_serial_contract.md) and
   [ROS 2 mapping](../../io-board-interface/xbattlax/docs/ros2_mapping.md)
-- Board: [oomwoo-io-board](https://github.com/makerspet/oomwoo-io-board) ·
-  [SPEC.md](https://github.com/makerspet/oomwoo-io-board/blob/main/docs/SPEC.md)
+- Board: [oomwoo-pcb](https://github.com/makerspet/oomwoo-pcb) ·
+  [SPEC.md](https://github.com/makerspet/oomwoo-pcb/blob/main/docs/SPEC.md)
 - ROS 2 interfaces: [SOFTWARE_INTERFACES.md](../../../docs/SOFTWARE_INTERFACES.md) §"Hardware Bridge Draft"
 - Status updates and discussion: [#49](https://github.com/makerspet/oomwoo/discussions/49)

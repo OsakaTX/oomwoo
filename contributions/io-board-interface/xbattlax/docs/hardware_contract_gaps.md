@@ -9,22 +9,23 @@ or stale text found while comparing:
 - `docs/SOFTWARE_INTERFACES.md`
 - `contributions/io-pcb/README.md`
 - `contributions/part-specs/OsakaTX/*`
-- `makerspet/oomwoo-io-board/docs/SPEC.md`
+- `makerspet/oomwoo-pcb/docs/SPEC.md`
 - KiCad-derived notes from the I/O board repository
 
 ## Decision ledger
 
 | ID | Topic | Current conflict | Why it matters | Suggested next action |
 |---|---|---|---|---|
-| `HW-SW-001` | MCU protocol | Project docs include both an educational micro-ROS path and a safety-critical custom serial path. | Firmware architecture and bridge tooling diverge if this is not settled. | Treat custom serial as the safety path; keep micro-ROS only for non-safety experiments. |
+| `HW-SW-001` | MCU protocol (resolved) | The safety-critical STM32 path uses the custom serial contract; micro-ROS is reserved for the educational ESP32 compute profile. | Keeping this boundary explicit prevents the firmware and bridge tooling from diverging. | Preserve this split in architecture and implementation docs. |
 | `HW-SW-002` | Drive wheel connector | `io-pcb` references a 6-pin JST PH2.0 pinout; part specs show the physical Roborock wheel has a 7-pin cable, while the current OOMWOO I/O board schematic uses a 5-pin signal connector and on-board H-bridge. | Connector choice affects PCB layout, harnessing, and encoder/motor ownership. | Reconcile the selected wheel module connector before layout and document the final board-side connector. |
 | `HW-SW-003` | LiDAR UART owner | Architecture text says the CPU receives LiDAR serial; KiCad-derived notes describe LiDAR serial routed to the STM32. | ROS2 driver placement, timestamping, and serial bandwidth differ by owner. | Decide whether the MCU controls only LiDAR motor power/RPM or also forwards LiDAR scan data. |
 | `HW-SW-004` | Bumper naming and type | Some specs still say "bumper switch"; schematic notes identify ITR9606 optical interrupters. The I/O board GPIO list also repeats `Bumper switch 1`. | Safety events and mechanical integration need left/right semantics and sensor polarity. | Rename to bumper optical interrupter where confirmed; fix duplicate GPIO label after schematic review. |
 | `HW-SW-005` | Side brush quantity | Some text says side brush quantity 1; KiCad-derived notes show left/right side brush connectors. | Firmware payload should know whether one or two channels are independently controlled. | Decide whether v1 has one physical side brush or two independently driven side brushes. |
 | `HW-SW-006` | Fan driver capability | Specs say suction fan BLDC with PWM/FG; schematic notes show a high-side P-MOSFET and tach feedback. | The bridge needs to know whether fan percent maps to a power switch, PWM input, or external ESC. | Bench-test fan module pinout and confirm whether MCU PWM controls fan electronics or only supply power. |
 | `HW-SW-007` | Charger/dock contact semantics | I/O board spec says dock contacts provide about 20 V DC, but dock-present sensing is not fully specified. | Dock-cycle and battery status need reliable dock-present vs charging-active flags. | Add explicit dock-present and charging-active signals to the power telemetry contract. |
-| `HW-SW-008` | Dock IR homing sensors | Maintainer feedback requests two front IR homing sensors plus left/right dock-search sensors, while the current public ROS2 interface does not define them yet. | Docking and find-the-dock behavior need repeatable simulation topics before firmware and PCB pin allocation settle. | Add simulated dock IR topics first, then promote to MCU telemetry fields or custom messages after sensor behavior is measured. |
-| `HW-SW-009` | Obstacle camera | Maintainer feedback requests a front obstacle camera with about 130 degrees FoV; current bridge docs did not name the topic or ownership. | URDF, vision processing, and compute benchmarking need a stable camera placeholder. | Add a front camera to simulation and benchmark its optional workload separately from the 2D LiDAR baseline. |
+| `HW-SW-008` | Dock IR telemetry | Four public ROS2 topics and their MCU ownership are defined, but the serial contract has no measured raw-value range or payload layout yet. | Docking and find-the-dock behavior need a reproducible wire source without inventing normalized sensor values. | Define the payload after ADC behavior and emitter/sensor geometry are measured; keep simulation topics stable meanwhile. |
+| `HW-SW-009` | Obstacle camera (topic resolved) | The public image and camera-info topics now exist and the current simulation models the front vision path; final sensor/topology and compute performance remain experimental. | Camera transport, calibration, and processing load affect the compute benchmark and PCB interface. | Benchmark the selected camera topology separately from the 2D LiDAR baseline. |
+| `HW-SW-010` | Drive-wheel current envelope | The board SPEC records 1.7 A stall at 14.4 V, while an aftermarket S5 Max-family `GM-RS360-16248` characterization predicts 2.46 A at 14.4 V and up to 3.31 A at 16.8 V. These may be different variants, but the SPEC currently presents one generic wheel entry. | Driver current-limit and thermal margin cannot be validated without knowing which variants are supported. | Track provenance and measurement method per variant, then validate the DRV8870/TMI8870 path at 16.8 V; see [oomwoo-pcb#4](https://github.com/makerspet/oomwoo-pcb/issues/4). |
 
 ## Proposed bridge policy while decisions are open
 
