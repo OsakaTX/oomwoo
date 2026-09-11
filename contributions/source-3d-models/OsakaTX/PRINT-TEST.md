@@ -629,7 +629,8 @@ Calipers-then-magnets, no electronics beyond the module.
 
 ## Jig 19: Dock Auto-Empty Fan Envelope + Port Gauge (BOM "Auto-empty suction fan")
 
-**Files:** `jigs-new/dock-fan-envelope-box.scad`, `jigs-new/dock-fan-port-gauge.scad`
+**Files:** `jigs-new/dock-fan-envelope-box.scad`, `jigs-new/dock-fan-port-gauge.scad`,
+`jigs-new/dock-fan-candidate-id-gauge.scad` (Part C, 2026-09-11)
 **Purpose:** before the dock airbox is designed, confirm (A) the envelope of the
 actual fan you bought fits the assumed 65mm-class footprint, and (B) the sealed
 inlet-/outlet-duct mating geometry. The SCAD class draft
@@ -683,6 +684,38 @@ which is the point.
   envelopes; this jig only validates the one the model parameters describe.
 - Record how the unit is retained in the dock (row 10) — retention is NOT
   modeled yet and this jig won't test it.
+
+### Part C — Candidate-Identification Gauge (Jig 19C, added 2026-09-11)
+
+Run this BEFORE Part A/B: it answers MEASURE-ME §20 row 1 (which candidate
+family the sourced fan belongs to) with one print and no caliper.
+
+### Print Instructions
+1. Open `jigs-new/dock-fan-candidate-id-gauge.scad`, print 0.2 mm layers,
+   3 walls (the rings give the go/no-go, so print accuracy matters).
+2. Drop the fan can through ring A, then ring B.
+3. Stand the fan on the length bar's origin face and read which embossed
+   ridge its far face lands between/near.
+
+### Pass Criteria
+- Ring A (Ø58 nominal + clearance) passes and length reads 63.3 or 66.6 →
+  Nidec BL-V55-class per Nidec deck p.29 ("Φ58xL63.3/66.6"). Report the
+  side-arm vs axial-arm variant — it changes the axial envelope by 3.3 mm.
+- Ring B (Ø65 nominal + clearance) passes and length reads ≈71.1 →
+  BG26-class per the BG26 page dimension drawing (OCR circle "65.0",
+  "71.1±0.50"); length ≈53.3 → mapping alternative per addendum row A3.
+- Neither ring passes → your unit is outside BOTH source-anchored candidates
+  (e.g. a 220 V Roborock-class module); go back to the generic draft and
+  record every dimension in MEASURE-ME §20.
+
+### Fail Criteria & Fix
+- Scrapes or seizes in a ring → caliper the can right there: the V55 outline
+  (Nidec deck p.9) carries BOTH Φ58 and Φ55 diameters, i.e. stepped sections
+  / a lip are documented in this family — record the largest section and
+  where the step sits.
+- Passes one ring but ambiguous on the bar → measure the exact length
+  (§20 row 3) and record; the source table alone cannot disambiguate
+  the 53.3 vs 71.1 BG26 callout mapping until a real unit is measured.
 
 ## Jig 20: Dock Water Pump GAUGE (BOM Dock "Water pumps" — 24 V mini diaphragm, 3 qty)
 

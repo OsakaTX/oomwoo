@@ -664,10 +664,48 @@ present + 2x (clean-low, dirty-full) floats". Model:
 > will represent (the SCAD is a class draft, not a specific unit yet); row 2
 > confirms the one dimension the BOM asserts. Until the unit is in hand and
 > row 1 answered, do not design the dock airbox/pocket against these numbers.
+>
+> **2026-09-11 addendum — model rebuilt with source-anchored presets
+> `nidec_blv55 | bg26 | legacy_generic`.** No dimension datasheet surfaced for the
+> BOM-named 13F704P640 / 64XC216-085D / MBD65 (re-checked this run; see
+> below). Two SOURCE-ANCHORED candidate classes were added instead, from
+> primary vendor documents fetched & read 2026-09-11 — the model's presets
+> now carry the anchors:
+>
+> **Addendum table — source-anchored candidate envelopes (quoted values):**
+>
+> | Candidate (preset) | Source artifact (fetched 2026-09-11) | Quoted dims | Provenance of the QUOTE |
+> |---|---|---|---|
+> | `nidec_blv55` | Nidec, *Blower line-up for Vacuum Cleaner Ver.16C*, 2021-05-06, Nidec China PingHu R&D, deck p.29 product table | "Size (mm) **Φ58xL63.3/66.6**" (side-arm L63.3 / axial-arm L66.6), eff. 53%, input "250 / 350" W, 175/195 g | Verbatim deck text; PDF text extracted this run via the URL cited in upstream PR #64 (`file.kuyodo.com/…Blower%20line-up%20for%20Vacuum%20Cleaner%20Ver.16C.pdf`) |
+> | `nidec_blv55` (same deck) | same, p.9 V55 out-line | "Φ58 Φ55 63.33 66.63" — EVERY outline section stepped; caliper BOTH | Verbatim deck text |
+> | `nidec_blv55` (electrical) | same deck pp.20-22 interface spec | VBAT/PGND + PWM/FG/EN, JST BM03B-GHS-TBT; PWM 0-5.5 V 1 kHz; FG open-collector "FG [Hz]=Speed [rpm]/60" → driver ON BOARD, 5 leads | Verbatim deck text |
+> | `bg26` | BG Motor BG26 product page, china-bgmotor.com (fetched 2026-09-11) | listing: 100-300 W, 22.2 V, 80 m³/h, 22.5 kPa, 0.26 kg, "Through Flow", title **"2.6 inch"**; data table `BG26-350FX01` 350 W/80 m³/h/22.5 kPa/90 000 rpm + 150 W/61.9 m³/h + `BG26-100FX01` 100 W/51 m³/h curves | Verbatim page text |
+> | `bg26` (mechanical) | same page "Mechanical Dimensions" drawing, OCR this run (rapidocr, conf ≥0.99) | circles **64.2 / 65.0 / 67.4** (+61.0), "53.3±0.30", "71.1±0.50", "3.8"; power leads marked DC+/DC− ONLY → external driver | OCR of the vendor drawing — callout→feature mapping NOT labeled by OCR: rows A1-A2 below |
+> | `bg36` (reference only, NOT modeled — 91 mm > BOM 65 mm class) | BG36 catalogue listing | 350 W, 24 V, 71.4 m³/h, 17 kPa, 0.90 kg, "Tangential By Pass", title "3.6 inch" | Verbatim listing text |
+>
+> Cross-check: the source-anchored rows corroborate the candidate table in
+> upstream PR #64 (`contributions/part-specs/serengon/auto-empty-fan/README.md`,
+> merged 2026-09-11) — BG26 = 22.2 V/80 m³/h/22.5 kPa and Nidec Φ58-class =
+> 350 W band match exactly. That PR also quotes the Nidec table secondhand at
+> "Φ58 × 63.3/66.6 350 W → 81 m³/h"; deck pages 5+29 give 1.39 m³/min ≈
+> 83.4 m³/h — same family, minor table-version drift, the deck is primary.
+>
+> What is STILL unverified for every candidate (unchanged from the table
+> below): retention (row 10), as-manufactured port geometry, mounting
+> features, and which physical product actually ships to a buyer under the
+> BOM's part numbers. **Addendum rows A1-A5 gate the preset choice:**
+>
+> | # | What to Measure / Decide | Values / Candidates | Unit | Notes |
+> |---|---|---|---|---|
+> | A1 | **⛔ Which candidate FAMILY is the sourced unit** (ring test, PRINT-TEST Jig 19C) | Ø58-class vs Ø65-class vs neither | — | One printed ring gauge decides; no caliper needed for the first cut. Updates rows 2-8 to that preset's column |
+> | A2 | Nidec arm variant: side (63.3) vs axial (66.6) — the axial envelope differs 3.3 mm | 63.3 / 66.6 | mm | Deck p.29 lists BOTH as one row; measure which one you hold |
+> | A3 | BG26 length callout mapping: is the can 71.1 long with a Ø67.4 flange, or 53.3 long? | 71.1±0.50 vs 53.3±0.30 | mm | OCR gives values, not attachment points; one caliper length settles it (model currently uses 71.1) |
+> | A4 | Stepped-OD check on Nidec-class parts (Φ58 vs Φ55 sections, p.9) | largest Ø + step location | mm | Ring A deliberately sized to the LARGER Ø; a pass with slop ⇒ can is stepped |
+> | A5 | BG26 data-table curve choice: 350 W (80 m³/h) vs 150 W (61.9) vs 100 W (51) variant actually purchased | sticker rating | W | Same can, THREE published operating points — record which the vendor shipped |
 
 | # | What to Measure                                                        | Estimate | Unit | Notes |
 |---|------------------------------------------------------------------------|----------|------|-------|
-| 1 | **⛔ ACTUAL PART IDENTITY — vendor, model/sticker, photos with ruler**  | unverified | — | Which candidate did you buy: Midea 64XC216-085D-class (bare BLDC + separate fan wheel?) vs a complete Roborock-class dock fan module? A bare motor cannot be used without its own impeller + scroll. Photo both ends + label + connector before measuring |
+| 1 | **⛔ ACTUAL PART IDENTITY — vendor, model/sticker, photos with ruler**  | unverified | — | Which candidate did you buy: Midea 64XC216-085D-class (bare BLDC + separate fan wheel?), a complete Roborock-class dock fan module, or one of the source-anchored families below (Nidec BL-V55-class / BG26-class — addendum row A1 + PRINT-TEST Jig 19C decide by ring test)? A bare motor cannot be used without its own impeller + scroll. Photo both ends + label + connector before measuring |
 | 2 | **⛔ Body outer diameter** (the BOM's "65mm" — verify it)              | 65 | mm | (BOM row 77 "65 mm") unmeasured by hand. The one asserted geometry value; measure at the widest point of the cylindrical body, away from any label tape |
 | 3 | **Body length along rotation axis**                                    | 95 | mm | (estimate) incl. rear cap, excl. inlet boss and any shaft/impeller nose |
 | 4 | **Topology check: centrifugal (axial inlet + tangential rectangular outlet) vs axial fan** | assume centrifugal | — | (estimate) The model assumes a static-pressure centrifugal blower (dust evacuation through a sealed port/bag). If the real unit is an axial fan or scroll with a different outlet, the envelope changes fundamentally — report before trusting Jig 19 |
