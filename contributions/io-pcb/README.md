@@ -1,6 +1,6 @@
 # I/O + Motor-Driver PCB (hardware / KiCad)
 
-The custom [I/O board](https://github.com/makerspet/oomwoo-io-board) that
+The custom [I/O board](https://github.com/makerspet/oomwoo-pcb) that
 connects every OOMWOO motor and sensor to the SBC: an STM32 MCU,
 motor drivers, sensor front-ends, and battery charging on one PCB. Proposed
 software-interface contract: the MCU runs safety-critical firmware and talks to
@@ -8,24 +8,24 @@ the CM4/CM5 CPU over a custom serial / USB link.
 
 > *Draft design basis:* OOMWOO v1 uses a *CM4/CM5-style CPU module* for ROS2, Nav2, SLAM,
 > so this board is an *I/O + power carrier* — no soldered application processor on it. There is a
-> starting-point Kicad schematic and [SPEC.md](https://github.com/makerspet/oomwoo-io-board/blob/main/docs/SPEC.md).
+> starting-point Kicad schematic and [SPEC.md](https://github.com/makerspet/oomwoo-pcb/blob/main/docs/SPEC.md).
 
 # References
 
 - *Board spec (authoritative, most up-to-date)* —
-  [oomwoo-io-board](https://github.com/makerspet/oomwoo-io-board) ·
-  [SPEC.md](https://github.com/makerspet/oomwoo-io-board/blob/main/docs/SPEC.md).
+  [oomwoo-pcb](https://github.com/makerspet/oomwoo-pcb) ·
+  [SPEC.md](https://github.com/makerspet/oomwoo-pcb/blob/main/docs/SPEC.md).
   The current MCU (**STM32G473VCT6**), motors, sensors, charging, and GPIO budget live here;
   this RFC is the request-for-contribution, the SPEC is the truth.
 - *MCU firmware* — [mcu-io-firmware RFC](../mcu-io-firmware) ·
   [oomwoo-io-firmware](https://github.com/makerspet/oomwoo-io-firmware).
 - *Starting-point schematic (PDF)* —
-  [makerspet/oomwoo-io-board](https://github.com/makerspet/oomwoo-io-board/blob/main/docs/oomwoo-io-board-RK3562-schematic.pdf).
+  [makerspet/oomwoo-pcb](https://github.com/makerspet/oomwoo-pcb/blob/main/docs/oomwoo-io-board-RK3562-schematic.pdf).
   An STM32G070 reference (Apache-2.0, *unvalidated* — a starting point, not a proven
   design). Trim it down as described below.
 - *Current I/O board repository* —
-  [makerspet/oomwoo-io-board](https://github.com/makerspet/oomwoo-io-board), including
-  KiCad files and the evolving [SPEC.md](https://github.com/makerspet/oomwoo-io-board/blob/main/docs/SPEC.md).
+  [makerspet/oomwoo-pcb](https://github.com/makerspet/oomwoo-pcb), including
+  KiCad files and the evolving [SPEC.md](https://github.com/makerspet/oomwoo-pcb/blob/main/docs/SPEC.md).
 - *CPU/MCU software interface* —
   [io-board-interface](../io-board-interface) drafts the custom serial contract, ROS2 bridge
   mapping, watchdog behavior, and hardware/software decision ledger.
@@ -61,12 +61,12 @@ updated for OOMWOO, then *hold for review before PCB layout*.
   to support it: *LPDDR4 DRAM, eMMC, the SoC PMIC / SoC-specific power rails (VCCIO, PMU / OSC
   / PLL), the DDR PHY, the USB / PCIe PHY, and the SoC's MIPI camera interface*. Heavy compute
   and the camera interfaces now come from the *CM4/CM5 module* (whose socket this board adds) —
-  the board routes MIPI CSI camera connectors off that socket (see [SPEC](https://github.com/makerspet/oomwoo-io-board/blob/main/docs/SPEC.md)),
+  the board routes MIPI CSI camera connectors off that socket (see [SPEC](https://github.com/makerspet/oomwoo-pcb/blob/main/docs/SPEC.md)),
   not off a removed SoC.
 - *Remove the WiFi / BT module* (AP6256) — WiFi/BT comes from the compute module, or is added
   on the carrier (M.2 / USB) for modules without onboard WiFi (see SPEC).
 - *Add a CM4/CM5 socket + support* (adapt the official Raspberry Pi CM4/CM5 IO-board designs)
-  so the board is a *carrier* for the compute module; see the [SPEC](https://github.com/makerspet/oomwoo-io-board/blob/main/docs/SPEC.md).
+  so the board is a *carrier* for the compute module; see the [SPEC](https://github.com/makerspet/oomwoo-pcb/blob/main/docs/SPEC.md).
 - *Keep and convert to KiCad the I/O side:*
   - *STM32G473VCT6* MCU + support (clock, decoupling, debug / boot, the custom-serial link to the CPU)
   - *motor drivers* — drive wheels (×2), main brush, side brush, water pump, mop lift / spin
@@ -114,6 +114,6 @@ not selected.
 ## Appendix A. MCU GPIO budget
 
 The GPIO budget is maintained in the board
-[SPEC.md](https://github.com/makerspet/oomwoo-io-board/blob/main/docs/SPEC.md)
+[SPEC.md](https://github.com/makerspet/oomwoo-pcb/blob/main/docs/SPEC.md)
 (authoritative, and it carries the open TODOs — e.g. the GPIO 36/46 bumper-label question).
 It is **not duplicated here**, to avoid the two copies drifting apart.

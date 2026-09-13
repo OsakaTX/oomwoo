@@ -1,7 +1,7 @@
 # RFC Backlog (planned / not-yet-active)
 
 Planned modules that are *not yet active RFCs*. The RFCs ready to work on *now* live in the
-[README status table](../README.md#requests-for-contributions), and each active RFC's full
+[RFC board](../contributions/README.md), and each active RFC's full
 spec is under [contributions/](../contributions). An item here graduates into an active RFC
 (its own `contributions/<module>/` folder) once it is unblocked and ready.
 
@@ -13,7 +13,7 @@ spec is under [contributions/](../contributions). An item here graduates into an
 | Module | RFC | Notes |
 |---|---|---|
 | Dust bin 3D design | [dust-bin](../contributions/dust-bin) | Design / print / test the dust bin — waits on sourced parts + a 3D design |
-| Blower fan assembly | [vacuum-fan](../contributions/vacuum-fan) | Fans already sourced (see BOM); the volute / gasket housing waits on the 3D design |
+| Blower fan assembly | [vacuum-fan](../contributions/vacuum-fan) | Fan sourced, digitized to STEP and brought up on the bench; only the volute / gasket housing still waits on the 3D reference design — see the [RFC board](../contributions/README.md) for progress |
 
 ## Planned hardware (mechanical design)
 

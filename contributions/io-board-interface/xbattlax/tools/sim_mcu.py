@@ -12,6 +12,8 @@ from oomwoo_mcu_frame import (
     frames_to_hex,
     pack_fast_telemetry,
     pack_safety_event,
+    pack_safety_state,
+    safety_event_flag,
 )
 
 
@@ -37,6 +39,18 @@ def build_frames(count: int) -> list[bytes]:
             MessageType.SAFETY_EVENT,
             pack_safety_event(SafetyEvent.BUMPER_LEFT, True, detail=0),
             sequence=count,
+        )
+    )
+    bumper_left = safety_event_flag(SafetyEvent.BUMPER_LEFT)
+    frames.append(
+        encode_frame(
+            MessageType.SAFETY_STATE,
+            pack_safety_state(
+                timestamp_ms=count * 20,
+                active_flags=bumper_left,
+                latched_flags=bumper_left,
+            ),
+            sequence=count + 1,
         )
     )
     return frames

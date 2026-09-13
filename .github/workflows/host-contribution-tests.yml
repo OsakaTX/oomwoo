@@ -1,0 +1,57 @@
+name: Host contribution tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: host-contribution-tests-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  python:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run dependency-free contribution tests
+        env:
+          PYTHONDONTWRITEBYTECODE: '1'
+        run: |
+          python3 -m unittest discover \
+            -s contributions/dock-cycle/xbattlax/tests \
+            -p 'test_*.py'
+          python3 -m unittest discover \
+            -s contributions/io-board-interface/xbattlax/tests \
+            -p 'test_*.py'
+
+  protocol-c-cpp:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check generated protocol vectors
+        run: |
+          python3 contributions/io-board-interface/xbattlax/conformance/generate_vectors.py --check
+          python3 contributions/io-board-interface/xbattlax/conformance/generate_vectors.py
+      - name: Verify vectors as C11
+        run: |
+          cc -std=c11 -Wall -Wextra -Werror -pedantic \
+            contributions/io-board-interface/xbattlax/conformance/verify_vectors.c \
+            -o "${RUNNER_TEMP}/oomwoo-vectors-c"
+          "${RUNNER_TEMP}/oomwoo-vectors-c"
+      - name: Verify vectors as C++17
+        run: |
+          c++ -x c++ -std=c++17 -Wall -Wextra -Werror -pedantic \
+            contributions/io-board-interface/xbattlax/conformance/verify_vectors.c \
+            -o "${RUNNER_TEMP}/oomwoo-vectors-cpp"
+          "${RUNNER_TEMP}/oomwoo-vectors-cpp"

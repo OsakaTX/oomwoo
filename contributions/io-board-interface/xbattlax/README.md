@@ -24,6 +24,7 @@ It is meant to unblock parallel work:
 | [`tools/oomwoo_mcu_frame.py`](tools/oomwoo_mcu_frame.py) | Dependency-free Python reference codec for the proposed frame format. |
 | [`tools/sim_mcu.py`](tools/sim_mcu.py) | Tiny deterministic MCU-frame generator for bridge and log-parsing tests. |
 | [`tests/test_oomwoo_mcu_frame.py`](tests/test_oomwoo_mcu_frame.py) | Unit tests for framing, CRC, streaming decode, and command payload validation. |
+| [`conformance/`](conformance) | Machine-readable catalog plus 23 shared golden vectors verified by Python, C11, and C++17. |
 
 ## Protocol stance
 
@@ -49,6 +50,10 @@ python3 -m unittest discover \
   -s contributions/io-board-interface/xbattlax/tests \
   -p 'test_*.py'
 ```
+
+The repository CI also checks that generated conformance vectors are current and
+compiles their verifier as strict C11 and C++17. The Markdown serial contract
+remains normative; the manifest makes its frozen IDs and payloads executable.
 
 Generate sample frames:
 

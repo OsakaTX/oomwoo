@@ -11,14 +11,14 @@
 
 - *Design + interfaces:* [ARCHITECTURE.md](docs/ARCHITECTURE.md)
 - *Parts list (draft):* [BoM.md](../BOM.md)
-- *Modules being built (RFCs):* [README → Requests for Contributions](README.md#requests-for-contributions)
+- *Modules being built (RFCs):* [RFC board](../contributions/README.md)
 - *Design decisions + research:* [docs/design-document.md](docs/design-document.md)
 
 ## What you can do now
 
 - *Star / watch* the repo to follow along — that's the best way to know when build
   instructions land.
-- *Contribute:* pick a module from the [RFC list](README.md#requests-for-contributions)
+- *Contribute:* pick a module from the [RFC board](../contributions/README.md)
   and dive in — every skill level welcome.
 - *Join the community:* [Discord](https://discord.gg/3y2JKz5T25) and
   [GitHub Discussions](https://github.com/makerspet/oomwoo/discussions).

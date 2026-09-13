@@ -60,6 +60,7 @@ noise until the next `OW` magic.
 | `0x0001` | `HEARTBEAT` | CPU -> MCU | 20-50 Hz | `u32 cpu_time_ms`, `u8 cpu_mode` |
 | `0x0002` | `ESTOP_SET` | CPU -> MCU | event | `u8 active`, `u16 reason` |
 | `0x0003` | `CLEAR_LATCHED_FAULT` | CPU -> MCU | event | `u16 fault_mask` |
+| `0x0004` | `IDENTIFY_REQUEST` | CPU -> MCU | connect/reconnect | empty; MCU responds with `MCU_HELLO` |
 | `0x0101` | `DRIVE_SETPOINT` | CPU -> MCU | 20-50 Hz | `i16 linear_mm_s`, `i16 angular_mrad_s`, `u16 duration_ms` |
 | `0x0102` | `CLEANING_MOTORS_SET` | CPU -> MCU | 1-10 Hz | `u8 main_brush_pct`, `u8 side_brush_pct`, `u8 fan_pct`, `u8 pump_pct` |
 | `0x0103` | `LIDAR_MOTOR_SET` | CPU -> MCU | 1-10 Hz | `u8 pwm_pct` |
@@ -67,10 +68,24 @@ noise until the next `OW` magic.
 | `0x7001` | `ACK` | both | event | `u16 acked_seq`, `u16 status` |
 | `0x7002` | `NACK` | both | event | `u16 rejected_seq`, `u16 error_code` |
 | `0x8000` | `MCU_HELLO` | MCU -> CPU | boot/event | `u16 firmware_major`, `u16 firmware_minor`, `u32 build_id` |
-| `0x8001` | `FAST_TELEMETRY` | MCU -> CPU | 50-100 Hz | encoder ticks + fast safety flags |
+| `0x8001` | `FAST_TELEMETRY` | MCU -> CPU | 50-100 Hz | encoder ticks + fast input flags; legacy low 8 safety-latch bits |
 | `0x8002` | `SAFETY_EVENT` | MCU -> CPU | event + latch | `u16 event`, `u8 active`, `u16 detail` |
 | `0x8003` | `POWER_TELEMETRY` | MCU -> CPU | 1-5 Hz | battery, charger, current, thermal summary |
 | `0x8004` | `MCU_DIAGNOSTIC` | MCU -> CPU | 1 Hz/event | watchdog, loop timing, dropped frames, fault bits |
+| `0x8005` | `SAFETY_STATE` | MCU -> CPU | 10 Hz + event | `u32 timestamp_ms`, `u16 active_flags`, `u16 latched_flags` |
+
+`IDENTIFY_REQUEST` makes startup independent of which endpoint booted first. The
+MCU still emits `MCU_HELLO` at boot, and must emit a fresh `MCU_HELLO` after each
+valid identify request. The request does not arm outputs, refresh the heartbeat,
+or replay prior commands.
+
+`SAFETY_STATE` is the authoritative periodic safety snapshot. Safety event code
+`N` maps to bit `N - 1`; the current events 1-10 therefore fit in a `u16`. The
+one-byte `FAST_TELEMETRY.safety_latched_flags` field is retained as the low eight
+bits for compatibility with existing protocol-v1 implementations, but new
+bridges must use `SAFETY_STATE` to reconstruct complete active and latched state.
+Unknown high bits must be preserved for diagnostics and treated as motion-
+inhibiting until their meaning is known.
 
 ## Safety events
 
@@ -108,7 +123,7 @@ latched fault bit until the fault is cleared or explicitly acknowledged.
 | Unknown message ID | NACK if the frame is otherwise valid. |
 | Valid but out-of-range setpoint | Reject, stop affected actuator, emit diagnostic. |
 | CPU heartbeat timeout | Stop drive and cleaning motors, emit `CPU_HEARTBEAT_TIMEOUT`. |
-| Serial link reconnect | MCU sends `MCU_HELLO`, keeps actuators off until fresh heartbeat and setpoint arrive. |
+| Serial link reconnect | CPU sends `IDENTIFY_REQUEST`; MCU replies with `MCU_HELLO` and keeps actuators off until fresh heartbeat and setpoint arrive. |
 | MCU watchdog reset | Start with all motion outputs disabled and report reset reason. |
 
 ## Reference codec
@@ -116,3 +131,9 @@ latched fault bit until the fault is cleared or explicitly acknowledged.
 The Python reference codec in `tools/oomwoo_mcu_frame.py` implements this frame
 format and a few payload helpers. It is not the final bridge, but it gives the
 firmware, ROS2, and test work a shared executable reference.
+
+The [`conformance`](../conformance) directory mirrors frozen message IDs and
+payload layouts into a machine-readable manifest and generated golden vectors.
+The Markdown contract remains normative. CI requires every codec message ID to
+have either a tested vector or an explicit open-payload reason, then validates the
+same frame bytes in Python, C11, and C++17.

@@ -46,7 +46,7 @@ robot application platform. Architectural boundaries (especially the app layer i
        serial (cmds/telemetry) +     |  custom serial protocol
        CPU-reset / health GPIO       |  (NOT micro-ROS)
       +-------------+----------------v---------------+
-      |  MCU - STM32G070 (FreeRTOS, static alloc)    |
+      |  MCU - STM32G473 (FreeRTOS, static alloc)    |
       |  motors · encoders · sensors · charging ctrl |
       |  SAFETY (no Linux/ROS2): bumper/cliff/wheel- |
       |  drop stop · current limit · CPU watchdog    |
@@ -131,12 +131,13 @@ NPU options).
 - The earlier bespoke *RK3562* reference schematic is *dropped* in favour of the
   CM4/CM5 carrier.
 
-*MCU (real-time / safety controller).* A dedicated microcontroller — *tentatively
-the STM32G070RBT6* (~56 GPIO incl. 16 ADC channels, ~$1 at JLCPCB, LQFP not BGA) —
-owns *motors, encoders, all sensors, battery-charging control, and safety*. Its
+*MCU (real-time / safety controller).* A dedicated *STM32G473VCT6* microcontroller
+(Cortex-M4F, LQFP100, multiple ADCs and timer resources), selected by the current
+I/O-board design, owns *motors, encoders, all sensors, battery-charging control,
+and safety*. Its
 role is *fixed*: functionality does not migrate onto the CPU, and CPU work does not
 migrate onto the MCU.
-- Firmware is *tentatively FreeRTOS* (static allocation, watchdog, guaranteed
+- Firmware uses a layered *FreeRTOS* design (static allocation, watchdog, bounded
   reaction times, CE-oriented) speaking a *custom serial protocol — not micro-ROS*
   (the tried-and-true consumer-vacuum approach; cf. the reverse-engineered
   [3irobotix protocol](https://github.com/codetiger/VacuumRobot)).
@@ -230,8 +231,9 @@ bumper/cliff/wheel-drop, current-limits a stuck brush, and watchdog-resets the C
   charged 16.8 V CC/CV. See §5.3, §8.
 - Can OOMWOO's onboard ROS2 stack fit in *2 GB* (composable nodes, selective Rust)
   rather than 4 GB? To be answered by the compute-benchmark.
-- MCU family: *STM32G070RBT6* is the tentative pick (GPIO/ADC count, ~$1 at JLCPCB,
-  LQFP) — open to alternatives.
+- *Resolved:* the reference I/O board uses *STM32G473VCT6*, superseding the earlier
+  STM32G070 candidate. Pin-compatible alternatives remain a separate board-design
+  decision.
 - One hardware-agnostic HAL covering reference vacuum + DIY builds (community idea)?
 - Module selection process: who decides which competing implementation wins, and
   on what criteria? (See each module's acceptance criteria.)

@@ -42,7 +42,7 @@ Not included:
 ## References
 
 - [I/O + motor-driver PCB RFC](../io-pcb)
-- [I/O board repository](https://github.com/makerspet/oomwoo-io-board)
+- [I/O board repository](https://github.com/makerspet/oomwoo-pcb)
 - [Architecture: CPU/MCU split](../../docs/ARCHITECTURE.md)
 - [ROS2 software interfaces](../../docs/SOFTWARE_INTERFACES.md)
 - [Part specs](../part-specs)

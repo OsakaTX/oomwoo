@@ -41,9 +41,9 @@ Nav2 / recovery / jobs / diagnostics
 | `/odom` | `nav_msgs/msg/Odometry` | `FAST_TELEMETRY` | Optional if bridge computes wheel odometry; otherwise publish wheel data only. |
 | `/joint_states` | `sensor_msgs/msg/JointState` | `FAST_TELEMETRY` | Wheel joint positions from encoder ticks. |
 | `/battery_state` | `sensor_msgs/msg/BatteryState` | `POWER_TELEMETRY` | Voltage, current, charge state, dock/charging flags. |
-| `/oomwoo/io/bumper` | `std_msgs/msg/UInt8` initially | `FAST_TELEMETRY`, `SAFETY_EVENT` | Bitfield until a custom message exists. |
-| `/oomwoo/io/cliff` | `std_msgs/msg/UInt8` initially | `FAST_TELEMETRY`, `SAFETY_EVENT` | Bitfield for cliff sensors. |
-| `/oomwoo/io/wheel_drop` | `std_msgs/msg/UInt8` initially | `FAST_TELEMETRY`, `SAFETY_EVENT` | Bitfield for wheel-drop sensors. |
+| `/oomwoo/io/bumper` | `std_msgs/msg/UInt8` initially | `FAST_TELEMETRY`, `SAFETY_EVENT`, `SAFETY_STATE` | Bitfield until a custom message exists. |
+| `/oomwoo/io/cliff` | `std_msgs/msg/UInt8` initially | `FAST_TELEMETRY`, `SAFETY_EVENT`, `SAFETY_STATE` | Bitfield for cliff sensors. |
+| `/oomwoo/io/wheel_drop` | `std_msgs/msg/UInt8` initially | `FAST_TELEMETRY`, `SAFETY_EVENT`, `SAFETY_STATE` | Bitfield for wheel-drop sensors. |
 | `/oomwoo/io/dock` | `std_msgs/msg/UInt8` initially | `POWER_TELEMETRY` | Dock-present and charging bits. |
 | `/oomwoo/dock_ir/front_left` | `std_msgs/msg/Float32` initially | `FAST_TELEMETRY` or sensor frame | Normalized final-approach IR beacon strength. |
 | `/oomwoo/dock_ir/front_right` | `std_msgs/msg/Float32` initially | `FAST_TELEMETRY` or sensor frame | Normalized final-approach IR beacon strength. |
@@ -61,6 +61,7 @@ Nav2 / recovery / jobs / diagnostics
 | `/cmd_vel` input | Reliable or best-effort with small queue; stale values must not be replayed. |
 | `DRIVE_SETPOINT` serial output | 20-50 Hz while active, short duration field. |
 | `FAST_TELEMETRY` serial input | 50-100 Hz target. |
+| `SAFETY_STATE` serial input | 10 Hz plus immediately after a safety-state change. |
 | Battery/power topics | 1-5 Hz. |
 | Diagnostics | 1 Hz plus event bursts. |
 | Safety events | Reliable where possible, repeated while latched. |
@@ -72,7 +73,7 @@ The bridge should be a lifecycle node or equivalent state machine.
 | State | Behavior |
 |---|---|
 | `unconfigured` | No serial connection, no actuator commands. |
-| `inactive` | Serial may be open, but no heartbeat and no motion outputs. |
+| `inactive` | Serial may be open; send `IDENTIFY_REQUEST` and wait for `MCU_HELLO`, but emit no heartbeat or motion outputs. |
 | `active` | Heartbeat running, setpoints accepted, telemetry published. |
 | `error` | Heartbeat stopped, setpoints zeroed, diagnostics explain cause. |
 

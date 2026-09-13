@@ -19,8 +19,11 @@ from oomwoo_mcu_frame import (  # noqa: E402
     pack_fast_telemetry,
     pack_heartbeat,
     pack_safety_event,
+    pack_safety_state,
+    safety_event_flag,
     unpack_drive_setpoint,
     unpack_fast_telemetry,
+    unpack_safety_state,
 )
 
 
@@ -67,6 +70,17 @@ class FrameCodecTest(unittest.TestCase):
         self.assertEqual([frame.sequence for frame in frames], [1, 2])
         self.assertEqual(frames[0].message_type, MessageType.DRIVE_SETPOINT)
         self.assertEqual(frames[1].message_type, MessageType.CLEANING_MOTORS_SET)
+
+    def test_stream_decoder_preserves_split_magic(self):
+        raw = encode_frame(MessageType.IDENTIFY_REQUEST, sequence=9)
+        decoder = StreamDecoder()
+
+        self.assertEqual(decoder.feed(b"noiseO"), [])
+        frames = decoder.feed(raw[1:])
+
+        self.assertEqual(len(frames), 1)
+        self.assertEqual(frames[0].sequence, 9)
+        self.assertEqual(frames[0].message_type, MessageType.IDENTIFY_REQUEST)
 
     def test_drive_setpoint_limits(self):
         payload = pack_drive_setpoint(-120, 500, 100)
@@ -116,6 +130,26 @@ class FrameCodecTest(unittest.TestCase):
                 "battery_mv": 15100,
             },
         )
+
+    def test_safety_state_carries_all_defined_events(self):
+        active = safety_event_flag(SafetyEvent.CPU_HEARTBEAT_TIMEOUT)
+        latched = active | safety_event_flag(SafetyEvent.ESTOP)
+        payload = pack_safety_state(
+            timestamp_ms=151,
+            active_flags=active,
+            latched_flags=latched,
+        )
+
+        self.assertEqual(
+            unpack_safety_state(payload),
+            {
+                "timestamp_ms": 151,
+                "active_flags": 1 << 8,
+                "latched_flags": (1 << 8) | (1 << 9),
+            },
+        )
+        with self.assertRaises(ValueError):
+            safety_event_flag(0)
 
 
 if __name__ == "__main__":

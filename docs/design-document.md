@@ -147,14 +147,14 @@ the biggest contributor wedge. Runs ROS2 + LiDAR SLAM + Nav2 comfortably. No on-
 ## 5. I/O board (custom, JLCPCB)
 
 No off-the-shelf DIY-vacuum I/O board exists, so we design one. It carries an *MCU
-running micro-ROS* that talks to the SBC over a fast serial / USB link: the SBC does
-ROS2 / SLAM / nav / vision; the board does real-time motor + sensor I/O.
+running FreeRTOS with a custom safety-focused serial protocol* to the SBC: the SBC
+does ROS2 / SLAM / nav / vision; the board does real-time motor + sensor I/O.
 
-*MCU:* STM32G070RBT6 (LQFP64, ~$0.93 @ 100 pcs) — cheap, lots of peripherals.
-*Pin-budget risk:* the full peripheral set below is a lot for 64 pins. Do a
-pin-allocation spreadsheet before committing. Offload the *BLDC fan to an external
-ESC* (1 PWM pin instead of in-MCU FOC) to save pins and complexity. If still tight,
-consider the STM32G0B1RET6 (same family, more peripherals/RAM) or a 100-pin part.
+*MCU:* STM32G473VCT6 (LQFP100) — selected by the current I/O-board design after
+the earlier STM32G070 pin-budget study. Its Cortex-M4F, timer resources, and ADCs
+serve closed-loop motor control and the board's many current/sensor channels.
+Offload the *BLDC fan to its external controller* (one PWM command plus FG feedback,
+instead of in-MCU FOC) to save pins and complexity.
 
 *LiDAR (3irobotix CRL-200S):* wires to the I/O board. The board *drives the LiDAR
 motor* (MOSFET + closed-loop speed control using the LiDAR's RPM feedback) and *passes
@@ -205,8 +205,9 @@ Cross-checked peripheral list (your running list + `[+]` = additions to consider
 - Buttons (power, dock, clean)
 - `[+]` Buzzer (cheap fallback if the speaker amp is deferred)
 
-*Host link:* USB or high-speed UART between MCU and SBC, carrying micro-ROS *and*
-the LiDAR passthrough — confirm bandwidth covers both.
+*Host link:* USB or high-speed UART between MCU and SBC, carrying the custom
+framed commands and telemetry. LiDAR serial ownership/passthrough and its bandwidth
+budget remain open integration decisions.
 
 > *Scope note:* the *wash/dry dock has its own controller* (ESP32 + WiFi) for its
 > pumps / heater / fan / water-level. Those are *not* on the robot I/O board.
@@ -328,5 +329,5 @@ now, ML maturity via community contribution over time.*
 - *Gasket sourcing* vs TPU printing for airflow seals.
 - *Dock docking signal:* IR beacon protocol / fiducial / reflective marker.
 - *Fastener / heat-set insert standard* (ties to ARCHITECTURE §5.2).
-- *Confirm:* MCU pin budget, host-link bandwidth (micro-ROS + LiDAR passthrough), Hailo stack height.
+- *Confirm:* MCU pin budget, host-link bandwidth (including any LiDAR passthrough), Hailo stack height.
 - Remaining mechanical parts not yet covered above.

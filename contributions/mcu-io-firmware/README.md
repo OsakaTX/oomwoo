@@ -1,6 +1,6 @@
 # MCU I/O Board Firmware (STM32G473 — Arduino + FreeRTOS)
 
-The firmware that runs on the OOMWOO [I/O board](https://github.com/makerspet/oomwoo-io-board)
+The firmware that runs on the OOMWOO [I/O board](https://github.com/makerspet/oomwoo-pcb)
 MCU. In OOMWOO's CPU/MCU split ([ARCHITECTURE.md §5.4](../../docs/ARCHITECTURE.md)),
 the *CPU* (CM4/CM5-class module) runs ROS2/Nav2/SLAM, and the *MCU* on the I/O
 board owns *motors, encoders, sensors, battery charging, and hard safety*. This
@@ -11,16 +11,23 @@ Arduino layer either.
 The full design lives in the firmware repo — this RFC is the request for
 contribution and the acceptance bar.
 
-> *Status — ready to start work.* The repo exists but has *no code yet*. Build it
-> on a *Nucleo-G474* dev board now; move to the real board when it's fabbed. Say so
-> in the [discussions](https://github.com/makerspet/oomwoo/discussions) so we can
-> coordinate.
+> *Status — in progress.* Host-tested framing, safety-policy, simulator, and ROS2
+> bridge work now exists, but real STM32 HAL, motor control, ISR integration, IWDG,
+> charging, and measured cutoff times remain open. Build hardware milestones on a
+> *Nucleo-G474* first; move to the real board when it is fabricated. Coordinate in
+> the [firmware discussion](https://github.com/makerspet/oomwoo/discussions/49).
 
 # Important References
 
 - *Firmware repo + full spec* — [makerspet/oomwoo-io-firmware](https://github.com/makerspet/oomwoo-io-firmware).
   The repo README is the detailed architecture, peripheral map, and milestones; read it first.
-- *Board spec (authoritative)* — [oomwoo-io-board SPEC.md](https://github.com/makerspet/oomwoo-io-board/blob/main/docs/SPEC.md)
+- *Active implementations* — upstream framing bring-up
+  [PR #2](https://github.com/makerspet/oomwoo-io-firmware/pull/2), ISR-owned CPU
+  watchdog [PR #3](https://github.com/makerspet/oomwoo-io-firmware/pull/3), and
+  [Creative-Dhanush's host-tested firmware/simulator](Creative-Dhanush) with its
+  ROS2 bridge. These overlap at the protocol/policy layer; hardware integration
+  and maintainer selection of the canonical upstream path are still open.
+- *Board spec (authoritative)* — [oomwoo-pcb SPEC.md](https://github.com/makerspet/oomwoo-pcb/blob/main/docs/SPEC.md)
   — the motors, sensors, charging, and GPIO budget the firmware must serve (work in
   progress; note its open TODOs, e.g. the GPIO 36/46 bumper-label question).
 - *CPU ↔ MCU serial contract* — [io-board-interface RFC](../io-board-interface) —
