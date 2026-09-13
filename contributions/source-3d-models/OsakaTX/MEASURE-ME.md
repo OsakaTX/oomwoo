@@ -870,6 +870,54 @@ present + 2x (clean-low, dirty-full) floats". Model:
 
 ---
 
+## 23. HEPA Filter Cartridges — exhaust-side, all three BOM variants
+
+BOM rows (verbatim, upstream commit e840b55 "Sourced vacuum HEPA filters",
+merged 2026-09-12):
+
+| # | Item | Value | Provenance |
+|---|------|-------|------------|
+| 1 | Variant ordered (x50 / saros / x60) or all three? | - | next action |
+| 2 | x50: L × W × H (=110 × 48 × 22?) | mm | BOM "~110 x 48 x 22mm" — model basis; caliper confirms |
+| 3 | saros: L × W × H (=113 × 59 × 12?) | mm | BOM "~113 x 59 x 12 mm" — model basis |
+| 4 | x60 long edge (=102?) | mm | BOM "~102/85 x 49 x 26mm" |
+| 5 | x60 short edge (=85?) | mm | BOM same row |
+| 6 | x60 W × H (=49 × 26?) | mm | BOM same row |
+| 7 | pressure-drop rating (~20/~20/~35 kPa) | kPa | BOM prefix "~" — take as class, not test data |
+| 8 | corner radii (square / rounded; x50 listing says "rounded corner") | mm | listing text (secondary) → model 3 mm (estimate); caliper |
+| 9 | pleat pitch, media pack | mm | (estimate 3.0) fold count from the face photo / caliper |
+| 10 | dirty-side window rect (x0, y0, w, h) | mm | (estimate 72 % open) — read via Jig 25 photo grid |
+| 11 | clean-side face: blank vs open | - | UNKNOWN — Jig 25 photo + visual |
+| 12 | x60 plan: right-trapezoid or notched-rect? | - | UNKNOWN — Jig 25, seat test decides (both pockets cut) |
+| 13 | frame durometer (snap-fit lip vs compressible foam edge?) | Shore A | (estimate) flex check by hand, then lip params |
+
+Gating rows: 1 (which variant) first; then 12 (x60 plan shape) and 10-11
+(window + clean face) — those three decide whether `hepa-robot-vacuum-filter.scad`
+needs a geometry revision or only parameter updates. Everything else is a
+number substitution.
+
+## 24. Replacement Tire Skin — "Tires 57 ID / 68 OD / 14 W" (BOM row, 64a74cd)
+
+| # | Item | Value | Provenance |
+|---|------|-------|------------|
+| 1 | ID (rim seat, tape ring) = 57.0? | mm | BOM "57mm ID" — model basis; caliper over a tape loop |
+| 2 | OD ( unloaded, caliper across) = 68.0? | mm | BOM "68mm OD"; note fitted OD sags smaller under tension — also record mounted OD on the printed rim |
+| 3 | width (un-mounted, mid-ring, caliper flat) = 14? | mm | BOM "14mm width" (unstretched tallies; mounted width shrinks) |
+| 4 | wall (tread to ID, (68-57)/2 = 5.5 nominal) | mm | derived from BOM pair; sanity row |
+| 5 | durometer | Shore A | listing says nothing → (estimate 95A from TPU class); foam-durometer gauge or bench feel vs donor Roomba wheel |
+| 6 | stretch ratio at seat (ID_stretched / 57) on the final hub | - | hardware test; sets the press fit the rim must hold |
+| 7 | mounted slip torque / pull force at robot wheel load | N | slip-button pull test — render `tire-skin-68p13.scad` with `part="button"`, pull via its eyelet, compare donor rubber |
+| 8 | tread: version shipped smooth or grooved? | - | visual on arrival; decides `tread=true` re-print of the hub-side test ring |
+
+Donor-family cross-check (in-repo, merged): physical donor S5 wheel calipers
+71.5 mm OD — part-specs/IKsares/drive-wheel/README.md L343-344, L549. The
+sourced 68 mm ring does NOT fit that wheel; it needs the scratch-build rim
+per BOM "Only needed if building drive wheels from scratch". Wall-thickness
+sketch there: rim seat Ø (71.5 − 2·tire_w) ≈ 44.5–47.5 for a ~12–13.5 mm tire
+(estimate) — see README Scarcity note.
+
+---
+
 1. **Open an issue** in [makerspet/oomwoo](https://github.com/makerspet/oomwoo/issues)
    with `[measure]` prefix in the title, referencing this file.
 2. **Or post in** [Project Discussions](https://github.com/makerspet/oomwoo/discussions).

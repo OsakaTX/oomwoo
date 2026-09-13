@@ -867,6 +867,59 @@ confirmation) and §20 row 1 (fan identity) respectively.
 
 ---
 
+## Jig 24: Tire-Ring ID/OD/Width Gauge (`tire-skin-drive-wheel/jig24-tire-ring-gauge.scad`, BOM "Tires | 2 | $2-3 | 57mm ID, 68mm OD, 14mm width")
+
+*Checks the three BOM numbers on a sourced ring with no caliper work; the
+caliper rows in MEASURE-ME §24 remain the confirmation of record.*
+
+Print Instructions: two plates in one plate-file, PLA, 0.2 mm, 3 walls. The
+ID go-post is the tolerance-critical feature — measure the printed post and
+record the deviation.
+
+Pass Criteria:
+1. Ring drops over the ID go-post and contacts the plate → ID ≈ post + clearance ≥ 57 mm. Contact without wedge = PASS.
+2. Ring OD inside the plate's OD boundary ring (no overlap of the moat edge) → OD ≤ 68.4 mm.
+3. Ring face slides to the 14.0 stop on the bar gauge; 13 stops it, 15 floats → width 14 ± 0.5 mm.
+4. Optional roll test: one ring revolution between pencils spans 213.6 ± 10 mm (2π×68; 5 % band for TPU squash) — cross-check only.
+
+Fail Criteria & Fix:
+| Observation | Meaning | Fix |
+|---|---|---|
+| ring seats    with visible wobble | ID oversize vs BOM | caliper row 1; if ≈56, ring batch is mis-shipped, vendor row dispute |
+| ring overlaps plate boundary | OD undersize | caliper row 2; update `ring_od` + re-render |
+| width bar disagrees > 0.5 | width off / tapered | caliper row 3; note section taper in MEASURE-ME |
+| roll arc < 203 mm | soft/squashy compound | rethink TPU durometer row 5; donor-wheel fallback |
+
+## Jig 25: HEPA Cartridge ID-Gauge, 2-plate (`hepa-filter-cartridge/jig25-filter-id-gauge.scad`, BOM "HEPA filter" rows, e840b55)
+
+*Reads plan shape, height, media window — everything the BOM does NOT give —
+straight off the physical cartridge. Renders as `h1` (x50 + saros pockets +
+height stair) and `h2` (x60 candidate pocket; re-render with `-D
+x60_plan="notch"` for the alternative).*
+
+Print Instructions: h1 is 200×155 mm, h2 150×130 — check bed. PLA, 0.2 mm,
+3 walls, no supports. Plates are single-sided; grooves 1.6 mm deep.
+
+Pass Criteria (readings, not pass/fail):
+1. Seat each cartridge in its outline groove: flush ∧ no rock = plan and footprint confirmed; the x50 and saros pockets also corroborate the BOM L×W readings.
+2. x60: whichever of trap/notch pockets seats flush IS the plan — record which; the other row of `hepa-robot-vacuum-filter.scad` gets deleted.
+3. Height stair: the BOM heights (12/22/26 steps are marked) picked by straightedge; tolerance ±0.5 mm vs pocket-depth visual.
+4. Top-photo in-pocket against the 10 mm pin grid → window x0/y0/w/h in pocket coordinates + clean-side blank-vs-open — keys `window_*` params.
+5. Cross-check corner radius against the r3 pocket corner for the x50.
+
+Fail Criteria & Fix:
+| Observation | Meaning | Fix |
+|---|---|---|
+| neither x60 pocket seats | "102/85" reads neither trap nor 17 mm corner step | sketch the real plan on paper, scan, re-model `shell_2d()` |
+| no pocket seats at all | BOM L×W include frame lips elsewhere | caliper rows 2-4-6; set `clr` to real clearance and re-render with corrected envelopes |
+| height stair ambiguous ±1 step | soft compressible frame | caliper rows 2/3/6 pressed vs released; document both |
+| pin grid covered by media fold-over | window not on the wrong face? flip and repeat | if both faces fold over, record both rects in MEASURE-ME §23 row 10 |
+
+Report results against `MEASURE-ME.md` §23 rows 10-13 (window, faces, plan,
+durometer) and §24 if the tire jig was printed too.
+
+---
+
 ## Printing Guidelines
 
 | Parameter | Setting |
