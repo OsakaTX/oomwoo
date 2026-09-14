@@ -1,15 +1,20 @@
 # MCU SAFETY_STATE → Recovery-Node Safety View (PR #63 alignment)
 
-**Status:** design + reference logic, branch-only, NO PR yet.
-**Cycle:** 2026-09-10 (recovery-safety rotation, run 84).
-**Provenance:** every upstream constant below was fetched and read THIS cycle
-from xbattlax's OPEN PR #63 (`Resolve MCU protocol gaps and align firmware
-specifications`, head `629b60245a22f78929749f9dcf0a7090ad5be844` on branch
-`docs/spec-firmware-consistency`, files at
+**Status:** constants merged upstream; this layer remains branch-only
+design + reference logic, NO PR yet.
+**Cycle:** 2026-09-14 (recovery-safety rotation; cron counter 91→92);
+prior cycle 2026-09-10 (run 84).
+**Provenance:** every upstream constant below was fetched and read from
+xbattlax's PR #63 (`Resolve MCU protocol gaps and align firmware
+specifications`, reviewed at head `629b60245a22f78929749f9dcf0a7090ad5be844`
+on branch `docs/spec-firmware-consistency`, files at
 `contributions/io-board-interface/xbattlax/`): `docs/cpu_mcu_serial_contract.md`
 and `docs/ros2_mapping.md` (verbatim quotes below), plus the machine-readable
-`conformance/protocol_v1.json`. PR #63 was OPEN (not merged) when fetched —
-upstream `main` was `55f0659`, unchanged since the 2026-09-08 run. Atomic
+`conformance/protocol_v1.json`. **PR #63 MERGED upstream on 2026-09-11**
+(merge commit `90324ec`, parents `3403ab8` + head `629b602`; checked
+2026-09-14 that the merged tree is byte-identical to the reviewed head for
+`contributions/io-board-interface/`), so the constants below now rest on
+upstream `main` directly. Atomic
 event IDs 1–10 themselves predate this PR (the PR's diff only adds
 `SAFETY_STATE` streams next to existing `SAFETY_EVENT` columns), but the
 consolidated tables read here are the PR-head state.
@@ -169,18 +174,21 @@ classifies.
   changed files; the `ground_plane` contact-substring fragility note in
   `safety-input-protocol-edge-semantics.md` stands.
 
-## 7. Verification (this cycle)
+## 7. Verification
 
-- Reference constants machine-checked against the fetched PR files: struct
+- 2026-09-10 cycle: reference constants machine-checked against the fetched
+  PR files: struct
   `<IHH`, ids 32773/32770, ten events, N−1 bit rule, u16 fit (mask of all
   ten = 0x3FF), manifest sample decode — `roe/test/test_mcu_safety_state.py`,
-  43 tests.
-- Full module suite on this branch's exact bytes:
-  **376 passed** headless (`OOMWOO_REPO=<clone> PYTHONPATH=…/OsakaTX
-  /home/hermes/.local/bin/pytest roe/test/`), drift-guards ACTIVE (0 skipped).
-- PR #63 merge checklist (future cycle): re-fetch the merged files; if the
-  event table / struct / ids changed, update `roe/mcu_safety_state.py`
-  constants + `PR63_PROVENANCE` + this doc in the same commit
-  (`test_provenance_string_pins_head_sha` enforces the pairing); re-run the
-  suite; re-check PR #60's consumer parity only if its head moves (unchanged,
-  `9439ecd` / 2026-08-28, as of this cycle).
+  43 tests. Full module suite on that cycle's bytes: **376 passed** headless.
+- 2026-09-14 (post-merge): merge commit confirmed a true 2-parent merge
+  (`3403ab8` + `629b602`) and the merged tree byte-identical to the
+  reviewed head for `contributions/io-board-interface/` — constants
+  unchanged; `PR63_PROVENANCE` now records the merge; the suite gained
+  merged-tree drift guards (contract row / bit-rule sentence / manifest
+  entry / event names checked against the upstream clone, merge-commit
+  ancestry, provenance merge stanza). Re-measured total below.
+- PR #63 merge checklist: COMPLETE this cycle (no constant drift found;
+  provenance + guards + doc updated together; suite re-run — see §9.4).
+  PR #60 consumer parity re-check remains conditional on its head moving
+  (still `9439ecd` / 2026-08-28 as of this cycle).
