@@ -749,7 +749,7 @@ The `IntegrationDecision` return type tells the caller what to do:
 
 ### 9.4 Test Coverage
 
-All 333 tests pass headless (no ROS2, no Gazebo) — measured 2026-09-08:
+All 380 tests pass headless (no ROS2, no Gazebo) — measured 2026-09-14:
 
 ```
 test/situation_analyzer          ...... 31 tests
@@ -766,9 +766,10 @@ test/safety_input_protocol       ...... 21 tests   # added 2026-08-20
 test/pause_alert_ack             ...... 24 tests   # added 2026-08-23
 test/status_emission_contract    ...... 32 tests   # added 2026-09-08
 test/status_observability_align  ...... 15 tests   # added 2026-09-08, resumed from the 2026-09-02 run
-test/mcu_safety_state            ...... 43 tests   # added 2026-09-10
+test/wheel_drop_failsafe         ......  9 tests   # added 2026-09-08 (row restored 2026-09-14; was prose-only)
+test/mcu_safety_state            ...... 47 tests   # 43 on 2026-09-10 + 4 post-merge guards 2026-09-14
                                ------
-                          Total: 376 tests
+                          Total: 380 tests
 ```
 
 Run with: `PYTHONPATH=roe python3 -m pytest test/`
@@ -808,11 +809,21 @@ Run with: `PYTHONPATH=roe python3 -m pytest test/`
 > as written (see `roe/status_emission_contract.py`, same branch).
 >
 > 2026-09-10: suite re-measured at 376 (333 + 43 new `mcu_safety_state`)
-> on this branch's exact bytes; all drift-guards ACTIVE
-> (`OOMWOO_REPO=<clone>`). New suite pins xbattlax OPEN PR #63's serial
+> on that cycle's branch bytes; all drift-guards ACTIVE
+> (`OOMWOO_REPO=<clone>`). New suite pins xbattlax PR #63's serial
 > `SAFETY_STATE` contract to the ROS-side view — see
 > [mcu-safety-state-alignment.md](./mcu-safety-state-alignment.md). Upstream
-> `main` unchanged (`55f0659`); PR #60 head unchanged (`9439ecd`).
+> `main` then `55f0659`; PR #60 head `9439ecd`.
+>
+> 2026-09-14 (this run): upstream `main` advanced `55f0659` → `c45c487`
+> (3 commits; PR #63 merge + part-specs/#64 + docs) and the branch was
+> rebased onto it (tip `1d7d83b`, clean). **PR #63 MERGED 2026-09-11**
+> as `90324ec` (`3403ab8` + `629b602`); merged tree byte-identical to the
+> reviewed head for `contributions/io-board-interface/` — checks added to
+> `test_mcu_safety_state.py` now assert that directly against the clone.
+> `PR63_PROVENANCE` records the merge; the mcu doc's merge checklist is
+> CLOSED. Per-file counts and total re-measured below (no inherited
+> count). PR #60 head still `9439ecd` (parity re-check still not triggered).
 
 ### 9.5 Integration into xbattlax's RecoverySafetyNode
 
@@ -1054,7 +1065,7 @@ Key guarantees (headless-tested, 11 tests):
 - [safety-input-protocol-edge-semantics.md](./safety-input-protocol-edge-semantics.md) — verified merged-node safety-input semantics + producer contract + consumer hardening latch (2026-08-20)
 - [pause-alert-ack-path.md](./pause-alert-ack-path.md) — operator acknowledgment (ack) path + alert re-annunciation, closing the ack-path gap for the hardening latch; aug23 note (2026-08-23; re-measure note 2026-09-08)
 - [status-observability-and-emission-contract.md](./status-observability-and-emission-contract.md) — `oomwoo/status` emission contract: two-moments emission, nine-key payload, no-keepalive liveness monitor, emitter-shape drift guard; PR #60 consumer-compat analysis (2026-09-08)
-- [mcu-safety-state-alignment.md](./mcu-safety-state-alignment.md) —xbattlax OPEN PR #63 `SAFETY_STATE` serial contract (active/latched masks, events 1–10, N−1 bit rule) mirrored to the ROS-side safety view with latch-aware clear admission + stream liveness; reference logic `roe/mcu_safety_state.py` (2026-09-10)
+- [mcu-safety-state-alignment.md](./mcu-safety-state-alignment.md) —xbattlax PR #63 `SAFETY_STATE` serial contract (active/latched masks, events 1–10, N−1 bit rule) mirrored to the ROS-side safety view with latch-aware clear admission + stream liveness; **PR #63 merged 2026-09-11 (`90324ec`), merged-tree drift guards added, merge checklist complete**; reference logic `roe/mcu_safety_state.py` (2026-09-10, post-merge 2026-09-14)
 - [roe/status_observability_align.py](./roe/status_observability_align.py) — external-consumer (PR #60) KPI fireability analysis: which status-vocabulary comparisons can fire on the deployed lowercase-state / UPPERCASE-reason stream, + deployed-source drift guards (2026-09-02, completed 2026-09-08)
 - [roe/wheel_drop_failsafe.py](./roe/wheel_drop_failsafe.py) — wheel-drop NC-contact fail-safe polarity contract (hardware-open → logic-True at every adapter layer), grounded in PR #61's measured COM/NC wiring incl. its verbatim firmware guidance + drift guard on the IKsares README (2026-09-02, completed 2026-09-08)
 - [launch/recovery_safety.oomwoo_one.launch.py](./launch/recovery_safety.oomwoo_one.launch.py) — overlay launch file: merged node + verified bumper remap for oomwoo-one (2026-08-16)

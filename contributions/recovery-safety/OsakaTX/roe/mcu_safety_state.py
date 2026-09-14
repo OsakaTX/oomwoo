@@ -1,8 +1,10 @@
 """MCU SAFETY_STATE (to ROS-level safety view) mapping and clear admission.
 
-ROS-side counterpart to xbattlax's OPEN upstream PR #63
-(`docs/spec-firmware-consistency`, head 629b60245a22f78929749f9dcf0a7090ad5be844,
-fetched 2026-09-10), which adds the serial `SAFETY_STATE` message on the
+ROS-side counterpart to xbattlax's upstream PR #63
+(`docs/spec-firmware-consistency`, reviewed at head
+629b60245a22f78929749f9dcf0a7090ad5be844 and MERGED into makers-pet/oomwoo
+main on 2026-09-11 as merge commit 90324ec with unchanged content), which
+adds the serial `SAFETY_STATE` message on the
 MCU-to-CPU side of the safety chain. Primary-source constants used here:
 
 - struct `<IHH>` = `u32 timestamp_ms`, `u16 active_flags`, `u16 latched_flags`
@@ -124,6 +126,15 @@ SAFETY_STATE_MESSAGE_ID = 32773  # 0x8005 in the PR manifest
 SAFETY_EVENT_MESSAGE_ID = 32770  # 0x8002, the event-frame counterpart
 SAFETY_STATE_STRUCT_FORMAT = "<IHH"
 
+# --- merge outcome (verified THIS cycle, see PR63_PROVENANCE) --------------
+PR63_MERGE_COMMIT = "90324ec"  # true 2-parent merge: 3403ab8 + 629b602
+PR63_MERGED_ONTO = "c45c487"  # upstream main tip, 2026-09-14 clone state
+PR63_MERGED_AS = (
+    "merged 2026-09-11 into makers-pet/oomwoo main as merge commit "
+    "90324ec (parents 3403ab8 + reviewed head 629b602; merged tree "
+    "byte-identical to the head for contributions/io-board-interface/)"
+)
+
 _SAFETY_STATE_STRUCT = struct.Struct(SAFETY_STATE_STRUCT_FORMAT)
 assert _SAFETY_STATE_STRUCT.size == 8  # u32 + u16 + u16, little-endian
 
@@ -131,8 +142,10 @@ PR63_PROVENANCE = (
     "constants transcribed from makers-pet/oomwoo PR #63 head "
     "629b60245a22f78929749f9dcf0a7090ad5be844 (fetched 2026-09-10): "
     "cpu_mcu_serial_contract.md sections 'SAFETY_STATE' and 'Safety events', "
-    "conformance/protocol_v1.json message id 32773. On merge, re-verify "
-    "against upstream/main; if the merged text differs, update the constants "
+    "conformance/protocol_v1.json message id 32773; MERGED 2026-09-11 via "
+    "merge commit 90324ec, content re-verified byte-identical to the head "
+    "against upstream/main on 2026-09-14 (at c45c487). "
+    "If upstream edits the merged files, update the constants "
     "AND this provenance string together."
 )
 

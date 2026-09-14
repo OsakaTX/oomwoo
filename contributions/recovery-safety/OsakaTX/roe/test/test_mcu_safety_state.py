@@ -10,12 +10,20 @@ change breaks them loudly instead of silently drifting.
 from __future__ import annotations
 
 import inspect
+import json
+import os
+import shutil
+import subprocess
 
 import pytest
 
 from roe import mcu_safety_state as m
 from roe.mcu_safety_state import (
     EVENTS_FULL,
+    PR63_MERGED_AS,
+    PR63_MERGED_ONTO,
+    PR63_MERGE_COMMIT,
+    PR63_PROVENANCE,
     SAFETY_EVENT_MESSAGE_ID,
     SAFETY_STATE_MESSAGE_ID,
     SAFETY_STATE_STRUCT_FORMAT,
@@ -320,3 +328,103 @@ def test_liveness_ignores_frame_content():
     b.observe(_frame(0, 0, ts=9), 5)
     assert a.evaluate(6) == b.evaluate(6) == "current"
     assert a.frames_seen == b.frames_seen == 1
+
+
+# ---------------------------------------------------------------------------
+# post-merge recheck (PR #63 merged 2026-09-11 as 90324ec)
+# ---------------------------------------------------------------------------
+
+
+def _merged_tree_paths(repo_root: str) -> tuple[str, str, str]:
+    base = os.path.join(
+        repo_root, "contributions", "io-board-interface", "xbattlax")
+    return (
+        os.path.join(base, "docs", "cpu_mcu_serial_contract.md"),
+        os.path.join(base, "conformance", "protocol_v1.json"),
+        os.path.join(base, "tests", "test_oomwoo_mcu_frame.py"),
+    )
+
+
+def _mask(names: tuple[str, ...]) -> int:
+    return flags_for(names)
+
+
+def test_merged_upstream_contract_still_matches_constants(tmp_path):
+    """Merged-PR drift guard: run against the REAL upstream clone.
+
+    PR #63 landed upstream 2026-09-11 as merge commit 90324ec, and at
+    that merge the working tree was byte-identical to reviewed head
+    629b602 for contributions/io-board-interface/xbattlax/ (checked
+    2026-09-14: `git diff 629b602 upstream/main --` empty).  These
+    checks now assert the same facts against upstream main directly, so
+    a later edit to the merged contract files fails loudly here.
+    """
+    repo = os.environ.get("OOMWOO_REPO")
+    if not repo:
+        pytest.skip("OOMWOO_REPO not set; run the suite against a clone")
+    contract, manifest, frame_tests = _merged_tree_paths(repo)
+    for path in (contract, manifest, frame_tests):
+        if not os.path.exists(path):
+            pytest.skip(f"upstream file absent: {path}")
+    with open(contract, encoding="utf-8") as fh:
+        text = fh.read()
+    norm = "".join(text.split()).replace("`", "")
+    row = ("| `0x8005` | `SAFETY_STATE` | MCU -> CPU | 10 Hz + event |"
+           "`u32 timestamp_ms`, `u16 active_flags`, `u16 latched_flags` |")
+    assert "".join(row.split()).replace("`", "") in norm, \
+        "SAFETY_STATE message row changed upstream"
+    rule = "maps to bit `N - 1`"
+    assert "".join(rule.split()).replace("`", "") in norm, \
+        "N-1 bit-rule sentence changed upstream"
+    with open(manifest, encoding="utf-8") as fh:
+        data = json.load(fh)
+    by_id = {msg["id"]: msg for msg in data["messages"]}
+    state = by_id[SAFETY_STATE_MESSAGE_ID]
+    assert state["name"] == "SAFETY_STATE"
+    assert state["struct_format"] == SAFETY_STATE_STRUCT_FORMAT
+    assert state["direction"] == "mcu_to_cpu"
+    assert state["payload_status"] == "defined"
+
+
+def test_merged_upstream_event_table_matches(tmp_path):
+    """Every PR #63 event name/behavior cell re-checked in upstream main."""
+    repo = os.environ.get("OOMWOO_REPO")
+    if not repo:
+        pytest.skip("OOMWOO_REPO not set; run the suite against a clone")
+    contract, _manifest, _tests = _merged_tree_paths(repo)
+    if not os.path.exists(contract):
+        pytest.skip("upstream contract doc absent")
+    with open(contract, encoding="utf-8") as fh:
+        text = fh.read()
+    for event in EVENTS_FULL:
+        assert event.name in text, f"event {event.name} gone upstream"
+    for code, name in ((3, "CLIFF_LEFT"), (9, "CPU_HEARTBEAT_TIMEOUT"),
+                       (10, "ESTOP")):
+        flags = _mask((name,))
+        assert flags == 1 << (code - 1)
+
+
+def test_pr63_merge_commit_is_in_upstream_history(tmp_path):
+    repo = os.environ.get("OOMWOO_REPO")
+    if not repo:
+        pytest.skip("OOMWOO_REPO not set; run the suite against a clone")
+    git = shutil.which("git")
+    if git is None:
+        pytest.skip("git not available")
+    proc = subprocess.run(
+        [git, "-C", repo, "merge-base", "--is-ancestor",
+         PR63_MERGE_COMMIT, PR63_MERGED_ONTO],
+        capture_output=True, text=True)
+    if proc.returncode not in (0, 128):
+        pytest.fail(f"git merge-base failed: {proc.stderr}")
+    if proc.returncode == 128:
+        pytest.skip("upstream refs unavailable in the pinned clone")
+    assert proc.returncode == 0
+
+
+def test_provenance_records_merge_outcome():
+    text = PR63_PROVENANCE
+    assert PR63_MERGE_COMMIT in text
+    assert "MERGED 2026-09-11" in text  # caps, per the constant above
+    assert PR63_MERGE_COMMIT in PR63_MERGED_AS
+    assert "merged 2026-09-11" in PR63_MERGED_AS  # lowercase, per that constant
