@@ -920,6 +920,33 @@ durometer) and §24 if the tire jig was printed too.
 
 ---
 
+## Jig 26: Robot Suction-Fan Class-ID Gauge (`robot-suction-fan-alternates/jig26-fan-class-gauge.scad`, BOM suction-fan kPa-option rows)
+
+Three plates, one print plate each (`-D plate="..."`):
+
+```
+openscad -o jig26_ring.stl    ... -D 'plate="ring"'
+openscad -o jig26_length.stl  ... -D 'plate="length"'
+openscad -o jig26_arc.stl     ... -D 'plate="arcs"'
+```
+
+| Step | Action | Pass | Fail -> fix |
+|------|--------|------|-------------|
+| R1 | drop the purchased fan canister through each go ring (Ø48/55/58/60/61/70) | exactly one ring passes with the fan face flat — its Ø names the class | no pass / two passes: the part is a non-classed variant; record the arithmetic in MEASURE-ME §25 row 2 and SuperEllipse-co | (no fix in-model; preset split decision for the next rev) |
+| R2 | slide the fan axis into each length slot (40/61.1/63.3/64.7/65.4/66.6/73.3/74.9) | face touches the slot end with the other face flush at the mouth | none flush = axis between slots; caliper and add the value to `lengths[]` |
+| R3 | press the inlet face against the scribed arc plate, eye over rings 40..48 | aperture edge touches one arc exactly | between arcs: caliper the aperture, `inlet_d` override |
+| R4 | optional cross-check of §25: ring through-passage free while face flush | bore clear | shell intrudes into aperture — deny the preset |
+
+**Print**: PLA or PETG, 0.2 mm, 3 walls, 20 % infill; ring plate 150×458×10 is
+a full 220-bed part — print alone. Tolerance ring `clr=0.4`: if the true part
+jams, re-slice at +0.2 (`-D clr=0.6`).
+
+Report ring/slot/arc readings against `MEASURE-ME.md` §25 rows 2-4 — rows 2+3
+alone pick the preset; everything else tunes a named (E) field in
+`alternate-housing-envelope.scad`.
+
+---
+
 ## Printing Guidelines
 
 | Parameter | Setting |

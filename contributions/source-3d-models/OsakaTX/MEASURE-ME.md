@@ -918,6 +918,34 @@ sketch there: rim seat Ø (71.5 − 2·tire_w) ≈ 44.5–47.5 for a ~12–13.5 
 
 ---
 
+## 25. Robot Suction Fan — alternate BOM options (Nidec 20N/22N suffixes, BL24131616, Saros 20 unit)
+
+Envelope-class draft: `robot-suction-fan-alternates/alternate-housing-envelope.scad`
+(3 presets: legacy_od70 / mid_od58 / large_od60). **No public primary datasheet
+exists for any listed exact suffix** (two-round catalogue search 2026-09-15 —
+Nidec sitemap + web; only family marketing pages publish data, and the Nidec
+"Blower Line-up" deck covers BL-V series, not the 20N/22N codes). The deck's
+published dims ground the mid/large presets; the legacy preset rests on
+image-measured proportions. Gating rows first.
+
+| # | Item | Value | Provenance / how to read |
+|---|------|-------|--------------------------|
+| 1 | WHICH suffix arrived (paper label / packing slip) | - | 22N704W150, 20N704S980, 20N704R980L, BL24131616, 22N704V160, 20N704P200/R500/R310/P160 — record it; the whole model presets hang on this row |
+| 2 | canister OD (caliper across, both directions if oval) | mm | vs Jig 26 ring plate: Ø58 go = mid_od58; Ø60 = large_od60 (deck-published values); Ø70 nearest = legacy_od70. Ring plate also carries Ø48/55/61 for the deck V45B / V55-snap / V65-cap classes |
+| 3 | canister thickness pole-to-pole (the twin-inlet axis) | mm | 63.3 (mid, deck "Side arm: Φ58 x L 63.3" verbatim) / 73.3 (large, deck "Φ60 x L 73.3") / 40 est (legacy) — length-plate slots read to 0.1 |
+| 4 | inlet aperture dia (each face) | mm | Jig 26 arc plate 40..48 scribed; ~0.75-0.78xOD ratio est; caliper (vis: legacy inlet reads ~0.64xOD on its photo — anchor on the measured arc, not prints) |
+| 5 | exit-ring OD / ID / protrusion | mm | est OD 22 / ID 16 / L 10-14 (E) — caliper; note whether the bore actually breathes (paper-draft test before printing anything) |
+| 6 | ear: hole dia, count, clocking | mm | est 3× M3-clearance (hole Ø3.2), 120° apart, mid-height. Photos show perimeter ears; count is a guess |
+| 7 | wall thickness at the exit bore lip | mm | est 2.0; caliper the lip edge |
+| 8 | overall with shaft stub, and stub dia/length | mm | est Ø5 class (4-6 commutator-motor norm); photo shows a stub — length never dimensioned in ANY source this run |
+| 9 | voltage/current of the purchased unit (label) | V/A | BOM electrical only (12 V? battery direct?); label beats every guess; driver-on-board vs bare 2-lead decides the harness |
+
+Reading order: row 1 → Jig 26 ring plate (row 2) → length plate (row 3) →
+arc plate (row 4) → calipers for 5-8. Rows 2+3 alone pick the preset and
+re-anchor every cls[] field; the rest tune placement [E] fields.
+
+---
+
 1. **Open an issue** in [makerspet/oomwoo](https://github.com/makerspet/oomwoo/issues)
    with `[measure]` prefix in the title, referencing this file.
 2. **Or post in** [Project Discussions](https://github.com/makerspet/oomwoo/discussions).
