@@ -1,0 +1,725 @@
+[INFO] [launch]: All log files can be found below /root/.ros/log/2026-09-12-22-15-14-404370-d137359281ae-386976
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [component_container_isolated-1]: process started with pid [386996]
+[component_container_isolated-1] [INFO] [1789251315.360160754] [nav2_container]: Load Library: /opt/ros/jazzy/lib/libamcl_core.so
+[component_container_isolated-1] [INFO] [1789251315.372821921] [nav2_container]: Found class: rclcpp_components::NodeFactoryTemplate<nav2_amcl::AmclNode>
+[component_container_isolated-1] [INFO] [1789251315.372864821] [nav2_container]: Instantiate class: rclcpp_components::NodeFactoryTemplate<nav2_amcl::AmclNode>
+[component_container_isolated-1] [INFO] [1789251315.381825268] [amcl]: 
+[component_container_isolated-1] 	amcl lifecycle node launched. 
+[component_container_isolated-1] 	Waiting on external lifecycle transitions to activate
+[component_container_isolated-1] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[component_container_isolated-1] [INFO] [1789251315.382355471] [amcl]: Creating
+[INFO] [launch_ros.actions.load_composable_nodes]: Loaded node '/amcl' in container '/nav2_container'
+[component_container_isolated-1] [INFO] [1789251315.384995285] [nav2_container]: Load Library: /opt/ros/jazzy/lib/libnav2_lifecycle_manager_core.so
+[component_container_isolated-1] [INFO] [1789251315.386018391] [nav2_container]: Found class: rclcpp_components::NodeFactoryTemplate<nav2_lifecycle_manager::LifecycleManager>
+[component_container_isolated-1] [INFO] [1789251315.386049191] [nav2_container]: Instantiate class: rclcpp_components::NodeFactoryTemplate<nav2_lifecycle_manager::LifecycleManager>
+[component_container_isolated-1] [INFO] [1789251315.392326724] [lifecycle_manager_localization]: Creating
+[INFO] [launch_ros.actions.load_composable_nodes]: Loaded node '/lifecycle_manager_localization' in container '/nav2_container'
+[component_container_isolated-1] [INFO] [1789251315.396381846] [lifecycle_manager_localization]: [34m[1mCreating and initializing lifecycle service clients[0m[0m
+[component_container_isolated-1] [INFO] [1789251315.435012150] [nav2_container]: Load Library: /opt/ros/jazzy/lib/libmap_server_core.so
+[component_container_isolated-1] [INFO] [1789251315.451544838] [nav2_container]: Found class: rclcpp_components::NodeFactoryTemplate<nav2_map_server::CostmapFilterInfoServer>
+[component_container_isolated-1] [INFO] [1789251315.451571638] [nav2_container]: Found class: rclcpp_components::NodeFactoryTemplate<nav2_map_server::MapSaver>
+[component_container_isolated-1] [INFO] [1789251315.451576838] [nav2_container]: Found class: rclcpp_components::NodeFactoryTemplate<nav2_map_server::MapServer>
+[component_container_isolated-1] [INFO] [1789251315.451584438] [nav2_container]: Instantiate class: rclcpp_components::NodeFactoryTemplate<nav2_map_server::MapServer>
+[component_container_isolated-1] [INFO] [1789251315.461009788] [lifecycle_manager_localization]: [34m[1mStarting managed nodes bringup...[0m[0m
+[component_container_isolated-1] [INFO] [1789251315.461047688] [lifecycle_manager_localization]: [34m[1mConfiguring map_server[0m[0m
+[component_container_isolated-1] [INFO] [1789251315.461859593] [map_server]: 
+[component_container_isolated-1] 	map_server lifecycle node launched. 
+[component_container_isolated-1] 	Waiting on external lifecycle transitions to activate
+[component_container_isolated-1] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[component_container_isolated-1] [INFO] [1789251315.461896093] [map_server]: Creating
+[INFO] [launch_ros.actions.load_composable_nodes]: Loaded node '/map_server' in container '/nav2_container'
+[component_container_isolated-1] [INFO] [1789251315.462305195] [map_server]: Configuring
+[component_container_isolated-1] [INFO] [1789251315.462372696] [map_io]: Loading yaml file: /cbab5/work/scripts/../results/composition_ab/compAB_nav2_map.yaml
+[component_container_isolated-1] [INFO] [1789251315.462746998] [map_io]: resolution: 0.05
+[component_container_isolated-1] [INFO] [1789251315.462765098] [map_io]: origin[0]: -5
+[component_container_isolated-1] [INFO] [1789251315.462771098] [map_io]: origin[1]: -5
+[component_container_isolated-1] [INFO] [1789251315.462775298] [map_io]: origin[2]: 0
+[component_container_isolated-1] [INFO] [1789251315.462780198] [map_io]: free_thresh: 0.196
+[component_container_isolated-1] [INFO] [1789251315.462784898] [map_io]: occupied_thresh: 0.65
+[component_container_isolated-1] [INFO] [1789251315.462791698] [map_io]: mode: trinary
+[component_container_isolated-1] [INFO] [1789251315.462797398] [map_io]: negate: 0
+[component_container_isolated-1] [INFO] [1789251315.463059099] [map_io]: Loading image_file: /cbab5/work/scripts/../results/composition_ab/compAB_nav2_map.pgm
+[component_container_isolated-1] [INFO] [1789251315.464053504] [map_io]: Read map /cbab5/work/scripts/../results/composition_ab/compAB_nav2_map.pgm: 200 X 200 map @ 0.05 m/cell
+[component_container_isolated-1] [INFO] [1789251315.466846319] [lifecycle_manager_localization]: [34m[1mConfiguring amcl[0m[0m
+[component_container_isolated-1] [INFO] [1789251315.466928620] [amcl]: Configuring
+[component_container_isolated-1] [INFO] [1789251315.467030420] [amcl]: initTransforms
+[component_container_isolated-1] [INFO] [1789251315.469056131] [nav2_container]: Load Library: /opt/ros/jazzy/lib/libcontroller_server_core.so
+[component_container_isolated-1] [INFO] [1789251315.472146147] [nav2_container]: Found class: rclcpp_components::NodeFactoryTemplate<nav2_controller::ControllerServer>
+[component_container_isolated-1] [INFO] [1789251315.472180348] [nav2_container]: Instantiate class: rclcpp_components::NodeFactoryTemplate<nav2_controller::ControllerServer>
+[component_container_isolated-1] [INFO] [1789251315.475041063] [amcl]: initPubSub
+[component_container_isolated-1] [INFO] [1789251315.481096895] [amcl]: Subscribed to map topic.
+[component_container_isolated-1] [INFO] [1789251315.484421912] [lifecycle_manager_localization]: [34m[1mActivating map_server[0m[0m
+[component_container_isolated-1] [INFO] [1789251315.484519813] [map_server]: Activating
+[component_container_isolated-1] [INFO] [1789251315.484699814] [map_server]: Creating bond (map_server) to lifecycle manager.
+[component_container_isolated-1] [INFO] [1789251315.484794714] [amcl]: Received a 200 X 200 map @ 0.050 m/pix
+[component_container_isolated-1] [INFO] [1789251315.487978731] [controller_server]: 
+[component_container_isolated-1] 	controller_server lifecycle node launched. 
+[component_container_isolated-1] 	Waiting on external lifecycle transitions to activate
+[component_container_isolated-1] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[component_container_isolated-1] [INFO] [1789251315.491009047] [controller_server]: Creating controller server
+[component_container_isolated-1] [INFO] [1789251315.499918395] [local_costmap.local_costmap]: 
+[component_container_isolated-1] 	local_costmap lifecycle node launched. 
+[component_container_isolated-1] 	Waiting on external lifecycle transitions to activate
+[component_container_isolated-1] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[component_container_isolated-1] [INFO] [1789251315.500261796] [local_costmap.local_costmap]: Creating Costmap
+[INFO] [launch_ros.actions.load_composable_nodes]: Loaded node '/controller_server' in container '/nav2_container'
+[component_container_isolated-1] [INFO] [1789251315.502465808] [nav2_container]: Load Library: /opt/ros/jazzy/lib/libsmoother_server_core.so
+[component_container_isolated-1] [INFO] [1789251315.504536819] [nav2_container]: Found class: rclcpp_components::NodeFactoryTemplate<nav2_smoother::SmootherServer>
+[component_container_isolated-1] [INFO] [1789251315.504561919] [nav2_container]: Instantiate class: rclcpp_components::NodeFactoryTemplate<nav2_smoother::SmootherServer>
+[component_container_isolated-1] [INFO] [1789251315.512554962] [smoother_server]: 
+[component_container_isolated-1] 	smoother_server lifecycle node launched. 
+[component_container_isolated-1] 	Waiting on external lifecycle transitions to activate
+[component_container_isolated-1] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[component_container_isolated-1] [INFO] [1789251315.513710068] [smoother_server]: Creating smoother server
+[INFO] [launch_ros.actions.load_composable_nodes]: Loaded node '/smoother_server' in container '/nav2_container'
+[component_container_isolated-1] [INFO] [1789251315.515275976] [nav2_container]: Load Library: /opt/ros/jazzy/lib/libplanner_server_core.so
+[component_container_isolated-1] [INFO] [1789251315.516234781] [nav2_container]: Found class: rclcpp_components::NodeFactoryTemplate<nav2_planner::PlannerServer>
+[component_container_isolated-1] [INFO] [1789251315.516259881] [nav2_container]: Instantiate class: rclcpp_components::NodeFactoryTemplate<nav2_planner::PlannerServer>
+[component_container_isolated-1] [INFO] [1789251315.525370330] [planner_server]: 
+[component_container_isolated-1] 	planner_server lifecycle node launched. 
+[component_container_isolated-1] 	Waiting on external lifecycle transitions to activate
+[component_container_isolated-1] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[component_container_isolated-1] [INFO] [1789251315.526541736] [planner_server]: Creating
+[component_container_isolated-1] [INFO] [1789251315.536051986] [global_costmap.global_costmap]: 
+[component_container_isolated-1] 	global_costmap lifecycle node launched. 
+[component_container_isolated-1] 	Waiting on external lifecycle transitions to activate
+[component_container_isolated-1] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[component_container_isolated-1] [INFO] [1789251315.536349788] [global_costmap.global_costmap]: Creating Costmap
+[INFO] [launch_ros.actions.load_composable_nodes]: Loaded node '/planner_server' in container '/nav2_container'
+[component_container_isolated-1] [INFO] [1789251315.538951302] [nav2_container]: Load Library: /opt/ros/jazzy/lib/libroute_server_core.so
+[component_container_isolated-1] [INFO] [1789251315.540758511] [nav2_container]: Found class: rclcpp_components::NodeFactoryTemplate<nav2_route::RouteServer>
+[component_container_isolated-1] [INFO] [1789251315.540783511] [nav2_container]: Instantiate class: rclcpp_components::NodeFactoryTemplate<nav2_route::RouteServer>
+[component_container_isolated-1] [INFO] [1789251315.550573363] [route_server]: 
+[component_container_isolated-1] 	route_server lifecycle node launched. 
+[component_container_isolated-1] 	Waiting on external lifecycle transitions to activate
+[component_container_isolated-1] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[INFO] [launch_ros.actions.load_composable_nodes]: Loaded node '/route_server' in container '/nav2_container'
+[component_container_isolated-1] [INFO] [1789251315.552145972] [nav2_container]: Load Library: /opt/ros/jazzy/lib/libbehavior_server_core.so
+[component_container_isolated-1] [INFO] [1789251315.553227077] [nav2_container]: Found class: rclcpp_components::NodeFactoryTemplate<behavior_server::BehaviorServer>
+[component_container_isolated-1] [INFO] [1789251315.553252777] [nav2_container]: Instantiate class: rclcpp_components::NodeFactoryTemplate<behavior_server::BehaviorServer>
+[component_container_isolated-1] [INFO] [1789251315.563377331] [behavior_server]: 
+[component_container_isolated-1] 	behavior_server lifecycle node launched. 
+[component_container_isolated-1] 	Waiting on external lifecycle transitions to activate
+[component_container_isolated-1] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[INFO] [launch_ros.actions.load_composable_nodes]: Loaded node '/behavior_server' in container '/nav2_container'
+[component_container_isolated-1] [INFO] [1789251315.566516248] [nav2_container]: Load Library: /opt/ros/jazzy/lib/libbt_navigator_core.so
+[component_container_isolated-1] [INFO] [1789251315.570185067] [nav2_container]: Found class: rclcpp_components::NodeFactoryTemplate<nav2_bt_navigator::BtNavigator>
+[component_container_isolated-1] [INFO] [1789251315.570211867] [nav2_container]: Instantiate class: rclcpp_components::NodeFactoryTemplate<nav2_bt_navigator::BtNavigator>
+[component_container_isolated-1] [INFO] [1789251315.581551927] [bt_navigator]: 
+[component_container_isolated-1] 	bt_navigator lifecycle node launched. 
+[component_container_isolated-1] 	Waiting on external lifecycle transitions to activate
+[component_container_isolated-1] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[component_container_isolated-1] [INFO] [1789251315.582666633] [bt_navigator]: Creating
+[INFO] [launch_ros.actions.load_composable_nodes]: Loaded node '/bt_navigator' in container '/nav2_container'
+[component_container_isolated-1] [INFO] [1789251315.584169141] [nav2_container]: Load Library: /opt/ros/jazzy/lib/libwaypoint_follower_core.so
+[component_container_isolated-1] [INFO] [1789251315.585463848] [nav2_container]: Found class: rclcpp_components::NodeFactoryTemplate<nav2_waypoint_follower::WaypointFollower>
+[component_container_isolated-1] [INFO] [1789251315.585488848] [nav2_container]: Instantiate class: rclcpp_components::NodeFactoryTemplate<nav2_waypoint_follower::WaypointFollower>
+[component_container_isolated-1] [INFO] [1789251315.588336663] [lifecycle_manager_localization]: Server map_server connected with bond.
+[component_container_isolated-1] [INFO] [1789251315.588369064] [lifecycle_manager_localization]: [34m[1mActivating amcl[0m[0m
+[component_container_isolated-1] [INFO] [1789251315.588514764] [amcl]: Activating
+[component_container_isolated-1] [INFO] [1789251315.588549265] [amcl]: initialPoseReceived
+[component_container_isolated-1] [INFO] [1789251315.588663665] [amcl]: Setting pose (1789251315.588664): 1.500 0.000 1.571
+[component_container_isolated-1] [INFO] [1789251315.589252168] [amcl]: Creating bond (amcl) to lifecycle manager.
+[component_container_isolated-1] [INFO] [1789251315.597991015] [waypoint_follower]: 
+[component_container_isolated-1] 	waypoint_follower lifecycle node launched. 
+[component_container_isolated-1] 	Waiting on external lifecycle transitions to activate
+[component_container_isolated-1] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[component_container_isolated-1] [INFO] [1789251315.598284516] [waypoint_follower]: Creating
+[INFO] [launch_ros.actions.load_composable_nodes]: Loaded node '/waypoint_follower' in container '/nav2_container'
+[component_container_isolated-1] [INFO] [1789251315.600137326] [nav2_container]: Load Library: /opt/ros/jazzy/lib/libvelocity_smoother_core.so
+[component_container_isolated-1] [INFO] [1789251315.601184632] [nav2_container]: Found class: rclcpp_components::NodeFactoryTemplate<nav2_velocity_smoother::VelocitySmoother>
+[component_container_isolated-1] [INFO] [1789251315.601210532] [nav2_container]: Instantiate class: rclcpp_components::NodeFactoryTemplate<nav2_velocity_smoother::VelocitySmoother>
+[component_container_isolated-1] [INFO] [1789251315.612210990] [velocity_smoother]: 
+[component_container_isolated-1] 	velocity_smoother lifecycle node launched. 
+[component_container_isolated-1] 	Waiting on external lifecycle transitions to activate
+[component_container_isolated-1] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[INFO] [launch_ros.actions.load_composable_nodes]: Loaded node '/velocity_smoother' in container '/nav2_container'
+[component_container_isolated-1] [INFO] [1789251315.613978599] [nav2_container]: Load Library: /opt/ros/jazzy/lib/libcollision_monitor_core.so
+[component_container_isolated-1] [INFO] [1789251315.615021705] [amcl]: createLaserObject
+[component_container_isolated-1] [INFO] [1789251315.617575119] [nav2_container]: Found class: rclcpp_components::NodeFactoryTemplate<nav2_collision_monitor::CollisionMonitor>
+[component_container_isolated-1] [INFO] [1789251315.617602219] [nav2_container]: Instantiate class: rclcpp_components::NodeFactoryTemplate<nav2_collision_monitor::CollisionMonitor>
+[component_container_isolated-1] [INFO] [1789251315.629027979] [collision_monitor]: 
+[component_container_isolated-1] 	collision_monitor lifecycle node launched. 
+[component_container_isolated-1] 	Waiting on external lifecycle transitions to activate
+[INFO] [launch_ros.actions.load_composable_nodes]: Loaded node '/collision_monitor' in container '/nav2_container'
+[component_container_isolated-1] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[component_container_isolated-1] [INFO] [1789251315.631019890] [nav2_container]: Load Library: /opt/ros/jazzy/lib/libopennav_docking_core.so
+[component_container_isolated-1] [INFO] [1789251315.632849800] [nav2_container]: Found class: rclcpp_components::NodeFactoryTemplate<opennav_docking::DockingServer>
+[component_container_isolated-1] [INFO] [1789251315.632881500] [nav2_container]: Instantiate class: rclcpp_components::NodeFactoryTemplate<opennav_docking::DockingServer>
+[component_container_isolated-1] [INFO] [1789251315.644610962] [docking_server]: 
+[component_container_isolated-1] 	docking_server lifecycle node launched. 
+[component_container_isolated-1] 	Waiting on external lifecycle transitions to activate
+[component_container_isolated-1] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[component_container_isolated-1] [INFO] [1789251315.644651862] [docking_server]: Creating docking_server
+[INFO] [launch_ros.actions.load_composable_nodes]: Loaded node '/docking_server' in container '/nav2_container'
+[component_container_isolated-1] [INFO] [1789251315.647127175] [nav2_container]: Found class: rclcpp_components::NodeFactoryTemplate<nav2_lifecycle_manager::LifecycleManager>
+[component_container_isolated-1] [INFO] [1789251315.647146875] [nav2_container]: Instantiate class: rclcpp_components::NodeFactoryTemplate<nav2_lifecycle_manager::LifecycleManager>
+[component_container_isolated-1] [INFO] [1789251315.656311324] [lifecycle_manager_navigation]: Creating
+[INFO] [launch_ros.actions.load_composable_nodes]: Loaded node '/lifecycle_manager_navigation' in container '/nav2_container'
+[component_container_isolated-1] [INFO] [1789251315.658658636] [lifecycle_manager_navigation]: [34m[1mCreating and initializing lifecycle service clients[0m[0m
+[component_container_isolated-1] [INFO] [1789251315.675556926] [lifecycle_manager_navigation]: [34m[1mStarting managed nodes bringup...[0m[0m
+[component_container_isolated-1] [INFO] [1789251315.675591926] [lifecycle_manager_navigation]: [34m[1mConfiguring controller_server[0m[0m
+[component_container_isolated-1] [INFO] [1789251315.675737327] [controller_server]: Configuring controller interface
+[component_container_isolated-1] [INFO] [1789251315.675788227] [controller_server]: getting progress checker plugins..
+[component_container_isolated-1] [INFO] [1789251315.676030028] [controller_server]: getting goal checker plugins..
+[component_container_isolated-1] [INFO] [1789251315.676193129] [controller_server]: Controller frequency set to 20.0000Hz
+[component_container_isolated-1] [INFO] [1789251315.676244130] [local_costmap.local_costmap]: Configuring
+[component_container_isolated-1] [INFO] [1789251315.681022155] [local_costmap.local_costmap]: Using plugin "voxel_layer"
+[component_container_isolated-1] [INFO] [1789251315.684709575] [local_costmap.local_costmap]: Subscribed to Topics: scan
+[component_container_isolated-1] [INFO] [1789251315.690611606] [local_costmap.local_costmap]: Initialized plugin "voxel_layer"
+[component_container_isolated-1] [INFO] [1789251315.690633906] [local_costmap.local_costmap]: Using plugin "inflation_layer"
+[component_container_isolated-1] [INFO] [1789251315.691460510] [local_costmap.local_costmap]: Initialized plugin "inflation_layer"
+[component_container_isolated-1] [INFO] [1789251315.693637822] [lifecycle_manager_localization]: Server amcl connected with bond.
+[component_container_isolated-1] [INFO] [1789251315.693672122] [lifecycle_manager_localization]: [34m[1mManaged nodes are active[0m[0m
+[component_container_isolated-1] [INFO] [1789251315.693689522] [lifecycle_manager_localization]: [34m[1mCreating bond timer...[0m[0m
+[component_container_isolated-1] [INFO] [1789251315.704441379] [controller_server]: Created progress_checker : progress_checker of type nav2_controller::SimpleProgressChecker
+[component_container_isolated-1] [INFO] [1789251315.704802881] [controller_server]: Controller Server has progress_checker  progress checkers available.
+[component_container_isolated-1] [INFO] [1789251315.705338584] [controller_server]: Created goal checker : general_goal_checker of type nav2_controller::SimpleGoalChecker
+[component_container_isolated-1] [INFO] [1789251315.705906187] [controller_server]: Controller Server has general_goal_checker  goal checkers available.
+[component_container_isolated-1] [INFO] [1789251315.707197794] [controller_server]: Created controller : FollowPath of type nav2_mppi_controller::MPPIController
+[component_container_isolated-1] [INFO] [1789251315.710134509] [controller_server]: Controller period is equal to model dt. Control sequence shifting is ON
+[component_container_isolated-1] [INFO] [1789251315.711797818] [controller_server]: ConstraintCritic instantiated with 1 power and 4.000000 weight.
+[component_container_isolated-1] [INFO] [1789251315.711824518] [controller_server]: Critic loaded : mppi::critics::ConstraintCritic
+[component_container_isolated-1] [INFO] [1789251315.713237126] [controller_server]: InflationCostCritic instantiated with 1 power and 300.000000 / 0.015000 weights. Critic will collision check based on circular cost.
+[component_container_isolated-1] [INFO] [1789251315.713264026] [controller_server]: Critic loaded : mppi::critics::CostCritic
+[component_container_isolated-1] [INFO] [1789251315.713773529] [controller_server]: GoalCritic instantiated with 1 power and 5.000000 weight.
+[component_container_isolated-1] [INFO] [1789251315.713792729] [controller_server]: Critic loaded : mppi::critics::GoalCritic
+[component_container_isolated-1] [INFO] [1789251315.714437632] [controller_server]: GoalAngleCritic instantiated with 1 power, 3.000000 weight, 0.500000 angular threshold and symmetric_yaw_tolerance disabled
+[component_container_isolated-1] [INFO] [1789251315.714459232] [controller_server]: Critic loaded : mppi::critics::GoalAngleCritic
+[component_container_isolated-1] [INFO] [1789251315.715463138] [controller_server]: ReferenceTrajectoryCritic instantiated with 1 power and 14.000000 weight
+[component_container_isolated-1] [INFO] [1789251315.715484538] [controller_server]: Critic loaded : mppi::critics::PathAlignCritic
+[component_container_isolated-1] [INFO] [1789251315.716143341] [controller_server]: Critic loaded : mppi::critics::PathFollowCritic
+[component_container_isolated-1] [INFO] [1789251315.717152647] [controller_server]: PathAngleCritic instantiated with 1 power and 2.000000 weight. Mode set to: Forward Preference
+[component_container_isolated-1] [INFO] [1789251315.717175947] [controller_server]: Critic loaded : mppi::critics::PathAngleCritic
+[component_container_isolated-1] [INFO] [1789251315.717749150] [controller_server]: PreferForwardCritic instantiated with 1 power and 5.000000 weight.
+[component_container_isolated-1] [INFO] [1789251315.717773050] [controller_server]: Critic loaded : mppi::critics::PreferForwardCritic
+[component_container_isolated-1] [INFO] [1789251315.720737666] [controller_server]: Optimizer reset
+[component_container_isolated-1] [INFO] [1789251315.724940088] [MPPIController]: Configured MPPI Controller: FollowPath
+[component_container_isolated-1] [INFO] [1789251315.724970388] [controller_server]: Controller Server has FollowPath  controllers available.
+[component_container_isolated-1] [INFO] [1789251315.733420133] [lifecycle_manager_navigation]: [34m[1mConfiguring smoother_server[0m[0m
+[component_container_isolated-1] [INFO] [1789251315.733592034] [smoother_server]: Configuring smoother server
+[component_container_isolated-1] [INFO] [1789251315.738526060] [smoother_server]: Created smoother : simple_smoother of type nav2_smoother::SimpleSmoother
+[component_container_isolated-1] [INFO] [1789251315.739724366] [smoother_server]: Smoother Server has simple_smoother  smoothers available.
+[component_container_isolated-1] [INFO] [1789251315.744579792] [lifecycle_manager_navigation]: [34m[1mConfiguring planner_server[0m[0m
+[component_container_isolated-1] [INFO] [1789251315.744680593] [planner_server]: Configuring
+[component_container_isolated-1] [INFO] [1789251315.744718593] [global_costmap.global_costmap]: Configuring
+[component_container_isolated-1] [INFO] [1789251315.749422618] [global_costmap.global_costmap]: Using plugin "static_layer"
+[component_container_isolated-1] [INFO] [1789251315.750961126] [global_costmap.global_costmap]: Subscribing to the map topic (/map) with transient local durability
+[component_container_isolated-1] [INFO] [1789251315.751541029] [global_costmap.global_costmap]: Initialized plugin "static_layer"
+[component_container_isolated-1] [INFO] [1789251315.751560329] [global_costmap.global_costmap]: Using plugin "obstacle_layer"
+[component_container_isolated-1] [INFO] [1789251315.753189238] [global_costmap.global_costmap]: Subscribed to Topics: scan
+[component_container_isolated-1] [INFO] [1789251315.757133059] [global_costmap.global_costmap]: Initialized plugin "obstacle_layer"
+[component_container_isolated-1] [INFO] [1789251315.757160559] [global_costmap.global_costmap]: Using plugin "inflation_layer"
+[component_container_isolated-1] [INFO] [1789251315.757949263] [global_costmap.global_costmap]: Initialized plugin "inflation_layer"
+[component_container_isolated-1] [INFO] [1789251315.771864937] [planner_server]: Created global planner plugin GridBased of type nav2_navfn_planner::NavfnPlanner
+[component_container_isolated-1] [INFO] [1789251315.771903437] [planner_server]: Configuring plugin GridBased of type NavfnPlanner
+[component_container_isolated-1] [INFO] [1789251315.772621541] [planner_server]: Planner Server has GridBased  planners available.
+[component_container_isolated-1] [INFO] [1789251315.781369187] [lifecycle_manager_navigation]: [34m[1mConfiguring route_server[0m[0m
+[component_container_isolated-1] [INFO] [1789251315.781582988] [route_server]: Configuring
+[component_container_isolated-1] [INFO] [1789251315.798737479] [route_server]: Created GraphFileLoader GeoJsonGraphFileLoader of type nav2_route::GeoJsonGraphFileLoader
+[component_container_isolated-1] [INFO] [1789251315.798777779] [route_server]: Configuring geojson graph file loader
+[component_container_isolated-1] [INFO] [1789251315.798787479] [route_server]: No graph file provided to load yet.
+[component_container_isolated-1] [INFO] [1789251315.801595394] [route_server]: Created edge cost function plugin DistanceScorer of type nav2_route::DistanceScorer
+[component_container_isolated-1] [INFO] [1789251315.801633495] [route_server]: Configuring distance scorer.
+[component_container_isolated-1] [INFO] [1789251315.802495999] [route_server]: Created edge cost function plugin CostmapScorer of type nav2_route::CostmapScorer
+[component_container_isolated-1] [INFO] [1789251315.802525299] [route_server]: Configuring costmap scorer.
+[component_container_isolated-1] [INFO] [1789251315.805798117] [route_server]: Created route operation AdjustSpeedLimit of type nav2_route::AdjustSpeedLimit
+[component_container_isolated-1] [INFO] [1789251315.805838217] [route_server]: Configuring Adjust speed limit operation.
+[component_container_isolated-1] [INFO] [1789251315.807387125] [route_server]: Created route operation ReroutingService of type nav2_route::ReroutingService
+[component_container_isolated-1] [INFO] [1789251315.807410825] [route_server]: Configuring Rerouting service operation.
+[component_container_isolated-1] [INFO] [1789251315.808702332] [route_server]: Created route operation CollisionMonitor of type nav2_route::CollisionMonitor
+[component_container_isolated-1] [INFO] [1789251315.808872833] [route_server]: Using costmap topic: local_costmap/costmap_raw instead of server costmap topic: global_costmap/costmap_raw for CollisionMonitor.
+[component_container_isolated-1] [INFO] [1789251315.813186856] [lifecycle_manager_navigation]: [34m[1mConfiguring behavior_server[0m[0m
+[component_container_isolated-1] [INFO] [1789251315.813360557] [behavior_server]: Configuring
+[component_container_isolated-1] [INFO] [1789251315.816686574] [behavior_server]: Creating behavior plugin spin of type nav2_behaviors::Spin
+[component_container_isolated-1] [INFO] [1789251315.818407483] [behavior_server]: Creating behavior plugin backup of type nav2_behaviors::BackUp
+[component_container_isolated-1] [INFO] [1789251315.819923992] [behavior_server]: Creating behavior plugin drive_on_heading of type nav2_behaviors::DriveOnHeading
+[component_container_isolated-1] [INFO] [1789251315.821431700] [behavior_server]: Creating behavior plugin assisted_teleop of type nav2_behaviors::AssistedTeleop
+[component_container_isolated-1] [INFO] [1789251315.821585200] [global_costmap.global_costmap]: StaticLayer: Resizing costmap to 200 X 200 at 0.050000 m/pix
+[component_container_isolated-1] [INFO] [1789251315.823798612] [behavior_server]: Creating behavior plugin wait of type nav2_behaviors::Wait
+[component_container_isolated-1] [INFO] [1789251315.827320131] [behavior_server]: Configuring spin
+[component_container_isolated-1] [INFO] [1789251315.834547669] [behavior_server]: Configuring backup
+[component_container_isolated-1] [INFO] [1789251315.840150699] [behavior_server]: Configuring drive_on_heading
+[component_container_isolated-1] [INFO] [1789251315.845471527] [behavior_server]: Configuring assisted_teleop
+[component_container_isolated-1] [INFO] [1789251315.851667560] [behavior_server]: Configuring wait
+[component_container_isolated-1] [INFO] [1789251315.857363590] [lifecycle_manager_navigation]: [34m[1mConfiguring velocity_smoother[0m[0m
+[component_container_isolated-1] [INFO] [1789251315.857631091] [velocity_smoother]: Configuring velocity smoother
+[component_container_isolated-1] [INFO] [1789251315.862119615] [lifecycle_manager_navigation]: [34m[1mConfiguring collision_monitor[0m[0m
+[component_container_isolated-1] [INFO] [1789251315.862289716] [collision_monitor]: Configuring
+[component_container_isolated-1] [INFO] [1789251315.872154468] [collision_monitor]: [scan]: Creating Scan
+[component_container_isolated-1] [INFO] [1789251315.874989284] [collision_monitor]: [FootprintApproach]: Creating Polygon
+[component_container_isolated-1] [INFO] [1789251315.875344785] [collision_monitor]: [FootprintApproach]: Polygon points are not defined. Using dynamic subscription instead.
+[component_container_isolated-1] [INFO] [1789251315.877176095] [collision_monitor]: [FootprintApproach]: Making footprint subscriber on /local_costmap/published_footprint topic
+[component_container_isolated-1] [INFO] [1789251315.882517623] [lifecycle_manager_navigation]: [34m[1mConfiguring bt_navigator[0m[0m
+[component_container_isolated-1] [INFO] [1789251315.882667724] [bt_navigator]: Configuring
+[component_container_isolated-1] [INFO] [1789251315.889851062] [bt_navigator]: Creating navigator id navigate_to_pose of type nav2_bt_navigator::NavigateToPoseNavigator
+[component_container_isolated-1] [INFO] [1789251315.980043041] [bt_navigator]: Creating navigator id navigate_through_poses of type nav2_bt_navigator::NavigateThroughPosesNavigator
+[component_container_isolated-1] [INFO] [1789251316.015848130] [lifecycle_manager_navigation]: [34m[1mConfiguring waypoint_follower[0m[0m
+[component_container_isolated-1] [INFO] [1789251316.016206132] [waypoint_follower]: Configuring
+[component_container_isolated-1] [INFO] [1789251316.034206828] [waypoint_follower]: Created waypoint_task_executor : wait_at_waypoint of type nav2_waypoint_follower::WaitAtWaypoint
+[component_container_isolated-1] [INFO] [1789251316.035179633] [lifecycle_manager_navigation]: [34m[1mConfiguring docking_server[0m[0m
+[component_container_isolated-1] [INFO] [1789251316.035429034] [docking_server]: Configuring docking_server
+[component_container_isolated-1] [INFO] [1789251316.035490535] [docking_server]: Controller frequency set to 50.0000Hz
+[component_container_isolated-1] [INFO] [1789251316.058790558] [docking_server]: Created charging dock plugin simple_charging_dock of type opennav_docking::SimpleChargingDock
+[component_container_isolated-1] [WARN] [1789251316.066151097] [docking_server]: Dock database filepath nor dock parameters set. Docking actions can only be executed specifying the dock pose via the action request. Or update the dock database via the reload_database service.
+[component_container_isolated-1] [INFO] [1789251316.066199197] [docking_server]: Docking Server has 1 dock types and 0 dock instances available.
+[component_container_isolated-1] [INFO] [1789251316.067874106] [lifecycle_manager_navigation]: [34m[1mActivating controller_server[0m[0m
+[component_container_isolated-1] [INFO] [1789251316.068082907] [controller_server]: Activating
+[component_container_isolated-1] [INFO] [1789251316.068126108] [local_costmap.local_costmap]: Activating
+[component_container_isolated-1] [INFO] [1789251316.068140408] [local_costmap.local_costmap]: Checking transform
+[component_container_isolated-1] [INFO] [1789251316.068267708] [local_costmap.local_costmap]: start
+[component_container_isolated-1] [WARN] [1789251316.319292440] [controller_server]: Parameter controller_server.verbose not found
+[component_container_isolated-1] [INFO] [1789251316.322520257] [controller_server]: Optimizer reset
+[component_container_isolated-1] [INFO] [1789251316.323074860] [MPPIController]: Activated MPPI Controller: FollowPath
+[component_container_isolated-1] [INFO] [1789251316.323117360] [controller_server]: Creating bond (controller_server) to lifecycle manager.
+[component_container_isolated-1] [INFO] [1789251316.433096543] [lifecycle_manager_navigation]: Server controller_server connected with bond.
+[component_container_isolated-1] [INFO] [1789251316.433185643] [lifecycle_manager_navigation]: [34m[1mActivating smoother_server[0m[0m
+[component_container_isolated-1] [INFO] [1789251316.433695746] [smoother_server]: Activating
+[component_container_isolated-1] [INFO] [1789251316.433763147] [smoother_server]: Creating bond (smoother_server) to lifecycle manager.
+[component_container_isolated-1] [INFO] [1789251316.543213327] [lifecycle_manager_navigation]: Server smoother_server connected with bond.
+[component_container_isolated-1] [INFO] [1789251316.543281627] [lifecycle_manager_navigation]: [34m[1mActivating planner_server[0m[0m
+[component_container_isolated-1] [INFO] [1789251316.543741730] [planner_server]: Activating
+[component_container_isolated-1] [INFO] [1789251316.543852830] [global_costmap.global_costmap]: Activating
+[component_container_isolated-1] [INFO] [1789251316.543924131] [global_costmap.global_costmap]: Checking transform
+[component_container_isolated-1] [INFO] [1789251316.543982531] [global_costmap.global_costmap]: Timed out waiting for transform from base_link to map to become available, tf error: Lookup would require extrapolation into the past.  Requested time 1789251316.532773 but the earliest data is at time 1789251316.713446, when looking up transform from frame [base_link] to frame [map]
+[component_container_isolated-1] [INFO] [1789251317.044099483] [global_costmap.global_costmap]: start
+[component_container_isolated-1] [INFO] [1789251317.096319960] [planner_server]: Activating plugin GridBased of type NavfnPlanner
+[component_container_isolated-1] [INFO] [1789251317.099709678] [planner_server]: Creating bond (planner_server) to lifecycle manager.
+[component_container_isolated-1] [INFO] [1789251317.207195248] [lifecycle_manager_navigation]: Server planner_server connected with bond.
+[component_container_isolated-1] [INFO] [1789251317.207252348] [lifecycle_manager_navigation]: [34m[1mActivating route_server[0m[0m
+[component_container_isolated-1] [INFO] [1789251317.207583350] [route_server]: Activating
+[component_container_isolated-1] [INFO] [1789251317.207802851] [route_server]: Creating bond (route_server) to lifecycle manager.
+[component_container_isolated-1] [INFO] [1789251317.315244621] [lifecycle_manager_navigation]: Server route_server connected with bond.
+[component_container_isolated-1] [INFO] [1789251317.315305121] [lifecycle_manager_navigation]: [34m[1mActivating behavior_server[0m[0m
+[component_container_isolated-1] [INFO] [1789251317.315696823] [behavior_server]: Activating
+[component_container_isolated-1] [INFO] [1789251317.315730123] [behavior_server]: Activating spin
+[component_container_isolated-1] [INFO] [1789251317.315776624] [behavior_server]: Activating backup
+[component_container_isolated-1] [INFO] [1789251317.315793424] [behavior_server]: Activating drive_on_heading
+[component_container_isolated-1] [INFO] [1789251317.315806524] [behavior_server]: Activating assisted_teleop
+[component_container_isolated-1] [INFO] [1789251317.315835324] [behavior_server]: Activating wait
+[component_container_isolated-1] [INFO] [1789251317.315855424] [behavior_server]: Creating bond (behavior_server) to lifecycle manager.
+[component_container_isolated-1] [INFO] [1789251317.427970918] [lifecycle_manager_navigation]: Server behavior_server connected with bond.
+[component_container_isolated-1] [INFO] [1789251317.428025319] [lifecycle_manager_navigation]: [34m[1mActivating velocity_smoother[0m[0m
+[component_container_isolated-1] [INFO] [1789251317.428438521] [velocity_smoother]: Activating
+[component_container_isolated-1] [INFO] [1789251317.428511421] [velocity_smoother]: Creating bond (velocity_smoother) to lifecycle manager.
+[component_container_isolated-1] [INFO] [1789251317.536025291] [lifecycle_manager_navigation]: Server velocity_smoother connected with bond.
+[component_container_isolated-1] [INFO] [1789251317.536115192] [lifecycle_manager_navigation]: [34m[1mActivating collision_monitor[0m[0m
+[component_container_isolated-1] [INFO] [1789251317.536412093] [collision_monitor]: Activating
+[component_container_isolated-1] [INFO] [1789251317.536494594] [collision_monitor]: Creating bond (collision_monitor) to lifecycle manager.
+[component_container_isolated-1] [INFO] [1789251317.643372161] [lifecycle_manager_navigation]: Server collision_monitor connected with bond.
+[component_container_isolated-1] [INFO] [1789251317.643450861] [lifecycle_manager_navigation]: [34m[1mActivating bt_navigator[0m[0m
+[component_container_isolated-1] [INFO] [1789251317.643819863] [bt_navigator]: Activating
+[component_container_isolated-1] [INFO] [1789251317.711192620] [bt_navigator]: Creating bond (bt_navigator) to lifecycle manager.
+[component_container_isolated-1] [INFO] [1789251317.817198982] [lifecycle_manager_navigation]: Server bt_navigator connected with bond.
+[component_container_isolated-1] [INFO] [1789251317.817271983] [lifecycle_manager_navigation]: [34m[1mActivating waypoint_follower[0m[0m
+[component_container_isolated-1] [INFO] [1789251317.817745485] [waypoint_follower]: Activating
+[component_container_isolated-1] [INFO] [1789251317.817823986] [waypoint_follower]: Creating bond (waypoint_follower) to lifecycle manager.
+[component_container_isolated-1] [INFO] [1789251317.924541952] [lifecycle_manager_navigation]: Server waypoint_follower connected with bond.
+[component_container_isolated-1] [INFO] [1789251317.924574252] [lifecycle_manager_navigation]: [34m[1mActivating docking_server[0m[0m
+[component_container_isolated-1] [INFO] [1789251317.924776253] [docking_server]: Activating docking_server
+[component_container_isolated-1] [INFO] [1789251317.934133502] [docking_server]: Creating bond (docking_server) to lifecycle manager.
+[component_container_isolated-1] [INFO] [1789251318.040582267] [lifecycle_manager_navigation]: Server docking_server connected with bond.
+[component_container_isolated-1] [INFO] [1789251318.040611667] [lifecycle_manager_navigation]: [34m[1mManaged nodes are active[0m[0m
+[component_container_isolated-1] [INFO] [1789251318.040619567] [lifecycle_manager_navigation]: [34m[1mCreating bond timer...[0m[0m
+[component_container_isolated-1] [INFO] [1789251357.920129090] [bt_navigator]: Begin navigating from current location (2.01, 1.17) to (4.00, 4.00)
+[component_container_isolated-1] [WARN] [1789251357.921539497] [planner_server]: GridBased plugin failed to plan from (2.01, 1.17) to (4.00, 4.00): "Failed to create plan with tolerance of: 0.500000"
+[component_container_isolated-1] [WARN] [1789251357.921590798] [planner_server]: [compute_path_to_pose] [ActionServer] Aborting handle.
+[component_container_isolated-1] [INFO] [1789251357.940668899] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[component_container_isolated-1] [WARN] [1789251358.051470286] [planner_server]: GridBased plugin failed to plan from (2.01, 1.21) to (4.00, 4.00): "Failed to create plan with tolerance of: 0.500000"
+[component_container_isolated-1] [WARN] [1789251358.051518886] [planner_server]: [compute_path_to_pose] [ActionServer] Aborting handle.
+[component_container_isolated-1] [INFO] [1789251358.070619988] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[component_container_isolated-1] [INFO] [1789251358.070933089] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[component_container_isolated-1] [WARN] [1789251359.053267296] [planner_server]: Planner loop missed its desired rate of 20.0000 Hz. Current loop rate is 1.0185 Hz
+[component_container_isolated-1] [INFO] [1789251359.071401992] [controller_server]: Received a goal, begin computing control effort.
+[component_container_isolated-1] [WARN] [1789251359.071465293] [controller_server]: No goal checker was specified in parameter 'current_goal_checker'. Server will use only plugin loaded general_goal_checker . This warning will appear once.
+[component_container_isolated-1] [WARN] [1789251359.071484393] [controller_server]: No progress checker was specified in parameter 'current_progress_checker'. Server will use only plugin loaded progress_checker . This warning will appear once.
+[component_container_isolated-1] [WARN] [1789251360.081667247] [planner_server]: GridBased plugin failed to plan from (2.41, 0.41) to (4.00, 4.00): "Failed to create plan with tolerance of: 0.500000"
+[component_container_isolated-1] [WARN] [1789251360.081753648] [planner_server]: [compute_path_to_pose] [ActionServer] Aborting handle.
+[component_container_isolated-1] [INFO] [1789251360.100698848] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[component_container_isolated-1] [ERROR] [1789251360.171773625] [controller_server]: Resulting plan has 0 poses in it.
+[component_container_isolated-1] [INFO] [1789251360.174631940] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1789251360.174679740] [controller_server]: [follow_path] [ActionServer] Aborting handle.
+[component_container_isolated-1] [ERROR] [1789251360.210937832] [bt_navigator_navigate_to_pose_rclcpp_node]: Failed to get result for compute_path_to_pose in node halt!
+[component_container_isolated-1] [WARN] [1789251360.211128533] [bt_navigator]: [navigate_to_pose] [ActionServer] Aborting handle.
+[component_container_isolated-1] [ERROR] [1789251360.211492435] [bt_navigator]: Goal failed
+[component_container_isolated-1] [INFO] [1789251361.051589988] [planner_server]: Goal was canceled. Canceling planning action.
+[component_container_isolated-1] [INFO] [1789251361.051647988] [planner_server]: [compute_path_to_pose] [ActionServer] Client requested to cancel the goal. Cancelling.
+[component_container_isolated-1] [INFO] [1789251361.219010875] [bt_navigator]: Begin navigating from current location (-2.41, -1.41) to (4.00, 4.00)
+[component_container_isolated-1] [INFO] [1789251361.239713585] [controller_server]: Received a goal, begin computing control effort.
+[component_container_isolated-1] [INFO] [1789251362.289895452] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1789251363.289893252] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1789251364.339891617] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1789251365.339892217] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1789251366.389910682] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1789251367.389899183] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1789251368.439894848] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1789251369.439894047] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1789251370.489888312] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1789251371.489896112] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [ERROR] [1789251371.690169774] [controller_server]: Resulting plan has 0 poses in it.
+[component_container_isolated-1] [INFO] [1789251371.692907688] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1789251371.692965289] [controller_server]: [follow_path] [ActionServer] Aborting handle.
+[component_container_isolated-1] [WARN] [1789251371.719196228] [bt_navigator]: [navigate_to_pose] [ActionServer] Aborting handle.
+[component_container_isolated-1] [ERROR] [1789251371.719368529] [bt_navigator]: Goal failed
+[component_container_isolated-1] [INFO] [1789251372.724526256] [bt_navigator]: Begin navigating from current location (1.17, -0.59) to (4.00, 4.00)
+[component_container_isolated-1] [INFO] [1789251372.745442167] [controller_server]: Received a goal, begin computing control effort.
+[component_container_isolated-1] [ERROR] [1789251372.795760133] [controller_server]: Resulting plan has 0 poses in it.
+[component_container_isolated-1] [INFO] [1789251372.797306941] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1789251372.797349642] [controller_server]: [follow_path] [ActionServer] Aborting handle.
+[component_container_isolated-1] [WARN] [1789251372.824737987] [bt_navigator]: [navigate_to_pose] [ActionServer] Aborting handle.
+[component_container_isolated-1] [ERROR] [1789251372.825035188] [bt_navigator]: Goal failed
+[component_container_isolated-1] [INFO] [1789251373.830827619] [bt_navigator]: Begin navigating from current location (0.39, 1.19) to (4.00, 4.00)
+[component_container_isolated-1] [INFO] [1789251373.851826930] [controller_server]: Received a goal, begin computing control effort.
+[component_container_isolated-1] [INFO] [1789251374.901984596] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1789251375.951980060] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1789251376.951988960] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1789251377.951981860] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [WARN] [1789251378.961798311] [planner_server]: GridBased plugin failed to plan from (1.53, 1.51) to (4.00, 4.00): "Failed to create plan with tolerance of: 0.500000"
+[component_container_isolated-1] [WARN] [1789251378.961864711] [planner_server]: [compute_path_to_pose] [ActionServer] Aborting handle.
+[component_container_isolated-1] [INFO] [1789251378.981403515] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[component_container_isolated-1] [WARN] [1789251379.053556697] [planner_server]: GridBased plugin failed to plan from (1.55, 1.52) to (4.00, 4.00): "Failed to create plan with tolerance of: 0.500000"
+[component_container_isolated-1] [WARN] [1789251379.053616198] [planner_server]: [compute_path_to_pose] [ActionServer] Aborting handle.
+[component_container_isolated-1] [ERROR] [1789251379.083018953] [bt_navigator_navigate_to_pose_rclcpp_node]: Failed to get result for follow_path in node halt!
+[component_container_isolated-1] [INFO] [1789251379.083301455] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[component_container_isolated-1] [INFO] [1789251379.083651257] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[component_container_isolated-1] [INFO] [1789251379.101984354] [controller_server]: Cancellation was successful. Stopping the robot.
+[component_container_isolated-1] [INFO] [1789251379.102048854] [controller_server]: [follow_path] [ActionServer] Client requested to cancel the goal. Cancelling.
+[component_container_isolated-1] [INFO] [1789251379.104792869] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1789251380.054609102] [planner_server]: GridBased plugin failed to plan from (1.52, 1.61) to (4.00, 4.00): "Failed to create plan with tolerance of: 0.500000"
+[component_container_isolated-1] [WARN] [1789251380.054662403] [planner_server]: [compute_path_to_pose] [ActionServer] Aborting handle.
+[component_container_isolated-1] [INFO] [1789251380.065136558] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[component_container_isolated-1] [WARN] [1789251381.056303911] [planner_server]: Planner loop missed its desired rate of 20.0000 Hz. Current loop rate is 1.0093 Hz
+[component_container_isolated-1] [INFO] [1789251381.075271011] [controller_server]: Received a goal, begin computing control effort.
+[component_container_isolated-1] [INFO] [1789251382.125445077] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1789251383.125432676] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [ERROR] [1789251383.725482356] [controller_server]: Resulting plan has 0 poses in it.
+[component_container_isolated-1] [INFO] [1789251383.726749362] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1789251383.726784163] [controller_server]: [follow_path] [ActionServer] Aborting handle.
+[component_container_isolated-1] [WARN] [1789251383.754834011] [bt_navigator]: [navigate_to_pose] [ActionServer] Aborting handle.
+[component_container_isolated-1] [ERROR] [1789251383.755148413] [bt_navigator]: Goal failed
+[component_container_isolated-1] [INFO] [1789251384.760802442] [bt_navigator]: Begin navigating from current location (2.01, 2.61) to (4.00, 4.00)
+[component_container_isolated-1] [INFO] [1789251384.781929754] [controller_server]: Received a goal, begin computing control effort.
+[component_container_isolated-1] [ERROR] [1789251384.932219550] [controller_server]: Resulting plan has 0 poses in it.
+[component_container_isolated-1] [INFO] [1789251384.933212056] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1789251384.933251456] [controller_server]: [follow_path] [ActionServer] Aborting handle.
+[component_container_isolated-1] [WARN] [1789251384.961130704] [bt_navigator]: [navigate_to_pose] [ActionServer] Aborting handle.
+[component_container_isolated-1] [ERROR] [1789251384.961428205] [bt_navigator]: Goal failed
+[component_container_isolated-1] [INFO] [1789251385.967437236] [bt_navigator]: Begin navigating from current location (1.42, -0.83) to (4.00, 4.00)
+[component_container_isolated-1] [INFO] [1789251385.988319947] [controller_server]: Received a goal, begin computing control effort.
+[component_container_isolated-1] [INFO] [1789251387.038628713] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1789251388.038631012] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1789251389.088633076] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1789251390.088625675] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [ERROR] [1789251390.788715285] [controller_server]: Resulting plan has 0 poses in it.
+[component_container_isolated-1] [INFO] [1789251390.789700490] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1789251390.789733990] [controller_server]: [follow_path] [ActionServer] Aborting handle.
+[component_container_isolated-1] [WARN] [1789251390.817656038] [bt_navigator]: [navigate_to_pose] [ActionServer] Aborting handle.
+[component_container_isolated-1] [ERROR] [1789251390.817826239] [bt_navigator]: Goal failed
+[component_container_isolated-1] [INFO] [1789251391.825012476] [bt_navigator]: Begin navigating from current location (2.22, -0.21) to (4.00, 4.00)
+[component_container_isolated-1] [INFO] [1789251391.845764286] [controller_server]: Received a goal, begin computing control effort.
+[component_container_isolated-1] [WARN] [1789251392.856489042] [planner_server]: GridBased plugin failed to plan from (1.57, 0.87) to (4.00, 4.00): "Failed to create plan with tolerance of: 0.500000"
+[component_container_isolated-1] [WARN] [1789251392.856544442] [planner_server]: [compute_path_to_pose] [ActionServer] Aborting handle.
+[component_container_isolated-1] [INFO] [1789251392.875619143] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[component_container_isolated-1] [WARN] [1789251393.056445801] [planner_server]: GridBased plugin failed to plan from (1.58, 0.92) to (4.00, 4.00): "Failed to create plan with tolerance of: 0.500000"
+[component_container_isolated-1] [WARN] [1789251393.056496001] [planner_server]: [compute_path_to_pose] [ActionServer] Aborting handle.
+[component_container_isolated-1] [ERROR] [1789251393.095872210] [bt_navigator_navigate_to_pose_rclcpp_node]: Failed to get result for follow_path in node halt!
+[component_container_isolated-1] [INFO] [1789251393.095981811] [controller_server]: Cancellation was successful. Stopping the robot.
+[component_container_isolated-1] [INFO] [1789251393.096004411] [controller_server]: [follow_path] [ActionServer] Client requested to cancel the goal. Cancelling.
+[component_container_isolated-1] [INFO] [1789251393.096155711] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[component_container_isolated-1] [INFO] [1789251393.096572814] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[component_container_isolated-1] [INFO] [1789251393.097180817] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1789251394.047574753] [planner_server]: GridBased plugin failed to plan from (1.72, 1.11) to (4.00, 4.00): "Failed to create plan with tolerance of: 0.500000"
+[component_container_isolated-1] [WARN] [1789251394.047626253] [planner_server]: [compute_path_to_pose] [ActionServer] Aborting handle.
+[component_container_isolated-1] [INFO] [1789251394.058178909] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[component_container_isolated-1] [WARN] [1789251395.048964859] [planner_server]: GridBased plugin failed to plan from (1.80, 1.21) to (4.00, 4.00): "Failed to create plan with tolerance of: 0.500000"
+[component_container_isolated-1] [WARN] [1789251395.049019659] [planner_server]: [compute_path_to_pose] [ActionServer] Aborting handle.
+[component_container_isolated-1] [INFO] [1789251395.068683164] [behavior_server]: Running spin
+[component_container_isolated-1] [INFO] [1789251395.068761964] [behavior_server]: Turning 1.57 for spin behavior.
+[component_container_isolated-1] [INFO] [1789251395.099778328] [collision_monitor]: Robot to approach for 1.200000 seconds away from collision
+[component_container_isolated-1] [WARN] [1789251395.169057795] [behavior_server]: Collision Ahead - Exiting Spin
+[component_container_isolated-1] [WARN] [1789251395.169089996] [behavior_server]: spin failed
+[component_container_isolated-1] [WARN] [1789251395.169103096] [behavior_server]: [spin] [ActionServer] Aborting handle.
+[component_container_isolated-1] [INFO] [1789251395.188344398] [behavior_server]: Running wait
+[component_container_isolated-1] [INFO] [1789251395.238787465] [collision_monitor]: Robot to continue normal operation
+[component_container_isolated-1] [INFO] [1789251400.188520492] [behavior_server]: wait completed successfully
+[component_container_isolated-1] [INFO] [1789251400.228491403] [controller_server]: Received a goal, begin computing control effort.
+[component_container_isolated-1] [ERROR] [1789251400.428782865] [controller_server]: Resulting plan has 0 poses in it.
+[component_container_isolated-1] [INFO] [1789251400.431515279] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1789251400.431568179] [controller_server]: [follow_path] [ActionServer] Aborting handle.
+[component_container_isolated-1] [WARN] [1789251400.457898119] [bt_navigator]: [navigate_to_pose] [ActionServer] Aborting handle.
+[component_container_isolated-1] [ERROR] [1789251400.458105520] [bt_navigator]: Goal failed
+[component_container_isolated-1] [INFO] [1789251401.463204346] [bt_navigator]: Begin navigating from current location (1.80, 0.42) to (4.00, 4.00)
+[component_container_isolated-1] [WARN] [1789251401.464008050] [planner_server]: GridBased plugin failed to plan from (1.80, 0.42) to (4.00, 4.00): "Failed to create plan with tolerance of: 0.500000"
+[component_container_isolated-1] [WARN] [1789251401.464051950] [planner_server]: [compute_path_to_pose] [ActionServer] Aborting handle.
+[component_container_isolated-1] [INFO] [1789251401.483669954] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[component_container_isolated-1] [WARN] [1789251402.054484078] [planner_server]: GridBased plugin failed to plan from (-1.35, -2.15) to (4.00, 4.00): "Failed to create plan with tolerance of: 0.500000"
+[component_container_isolated-1] [WARN] [1789251402.054552779] [planner_server]: [compute_path_to_pose] [ActionServer] Aborting handle.
+[component_container_isolated-1] [INFO] [1789251402.074422584] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[component_container_isolated-1] [INFO] [1789251402.075180488] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[component_container_isolated-1] [WARN] [1789251403.057410392] [planner_server]: Planner loop missed its desired rate of 20.0000 Hz. Current loop rate is 1.0187 Hz
+[component_container_isolated-1] [INFO] [1789251403.073974880] [controller_server]: Received a goal, begin computing control effort.
+[component_container_isolated-1] [ERROR] [1789251403.524241566] [controller_server]: Resulting plan has 0 poses in it.
+[component_container_isolated-1] [INFO] [1789251403.525089270] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1789251403.525123870] [controller_server]: [follow_path] [ActionServer] Aborting handle.
+[component_container_isolated-1] [WARN] [1789251403.553485921] [bt_navigator]: [navigate_to_pose] [ActionServer] Aborting handle.
+[component_container_isolated-1] [ERROR] [1789251403.553691422] [bt_navigator]: Goal failed
+[component_container_isolated-1] [INFO] [1789251404.559253050] [bt_navigator]: Begin navigating from current location (-1.38, -1.60) to (4.00, 4.00)
+[component_container_isolated-1] [WARN] [1789251404.560507856] [planner_server]: GridBased plugin failed to plan from (-1.38, -1.60) to (4.00, 4.00): "Failed to create plan with tolerance of: 0.500000"
+[component_container_isolated-1] [WARN] [1789251404.560554257] [planner_server]: [compute_path_to_pose] [ActionServer] Aborting handle.
+[component_container_isolated-1] [INFO] [1789251404.579764858] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[component_container_isolated-1] [WARN] [1789251405.052750364] [planner_server]: Planner loop missed its desired rate of 20.0000 Hz. Current loop rate is 2.1163 Hz
+[component_container_isolated-1] [INFO] [1789251405.070216057] [controller_server]: Received a goal, begin computing control effort.
+[component_container_isolated-1] [INFO] [1789251406.120411821] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1789251407.170414584] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1789251408.170429782] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1789251409.220402845] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [ERROR] [1789251409.470472270] [controller_server]: Resulting plan has 0 poses in it.
+[component_container_isolated-1] [INFO] [1789251409.471532076] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1789251409.471567576] [controller_server]: [follow_path] [ActionServer] Aborting handle.
+[component_container_isolated-1] [WARN] [1789251409.499450824] [bt_navigator]: [navigate_to_pose] [ActionServer] Aborting handle.
+[component_container_isolated-1] [ERROR] [1789251409.499630825] [bt_navigator]: Goal failed
+[component_container_isolated-1] [INFO] [1789251410.505716155] [bt_navigator]: Begin navigating from current location (-1.98, 0.69) to (4.00, 4.00)
+[component_container_isolated-1] [INFO] [1789251410.526464465] [controller_server]: Received a goal, begin computing control effort.
+[component_container_isolated-1] [ERROR] [1789251410.726734426] [controller_server]: Resulting plan has 0 poses in it.
+[component_container_isolated-1] [INFO] [1789251410.728920038] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1789251410.728976738] [controller_server]: [follow_path] [ActionServer] Aborting handle.
+[component_container_isolated-1] [WARN] [1789251410.755946881] [bt_navigator]: [navigate_to_pose] [ActionServer] Aborting handle.
+[component_container_isolated-1] [ERROR] [1789251410.756171782] [bt_navigator]: Goal failed
+[component_container_isolated-1] [INFO] [1789251411.764946227] [bt_navigator]: Begin navigating from current location (-2.37, 0.20) to (4.00, 4.00)
+[component_container_isolated-1] [INFO] [1789251411.785749237] [controller_server]: Received a goal, begin computing control effort.
+[component_container_isolated-1] [ERROR] [1789251411.836010103] [controller_server]: Resulting plan has 0 poses in it.
+[component_container_isolated-1] [INFO] [1789251411.837253410] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1789251411.837287010] [controller_server]: [follow_path] [ActionServer] Aborting handle.
+[component_container_isolated-1] [WARN] [1789251411.865192658] [bt_navigator]: [navigate_to_pose] [ActionServer] Aborting handle.
+[component_container_isolated-1] [ERROR] [1789251411.865374959] [bt_navigator]: Goal failed
+[component_container_isolated-1] [INFO] [1789251412.870250182] [bt_navigator]: Begin navigating from current location (1.01, 1.08) to (4.00, 4.00)
+[component_container_isolated-1] [INFO] [1789251412.891092693] [controller_server]: Received a goal, begin computing control effort.
+[component_container_isolated-1] [INFO] [1789251413.941265357] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [ERROR] [1789251414.791566661] [controller_server]: Resulting plan has 0 poses in it.
+[component_container_isolated-1] [INFO] [1789251414.792644667] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1789251414.792683067] [controller_server]: [follow_path] [ActionServer] Aborting handle.
+[component_container_isolated-1] [WARN] [1789251414.820578715] [bt_navigator]: [navigate_to_pose] [ActionServer] Aborting handle.
+[component_container_isolated-1] [ERROR] [1789251414.820766716] [bt_navigator]: Goal failed
+[component_container_isolated-1] [INFO] [1789251415.826147742] [bt_navigator]: Begin navigating from current location (0.96, 1.29) to (4.00, 4.00)
+[component_container_isolated-1] [INFO] [1789251415.846971653] [controller_server]: Received a goal, begin computing control effort.
+[component_container_isolated-1] [ERROR] [1789251415.997230849] [controller_server]: Resulting plan has 0 poses in it.
+[component_container_isolated-1] [INFO] [1789251415.998800757] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1789251415.998839357] [controller_server]: [follow_path] [ActionServer] Aborting handle.
+[component_container_isolated-1] [WARN] [1789251416.026322103] [bt_navigator]: [navigate_to_pose] [ActionServer] Aborting handle.
+[component_container_isolated-1] [ERROR] [1789251416.026520804] [bt_navigator]: Goal failed
+[component_container_isolated-1] [INFO] [1789251417.032632334] [bt_navigator]: Begin navigating from current location (1.23, 1.41) to (4.00, 4.00)
+[component_container_isolated-1] [INFO] [1789251417.053351744] [controller_server]: Received a goal, begin computing control effort.
+[component_container_isolated-1] [ERROR] [1789251417.153773276] [controller_server]: Resulting plan has 0 poses in it.
+[component_container_isolated-1] [INFO] [1789251417.156326189] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1789251417.156372290] [controller_server]: [follow_path] [ActionServer] Aborting handle.
+[component_container_isolated-1] [WARN] [1789251417.182825730] [bt_navigator]: [navigate_to_pose] [ActionServer] Aborting handle.
+[component_container_isolated-1] [ERROR] [1789251417.183006131] [bt_navigator]: Goal failed
+[component_container_isolated-1] [INFO] [1789251418.190768670] [bt_navigator]: Begin navigating from current location (-1.34, -2.66) to (4.00, 4.00)
+[component_container_isolated-1] [INFO] [1789251418.212177783] [controller_server]: Received a goal, begin computing control effort.
+[component_container_isolated-1] [WARN] [1789251419.221639331] [planner_server]: GridBased plugin failed to plan from (1.51, 1.41) to (4.00, 4.00): "Failed to create plan with tolerance of: 0.500000"
+[component_container_isolated-1] [WARN] [1789251419.221697431] [planner_server]: [compute_path_to_pose] [ActionServer] Aborting handle.
+[component_container_isolated-1] [INFO] [1789251419.241192734] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[component_container_isolated-1] [WARN] [1789251420.052259331] [planner_server]: Planner loop missed its desired rate of 20.0000 Hz. Current loop rate is 1.2334 Hz
+[component_container_isolated-1] [INFO] [1789251420.112362350] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [WARN] [1789251421.081593484] [planner_server]: GridBased plugin failed to plan from (1.39, 1.37) to (4.00, 4.00): "Failed to create plan with tolerance of: 0.500000"
+[component_container_isolated-1] [WARN] [1789251421.081643084] [planner_server]: [compute_path_to_pose] [ActionServer] Aborting handle.
+[component_container_isolated-1] [INFO] [1789251421.101217288] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[component_container_isolated-1] [ERROR] [1789251421.412446037] [controller_server]: Resulting plan has 0 poses in it.
+[component_container_isolated-1] [INFO] [1789251421.414110646] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1789251421.414152446] [controller_server]: [follow_path] [ActionServer] Aborting handle.
+[component_container_isolated-1] [ERROR] [1789251421.451490244] [bt_navigator_navigate_to_pose_rclcpp_node]: Failed to get result for compute_path_to_pose in node halt!
+[component_container_isolated-1] [WARN] [1789251421.451679245] [bt_navigator]: [navigate_to_pose] [ActionServer] Aborting handle.
+[component_container_isolated-1] [ERROR] [1789251421.451831046] [bt_navigator]: Goal failed
+[component_container_isolated-1] [INFO] [1789251422.052071525] [planner_server]: Goal was canceled. Canceling planning action.
+[component_container_isolated-1] [INFO] [1789251422.052128726] [planner_server]: [compute_path_to_pose] [ActionServer] Client requested to cancel the goal. Cancelling.
+[component_container_isolated-1] [INFO] [1789251422.458150577] [bt_navigator]: Begin navigating from current location (1.37, 1.84) to (4.00, 4.00)
+[component_container_isolated-1] [INFO] [1789251422.478968487] [controller_server]: Received a goal, begin computing control effort.
+[component_container_isolated-1] [ERROR] [1789251423.179197296] [controller_server]: Resulting plan has 0 poses in it.
+[component_container_isolated-1] [INFO] [1789251423.181381108] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1789251423.181448008] [controller_server]: [follow_path] [ActionServer] Aborting handle.
+[component_container_isolated-1] [WARN] [1789251423.208348851] [bt_navigator]: [navigate_to_pose] [ActionServer] Aborting handle.
+[component_container_isolated-1] [ERROR] [1789251423.208528252] [bt_navigator]: Goal failed
+[component_container_isolated-1] [INFO] [1789251424.214758582] [bt_navigator]: Begin navigating from current location (-1.13, -2.73) to (4.00, 4.00)
+[component_container_isolated-1] [INFO] [1789251424.235497492] [controller_server]: Received a goal, begin computing control effort.
+[component_container_isolated-1] [INFO] [1789251425.285751356] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [ERROR] [1789251426.235785688] [controller_server]: Resulting plan has 0 poses in it.
+[component_container_isolated-1] [INFO] [1789251426.237083695] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1789251426.237123095] [controller_server]: [follow_path] [ActionServer] Aborting handle.
+[component_container_isolated-1] [INFO] [1789251426.255550993] [planner_server]: Goal was canceled. Canceling planning action.
+[component_container_isolated-1] [INFO] [1789251426.255593493] [planner_server]: [compute_path_to_pose] [ActionServer] Client requested to cancel the goal. Cancelling.
+[component_container_isolated-1] [WARN] [1789251426.264931743] [bt_navigator]: [navigate_to_pose] [ActionServer] Aborting handle.
+[component_container_isolated-1] [ERROR] [1789251426.265131644] [bt_navigator]: Goal failed
+[component_container_isolated-1] [INFO] [1789251427.270716671] [bt_navigator]: Begin navigating from current location (0.29, 1.38) to (4.00, 4.00)
+[component_container_isolated-1] [INFO] [1789251427.291483281] [controller_server]: Received a goal, begin computing control effort.
+[component_container_isolated-1] [ERROR] [1789251427.441727177] [controller_server]: Resulting plan has 0 poses in it.
+[component_container_isolated-1] [INFO] [1789251427.442657382] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1789251427.442711182] [controller_server]: [follow_path] [ActionServer] Aborting handle.
+[component_container_isolated-1] [WARN] [1789251427.471071332] [bt_navigator]: [navigate_to_pose] [ActionServer] Aborting handle.
+[component_container_isolated-1] [ERROR] [1789251427.471506834] [bt_navigator]: Goal failed
+[component_container_isolated-1] [INFO] [1789251428.476384058] [bt_navigator]: Begin navigating from current location (-1.50, 0.68) to (4.00, 4.00)
+[component_container_isolated-1] [INFO] [1789251428.497115767] [controller_server]: Received a goal, begin computing control effort.
+[component_container_isolated-1] [ERROR] [1789251428.597365698] [controller_server]: Resulting plan has 0 poses in it.
+[component_container_isolated-1] [INFO] [1789251428.598645705] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1789251428.598687205] [controller_server]: [follow_path] [ActionServer] Aborting handle.
+[component_container_isolated-1] [WARN] [1789251428.626552453] [bt_navigator]: [navigate_to_pose] [ActionServer] Aborting handle.
+[component_container_isolated-1] [ERROR] [1789251428.626723954] [bt_navigator]: Goal failed
+[component_container_isolated-1] [INFO] [1789251429.634828394] [bt_navigator]: Begin navigating from current location (2.76, 2.03) to (4.00, 4.00)
+[component_container_isolated-1] [INFO] [1789251429.637386708] [controller_server]: Received a goal, begin computing control effort.
+[component_container_isolated-1] [ERROR] [1789251429.837641468] [controller_server]: Resulting plan has 0 poses in it.
+[component_container_isolated-1] [INFO] [1789251429.839268377] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1789251429.839311377] [controller_server]: [follow_path] [ActionServer] Aborting handle.
+[component_container_isolated-1] [WARN] [1789251429.865038014] [bt_navigator]: [navigate_to_pose] [ActionServer] Aborting handle.
+[component_container_isolated-1] [ERROR] [1789251429.865241315] [bt_navigator]: Goal failed
+[component_container_isolated-1] [INFO] [1789251430.871027242] [bt_navigator]: Begin navigating from current location (0.78, -3.59) to (4.00, 4.00)
+[component_container_isolated-1] [INFO] [1789251430.891838053] [controller_server]: Received a goal, begin computing control effort.
+[component_container_isolated-1] [ERROR] [1789251430.993823093] [controller_server]: Resulting plan has 0 poses in it.
+[component_container_isolated-1] [INFO] [1789251430.995629602] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1789251430.995668903] [controller_server]: [follow_path] [ActionServer] Aborting handle.
+[component_container_isolated-1] [WARN] [1789251431.021227238] [bt_navigator]: [navigate_to_pose] [ActionServer] Aborting handle.
+[component_container_isolated-1] [ERROR] [1789251431.021468839] [bt_navigator]: Goal failed
+[component_container_isolated-1] [INFO] [1789251432.029875281] [bt_navigator]: Begin navigating from current location (-1.05, -2.03) to (4.00, 4.00)
+[component_container_isolated-1] [INFO] [1789251432.038970329] [controller_server]: Received a goal, begin computing control effort.
+[component_container_isolated-1] [WARN] [1789251433.040821036] [planner_server]: GridBased plugin failed to plan from (-1.97, -2.05) to (4.00, 4.00): "Failed to create plan with tolerance of: 0.500000"
+[component_container_isolated-1] [WARN] [1789251433.040870636] [planner_server]: [compute_path_to_pose] [ActionServer] Aborting handle.
+[component_container_isolated-1] [INFO] [1789251433.050582688] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[component_container_isolated-1] [INFO] [1789251433.638807304] [collision_monitor]: Robot to approach for 1.200000 seconds away from collision
+[component_container_isolated-1] [INFO] [1789251433.944722024] [controller_server]: Optimizer reset
+[component_container_isolated-1] [INFO] [1789251433.952039563] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1789251433.952097663] [controller_server]: Optimizer fail to compute path
+[component_container_isolated-1] [INFO] [1789251433.994520888] [controller_server]: Optimizer reset
+[component_container_isolated-1] [INFO] [1789251433.998942111] [collision_monitor]: Robot to continue normal operation
+[component_container_isolated-1] [INFO] [1789251434.001771526] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1789251434.001820827] [controller_server]: Optimizer fail to compute path
+[component_container_isolated-1] [INFO] [1789251434.044323352] [controller_server]: Optimizer reset
+[component_container_isolated-1] [INFO] [1789251434.051208888] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1789251434.051257688] [controller_server]: Optimizer fail to compute path
+[component_container_isolated-1] [WARN] [1789251434.051413789] [planner_server]: GridBased plugin failed to plan from (-2.10, -2.21) to (4.00, 4.00): "Failed to create plan with tolerance of: 0.500000"
+[component_container_isolated-1] [WARN] [1789251434.051447589] [planner_server]: [compute_path_to_pose] [ActionServer] Aborting handle.
+[component_container_isolated-1] [ERROR] [1789251434.080712844] [bt_navigator_navigate_to_pose_rclcpp_node]: Failed to get result for follow_path in node halt!
+[component_container_isolated-1] [INFO] [1789251434.080946246] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[component_container_isolated-1] [INFO] [1789251434.081224547] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[component_container_isolated-1] [INFO] [1789251434.089154089] [controller_server]: Cancellation was successful. Stopping the robot.
+[component_container_isolated-1] [INFO] [1789251434.089187289] [controller_server]: [follow_path] [ActionServer] Client requested to cancel the goal. Cancelling.
+[component_container_isolated-1] [INFO] [1789251434.090324495] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1789251435.052150190] [planner_server]: GridBased plugin failed to plan from (-2.22, -2.35) to (4.00, 4.00): "Failed to create plan with tolerance of: 0.500000"
+[component_container_isolated-1] [WARN] [1789251435.052205090] [planner_server]: [compute_path_to_pose] [ActionServer] Aborting handle.
+[component_container_isolated-1] [INFO] [1789251435.062497745] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[component_container_isolated-1] [WARN] [1789251436.054169698] [planner_server]: GridBased plugin failed to plan from (-2.19, -2.40) to (4.00, 4.00): "Failed to create plan with tolerance of: 0.500000"
+[component_container_isolated-1] [WARN] [1789251436.054264098] [planner_server]: [compute_path_to_pose] [ActionServer] Aborting handle.
+[component_container_isolated-1] [INFO] [1789251436.072772596] [behavior_server]: Running spin
+[component_container_isolated-1] [INFO] [1789251436.072856597] [behavior_server]: Turning 1.57 for spin behavior.
+[component_container_isolated-1] [INFO] [1789251439.473036507] [behavior_server]: spin completed successfully
+[component_container_isolated-1] [INFO] [1789251439.512790918] [controller_server]: Received a goal, begin computing control effort.
+[component_container_isolated-1] [INFO] [1789251440.562982780] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1789251441.612979142] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [ERROR] [1789251442.563103774] [controller_server]: Resulting plan has 0 poses in it.
+[component_container_isolated-1] [INFO] [1789251442.566230791] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1789251442.566273791] [controller_server]: [follow_path] [ActionServer] Aborting handle.
+[component_container_isolated-1] [INFO] [1789251442.583365382] [planner_server]: Goal was canceled. Canceling planning action.
+[component_container_isolated-1] [INFO] [1789251442.583621483] [planner_server]: [compute_path_to_pose] [ActionServer] Client requested to cancel the goal. Cancelling.
+[component_container_isolated-1] [WARN] [1789251442.592216929] [bt_navigator]: [navigate_to_pose] [ActionServer] Aborting handle.
+[component_container_isolated-1] [ERROR] [1789251442.592448330] [bt_navigator]: Goal failed
+[component_container_isolated-1] [INFO] [1789251443.599475264] [bt_navigator]: Begin navigating from current location (-1.25, -1.80) to (4.00, 4.00)
+[component_container_isolated-1] [WARN] [1789251443.600326168] [planner_server]: GridBased plugin failed to plan from (-1.25, -1.80) to (4.00, 4.00): "Failed to create plan with tolerance of: 0.500000"
+[component_container_isolated-1] [WARN] [1789251443.600373968] [planner_server]: [compute_path_to_pose] [ActionServer] Aborting handle.
+[component_container_isolated-1] [INFO] [1789251443.619944372] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[component_container_isolated-1] [WARN] [1789251444.050732754] [planner_server]: GridBased plugin failed to plan from (-1.62, -2.22) to (4.00, 4.00): "Failed to create plan with tolerance of: 0.500000"
+[component_container_isolated-1] [WARN] [1789251444.050782454] [planner_server]: [compute_path_to_pose] [ActionServer] Aborting handle.
+[component_container_isolated-1] [INFO] [1789251444.070233257] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[component_container_isolated-1] [INFO] [1789251444.070742560] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[component_container_isolated-1] [WARN] [1789251445.052931862] [planner_server]: Planner loop missed its desired rate of 20.0000 Hz. Current loop rate is 1.0187 Hz
+[component_container_isolated-1] [INFO] [1789251445.070291154] [controller_server]: Received a goal, begin computing control effort.
+[component_container_isolated-1] [INFO] [1789251446.120480916] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1789251447.170486478] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1789251448.170480074] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1789251449.220493535] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1789251450.220481932] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1789251451.270480293] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1789251452.270540689] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1789251453.320472750] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1789251454.320487746] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [ERROR] [1789251454.520562106] [controller_server]: Resulting plan has 0 poses in it.
+[component_container_isolated-1] [INFO] [1789251454.521811613] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1789251454.521844813] [controller_server]: [follow_path] [ActionServer] Aborting handle.
+[component_container_isolated-1] [WARN] [1789251454.549659060] [bt_navigator]: [navigate_to_pose] [ActionServer] Aborting handle.
+[component_container_isolated-1] [ERROR] [1789251454.549841261] [bt_navigator]: Goal failed
+[component_container_isolated-1] [INFO] [1789251455.556935195] [bt_navigator]: Begin navigating from current location (-1.42, -1.52) to (4.00, 4.00)
+[component_container_isolated-1] [WARN] [1789251455.561757420] [planner_server]: GridBased plugin failed to plan from (-1.42, -1.52) to (4.00, 4.00): "Failed to create plan with tolerance of: 0.500000"
+[component_container_isolated-1] [WARN] [1789251455.561895421] [planner_server]: [compute_path_to_pose] [ActionServer] Aborting handle.
+[component_container_isolated-1] [INFO] [1789251455.577716005] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[component_container_isolated-1] [WARN] [1789251456.050015806] [planner_server]: Planner loop missed its desired rate of 20.0000 Hz. Current loop rate is 2.1199 Hz
+[component_container_isolated-1] [INFO] [1789251456.068188402] [controller_server]: Received a goal, begin computing control effort.
+[component_container_isolated-1] [WARN] [1789251457.078226452] [planner_server]: GridBased plugin failed to plan from (1.57, 1.49) to (4.00, 4.00): "Failed to create plan with tolerance of: 0.500000"
+[component_container_isolated-1] [WARN] [1789251457.078277852] [planner_server]: [compute_path_to_pose] [ActionServer] Aborting handle.
+[component_container_isolated-1] [INFO] [1789251457.088014604] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[component_container_isolated-1] [WARN] [1789251458.049099593] [planner_server]: GridBased plugin failed to plan from (1.59, 1.58) to (4.00, 4.00): "Failed to create plan with tolerance of: 0.500000"
+[component_container_isolated-1] [WARN] [1789251458.049149894] [planner_server]: [compute_path_to_pose] [ActionServer] Aborting handle.
+[component_container_isolated-1] [INFO] [1789251458.068365896] [controller_server]: Cancellation was successful. Stopping the robot.
+[component_container_isolated-1] [INFO] [1789251458.068404696] [controller_server]: [follow_path] [ActionServer] Client requested to cancel the goal. Cancelling.
+[component_container_isolated-1] [INFO] [1789251458.068746498] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[component_container_isolated-1] [INFO] [1789251458.069266100] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[component_container_isolated-1] [INFO] [1789251458.069775503] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1789251459.051859104] [planner_server]: Planner loop missed its desired rate of 20.0000 Hz. Current loop rate is 1.0184 Hz
+[component_container_isolated-1] [INFO] [1789251459.067832889] [controller_server]: Received a goal, begin computing control effort.
+[component_container_isolated-1] [INFO] [1789251460.117981050] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [ERROR] [1789251460.418082740] [controller_server]: Resulting plan has 0 poses in it.
+[component_container_isolated-1] [INFO] [1789251460.419392846] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1789251460.419431847] [controller_server]: [follow_path] [ActionServer] Aborting handle.
+[component_container_isolated-1] [WARN] [1789251460.447157894] [bt_navigator]: [navigate_to_pose] [ActionServer] Aborting handle.
+[component_container_isolated-1] [ERROR] [1789251460.447311194] [bt_navigator]: Goal failed
+[component_container_isolated-1] [INFO] [1789251461.454585629] [bt_navigator]: Begin navigating from current location (-2.74, -2.51) to (4.00, 4.00)
+[component_container_isolated-1] [WARN] [1789251461.455670835] [planner_server]: GridBased plugin failed to plan from (-2.74, -2.51) to (4.00, 4.00): "Failed to create plan with tolerance of: 0.500000"
+[component_container_isolated-1] [WARN] [1789251461.455729535] [planner_server]: [compute_path_to_pose] [ActionServer] Aborting handle.
+[component_container_isolated-1] [INFO] [1789251461.475211638] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[component_container_isolated-1] [WARN] [1789251462.056164615] [planner_server]: GridBased plugin failed to plan from (-2.78, -2.38) to (4.00, 4.00): "Failed to create plan with tolerance of: 0.500000"
+[component_container_isolated-1] [WARN] [1789251462.056224615] [planner_server]: [compute_path_to_pose] [ActionServer] Aborting handle.
+[component_container_isolated-1] [INFO] [1789251462.075140715] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[component_container_isolated-1] [INFO] [1789251462.075528017] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[component_container_isolated-1] [WARN] [1789251463.056448512] [planner_server]: GridBased plugin failed to plan from (-2.75, -2.57) to (4.00, 4.00): "Failed to create plan with tolerance of: 0.500000"
+[component_container_isolated-1] [WARN] [1789251463.056500112] [planner_server]: [compute_path_to_pose] [ActionServer] Aborting handle.
+[component_container_isolated-1] [INFO] [1789251463.075078311] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[component_container_isolated-1] [WARN] [1789251464.057164312] [planner_server]: Planner loop missed its desired rate of 20.0000 Hz. Current loop rate is 1.0186 Hz
+[component_container_isolated-1] [INFO] [1789251464.075836810] [controller_server]: Received a goal, begin computing control effort.
+[component_container_isolated-1] [INFO] [1789251465.126068472] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [ERROR] [1789251465.776180815] [controller_server]: Resulting plan has 0 poses in it.
+[component_container_isolated-1] [INFO] [1789251465.778132125] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1789251465.778173926] [controller_server]: [follow_path] [ActionServer] Aborting handle.
+[component_container_isolated-1] [WARN] [1789251465.804800867] [bt_navigator]: [navigate_to_pose] [ActionServer] Aborting handle.
+[component_container_isolated-1] [ERROR] [1789251465.805021168] [bt_navigator]: Goal failed
+[component_container_isolated-1] [INFO] [1789251466.810573793] [bt_navigator]: Begin navigating from current location (-1.91, 0.06) to (4.00, 4.00)
+[component_container_isolated-1] [INFO] [1789251466.831423803] [controller_server]: Received a goal, begin computing control effort.
+[component_container_isolated-1] [INFO] [1789251467.881611465] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1789251468.881609360] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1789251469.931601821] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [ERROR] [1789251470.731684258] [controller_server]: Resulting plan has 0 poses in it.
+[component_container_isolated-1] [INFO] [1789251470.732875064] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1789251470.732918464] [controller_server]: [follow_path] [ActionServer] Aborting handle.
+[component_container_isolated-1] [WARN] [1789251470.760774512] [bt_navigator]: [navigate_to_pose] [ActionServer] Aborting handle.
+[component_container_isolated-1] [ERROR] [1789251470.760999813] [bt_navigator]: Goal failed
+[component_container_isolated-1] [INFO] [1789251471.766947140] [bt_navigator]: Begin navigating from current location (-1.87, -1.69) to (4.00, 4.00)
+[component_container_isolated-1] [WARN] [1789251471.767746544] [planner_server]: GridBased plugin failed to plan from (-1.87, -1.69) to (4.00, 4.00): "Failed to create plan with tolerance of: 0.500000"
+[component_container_isolated-1] [WARN] [1789251471.767785044] [planner_server]: [compute_path_to_pose] [ActionServer] Aborting handle.
+[component_container_isolated-1] [INFO] [1789251471.787745450] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[component_container_isolated-1] [WARN] [1789251472.050077439] [planner_server]: Planner loop missed its desired rate of 20.0000 Hz. Current loop rate is 3.8168 Hz
+[component_container_isolated-1] [INFO] [1789251472.067762533] [controller_server]: Received a goal, begin computing control effort.
+[component_container_isolated-1] [ERROR] [1789251473.068090530] [controller_server]: Resulting plan has 0 poses in it.
+[component_container_isolated-1] [INFO] [1789251473.069776139] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1789251473.069814639] [controller_server]: [follow_path] [ActionServer] Aborting handle.
+[component_container_isolated-1] [WARN] [1789251473.097155484] [bt_navigator]: [navigate_to_pose] [ActionServer] Aborting handle.
+[component_container_isolated-1] [ERROR] [1789251473.097338585] [bt_navigator]: Goal failed
+[component_container_isolated-1] [INFO] [1789251474.103388212] [bt_navigator]: Begin navigating from current location (-1.88, -2.14) to (4.00, 4.00)
+[component_container_isolated-1] [WARN] [1789251474.104278017] [planner_server]: GridBased plugin failed to plan from (-1.88, -2.14) to (4.00, 4.00): "Failed to create plan with tolerance of: 0.500000"
+[component_container_isolated-1] [WARN] [1789251474.104335817] [planner_server]: [compute_path_to_pose] [ActionServer] Aborting handle.
+[component_container_isolated-1] [INFO] [1789251474.123863321] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[component_container_isolated-1] [WARN] [1789251475.054682250] [planner_server]: GridBased plugin failed to plan from (-1.92, -2.32) to (4.00, 4.00): "Failed to create plan with tolerance of: 0.500000"
+[component_container_isolated-1] [WARN] [1789251475.054734050] [planner_server]: [compute_path_to_pose] [ActionServer] Aborting handle.
+[component_container_isolated-1] [INFO] [1789251475.074166053] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[component_container_isolated-1] [INFO] [1789251475.074628555] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[component_container_isolated-1] [WARN] [1789251476.055477549] [planner_server]: GridBased plugin failed to plan from (-1.96, -2.41) to (4.00, 4.00): "Failed to create plan with tolerance of: 0.500000"
+[component_container_isolated-1] [WARN] [1789251476.055523649] [planner_server]: [compute_path_to_pose] [ActionServer] Aborting handle.
+[component_container_isolated-1] [INFO] [1789251476.073829346] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[component_container_isolated-1] [WARN] [1789251477.055429344] [planner_server]: GridBased plugin failed to plan from (-2.04, -2.50) to (4.00, 4.00): "Failed to create plan with tolerance of: 0.500000"
+[component_container_isolated-1] [WARN] [1789251477.055485844] [planner_server]: [compute_path_to_pose] [ActionServer] Aborting handle.
+[component_container_isolated-1] [INFO] [1789251477.074150243] [behavior_server]: Running spin
+[component_container_isolated-1] [INFO] [1789251477.074217644] [behavior_server]: Turning 1.57 for spin behavior.
