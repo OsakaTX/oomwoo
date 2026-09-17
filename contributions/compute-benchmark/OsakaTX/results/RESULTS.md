@@ -430,3 +430,31 @@ Pitfalls banked: `pkill -f` self-match kills the driver (mode/label in its own
 cmdline — fixed with PID-excluding safe_pkill); launch files run via
 `ros2 launch`, never `python3 <launch>.py` (silently exits; the first attempt
 is kept as `combo/attempt1_lifelong_*` evidence).
+
+## 17. Nav2 deployment-topology A/B: composable container vs per-server singleton — 2026-09-12/13, committed 2026-09-17
+
+First topology-comparison measurement (`scripts/run_nav2_composition_ab.sh`
++ `scripts/analyze_composition_ab.py`, both new): the SAME complete Nav2
+stack, params, map and ADR-0006 unreachable-goal regime, arms
+`use_composition:=True` (stock composable, one `nav2_container`) vs
+:=False (every server its own process). Memory accounting moved to cgroup
+`memory.current` (deduped; per-process PSS double-counts shared libs N-fold
+in the singleton arm). Raw artifacts `composition_ab/` (+
+`composition_ab_devref_precpu/` sampler-only pilot). Two full trials.
+Details: `docs/adr-0016-*.md`.
+
+| arm (last-half means) | container mem current | anon / file / kernel | container CPU |
+|---|---|---|---|
+| composable r1 / r2 | 601.5 / 607.6 MiB | 285.4+276.6+39.4 / 287.2+280.4+39.9 | 90.2 / 90.0 % of one core |
+| singleton r1 / r2  | 751.2 / 756.0 MiB | 414.9+285.1+50.9 / 415.3+288.9+51.4 | 126.6 / 123.4 % |
+
+Arm gap reproduces: singleton costs +149.7 / +148.4 MiB (ratio 1.249/1.244)
+and +36.4 / +33.4 pp CPU at equal function -> keep the composable topology;
+the singleton per-server PSS table (bt_navigator 47.5 ... velocity_smoother
+15.7 MiB) is the first measured per-server budget on record. Provenance: the
+2026-09-12/13 session that produced this data was interrupted before
+analysis; this dataset was verified (cgroup series complete, goals accepted,
+recovery events in logs, committed params blob == executed copy) and
+committed 2026-09-17 without re-running. Declared asymmetry: per-arm goal
+counts 17/15 (r1 C/S) and 28/19 (r2 C/S); no in-window SUCCEEDED (unreachable
+-corner regime); 0 bond breaks (r1 logs).

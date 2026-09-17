@@ -221,3 +221,9 @@ docker exec oomwoo-bench bash -c '
   ONE system (combo A/B): async combined sum climbs +8.3 MiB/min system-level;
   lifelong combined steady ~293 MiB flat (harness: `run_nav2_slam_combo_bench.sh`,
   `analyze_combo_bench.py`; Pitfalls: pkill self-match, launch-file-via-python3).
+- `docs/adr-0016-measured-nav2-composition-ab-topologies.md` — Nav2 deployment
+  topology A/B, composable container vs per-server singleton
+  (`run_nav2_composition_ab.sh`, `analyze_composition_ab.py`; cgroup-deduped
+  accounting): composable saves ~148-150 MiB container memory and ~33-36 pp CPU
+  at equal function; first measured per-server PSS table. Pitfall: singleton
+  arm needs a bringup active-state gate before goal injection.
