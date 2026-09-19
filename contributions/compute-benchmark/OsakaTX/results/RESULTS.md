@@ -475,8 +475,9 @@ Same params (md5 0510ceb9..., `topoABC_devref_env.txt`), same map for all
 arms of a rep, same 5 Hz/50 Hz synthetic stimulus, same unreachable-corner
 goal regime, same samplers (xbattlax PSS + cgroup memory.current/cpu.stat),
 same 40 s warmup + bt_navigator-active gate. Raw artifacts `topology_abc/`,
-two reps x three arms, 56 cgroup samples per arm, 110 KiB sampler CSVs.
-Details and declared asymmetries: `docs/adr-0017-*.md`.
+arm-reps, 56 cgroup samples per arm, per-process sampler CSVs 131–298 KiB
+per arm-rep (larger in the singleton arm: more processes). Details and
+declared asymmetries: `docs/adr-0017-*.md`.
 
 | arm (last-half means) | container mem current MiB | anon / file / kernel | container CPU % one core |
 |---|---|---|---|

@@ -174,7 +174,8 @@ Everything in this ADR was produced this session (2026-09-19, UTC): driver
 stock nav2_bringup navigation_launch.py/bringup_launch.py, deviations
 declared in its header), analyzer `analyze_topology_abc.py` (new), raw
 artifacts `results/topology_abc/` (45 files: 33 `topoABC_devref_*`
-r1/r2 + 10 `e2eval_*` pilot + 2 map files; cgroup + sampler + logs). No
+r1/r2 + 10 `e2eval_*` pilot + 2 map files; per-arm-rep sampler CSVs
+126–291 KiB, singleton largest). No
 numbers inherited from prior sessions; cross-checked values are quoted
 from ADR-0016 as labeled comparisons.
 
