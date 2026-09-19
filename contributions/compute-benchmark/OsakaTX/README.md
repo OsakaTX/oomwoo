@@ -227,3 +227,11 @@ docker exec oomwoo-bench bash -c '
   accounting): composable saves ~148-150 MiB container memory and ~33-36 pp CPU
   at equal function; first measured per-server PSS table. Pitfall: singleton
   arm needs a bringup active-state gate before goal injection.
+- `docs/adr-0017-measured-nav2-selective-compose-middle-topology.md` — the
+  measured middle topology: a 3-arm A/B/C (composable vs hybrid
+  selective-compose vs singleton, `run_nav2_topology_abc.sh`,
+  `nav2_hybrid_bringup.launch.py`, `analyze_topology_abc.py`). Hybrid core
+  container (bt_navigator+controller+planner) + stock container (rest):
+  +19.4/+21.8 MiB and +5.1/+5.2 pp CPU vs composable, −133/−134 MiB and
+  −29/−32 pp vs singleton (2 reps, cgroup-deduped). Composable stays the
+  default; hybrid is the measured isolation-gradation option.

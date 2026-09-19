@@ -458,3 +458,51 @@ recovery events in logs, committed params blob == executed copy) and
 committed 2026-09-17 without re-running. Declared asymmetry: per-arm goal
 counts 17/15 (r1 C/S) and 28/19 (r2 C/S); no in-window SUCCEEDED (unreachable
 -corner regime); 0 bond breaks (r1 logs).
+
+## 18. Nav2 selective-compose middle topology A/B/C — 2026-09-19
+
+Third topology measured (`scripts/run_nav2_topology_abc.sh` +
+`scripts/nav2_hybrid_bringup.launch.py` + `scripts/analyze_topology_abc.py`,
+all new): arm `composable` and arm `singleton` repeat ADR-0016's arms
+unchanged; NEW arm `hybrid` composes ONLY the three largest servers
+(bt_navigator + controller_server + planner_server, the top of ADR-0016's
+measured per-PSS table: 47.5/38.3/27.1 MiB) into a dedicated
+`hybrid_core_container` (component_container_isolated, stock executable),
+every other server + the single navigation lifecycle manager exactly as the
+stock composable path into `/nav2_container`, and localization via the
+UNMODIFIED stock `localization_launch.py` include (stock argument block).
+Same params (md5 0510ceb9..., `topoABC_devref_env.txt`), same map for all
+arms of a rep, same 5 Hz/50 Hz synthetic stimulus, same unreachable-corner
+goal regime, same samplers (xbattlax PSS + cgroup memory.current/cpu.stat),
+same 40 s warmup + bt_navigator-active gate. Raw artifacts `topology_abc/`,
+two reps x three arms, 56 cgroup samples per arm, 110 KiB sampler CSVs.
+Details and declared asymmetries: `docs/adr-0017-*.md`.
+
+| arm (last-half means) | container mem current MiB | anon / file / kernel | container CPU % one core |
+|---|---|---|---|
+| composable r1 / r2 | 310.8 / 319.2 | 285.0+6.9+18.9 / 286.1+13.5+19.6 | 85.5 / 85.6 |
+| hybrid     r1 / r2 | 332.6 / 338.7 | 303.2+9.3+19.9 / 301.8+15.9+20.9 | 90.7 / 90.7 |
+| singleton  r1 / r2 | 465.8 / 472.9 | 416.6+18.2+30.8 / 417.6+23.8+31.4 | 123.1 / 119.9 |
+
+Arm gaps reproduce within 2.4 MiB / 3.2 pp across reps:
+hybrid − composable = +21.8/+19.4 MiB, +5.2/+5.1 pp CPU;
+singleton − hybrid = +133.2/+134.2 MiB, +32.4/+29.2 pp;
+singleton − composable = +154.9/+153.6 MiB, +37.6/+34.3 pp (r1 is
+session-consistent with ADR-0016's +149.7/+148.4 and +36.4/+33.4;
+cross-session composable anon matches at 285.0 vs 285.4 MiB).
+Hybrid container pair PSS (supportive, shared-lib overlap inflates sums):
+core+edge container 92.1+95.4 / 92.6+94.2 MiB at 37.5+20.5 / 36.0+20.5 %
+in-process CPU vs the composable arm's single container 169.7/168.3 MiB at
+48.7 %; which container is which is NOT recoverable post-hoc from the shipped
+per-pid artifacts (declared limitation). All
+arms: 0 launch deaths, 0 lifecycle bond breaks, amcl localized, recovery
+machinery firing (accepted goals -> status 6 ABORTED r1 C/H/S = 12/16/20,
+r2 = 13/13/14 — goal cadence arm-asymmetric exactly as in ADR-0016).
+**Conclusion: hybrid recovers ~87 pct of the singleton-vs-composable runtime
+memory savings at ~13 pct of that gap's memory cost, and ~86 pct of the CPU
+savings at ~14 pct of its CPU cost** (from the rep-mean gaps: mem
+(469.3−335.6)/(469.3−315.0) = 0.86, cost share 20.6/154.3 = 0.13; CPU
+(121.5−90.7)/(121.5−85.6) = 0.86, cost share 5.2/35.9 = 0.14); composable
+remains the 2 GB-budget default, hybrid is the measured middle option when
+fault containment of the navigation core is wanted (one process holds
+bt_navigator+controller+planner faults instead of all twelve servers).
