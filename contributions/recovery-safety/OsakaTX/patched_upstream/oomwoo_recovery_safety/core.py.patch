@@ -1,0 +1,84 @@
+--- upstream-main-e840b55/core.py
++++ instrumented/core.py
+@@ -4,6 +4,8 @@
+ from enum import Enum
+ import json
+ from typing import Mapping
++
++from oomwoo_recovery_safety.health_work_events import HealthWorkEventProbe, WorkEvent
+ 
+ 
+ class Situation(str, Enum):
+@@ -127,6 +129,13 @@
+         self._step_index = 0
+         self._current_step: RecoveryStep | None = None
+         self._last_status = self._make_status("READY", "Recovery controller ready", True)
++        # optional work-event sink, wired by the node adapter; core stays pure
++        self.work_event = None
++
++    def emit(self, event: WorkEvent, detail: str = "") -> None:
++        """Fan the work event out to the adapter; no-op when unwired."""
++        if self.work_event is not None:
++            self.work_event(event, detail)
+ 
+     @property
+     def state(self) -> ControllerState:
+@@ -140,6 +149,7 @@
+         parsed = self._parse_situation(situation)
+ 
+         if parsed in SAFETY_SITUATIONS:
++            self.emit(WorkEvent.SAFETY_PAUSE, parsed.value)
+             return self._pause(
+                 parsed,
+                 reason_code=self._safety_reason(parsed),
+@@ -167,6 +177,7 @@
+ 
+         ladder = self._ladders.get(parsed)
+         if not ladder:
++            self.emit(WorkEvent.NO_LADDER_PAUSE, parsed.value)
+             return self._pause(
+                 parsed,
+                 reason_code="NO_RECOVERY_LADDER",
+@@ -178,6 +189,7 @@
+         self._situation = parsed
+         self._step_index = 0
+         self._current_step = ladder[0]
++        self.emit(WorkEvent.RECOVERY_STARTED, f"step:{self._current_step.name}")
+         status = self._make_status(
+             "RECOVERY_STARTED",
+             f"Starting recovery step {self._current_step.name}",
+@@ -194,6 +206,7 @@
+ 
+         self._state = ControllerState.RECOVERED
+         self._current_step = None
++        self.emit(WorkEvent.RECOVERY_SUCCEEDED, "recovered")
+         status = self._make_status("RECOVERED", "Recovery succeeded", True)
+         self._last_status = status
+         return Decision(DecisionKind.STATUS_ONLY, status)
+@@ -207,6 +220,7 @@
+         ladder = self._ladders[self._situation]
+         next_index = self._step_index + 1
+         if next_index >= len(ladder):
++            self._notify_exhausted()
+             return self._pause(
+                 self._situation,
+                 reason_code="RECOVERY_EXHAUSTED",
+@@ -216,6 +230,7 @@
+ 
+         self._step_index = next_index
+         self._current_step = ladder[next_index]
++        self.emit(WorkEvent.STEP_ESCALATED, f"step:{self._current_step.name}")
+         status = self._make_status(
+             "RECOVERY_ESCALATED",
+             f"Escalating after {detail}; starting {self._current_step.name}",
+@@ -232,6 +247,10 @@
+         status = self._make_status("READY", "Recovery controller reset", True)
+         self._last_status = status
+         return Decision(DecisionKind.STATUS_ONLY, status)
++
++    def _notify_exhausted(self) -> None:
++        """Ladder-exhausted pause marker (see hooked call site in step_failed)."""
++        self.emit(WorkEvent.LADDER_EXHAUSTED, "paused_await_reset")
+ 
+     def _pause(
+         self,

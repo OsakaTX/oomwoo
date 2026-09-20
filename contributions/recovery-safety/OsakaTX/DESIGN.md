@@ -749,27 +749,30 @@ The `IntegrationDecision` return type tells the caller what to do:
 
 ### 9.4 Test Coverage
 
-All 380 tests pass headless (no ROS2, no Gazebo) — measured 2026-09-14:
+All 395 tests pass headless (no ROS2, no Gazebo) — measured 2026-09-18
+(389 passed + 6 environment-dependent skips in one run; per-suite collected
+counts below, run with `PYTHONPATH=roe python3 -m pytest test/`):
 
 ```
-test/situation_analyzer          ...... 31 tests
-test/adaptive_ladder             ...... 33 tests
-test/safety_handler              ...... 32 tests
-test/status_reporter             ...... 25 tests
-test/integration_adapter         ...... 22 tests
-test/operator_override           ...... 11 tests   # added 2026-08-08
-test/drop_off_response           ...... 32 tests   # added 2026-08-10
-test/recovery_source_compliance  ...... 10 tests   # added 2026-08-12
-test/topic_alignment             ...... 23 tests   # added 2026-08-14, extended 2026-08-16
-test/slip_odometry               ...... 13 tests   # added 2026-08-18
-test/safety_input_protocol       ...... 21 tests   # added 2026-08-20
-test/pause_alert_ack             ...... 24 tests   # added 2026-08-23
-test/status_emission_contract    ...... 32 tests   # added 2026-09-08
-test/status_observability_align  ...... 15 tests   # added 2026-09-08, resumed from the 2026-09-02 run
-test/wheel_drop_failsafe         ......  9 tests   # added 2026-09-08 (row restored 2026-09-14; was prose-only)
 test/mcu_safety_state            ...... 47 tests   # 43 on 2026-09-10 + 4 post-merge guards 2026-09-14
+test/adaptive_ladder             ...... 33 tests
+test/status_emission_contract    ...... 32 tests   # added 2026-09-08
+test/safety_handler              ...... 32 tests
+test/drop_off_response           ...... 32 tests   # added 2026-08-10
+test/situation_analyzer          ...... 31 tests
+test/status_reporter             ...... 25 tests
+test/pause_alert_ack             ...... 24 tests   # added 2026-08-23
+test/topic_alignment             ...... 23 tests   # added 2026-08-14, extended 2026-08-16
+test/integration_adapter         ...... 22 tests
+test/safety_input_protocol       ...... 21 tests   # added 2026-08-20
+test/status_observability_align  ...... 15 tests   # added 2026-09-08, resumed from the 2026-09-02 run
+test/health_work_events_behaviour ...... 15 tests  # added 2026-09-18 (vs patched_upstream parity)
+test/slip_odometry               ...... 13 tests   # added 2026-08-18
+test/operator_override           ...... 11 tests   # added 2026-08-08
+test/recovery_source_compliance  ...... 10 tests   # added 2026-08-12
+test/wheel_drop_failsafe         ......  9 tests   # added 2026-09-08
                                ------
-                          Total: 380 tests
+                          Total: 395 tests
 ```
 
 Run with: `PYTHONPATH=roe python3 -m pytest test/`
@@ -824,6 +827,16 @@ Run with: `PYTHONPATH=roe python3 -m pytest test/`
 > `PR63_PROVENANCE` records the merge; the mcu doc's merge checklist is
 > CLOSED. Per-file counts and total re-measured below (no inherited
 > count). PR #60 head still `9439ecd` (parity re-check still not triggered).
+>
+> 2026-09-18 (this run): `health_work_events_behaviour` (15 tests) added —
+> behavior-parity suite adopting upstream test bodies verbatim against the
+> instrumented `patched_upstream` package pair, plus the `roe/` probe layer
+> (see the References entry below). The headless full-node cycle driver
+> (`patched_upstream/headless_rn_cycle.py`) now passes end to end — its
+> beat-ledger bookkeeping and the stale-repub stamp expectation were
+> corrected this run against measured node behavior (event→beat 1:1 count;
+> repub stamp = re-measured now). Upstream `main` unchanged since
+> (`c45c487` at measure time; doc re-verified later this run at `206dade`).
 
 ### 9.5 Integration into xbattlax's RecoverySafetyNode
 
@@ -1068,6 +1081,7 @@ Key guarantees (headless-tested, 11 tests):
 - [mcu-safety-state-alignment.md](./mcu-safety-state-alignment.md) —xbattlax PR #63 `SAFETY_STATE` serial contract (active/latched masks, events 1–10, N−1 bit rule) mirrored to the ROS-side safety view with latch-aware clear admission + stream liveness; **PR #63 merged 2026-09-11 (`90324ec`), merged-tree drift guards added, merge checklist complete**; reference logic `roe/mcu_safety_state.py` (2026-09-10, post-merge 2026-09-14)
 - [roe/status_observability_align.py](./roe/status_observability_align.py) — external-consumer (PR #60) KPI fireability analysis: which status-vocabulary comparisons can fire on the deployed lowercase-state / UPPERCASE-reason stream, + deployed-source drift guards (2026-09-02, completed 2026-09-08)
 - [roe/wheel_drop_failsafe.py](./roe/wheel_drop_failsafe.py) — wheel-drop NC-contact fail-safe polarity contract (hardware-open → logic-True at every adapter layer), grounded in PR #61's measured COM/NC wiring incl. its verbatim firmware guidance + drift guard on the IKsares README (2026-09-02, completed 2026-09-08)
+- [roe/health_work_events.py](./roe/health_work_events.py) + [patched_upstream/](./patched_upstream/) — `recovery_safety` producer side of the `/oomwoo/health/component` heartbeat: work-event probe (ROS-free; contract keys/vocabulary from the monitor's own docs+code), instrumented upstream node pair with verbatim .patch provenance adopted upstream tests + copy derivation; verification triangle = `upstream_parity_check.py` (8/8 on both trees) + `roe/test/test_health_work_events_behaviour.py` (15 tests) + `headless_rn_cycle.py` full-node cycle incl. the three-gate stale-repub policy (2026-09-12–18, completed 2026-09-18)
 - [launch/recovery_safety.oomwoo_one.launch.py](./launch/recovery_safety.oomwoo_one.launch.py) — overlay launch file: merged node + verified bumper remap for oomwoo-one (2026-08-16)
 - [Top-level recovery-safety README](../README.md) — RFC with design direction
 - [SOFTWARE_INTERFACES.md](../../../docs/SOFTWARE_INTERFACES.md) — shared topic contract
