@@ -227,3 +227,5 @@ for the G070 is a subset of what the G473 can handle.
 
 **Suggested action:** Update ARCHITECTURE.md §5.4 to read "STM32G473VCT6" once a
 maintainer confirms the part is finalized.
+> **2026-09-20 status:** the machine-readable contract artifact promised by the 2026-09-11 merge now EXISTS: `makerspet/oomwoo-io-firmware` `tests/conformance/protocol_v1.json` (merged with PR #4, commit `213c16f8`, 2026-09-19) — 16 messages with per-message `struct_format`, `crc CRC-16/CCITT-FALSE`, `magic_ascii OW`, ids 0x0001…0x8005, next free MCU→CPU id `0x8006` (verified by parsing the fetched JSON; sep11 projection confirmed). Wire v2 framing core also merged (PR #2, `2d51eff5`, 2026-09-15). Watchdog core (PR #3, head `69bcf370`) re-based on #2 — open, `mergeable_state: clean`; new PR #5 MCU ingress gate — open, clean. Neither merged as of 2026-09-20 ≈06:55Z; id/semantic tables in THIS repo should re-anchor to the registry canonical form when they land. Full evidence: [`spec_crosscheck_20260920.md`](spec_crosscheck_20260920.md) §6–7.
+
