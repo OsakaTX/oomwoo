@@ -1,0 +1,105 @@
+--- upstream-main-e840b55/recovery_node.py
++++ instrumented/recovery_node.py
+@@ -11,20 +11,26 @@
+ from ros_gz_interfaces.msg import Contacts
+ from std_msgs.msg import Bool, String
+ 
+-from oomwoo_recovery_safety.health_work_events import HealthWorkEventProbe
++STALE_REPUBLISH_SEC = 1.0  # bounded re-announce gap (estimate; sim-tunable)
++
+ from oomwoo_recovery_safety.core import Decision, DecisionKind, RecoveryController, Situation
++from oomwoo_recovery_safety.health_work_events import HealthWorkEventProbe, WorkEvent
+ 
+ 
+ class RecoverySafetyNode(Node):
+     def __init__(self):
+         super().__init__("recovery_safety")
+         self._controller = RecoveryController()
++        # health work-event probe: observability only, never gates recovery
++        self._health = HealthWorkEventProbe(self._now_sec)
++        self._active_deadline: float | None = None
+         self._active_deadline: float | None = None
+         self._active_twist: Twist | None = None
+ 
+         self._cmd_pub = self.create_publisher(Twist, "cmd_vel", 10)
+         self._status_pub = self.create_publisher(String, "oomwoo/status", 10)
+         self._command_pub = self.create_publisher(String, "oomwoo/recovery/command", 10)
++        self._health_pub = self.create_publisher(String, "oomwoo/health/component", 10)
+ 
+         self.create_subscription(Contacts, "bumper_left", self._bumper_left_cb, 10)
+         self.create_subscription(Contacts, "bumper_right", self._bumper_right_cb, 10)
+@@ -37,7 +43,43 @@
+         self.create_subscription(Bool, "oomwoo/recovery/reset", self._reset_cb, 10)
+ 
+         self.create_timer(0.05, self._timer_cb)
++        self._controller.work_event = self._on_controller_event
+         self._publish_status(self._controller.last_status)
++
++    def _now_sec(self) -> float:
++        return self.get_clock().now().nanoseconds / 1_000_000_000.0
++
++    def _on_controller_event(self, event: WorkEvent, detail: str) -> None:
++        self._health.observe(event, detail=detail)
++        self._publish_health()
++
++    def _health_bump(self, event: WorkEvent, detail: str = "") -> None:
++        self._health.observe(event, detail=detail)
++        self._publish_health()
++
++    def _publish_health(self) -> None:
++        beat = self._health.heartbeat_now()
++        if beat is None:
++            return
++        self._health_pub.publish(String(data=beat.to_json()))
++
++    def _health_stale_republish(self) -> None:
++        """Bounded re-announce of the last event-stamped beat (pause note).
++
++        A paused robot emits no further work events, so the last heartbeat
++        would otherwise go silent mid-pause. Re-publish the SAME measured
++        stamp at most once per STALE_REPUBLISH_SEC, marked "stale-repub", so
++        consumers see node liveness without a counterfeit freshness claim.
++        """
++        beat = self._health.heartbeat_now()
++        if beat is None:
++            return
++        now = self._now_sec()
++        if now - beat.stamp_sec < STALE_REPUBLISH_SEC:
++            return
++        payload = beat.to_payload()
++        payload["detail"] = ("stale-repub;" + payload["detail"]) if payload["detail"] else "stale-repub"
++        self._health_pub.publish(String(data=json.dumps(payload, sort_keys=True)))
+ 
+     def _bumper_left_cb(self, msg: Contacts):
+         if self._has_real_contact(msg):
+@@ -97,6 +139,7 @@
+             self._execute(self._controller.reset())
+ 
+     def _timer_cb(self):
++        self._health_stale_republish()
+         if self._active_deadline is None:
+             return
+ 
+@@ -130,9 +173,14 @@
+         self._active_deadline = monotonic() + step.deadline_sec
+ 
+     def _publish_status(self, status):
++        self._health_bump(
++            WorkEvent.STATUS_PUBLISHED,
++            f"reason:{getattr(status, 'reason_code', '?')}",
++        )
+         self._status_pub.publish(String(data=status.to_json()))
+ 
+     def _publish_command(self, command: str, behavior: str):
++        self._health_bump(WorkEvent.COMMAND_PUBLISHED, f"cmd:{command}")
+         payload = {
+             "command": command,
+             "behavior": behavior,
+@@ -141,6 +189,7 @@
+         self._command_pub.publish(String(data=json.dumps(payload, sort_keys=True)))
+ 
+     def _stop_motion(self):
++        self._health_bump(WorkEvent.STOP_PUBLISHED)
+         self._active_twist = None
+         self._cmd_pub.publish(Twist())
+ 
