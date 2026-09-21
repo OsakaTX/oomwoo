@@ -424,6 +424,41 @@ unit against this before relying on the mount.
 - Use jig `jigs-new/tower-bumper-switch-fit.scad` (Jig 12) to confirm body fit,
   hole-pattern registration, and lever sweep in the same pass.
 
+### Addendum (2026-09-21): measured one-cad reference pool — pocket family check
+
+The maintainer's CAD repo now carries switch solids that bound what the
+purchased unit will look like BEFORE it arrives. Measured directly on the
+`makers-pet/oomwoo-one-cad` STEP solids (cadquery, 2026-09-17; **independently
+re-verified 2026-09-21 — all bboxes and the C50395969 hole row reproduced
+exactly**; re-verification pass per solid + per edge, files re-fetched
+2026-09-21). `lib/switches/` = part-CAD imports for JLCPCB assembly numbers
+(the one-cad lib/README.md credits only the OOM-/camera/ky-003 files — no
+provenance note for the C-numbers; treat lib-solid dims as [M] on the LIB
+SOLID, not as a datasheet). Model: `micro-switch-variants/d2f-class-variants.scad`.
+
+| lib solid | bbox L×W×H (mm) [M] | holes / interface | notes |
+|---|---|---|---|
+| C50395969 | 12.80 × 5.81 × 10.40 | 3× ~Ø1.6 rim rows (as-measured Ø1.60 rims), 5.08 pitch; first hole 1.32 from body-left, axis 0.80 above bottom face (lib orientation) | STEP PRODUCT name verbatim: `SW-TH_3P-L12.8-W5.8-P5.08_D2FC-F-K` → D2FC-F-K family (mouse-microswitch class) |
+| C107266 | 12.70 × 5.74 × 10.50 | d1.5 rims at six x positions (−6.08 / −4.08 / −1.00 / +1.00 / +4.08 / +6.08; y-delta 0.5), z −4.25 | hole frame ambiguous in the lib solid → caliper, do not treat as canonical |
+| C2906291 | 14.34 × 5.70 × 13.30 | no sub-3 mm holes | taller body |
+| C405949 | 12.99 × 5.80 × 14.36 | PRODUCT ...`L12.8-W5.8-H11.3-P5.08` per header | taller still |
+
+ALL four are ~7 mm shorter than the SS-5GL 19.8 mm class with 5.08 (not 9.5)
+hole pitch — **a different pocket family**. Consequence for this section: if
+the purchased switch calipers ≈12.8/12.7–14.3 long, the SS-5GL-based pocket
+(Jig 12) is the WRONG jig — use the variant-library envelopes instead, and
+rows 5-7 above resolve to the 5.08-pitch / 3-hole layout rather than 9.5.
+
+Scanned assemblies (one-cad `lib/irobot/`, 3D scans by mikbalarikan per that
+repo's lib/README.md — iRobot donor assembly level, incl. bracket/wire mass;
+NOT bare-switch envelopes; [M] solid-bbox 2026-09-21 this repo):
+
+- `OOM-E03-01-bumper-switch.stp` — 59.18 × 50.29 × 22.42 mm
+- `OOM-E03-02-bumper-switch.stp` — 22.81 × 68.17 × 43.11 mm
+
+-operator note: the two scan blocks are shown to scale by
+`micro-switch-variants/d2f-class-variants.scad` mode `show="capture"`.
+
 ---
 
 ## 16. Carpet Sensor — 300 kHz Ultrasonic Transducer (HTW HT-300PLTR1612-1 class)
@@ -883,7 +918,7 @@ merged 2026-09-12):
 | 4 | x60 long edge (=102?) | mm | BOM "~102/85 x 49 x 26mm" |
 | 5 | x60 short edge (=85?) | mm | BOM same row |
 | 6 | x60 W × H (=49 × 26?) | mm | BOM same row |
-| 7 | pressure-drop rating (~20/~20/~35 kPa) | kPa | BOM prefix "~" — take as class, not test data |
+| 7 | pressure-drop rating (~20/~36/~35 kPa) | kPa | saros corrected 20->36 by upstream 79807d9 2026-09-14; BOM prefix "~" — take as class, not test data |
 | 8 | corner radii (square / rounded; x50 listing says "rounded corner") | mm | listing text (secondary) → model 3 mm (estimate); caliper |
 | 9 | pleat pitch, media pack | mm | (estimate 3.0) fold count from the face photo / caliper |
 | 10 | dirty-side window rect (x0, y0, w, h) | mm | (estimate 72 % open) — read via Jig 25 photo grid |

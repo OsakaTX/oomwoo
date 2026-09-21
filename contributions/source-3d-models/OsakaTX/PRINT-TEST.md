@@ -327,7 +327,10 @@ part BEFORE the tower/bumper housing is finalized.
   `clearance_h`; a long-force rock means `clearance_w` too small.
 - Rocks more than 0.3mm → decrease `clearance_w`. Body dims beyond ±0.5mm from
   19.8×6.4×10.2 mean the part is a different class: update
-  `micro-switch-ss5gl.scad` body params first, re-verify MEASURE-ME §15.
+  `micro-switch-ss5gl.scad` body params first, re-verify MEASURE-ME §15 —
+  then cross-check the measured variant pool (§15 addendum 2026-09-21,
+  `micro-switch-variants/d2f-class-variants.scad`: 12.7–14.3 mm-long
+  5.08-pitch parts are a DIFFERENT pocket family, ~7 mm shorter than SS-5GL).
 - Pilots do not register → your switch has a different hole pitch/pattern than
   the SS-5’s 9.5mm/3-hole layout: measure row 7 of MEASURE-ME §15 and edit
   `mtg_hole_pitch` / `mtg_hole_count` / `mtg_hole_dia`.

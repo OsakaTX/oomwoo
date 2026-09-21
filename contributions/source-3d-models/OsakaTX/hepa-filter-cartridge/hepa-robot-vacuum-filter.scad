@@ -5,8 +5,11 @@
 //
 //   | HEPA filter | 1 | $2-3 | ~20 kPa ~110 x 48 x 22mm | Fits Dreame X50 Pro,
 //     X50 Ultra, X50 Master, L40s Pro Ultra, ... Mova V50 Ultra ...
-//   |             | 1 | $2-3 | ~20 kPa ~113 x 59 x 12 mm | Fits Roborock Saros
+//   |             | 1 | $2-3 | ~36 kPa ~113 x 59 x 12 mm | Fits Roborock Saros
 //     10R, Saros Z70, Saros 20 Sonic, ... G30S Pro ...
+//   (Saros row corrected ~20 -> ~36 kPa by upstream 79807d9 2026-09-14
+//   "BOM: Roborock Saros HEPA filter is 36 kPa"; re-synced from main 2026-09-19.
+//    Envelope 113x59x12 unchanged by that commit.)
 //   |             | 1 | $2-3 | ~35 kPa ~102/85 x 49 x 26mm | Fits Dreame X60
 //     Ultra, X60 Max Ultra, X60 Max Ultra Complete ...
 //
@@ -41,7 +44,8 @@ eps = 0.01;
 
 // [B] "~20 kPa ~110 x 48 x 22mm" — Dreame X50-class
 x50_l = 110;  x50_w = 48;  x50_h = 22;
-// [B] "~20 kPa ~113 x 59 x 12 mm" — Roborock Saros-class (thinnest: 12)
+// [B] "~36 kPa ~113 x 59 x 12 mm" — Roborock Saros-class (thinnest: 12)
+//     (kPa corrected 20->36 per upstream 79807d9 2026-09-14; dims unchanged)
 saros_l = 113; saros_w = 59; saros_h = 12;
 // [B] "~35 kPa ~102/85 x 49 x 26mm" — Dreame X60-class (highest dp rating)
 x60_l1 = 102; x60_l2 = 85; x60_w = 49; x60_h = 26;

@@ -2,7 +2,9 @@
 // =====================================================================
 // BOM anchor (verbatim, upstream e840b55 "Sourced vacuum HEPA filters"):
 //   "~20 kPa ~110 x 48 x 22mm"    -> x50   (Dreame X50-class family)
-//   "~20 kPa ~113 x 59 x 12 mm"   -> saros (Roborock Saros-class family)
+//   "~36 kPa ~113 x 59 x 12 mm"   -> saros (Roborock Saros-class family)
+//   (20->36 kPa correction: upstream 79807d9 2026-09-14; the jig matches on
+//    plan dims, not pressure, so no geometry change)
 //   "~35 kPa ~102/85 x 49 x 26mm" -> x60   (Dreame X60-class family)
 //
 // READINGS (protocol in PRINT-TEST.md Jig 25):
