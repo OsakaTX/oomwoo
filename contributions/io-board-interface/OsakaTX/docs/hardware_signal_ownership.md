@@ -243,3 +243,18 @@ These are connected directly to the CM4/CM5 socket per the architecture:
 | Dock contacts (20–24V DC) | Charger circuit | Power input. Charger IC handles detection. |
 > **2026-09-20 re-check:** pcb master-fuse rev (`4f104bea`→`22e3a597`, 6 commits) rewrote `CM5-GPIO.kicad_sch` (+3021/−1458) and added dedicated `STM32G473.kicad_sch` (OSK-018 rename). CPU-side hier-label census re-taken at tip: **24 labels, exactly the standing set** — `PMIC_EN` (input), `RUN_PG` (input), `UART2_RX/TX`, `I2S_*`, `ID_SC/SD`, `SDA0/SCL0`, `SDA1/SCL1`, `CAM_GPIO0/1`, `MIPI1_IO0/1`, `GPIO06/16/17/25/26/27`; local labels `CONSOLE_RXD/TXD`, `GPIO9…13/22/23/24`, `SD_PWR_ON`. No new CPU-side heartbeat/SLEEP/WAKE pin: the CPU-side interface surface is UNCHANGED — heartbeat stays a firmware-lane (UART) duty, consistent with fw PR #5 explicitly excluding watchdog-refresh from the ingress path. MCU-side pad truth NOT re-derived this run (layout rewritten twice; `Main.kicad_pcb` fetched, parse owed — sep13 §9 debt stands). Evidence: [`spec_crosscheck_20260920.md`](spec_crosscheck_20260920.md) §3–4.
 
+> **2026-09-22 re-check:** pcb `a7ac0fd7` "STM32 power rail switch" (2026-09-21, 51 files;
+> parent `22e3a597`) **adds a CPU power handshake to the interface surface** — new hier
+> labels `3.3V_EN` (STM32-sheet **output**; maintained-pin **PB3**), `5V_EN` (STM32 output;
+> **PB4**), `USB_PWR_EN` (STM32 output; **PC10**), `PI_DONE` (STM32 **input** ← CM5-GPIO
+> **output**; **PB5**), joined at root level and landing as `input` labels on the rebuilt
+> `BMS-SYSTEM-POWER.kicad_sch` (5→7 hier labels; power sheet now parts-includes
+> `HT7533-1`/`MT3608`/`AP64501SP-13` — presence-swept, datasheets not fetched). Pin IDs from
+> the maintainer xlsx re-parsed at `a7ac0fd7`. The 09-20 "24 labels, exactly the standing
+> set" CPU census is thereby ONE commit stale: CM5-GPIO is now 25 hier labels (+`PI_DONE`
+> output; local label `GPIO9` dropped, consumer untraced). MCU-side pad truth and the
+> handshake's timing/semantics contract both remain undocumented — flagged to the
+> maintainer in the crosscheck §8. All other touched sheets (WATCHDOG `WDI`/`~{EN}`/
+> `~{PULSE_OUT`, LiDAR quartet incl. the `LiDAR-EN`/`LIDAR_EN` drift, MAIN-FAN pair)
+> label-UNCHANGED. PB13 note: `RK-RESET` (GPIO) vs `FDCAN2_TX` (alt-fn) dual-role filed as
+> **OSK-033** (open, High). Evidence: [`spec_crosscheck_20260922.md`](spec_crosscheck_20260922.md) §2–3,5,7.

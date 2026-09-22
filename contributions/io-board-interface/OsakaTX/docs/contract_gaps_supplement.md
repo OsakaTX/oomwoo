@@ -229,3 +229,19 @@ for the G070 is a subset of what the G473 can handle.
 maintainer confirms the part is finalized.
 > **2026-09-20 status:** the machine-readable contract artifact promised by the 2026-09-11 merge now EXISTS: `makerspet/oomwoo-io-firmware` `tests/conformance/protocol_v1.json` (merged with PR #4, commit `213c16f8`, 2026-09-19) — 16 messages with per-message `struct_format`, `crc CRC-16/CCITT-FALSE`, `magic_ascii OW`, ids 0x0001…0x8005, next free MCU→CPU id `0x8006` (verified by parsing the fetched JSON; sep11 projection confirmed). Wire v2 framing core also merged (PR #2, `2d51eff5`, 2026-09-15). Watchdog core (PR #3, head `69bcf370`) re-based on #2 — open, `mergeable_state: clean`; new PR #5 MCU ingress gate — open, clean. Neither merged as of 2026-09-20 ≈06:55Z; id/semantic tables in THIS repo should re-anchor to the registry canonical form when they land. Full evidence: [`spec_crosscheck_20260920.md`](spec_crosscheck_20260920.md) §6–7.
 
+> **2026-09-22 status:** ledger deltas only (full evidence
+> [`spec_crosscheck_20260922.md`](spec_crosscheck_20260922.md)). (1) pcb `a7ac0fd7` "STM32
+> power rail switch" (2026-09-21, 51 files) adds the CPU power handshake `3.3V_EN`(PB3)/
+> `5V_EN`(PB4)/`USB_PWR_EN`(PC10) MCU-output + `PI_DONE`(PB5↔CM5) — **OSK-030's rail-gate
+> question now has a fourth actor**: the MCU itself gates low-voltage rails next to the
+> watchdog path; pad-level net authority on the thrice-relayouted `Main.kicad_pcb` remains
+> the top unpaid debt (OSK-030/031, three layouts: `8b40d5fb`, `fb881fae`, `a7ac0fd7`).
+> (2) fw PR #5 ingress gate merged `d103a5d4` 2026-09-21 — OSK-029's dependency set is now
+> fully merged; only maintainer ratification of `timeout_ticks=150`/kick-polarity (vs
+> STWD100NYWY3F, datasheet unfetched 4th run) stands between PR #3 and merge.
+> (3) **OSK-033 NEW (open, High):** PB13 carries GPIO `RK-RESET` AND alt-fn `FDCAN2_TX` in
+> the maintainer xlsx — same-pin dual role; decide reset-vs-CAN ownership before firmware
+> pins FDCAN2. (4) The handshake's timing/semantics contract (PI_DONE assert window, MCU
+> timeout, MCU-reboot-while-rails-up) is undocumented — maintainer action added to the
+> open-decision surface (crosscheck §8). Registry/ids: no drift (`0x0001…0x8005`,
+> next free `0x8006`). Main repo: no issues/PRs updated since 09-19.

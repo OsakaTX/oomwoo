@@ -238,3 +238,16 @@ adds the **watchdog authority model** and the failsafe-coverage analysis the
 contract draft left implicit.
 > **2026-09-20 re-check:** hardware side UNCHANGED (no watchdog-sheet commits in the 6-commit pcb window; STWD100NYWY3F still the sole supervisor IC, datasheet still unfetched — 3rd run). Firmware side CONCRETE: merged framing `oomwoo_protocol.c` (PR #2, 09-15) + typed codec (PR #4, 09-19, canonical `protocol_v1.json`); **PR #3 (open, clean, head `69bcf370`) now carries the ISR watchdog implementation** — verbatim body: "At the harness's real 1 kHz TIM7 rate, `timeout_ticks = 150` implements the current 150 ms bench proposal from #1", hard-stop "on `DISARMED`, and on heartbeat expiry", "never restore PWM or replay a command during recovery", and explicitly NO "IWDG integration" / production pin map yet. New PR #5 ingress gate (open) does NOT "refresh the heartbeat watchdog" — gate and watchdog remain separate modules. OSK-029 co-design questions (fixed-timeout silicon vs configurable-ticks supervisor; WDO polarity; PD8 ownership) now have a concrete counterpart to reconcile; maintainer ratification still owed at merge time. Evidence: [`spec_crosscheck_20260920.md`](spec_crosscheck_20260920.md) §7.
 
+> **2026-09-22 re-check:** hardware UNCHANGED at label level — `a7ac0fd7` rewrites
+> `WATCHDOG.kicad_sch` bytes (+180/−201) but the hier-label set `WDI`/`~{EN}`/`~{PULSE_OUT`
+> is identical; STWD100NYWY3F still the sole supervisor, datasheet still unfetched (**4th
+> run**). Firmware: **PR #5 ingress gate MERGED as `d103a5d4` (2026-09-21)** — with #2/#4
+> also merged, PR #3 (watchdog core, head `69bcf370`, open) now sits on fully-merged
+> dependencies; its 09-20 substance stands (`timeout_ticks=150` @1 kHz, hard-stop on
+> `DISARMED`/heartbeat-expiry, no PWM restore during recovery, no IWDG, no production pin
+> map), and xbattlax's 09-19 issue-#1 comment re-confirms gate ≠ watchdog-refresh and the
+> 150 ms + disarmed-telemetry items as the two open decisions. OSK-029 ratification (vs the
+> fixed-timeout silicon; WDO polarity; PD8) remains owed at #3 merge. New: the a7ac0fd7
+> power handshake (MCU-owned `3.3V_EN`/`5V_EN`/`USB_PWR_EN`, CM5 `PI_DONE`) introduces an
+ MCU-side rail-gate authority question adjacent to OSK-030 — recorded, not
+ yet a ledger split. Evidence: [`spec_crosscheck_20260922.md`](spec_crosscheck_20260922.md) §4,7–8.
