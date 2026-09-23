@@ -1,0 +1,27 @@
+wrote /wt/contributions/compute-benchmark/OsakaTX/scripts/../results/combo2/combo2_nav2_map.pgm/.yaml (200x200, 912 occupied cells @ 0.05 m)
+=== [2026-09-21T07:48:27Z] arm=async regime=churn every=22.0 -> /wt/contributions/compute-benchmark/OsakaTX/scripts/../results/combo2/smoke_churn_a_20260921T074827Z.csv
+=== goal seq pid 99776 (regime churn, slice/pause 22.0/2.0 s) ===
+=== node list ===
+/launch_ros_99658
+/launch_ros_99659
+/slam_toolbox
+/synthetic_scan_publisher
+/transform_listener_impl_55db603c7830
+=== tf map->odom (slam must own it) ===
+At time 1789976944.12666476
+- Translation: [-0.003, 0.004, 0.000]
+- Rotation: in Quaternion (xyzw) [0.000, 0.000, -0.002, 1.000]
+- Rotation: in RPY (radian) [0.000, 0.000, -0.003]
+=== stopping stack ===
+=== CSV: /wt/contributions/compute-benchmark/OsakaTX/scripts/../results/combo2/smoke_churn_a_20260921T074827Z.csv ===
+=== terminal goal cycles (F) ===
+2
+=== settle / watchdog / slice events ===
+[INFO] [1789976962.839094203] [nav_goal_seq]: cycle 1 SLICE elapsed -> canceling
+[INFO] [1789976986.890440326] [nav_goal_seq]: cycle 2 SLICE elapsed -> canceling
+=== slam health ===
+odom-pose failures: 0
+=== nav2 health ===
+state-change failures: 0
+costmap resizes: 16
+=== done 2026-09-21T07:49:57Z ===

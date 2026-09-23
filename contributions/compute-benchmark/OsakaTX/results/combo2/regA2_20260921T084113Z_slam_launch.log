@@ -1,0 +1,8 @@
+[INFO] [launch]: All log files can be found below /root/.ros/log/2026-09-21-08-41-15-688579-89594396727c-343405
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [async_slam_toolbox_node-1]: process started with pid [343425]
+[async_slam_toolbox_node-1] [INFO] [1789980076.081026256] [slam_toolbox]: Configuring
+[async_slam_toolbox_node-1] [INFO] [1789980076.086847443] [slam_toolbox]: Using solver plugin solver_plugins::CeresSolver
+[INFO] [launch.user]: [LifecycleLaunch] Slamtoolbox node is activating.
+[async_slam_toolbox_node-1] [INFO] [1789980076.105215302] [slam_toolbox]: Activating
+[async_slam_toolbox_node-1] Registering sensor: [Custom Described Lidar]

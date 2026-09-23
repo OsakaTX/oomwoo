@@ -1,0 +1,30 @@
+[INFO] [1789976940.822506166] [nav_goal_seq]: cycle 1 sending goal x=4.000 y=4.000 yaw=0.000
+[INFO] [1789976940.824410757] [nav_goal_seq]: cycle 1 goal ACCEPTED: True
+[INFO] [1789976962.839094203] [nav_goal_seq]: cycle 1 SLICE elapsed -> canceling
+[INFO] [1789976962.868656054] [nav_goal_seq]: cycle 1 goal FINAL status=5 CANCELED (next in 2.0s)
+[INFO] [1789976964.877798745] [nav_goal_seq]: cycle 2 sending goal x=4.000 y=4.000 yaw=0.000
+[INFO] [1789976964.880063433] [nav_goal_seq]: cycle 2 goal ACCEPTED: True
+[INFO] [1789976986.890440326] [nav_goal_seq]: cycle 2 SLICE elapsed -> canceling
+[INFO] [1789976986.901683664] [nav_goal_seq]: cycle 2 goal FINAL status=5 CANCELED (next in 2.0s)
+[INFO] [1789976988.908059816] [nav_goal_seq]: cycle 3 sending goal x=4.000 y=4.000 yaw=0.000
+[INFO] [1789976988.909800906] [nav_goal_seq]: cycle 3 goal ACCEPTED: True
+Traceback (most recent call last):
+  File "/wt/contributions/compute-benchmark/OsakaTX/scripts/nav_goal_seq.py", line 220, in <module>
+    main()
+  File "/wt/contributions/compute-benchmark/OsakaTX/scripts/nav_goal_seq.py", line 211, in main
+    node.spin_once()
+  File "/wt/contributions/compute-benchmark/OsakaTX/scripts/nav_goal_seq.py", line 107, in spin_once
+    rclpy.spin_once(self, timeout_sec=0.25)
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/__init__.py", line 226, in spin_once
+    executor.spin_once(timeout_sec=timeout_sec)
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 926, in spin_once
+    self._spin_once_impl(timeout_sec)
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 907, in _spin_once_impl
+    handler, entity, node = self.wait_for_ready_callbacks(
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 877, in wait_for_ready_callbacks
+    return next(self._cb_iter)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 785, in _wait_for_ready_callbacks
+    raise ExternalShutdownException()
+rclpy.executors.ExternalShutdownException

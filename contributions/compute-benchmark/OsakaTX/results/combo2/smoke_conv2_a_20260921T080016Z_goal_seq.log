@@ -1,0 +1,5 @@
+[INFO] [1789977649.730636315] [nav_goal_seq]: cycle 1 sending goal x=1.061 y=1.061 yaw=0.000 [CONVERGE]
+[INFO] [1789977649.734123277] [nav_goal_seq]: cycle 1 goal ACCEPTED: True
+[INFO] [1789977660.055326124] [nav_goal_seq]: cycle 1 goal FINAL status=4 SUCCEEDED (next in 2.0s)
+[INFO] [1789977662.066578753] [nav_goal_seq]: cycle 2 sending goal x=4.000 y=4.000 yaw=0.000
+[INFO] [1789977662.068174935] [nav_goal_seq]: cycle 2 goal ACCEPTED: True

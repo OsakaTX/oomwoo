@@ -235,3 +235,10 @@ docker exec oomwoo-bench bash -c '
   +19.4/+21.8 MiB and +5.1/+5.2 pp CPU vs composable, −133/−134 MiB and
   −29/−32 pp vs singleton (2 reps, cgroup-deduped). Composable stays the
   default; hybrid is the measured isolation-gradation option.
+- `docs/adr-0018-measured-goal-regime-combo-asymmetry.md` — measured nav-goal
+  regime 2x2 (churn vs converge x async vs lifelong; `run_combo_regime_bench.sh`
+  + `nav_goal_seq.py` + `nav2_params_converge.yaml`): the terminal-gated
+  cancel-churn/converge regimes differ by <= ~3 pp nav2-container CPU and a few
+  MiB — the SLAM arm, not the goal regime, dominates system memory (async
+  +8.4 vs lifelong +0.4 MiB/min; +27..30 MiB steady gap; lifelong ~+20 pp CPU)
+  with the ADR-0015 arm asymmetry now measured instead of assumed-equal.

@@ -1,0 +1,59 @@
+[INFO] [1789979522.481037532] [nav_goal_seq]: cycle 1 sending goal x=1.061 y=1.061 yaw=0.000 [CONVERGE]
+[INFO] [1789979522.483036333] [nav_goal_seq]: cycle 1 goal ACCEPTED: True
+[INFO] [1789979522.543771779] [nav_goal_seq]: cycle 1 goal FINAL status=4 SUCCEEDED (next in 2.0s)
+[INFO] [1789979524.550922179] [nav_goal_seq]: cycle 2 sending goal x=1.061 y=1.061 yaw=0.000 [CONVERGE]
+[INFO] [1789979524.553518081] [nav_goal_seq]: cycle 2 goal ACCEPTED: True
+[INFO] [1789979524.614779126] [nav_goal_seq]: cycle 2 goal FINAL status=4 SUCCEEDED (next in 2.0s)
+[INFO] [1789979526.622035190] [nav_goal_seq]: cycle 3 sending goal x=1.061 y=1.061 yaw=0.000 [CONVERGE]
+[INFO] [1789979526.623996491] [nav_goal_seq]: cycle 3 goal ACCEPTED: True
+[INFO] [1789979563.698661789] [nav_goal_seq]: cycle 3 goal FINAL status=4 SUCCEEDED (next in 2.0s)
+[INFO] [1789979565.705913387] [nav_goal_seq]: cycle 4 sending goal x=1.061 y=1.061 yaw=0.000 [CONVERGE]
+[INFO] [1789979565.709720188] [nav_goal_seq]: cycle 4 goal ACCEPTED: True
+[INFO] [1789979565.759545708] [nav_goal_seq]: cycle 4 goal FINAL status=4 SUCCEEDED (next in 2.0s)
+[INFO] [1789979567.766358772] [nav_goal_seq]: cycle 5 sending goal x=1.061 y=1.061 yaw=0.000 [CONVERGE]
+[INFO] [1789979567.768041372] [nav_goal_seq]: cycle 5 goal ACCEPTED: True
+[INFO] [1789979603.708978334] [nav_goal_seq]: cycle 5 goal FINAL status=4 SUCCEEDED (next in 2.0s)
+[INFO] [1789979605.715497900] [nav_goal_seq]: cycle 6 sending goal x=1.061 y=1.061 yaw=0.000 [CONVERGE]
+[INFO] [1789979605.717131600] [nav_goal_seq]: cycle 6 goal ACCEPTED: True
+[INFO] [1789979605.771377804] [nav_goal_seq]: cycle 6 goal FINAL status=4 SUCCEEDED (next in 2.0s)
+[INFO] [1789979607.781591540] [nav_goal_seq]: cycle 7 sending goal x=1.061 y=1.061 yaw=0.000 [CONVERGE]
+[INFO] [1789979607.787380141] [nav_goal_seq]: cycle 7 goal ACCEPTED: True
+[INFO] [1789979643.696899262] [nav_goal_seq]: cycle 7 goal FINAL status=4 SUCCEEDED (next in 2.0s)
+[INFO] [1789979645.703344546] [nav_goal_seq]: cycle 8 sending goal x=1.061 y=1.061 yaw=0.000 [CONVERGE]
+[INFO] [1789979645.705623146] [nav_goal_seq]: cycle 8 goal ACCEPTED: True
+[INFO] [1789979683.647796912] [nav_goal_seq]: cycle 8 goal FINAL status=4 SUCCEEDED (next in 2.0s)
+[INFO] [1789979685.654946957] [nav_goal_seq]: cycle 9 sending goal x=1.061 y=1.061 yaw=0.000 [CONVERGE]
+[INFO] [1789979685.656579856] [nav_goal_seq]: cycle 9 goal ACCEPTED: True
+[INFO] [1789979685.707020432] [nav_goal_seq]: cycle 9 goal FINAL status=4 SUCCEEDED (next in 2.0s)
+[INFO] [1789979687.713218651] [nav_goal_seq]: cycle 10 sending goal x=1.061 y=1.061 yaw=0.000 [CONVERGE]
+[INFO] [1789979687.714925850] [nav_goal_seq]: cycle 10 goal ACCEPTED: True
+[INFO] [1789979722.716110958] [nav_goal_seq]: cycle 10 goal FINAL status=4 SUCCEEDED (next in 2.0s)
+[INFO] [1789979724.724164015] [nav_goal_seq]: cycle 11 sending goal x=1.061 y=1.061 yaw=0.000 [CONVERGE]
+[INFO] [1789979724.726001514] [nav_goal_seq]: cycle 11 goal ACCEPTED: True
+[INFO] [1789979724.786103570] [nav_goal_seq]: cycle 11 goal FINAL status=4 SUCCEEDED (next in 2.0s)
+[INFO] [1789979726.792751403] [nav_goal_seq]: cycle 12 sending goal x=1.061 y=1.061 yaw=0.000 [CONVERGE]
+[INFO] [1789979726.794397002] [nav_goal_seq]: cycle 12 goal ACCEPTED: True
+[INFO] [1789979762.735698652] [nav_goal_seq]: cycle 12 goal FINAL status=4 SUCCEEDED (next in 2.0s)
+[INFO] [1789979764.742544947] [nav_goal_seq]: cycle 13 sending goal x=1.061 y=1.061 yaw=0.000 [CONVERGE]
+[INFO] [1789979764.744377145] [nav_goal_seq]: cycle 13 goal ACCEPTED: True
+[INFO] [1789979764.794579298] [nav_goal_seq]: cycle 13 goal FINAL status=4 SUCCEEDED (next in 2.0s)
+[INFO] [1789979766.801013570] [nav_goal_seq]: cycle 14 sending goal x=1.061 y=1.061 yaw=0.000 [CONVERGE]
+[INFO] [1789979766.802551069] [nav_goal_seq]: cycle 14 goal ACCEPTED: True
+[INFO] [1789979802.743206074] [nav_goal_seq]: cycle 14 goal FINAL status=4 SUCCEEDED (next in 2.0s)
+[INFO] [1789979804.749665743] [nav_goal_seq]: cycle 15 sending goal x=1.061 y=1.061 yaw=0.000 [CONVERGE]
+[INFO] [1789979804.751209441] [nav_goal_seq]: cycle 15 goal ACCEPTED: True
+[INFO] [1789979804.802054782] [nav_goal_seq]: cycle 15 goal FINAL status=4 SUCCEEDED (next in 2.0s)
+[INFO] [1789979806.809418627] [nav_goal_seq]: cycle 16 sending goal x=1.061 y=1.061 yaw=0.000 [CONVERGE]
+[INFO] [1789979806.812082524] [nav_goal_seq]: cycle 16 goal ACCEPTED: True
+[INFO] [1789979842.742528396] [nav_goal_seq]: cycle 16 goal FINAL status=4 SUCCEEDED (next in 2.0s)
+[INFO] [1789979844.750752266] [nav_goal_seq]: cycle 17 sending goal x=1.061 y=1.061 yaw=0.000 [CONVERGE]
+[INFO] [1789979844.754430261] [nav_goal_seq]: cycle 17 goal ACCEPTED: True
+[INFO] [1789979844.815210079] [nav_goal_seq]: cycle 17 goal FINAL status=4 SUCCEEDED (next in 2.0s)
+[INFO] [1789979846.821454132] [nav_goal_seq]: cycle 18 sending goal x=1.061 y=1.061 yaw=0.000 [CONVERGE]
+[INFO] [1789979846.823044030] [nav_goal_seq]: cycle 18 goal ACCEPTED: True
+[INFO] [1789979882.697296894] [nav_goal_seq]: cycle 18 goal FINAL status=4 SUCCEEDED (next in 2.0s)
+[INFO] [1789979884.709174894] [nav_goal_seq]: cycle 19 sending goal x=1.061 y=1.061 yaw=0.000 [CONVERGE]
+[INFO] [1789979884.711119791] [nav_goal_seq]: cycle 19 goal ACCEPTED: True
+[INFO] [1789979884.761731213] [nav_goal_seq]: cycle 19 goal FINAL status=4 SUCCEEDED (next in 2.0s)
+[INFO] [1789979886.768226503] [nav_goal_seq]: cycle 20 sending goal x=1.061 y=1.061 yaw=0.000 [CONVERGE]
+[INFO] [1789979886.769589801] [nav_goal_seq]: cycle 20 goal ACCEPTED: True

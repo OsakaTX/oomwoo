@@ -1,0 +1,43 @@
+wrote /wt/contributions/compute-benchmark/OsakaTX/scripts/../results/combo2/combo2_nav2_map.pgm/.yaml (200x200, 912 occupied cells @ 0.05 m)
+=== [2026-09-21T08:22:52Z] arm=async regime=converge every=22.0 -> /wt/contributions/compute-benchmark/OsakaTX/scripts/../results/combo2/regC1_20260921T082252Z.csv
+=== goal seq pid 235613 (regime converge, slice/pause 22.0/2.0 s) ===
+=== node list ===
+/behavior_server
+/bt_navigator
+/bt_navigator_navigate_through_poses_rclcpp_node
+/bt_navigator_navigate_to_pose_rclcpp_node
+/collision_monitor
+/controller_server
+/docking_server
+/global_costmap/global_costmap
+/launch_ros_235502
+/launch_ros_235503
+/lifecycle_manager_navigation
+/local_costmap/local_costmap
+/nav2_container
+/planner_server
+/route_server
+/slam_toolbox
+/smoother_server
+/synthetic_scan_publisher
+/transform_listener_impl_5e311c003840
+/transform_listener_impl_7657c4002080
+/transform_listener_impl_7657cc0020e0
+/velocity_smoother
+/waypoint_follower
+=== tf map->odom (slam must own it) ===
+At time 1789979017.799219112
+- Translation: [0.000, 0.010, 0.000]
+- Rotation: in Quaternion (xyzw) [0.000, 0.000, 0.000, 1.000]
+- Rotation: in RPY (radian) [0.000, -0.000, 0.000]
+=== stopping stack ===
+=== CSV: /wt/contributions/compute-benchmark/OsakaTX/scripts/../results/combo2/regC1_20260921T082252Z.csv ===
+=== terminal goal cycles (F) ===
+20
+=== settle / watchdog / slice events ===
+=== slam health ===
+odom-pose failures: 0
+=== nav2 health ===
+state-change failures: 0
+costmap resizes: 2
+=== done 2026-09-21T08:30:02Z ===

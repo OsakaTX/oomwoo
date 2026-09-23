@@ -507,3 +507,39 @@ savings at ~14 pct of its CPU cost** (from the rep-mean gaps: mem
 remains the 2 GB-budget default, hybrid is the measured middle option when
 fault containment of the navigation core is wanted (one process holds
 bt_navigator+controller+planner faults instead of all twelve servers).
+
+## 19. Goal-regime 2x2 on the combo stack: churn vs converge, async vs lifelong — 2026-09-21
+
+Measured the goal-REGIME axis ADR-0015 left asymmetric (committed 2026-09-23
+from the 09-21 session's verified artifacts): same combo stack, stimulus,
+params and sampler as §16, with a NEW terminal-gated seq driver
+(`scripts/nav_goal_seq.py` + `scripts/run_combo_regime_bench.sh`): churn =
+22 s slice + cancel + 2 s pause on the (4,4) corner; converge = same cycle
+budget against the on-trajectory point (1.061, 1.061) with a widened
+goal checker (`scripts/nav2_params_converge.yaml`, motivated by measured
+smokes: stock checker never converges a pass-by on the feed-forward
+robot, 0 terminal cycles; widened checker: SUCCEEDED in ~10 s).
+Matrix + results (dev-ref x86, last-half):
+
+| cell | regime/arm | terminal cycles | nav2 ctr PSS/CPU | slam PSS/CPU | SYSTEM PSS / cpu-sum | slam slope MiB/min (R2) |
+|---|---|---|---|---|---|---|
+| regA1 / regA2 | churn/async | 17 (15C+2A) / 15 (15C) | 149.7/48.7 · 146.1/46.6 | 77.4/19.4 · 77.7/19.0 | 327.3 & 323.9 / 80.2 & 77.3 | +8.380/.9997 · +8.445/.9996 |
+| regB1 | churn/lifelong | 16 (15C+1A) | 147.5/47.3 | 49.4/39.9 | 296.9 / 99.7 | +0.447 (.964) |
+| regC1 | conv/async | 20 SUCCEEDED | 143.4/45.9 | 77.5/19.3 | 321.0 / 76.7 | +8.395 (.9997) |
+| regD1 | conv/lifelong | 19 SUCCEEDED | 143.9/47.4 | 49.5/38.1 | 293.2 / 97.0 | +0.395 (.949) |
+
+Regime effect bounded: nav2-container churn−converge = +6.3/+2.8 (async,
+A1/A2) and +3.6 MiB (lifelong), CPU ≤ +2.8 pp — second-order vs the ARM
+effect, which reproduces under the now-equalized cadence: async−lifelong
+SYSTEM +30.3/+27.0 MiB (churn) and +27.8 MiB (converge); lifelong CPU
+premium +19.5/+20.4 pp. Slam growth constants reproduce in-combo under
+both regimes (async +8.38..8.45 vs §16's +8.085; lifelong +0.45/+0.40 vs
+§16's +0.556/+0.108 band) — ADR-0015's numbers were not regime artifacts.
+Health: 0 odom-pose failures and 0 state-change failures in all runs;
+39/39 converge cycles SUCCEEDED; churn parity 17/16 terminal cycles at
+identical 22+2 s cadence. Raw data + per-run driver/health logs
+`results/combo2/`, analyzer JSON + stdout archived alongside. Full record:
+`docs/adr-0018-*.md`. Provenance: produced 2026-09-21, verified 2026-09-23
+(JSON re-cross-check of every table figure + analyzer stdout reproduced
+from the archived CSVs + goal-log census + smoke-convergence evidence),
+committed without re-running.

@@ -1,0 +1,51 @@
+wrote /wt/contributions/compute-benchmark/OsakaTX/scripts/../results/combo2/combo2_nav2_map.pgm/.yaml (200x200, 912 occupied cells @ 0.05 m)
+=== [2026-09-21T08:06:02Z] arm=async regime=churn every=22.0 -> /wt/contributions/compute-benchmark/OsakaTX/scripts/../results/combo2/regA1_20260921T080602Z.csv
+=== goal seq pid 131582 (regime churn, slice/pause 22.0/2.0 s) ===
+=== node list ===
+/behavior_server
+/bt_navigator
+/bt_navigator_navigate_through_poses_rclcpp_node
+/bt_navigator_navigate_to_pose_rclcpp_node
+/collision_monitor
+/controller_server
+/docking_server
+/global_costmap/global_costmap
+/launch_ros_131470
+/launch_ros_131471
+/lifecycle_manager_navigation
+/local_costmap/local_costmap
+/nav2_container
+/planner_server
+/route_server
+/slam_toolbox
+/smoother_server
+/synthetic_scan_publisher
+/transform_listener_impl_5ddb3b85d750
+/transform_listener_impl_7b8970002080
+/transform_listener_impl_7b89840020e0
+/velocity_smoother
+/waypoint_follower
+=== tf map->odom (slam must own it) ===
+At time 1789978006.432425331
+- Translation: [-0.003, 0.004, 0.000]
+- Rotation: in Quaternion (xyzw) [0.000, 0.000, -0.002, 1.000]
+- Rotation: in RPY (radian) [0.000, 0.000, -0.003]
+=== stopping stack ===
+=== CSV: /wt/contributions/compute-benchmark/OsakaTX/scripts/../results/combo2/regA1_20260921T080602Z.csv ===
+=== terminal goal cycles (F) ===
+17
+=== settle / watchdog / slice events ===
+[INFO] [1789978027.478123815] [nav_goal_seq]: cycle 1 SLICE elapsed -> canceling
+[INFO] [1789978051.511274083] [nav_goal_seq]: cycle 2 SLICE elapsed -> canceling
+[INFO] [1789978075.561451639] [nav_goal_seq]: cycle 3 SLICE elapsed -> canceling
+[INFO] [1789978099.593859568] [nav_goal_seq]: cycle 4 SLICE elapsed -> canceling
+[INFO] [1789978123.623836848] [nav_goal_seq]: cycle 5 SLICE elapsed -> canceling
+[INFO] [1789978147.644752345] [nav_goal_seq]: cycle 6 SLICE elapsed -> canceling
+[INFO] [1789978171.668960203] [nav_goal_seq]: cycle 7 SLICE elapsed -> canceling
+[INFO] [1789978195.718364291] [nav_goal_seq]: cycle 8 SLICE elapsed -> canceling
+=== slam health ===
+odom-pose failures: 0
+=== nav2 health ===
+state-change failures: 0
+costmap resizes: 18
+=== done 2026-09-21T08:13:09Z ===
