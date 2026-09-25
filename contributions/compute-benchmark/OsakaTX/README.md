@@ -242,3 +242,11 @@ docker exec oomwoo-bench bash -c '
   MiB — the SLAM arm, not the goal regime, dominates system memory (async
   +8.4 vs lifelong +0.4 MiB/min; +27..30 MiB steady gap; lifelong ~+20 pp CPU)
   with the ADR-0015 arm asymmetry now measured instead of assumed-equal.
+- `docs/adr-0019-measured-combo-noise-frontier.md` — LiDAR range-noise sigma
+  0/0.05/0.15 x {async, lifelong} on the combo stack, churn regime (driver
+  gains `--noise`; new `slam_slope_lasthalf.py` last-half-slope helper):
+  system memory noise-robust end-to-end (async cells inside the sigma-0
+  spread; lifelong plateau 49.4->51.5->52.0 MiB last-half), async slam CPU
+  +~3 pp, nav2 flat — NEW: lifelong slam thread-sum CPU 39.9->95.4->119.3
+  monotone in sigma, the top system consumer at sigma>=0.05 (share 40->66%);
+  converge x noise cells and CPU attribution open (Next).

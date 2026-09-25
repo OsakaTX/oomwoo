@@ -543,3 +543,40 @@ identical 22+2 s cadence. Raw data + per-run driver/health logs
 (JSON re-cross-check of every table figure + analyzer stdout reproduced
 from the archived CSVs + goal-log census + smoke-convergence evidence),
 committed without re-running.
+
+## 20. LiDAR range-noise frontier on the combo stack: sigma 0/0.05/0.15 x
+{async, lifelong} under churn — 2026-09-25
+
+Measured the noise half of ADR-0018 open item 2 ("the noise axis x regime —
+the combo noise-map of ADR-0015 open item 3"): same driver/stack/sampler as
+§19 with ONE new plumbing arg (`run_combo_regime_bench.sh --noise SIGMA` ->
+publisher's ADR-0014 deterministic range-noise), sigma-0 column = §19's
+regA1/A2/B1 re-derived this session and matching the published table exactly.
+System last-half (analyzer accounting unchanged; lh = last-half; slam lh
+slopes from new `scripts/slam_slope_lasthalf.py`):
+
+| sigma/arm | SYSTEM PSS / cpu-sum | slam lh-PSS / lh-CPU | lh-slope MiB/min |
+|---|---|---|---|
+| 0.00 async (A1/A2) | 327.3 & 323.9 / 80.2 & 77.3 | 77.4 & 77.7 / 19.4 & 19.0 | +8.256 & +8.310 |
+| 0.05 async (E1/E2) | 327.3 & 325.8 / 80.5 & 80.2 | 77.7 & 77.8 / 21.8 & 22.0 | +8.350 & +8.420 |
+| 0.15 async (E3) | 323.0 / 82.5 | 77.7 / 22.5 | +8.555 |
+| 0.00 lifelong (B1) | 296.9 / 99.7 | 49.4 / 39.9 | +0.340 |
+| 0.05 lifelong (F1) | 295.1 / 154.8 | 51.5 / 95.4 | +0.783 |
+| 0.15 lifelong (F2) | 298.3 / 179.5 | 52.0 / 119.3 | +0.924 |
+
+Noise-robust end-to-end on memory: every sigma cell inside the sigma-0
+spread (async ~3.4 MiB band; lifelong within ~1.4 MiB of B1; plateau
+49.4->51.5->52.0, drift <= +0.6 MiB/min). CPU: async +2.4..3.1 pp slam
+lh-CPU, nav2 flat (46.4..48.7) everywhere; the NEW result is the lifelong
+slam-CPU monotone 39.9 -> 95.4 -> 119.3 (thread-sum; F2 per-fifth 87->102->
+112->118->122), making lifelong-slam the top system CPU consumer for
+sigma >= 0.05 (share 40->62->66 %) — async vs lifelong at noise is
+~25..30 MiB steady-memory savings bought at ~70..100 pp slam CPU on this
+host (ADR-0005 lifelong-CPU margin must be re-validated on target with the
+noise axis, see ADR-0019 Next 4). Health 0/0/0 all runs; converge sigma0.05
+smoke 5/5 SUCCEEDED (functional preflight only). Raw per-run artifacts +
+`noise_frontier_analysis.{json,stdout.txt}` + `noise_frontier_healthcheck.txt`
+in `results/combo2/`. Full record: `docs/adr-0019-measured-combo-noise-frontier.md`.
+Provenance: produced AND verified 2026-09-25 (same session, numbers from
+live analyzer runs archived as stdout); noiseE1 post-run echo lost with an
+interrupted client, health from log census — CSV complete.

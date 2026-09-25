@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/wt/contributions/compute-benchmark/OsakaTX/scripts/nav_goal_seq.py", line 45, in <module>
+    import rclpy
+ModuleNotFoundError: No module named 'rclpy'

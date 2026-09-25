@@ -1,0 +1,64 @@
+[INFO] [1790342310.722354707] [nav_goal_seq]: cycle 1 sending goal x=4.000 y=4.000 yaw=0.000
+[INFO] [1790342310.724571715] [nav_goal_seq]: cycle 1 goal ACCEPTED: True
+[INFO] [1790342332.735147889] [nav_goal_seq]: cycle 1 SLICE elapsed -> canceling
+[INFO] [1790342332.756805675] [nav_goal_seq]: cycle 1 goal FINAL status=5 CANCELED (next in 2.0s)
+[INFO] [1790342334.767732521] [nav_goal_seq]: cycle 2 sending goal x=4.000 y=4.000 yaw=0.000
+[INFO] [1790342334.769778929] [nav_goal_seq]: cycle 2 goal ACCEPTED: True
+[INFO] [1790342356.771443960] [nav_goal_seq]: cycle 2 SLICE elapsed -> canceling
+[INFO] [1790342356.793523648] [nav_goal_seq]: cycle 2 goal FINAL status=5 CANCELED (next in 2.0s)
+[INFO] [1790342358.800226849] [nav_goal_seq]: cycle 3 sending goal x=4.000 y=4.000 yaw=0.000
+[INFO] [1790342358.801981556] [nav_goal_seq]: cycle 3 goal ACCEPTED: True
+[INFO] [1790342380.812413778] [nav_goal_seq]: cycle 3 SLICE elapsed -> canceling
+[INFO] [1790342380.824005525] [nav_goal_seq]: cycle 3 goal FINAL status=5 CANCELED (next in 2.0s)
+[INFO] [1790342382.831094594] [nav_goal_seq]: cycle 4 sending goal x=4.000 y=4.000 yaw=0.000
+[INFO] [1790342382.832635100] [nav_goal_seq]: cycle 4 goal ACCEPTED: True
+[INFO] [1790342404.834084708] [nav_goal_seq]: cycle 4 SLICE elapsed -> canceling
+[INFO] [1790342404.855743396] [nav_goal_seq]: cycle 4 goal FINAL status=5 CANCELED (next in 2.0s)
+[INFO] [1790342406.868299651] [nav_goal_seq]: cycle 5 sending goal x=4.000 y=4.000 yaw=0.000
+[INFO] [1790342406.870205759] [nav_goal_seq]: cycle 5 goal ACCEPTED: True
+[INFO] [1790342428.870924752] [nav_goal_seq]: cycle 5 SLICE elapsed -> canceling
+[INFO] [1790342428.891820338] [nav_goal_seq]: cycle 5 goal FINAL status=5 CANCELED (next in 2.0s)
+[INFO] [1790342430.899473335] [nav_goal_seq]: cycle 6 sending goal x=4.000 y=4.000 yaw=0.000
+[INFO] [1790342430.901650244] [nav_goal_seq]: cycle 6 goal ACCEPTED: True
+[INFO] [1790342452.912267934] [nav_goal_seq]: cycle 6 SLICE elapsed -> canceling
+[INFO] [1790342452.942240157] [nav_goal_seq]: cycle 6 goal FINAL status=5 CANCELED (next in 2.0s)
+[INFO] [1790342454.948434107] [nav_goal_seq]: cycle 7 sending goal x=4.000 y=4.000 yaw=0.000
+[INFO] [1790342454.949774113] [nav_goal_seq]: cycle 7 goal ACCEPTED: True
+[INFO] [1790342476.950467889] [nav_goal_seq]: cycle 7 SLICE elapsed -> canceling
+[INFO] [1790342476.971899378] [nav_goal_seq]: cycle 7 goal FINAL status=5 CANCELED (next in 2.0s)
+[INFO] [1790342478.978316284] [nav_goal_seq]: cycle 8 sending goal x=4.000 y=4.000 yaw=0.000
+[INFO] [1790342478.980134292] [nav_goal_seq]: cycle 8 goal ACCEPTED: True
+[INFO] [1790342500.990281906] [nav_goal_seq]: cycle 8 SLICE elapsed -> canceling
+[INFO] [1790342501.002575757] [nav_goal_seq]: cycle 8 goal FINAL status=5 CANCELED (next in 2.0s)
+[INFO] [1790342503.009341918] [nav_goal_seq]: cycle 9 sending goal x=4.000 y=4.000 yaw=0.000
+[INFO] [1790342503.011150826] [nav_goal_seq]: cycle 9 goal ACCEPTED: True
+[INFO] [1790342525.013768478] [nav_goal_seq]: cycle 9 SLICE elapsed -> canceling
+[INFO] [1790342525.044615508] [nav_goal_seq]: cycle 9 goal FINAL status=5 CANCELED (next in 2.0s)
+[INFO] [1790342527.051709021] [nav_goal_seq]: cycle 10 sending goal x=4.000 y=4.000 yaw=0.000
+[INFO] [1790342527.053133927] [nav_goal_seq]: cycle 10 goal ACCEPTED: True
+[INFO] [1790342549.053767516] [nav_goal_seq]: cycle 10 SLICE elapsed -> canceling
+[INFO] [1790342549.076720413] [nav_goal_seq]: cycle 10 goal FINAL status=5 CANCELED (next in 2.0s)
+[INFO] [1790342551.083800374] [nav_goal_seq]: cycle 11 sending goal x=4.000 y=4.000 yaw=0.000
+[INFO] [1790342551.085488681] [nav_goal_seq]: cycle 11 goal ACCEPTED: True
+[INFO] [1790342573.086201090] [nav_goal_seq]: cycle 11 SLICE elapsed -> canceling
+[INFO] [1790342573.107463480] [nav_goal_seq]: cycle 11 goal FINAL status=5 CANCELED (next in 2.0s)
+[INFO] [1790342575.113612984] [nav_goal_seq]: cycle 12 sending goal x=4.000 y=4.000 yaw=0.000
+[INFO] [1790342575.116360895] [nav_goal_seq]: cycle 12 goal ACCEPTED: True
+[INFO] [1790342597.117266700] [nav_goal_seq]: cycle 12 SLICE elapsed -> canceling
+[INFO] [1790342597.137886788] [nav_goal_seq]: cycle 12 goal FINAL status=5 CANCELED (next in 2.0s)
+[INFO] [1790342599.146832648] [nav_goal_seq]: cycle 13 sending goal x=4.000 y=4.000 yaw=0.000
+[INFO] [1790342599.148744156] [nav_goal_seq]: cycle 13 goal ACCEPTED: True
+[INFO] [1790342621.149490032] [nav_goal_seq]: cycle 13 SLICE elapsed -> canceling
+[INFO] [1790342621.171866428] [nav_goal_seq]: cycle 13 goal FINAL status=5 CANCELED (next in 2.0s)
+[INFO] [1790342623.178302019] [nav_goal_seq]: cycle 14 sending goal x=4.000 y=4.000 yaw=0.000
+[INFO] [1790342623.180413429] [nav_goal_seq]: cycle 14 goal ACCEPTED: True
+[INFO] [1790342643.283107494] [nav_goal_seq]: cycle 14 goal FINAL status=6 ABORTED (next in 2.0s)
+[INFO] [1790342645.289442622] [nav_goal_seq]: cycle 15 sending goal x=4.000 y=4.000 yaw=0.000
+[INFO] [1790342645.290916528] [nav_goal_seq]: cycle 15 goal ACCEPTED: True
+[INFO] [1790342667.291781352] [nav_goal_seq]: cycle 15 SLICE elapsed -> canceling
+[INFO] [1790342667.315722756] [nav_goal_seq]: cycle 15 goal FINAL status=5 CANCELED (next in 2.0s)
+[INFO] [1790342669.322217723] [nav_goal_seq]: cycle 16 sending goal x=4.000 y=4.000 yaw=0.000
+[INFO] [1790342669.323516728] [nav_goal_seq]: cycle 16 goal ACCEPTED: True
+[INFO] [1790342688.294761029] [nav_goal_seq]: cycle 16 goal FINAL status=6 ABORTED (next in 2.0s)
+[INFO] [1790342690.304937544] [nav_goal_seq]: cycle 17 sending goal x=4.000 y=4.000 yaw=0.000
+[INFO] [1790342690.306675751] [nav_goal_seq]: cycle 17 goal ACCEPTED: True

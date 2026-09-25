@@ -22,6 +22,9 @@
 #       2. per-window terminal-cycle count G is counted ex post from the
 #          goal log ('cycle N goal FINAL') and recorded in the ADR - equal
 #          churn is VERIFIED, not assumed.
+#       3. ADR-0019: --noise SIGMA passes the publisher's deterministic
+#          range-noise knob through (default 0.0 = the historical noiseless
+#          stimulus; sigma semantics identical to ADR-0014).
 #   * 2x2 matrix {churn, converge} x {async, lifelong}, equal windows.
 #   * Dev-reference x86 container numbers; NOT Pi/CM class.
 #
@@ -47,12 +50,13 @@ pause=2.0
 cx=1.0606601717749816 # 1.5/sqrt(2): lies ON the publisher's r=1.5 circle
 cy=1.0606601717749816
 warmup=40
+noise=0.0
 
 usage() {
   cat <<EOF
 Usage: run_combo_regime_bench.sh --regime churn|converge --arm async|lifelong
          --label LABEL [--duration S] [--every S] [--pause S]
-         [--cx X] [--cy Y] [--warmup S]
+         [--cx X] [--cy Y] [--warmup S] [--noise SIGMA]
 EOF
 }
 
@@ -67,6 +71,7 @@ while [[ $# -gt 0 ]]; do
     --cx) cx="${2:-}"; shift 2;;
     --cy) cy="${2:-}"; shift 2;;
     --warmup) warmup="${2:-}"; shift 2;;
+    --noise) noise="${2:-}"; shift 2;;
     -h|--help) usage; exit 0;;
     *) echo "ERROR: unknown arg $1" >&2; usage; exit 2;;
   esac
@@ -120,8 +125,9 @@ GOALLOG="$outdir/${TAG}_goal_seq.log"
 python3 "$MAPGEN" --out "$outdir/${MAPBASE}" 2>"$outdir/${TAG}_mapgen.log"
 [[ -f "$MAPYAML" ]] || { echo "ERROR: mapgen produced no $MAPYAML" >&2; exit 2; }
 
-echo "=== [$(date -u +%FT%TZ)] arm=$arm regime=$regime every=$every -> $OUTCSV"
+echo "=== [$(date -u +%FT%TZ)] arm=$arm regime=$regime every=$every noise=$noise -> $OUTCSV"
 python3 "$PUBLISHER" --duration $((duration + warmup + 60)) --loop-s 40 --hz "$hz" \
+  --noise "$noise" \
   >"$outdir/${TAG}_publisher.log" 2>&1 &
 pub_pid=$!
 sleep 2

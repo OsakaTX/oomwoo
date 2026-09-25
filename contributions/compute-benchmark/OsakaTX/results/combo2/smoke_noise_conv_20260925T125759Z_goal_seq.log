@@ -1,0 +1,15 @@
+[INFO] [1790341122.128756289] [nav_goal_seq]: cycle 1 sending goal x=1.061 y=1.061 yaw=0.000 [CONVERGE]
+[INFO] [1790341122.131359702] [nav_goal_seq]: cycle 1 goal ACCEPTED: True
+[INFO] [1790341122.403612872] [nav_goal_seq]: cycle 1 goal FINAL status=4 SUCCEEDED (next in 2.0s)
+[INFO] [1790341124.411336581] [nav_goal_seq]: cycle 2 sending goal x=1.061 y=1.061 yaw=0.000 [CONVERGE]
+[INFO] [1790341124.413212591] [nav_goal_seq]: cycle 2 goal ACCEPTED: True
+[INFO] [1790341124.463780345] [nav_goal_seq]: cycle 2 goal FINAL status=4 SUCCEEDED (next in 2.0s)
+[INFO] [1790341126.471210252] [nav_goal_seq]: cycle 3 sending goal x=1.061 y=1.061 yaw=0.000 [CONVERGE]
+[INFO] [1790341126.472850760] [nav_goal_seq]: cycle 3 goal ACCEPTED: True
+[INFO] [1790341163.397280626] [nav_goal_seq]: cycle 3 goal FINAL status=4 SUCCEEDED (next in 2.0s)
+[INFO] [1790341165.406409226] [nav_goal_seq]: cycle 4 sending goal x=1.061 y=1.061 yaw=0.000 [CONVERGE]
+[INFO] [1790341165.408204035] [nav_goal_seq]: cycle 4 goal ACCEPTED: True
+[INFO] [1790341165.458425388] [nav_goal_seq]: cycle 4 goal FINAL status=4 SUCCEEDED (next in 2.0s)
+[INFO] [1790341167.464699374] [nav_goal_seq]: cycle 5 sending goal x=1.061 y=1.061 yaw=0.000 [CONVERGE]
+[INFO] [1790341167.467525788] [nav_goal_seq]: cycle 5 goal ACCEPTED: True
+[INFO] [1790341203.407826949] [nav_goal_seq]: cycle 5 goal FINAL status=4 SUCCEEDED (next in 2.0s)

@@ -1,0 +1,41 @@
+Health postcheck, ADR-0019 noise-frontier session (2026-09-25). Every row is
+a census over the archived per-run logs in this directory (same greps the
+driver prints post-run; noiseE1's post-run echo block was lost with an
+interrupted session client, so figures come from this log census instead --
+the sampler window itself completed, samples 0..158).
+
+Reported per run: terminal goal finals (C=canceled path, A=ABORTED status 6,
+S=state 4 SUCCEEDED; converged/canceled finals that the driver's own earlier
+census modes counted; verify against <tag>_goal_seq.log), planner abort-path
+WARN lines in the nav2 launch log (ActionServer "Aborting handle.", the
+cancel machinery's normal footprint, domain-wide per server), odom-pose
+failures and state-change failures and process-death counts, costmap resizes.
+
+noiseE1_20260925T130159Z (: churn async sigma0.05)
+  finals 19 total = 14 CANCELED + 5 ABORTED; SLICE cancels 14
+  abort-path WARNs 46 (matches ~3 per aborted/canceled final: planner x2, bt
+  nav + controller on cycle-terminal); odom 0; state 0; died 0; resizes n/a (driver echo lost)
+  cycles ABORTED clustered in the last third (cycles 16..18): late-window
+  planner pressure, no crash.
+
+noiseE2_20260925T131030Z churn async sigma0.05 (rep)
+  finals 21 total = 13 CANCELED + 8 ABORTED; odom 0; state 0; died 0
+  resizes 105 (driver-echoed)
+
+noiseE3_20260925T131747Z churn async sigma0.15
+  finals 16 total = 14 CANCELED + 2 ABORTED; odom 0; state 0; died 0; resizes 51
+
+noiseF1_20260925T132529Z churn lifelong sigma0.05
+  finals 17 total = 15 CANCELED + 2 ABORTED; odom 0; state 0; died 0; resizes 44
+
+noiseF2_20260925T133246Z churn lifelong sigma0.15
+  finals 20 total = 14 CANCELED + 6 ABORTED; odom 0; state 0; died 0; resizes 54
+
+noise_smoke_conv_20260925T125759Z converge async sigma0.05, 90 s preflight
+  finals 5/5 SUCCEEDED; odom 0; state 0; died 0; resizes 36
+  (noiseless same-shape smoke 2026-09-21 smoke_conv2_a: SYSTEM 294.0 MiB, +8.269 MiB/min)
+
+Cross-run: 0 odom-pose failures and 0 state-change failures and 0
+process-death in ALL runs; async-cell ABORTED finals (2..8 per 390 s run)
+are the cancel/abort path doing its job late in the window, not stack
+degradation - noiseless A-cells showed 2 as well (see RESULTS.md sec 19).

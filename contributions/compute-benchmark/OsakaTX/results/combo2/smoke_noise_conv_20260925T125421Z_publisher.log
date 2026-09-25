@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/wt/contributions/compute-benchmark/OsakaTX/scripts/synthetic_scan_publisher.py", line 51, in <module>
+    import rclpy
+ModuleNotFoundError: No module named 'rclpy'
