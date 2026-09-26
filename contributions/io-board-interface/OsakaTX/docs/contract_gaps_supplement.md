@@ -61,11 +61,31 @@ for those.
 | OSK-033 | PB13 dual role: `RK-RESET` GPIO vs `FDCAN2_TX` alt-fn (xlsx row 52) | High | Open — decide before fw pins FDCAN2 (*new 09-22, `spec_crosscheck_20260922.md`; re-confirmed verbatim 09-24*) |
 | OSK-034 | `PI_SHUTDOWN` (PB6) teardown semantics undocumented (level/duration/ack/timeout; interaction with PI-RESET/STM-PWR-CTRL/RK-RESET) | High | Open — maintainer, before first HIL bring-up (*new 09-24, `spec_crosscheck_20260924.md` §2*) |
 | OSK-035 | `LED-HOME` dual-home: xlsx primary PC13 vs PB12 alias | Low-Med | Open — one maintainer xlsx note settles it (*new 09-24, `spec_crosscheck_20260924.md` §4*) |
+| OSK-036 | MCU↔charger `I2C3_SCL/SDA` + `~{CHG_INT}` removed from the schematic; replacement charger-status source undocumented after the power rework | Medium | Open — maintainer to name the replacement sense point (*new 09-26, `spec_crosscheck_20260926.md` §5*) |
+| OSK-037 | CPU reset/debug vs watchdog: CM5 `~{STM_RST}`/`BOOT0`/SWD now feed the MCU-reset/OR chain; fw must define the interplay; pins xlsx-unmapped | Low-Med | Open — fw side to state intended behavior (*new 09-26, `spec_crosscheck_20260926.md` §3/§5*) |
 
-Items OSK-007..033 live in the crosscheck history
-(`spec_crosscheck_20260809..20260922.md`), not in this file's detail sections; the
-three rows above are added here so the gap index carries every *currently open* id
-with a one-line status, per the house ledger convention.
+> Items OSK-007..033 live in the crosscheck history
+> (`spec_crosscheck_20260809..20260924.md`), not in this file's detail sections; the
+> five rows above are added here so the gap index carries every *currently open* id
+> with a one-line status, per the house ledger convention.
+>
+> **2026-09-26 status:** deltas only; full evidence in
+> [`spec_crosscheck_20260926.md`](spec_crosscheck_20260926.md). pcb lands three
+> commits on 09-26: `7326520f`/`5011752e` (SPEC audio notes + `## USB, UART
+> allocation`) and `c9b9c868` (71-file schematic/layout rework). Interface deltas,
+> parse-verified at the hierarchy boundary: (1) **WATCHDOG gains a SECOND STAGE** —
+> U4 `TP74LVC1G332S6` 3-input OR mixes new `DIS1/2/3` inputs into the reset chain;
+> root traces: DIS1←MCU `JTAG_PRESENCE` (new out), DIS2←SWDIO pair (MCU+CM5),
+> DIS3←`BOOT`←CM5 `BOOT0`; CM5 `~{STM_RST}` output joins the `~{PULSE_OUT}` /
+> `~{STM32_RST}` / `V-MOTORS-EN` net ⇒ **OSK-037 NEW (open, Low-Med)**: fw must
+> define CPU-reset/debug (`~{STM_RST}`/`BOOT0`/SWD) vs WDI-OR interplay. (2) MCU
+> sheet drops charger `I2C3_SCL/SDA` + `~{CHG_INT}`, charger sheet drops
+> `SCL/SDA/~{INT}` ⇒ **OSK-036 NEW (open, Medium)**: the MCU's charger-status
+> source after the power rework is undocumented. (3) CPU I²S audio is now real
+> silicon: SPEAKER sheet (2× NS4168) wired CM5-`I2S_SCLK/LRCLK/DOUT`+
+> `GPIO011`→`SP_SHUTDOWN` — CPU-owned, no contract message. (4) maintainer xlsx
+> NOT updated in the commit ⇒ new pins xlsx-unmapped; `PB12=LDR?` unverified.
+> Registry no drift (fw tip still `d103a5d4`; PR #6 open, docs-only).
 
 ---
 

@@ -162,6 +162,26 @@ supervisor). Full evidence: [`spec_crosscheck_20260909.md`](spec_crosscheck_2026
 >  — with **no level/timing/ack semantics documented anywhere yet**
 > (**OSK-034**, new, High; folded into §5's decision list). WATCHDOG.kicad_sch
 > untouched in that commit; `WDI`/`~{EN}`/`~{PULSE_OUT}` label set unchanged.
+>
+> **2026-09-26 refresh — the supervisor stage-count AND the reset
+> participants both change (`78bd659c`→`c9b9c868`; per
+> [`spec_crosscheck_20260926.md`](spec_crosscheck_20260926.md) §3):** the
+> WATCHDOG sheet now carries **U3 `STWD100NYWY3F` + NEW U4
+> `TP74LVC1G332S6` (single-gate 3-input OR, inc. C57)**; new hier labels
+> `DIS1/2/3` (OR inputs) replace `~{EN}` at the boundary. Root traces (this
+> run): `DIS1`←MCU `JTAG_PRESENCE` (new output), `DIS2`←the MCU+CM5 `SWDIO`
+> pair, `DIS3`←MCU `BOOT`←CM5 `BOOT0`. Simultaneously **CM5 `~{STM_RST}`
+> (output) joins the `~{PULSE_OUT}`/`~{STM32_RST}`/`V-MOTORS-EN` net** — the
+> CPU can now drive the MCU-reset/rail-cut line that OSK-024 assigned to the
+> watchdog `~{PULSE_OUT}` → `V-MOTORS-EN` pair. Consequences: the Tier-3
+> hardware supervisor is no longer a single fixed-timeout part in isolation —
+> a debug/flash OR-gate stage and a CPU-side reset driver sit between WDI
+> discipline and the reset line (`WDI`←MCU `WDO` is unchanged and remains the
+> only kick source). The 09-24 numeric record (1.6 s family, dual-edge WDI)
+> is untouched — U3 and its decoupling are still in circuit. Net-level
+> polarity of the OR inputs and the U4-output→reset relationship are layout
+> questions **flagged, not resolved** (marked as such in the crosscheck);
+> the U3 `EN` pin's post-rewrite driver is untraced this run.
 
 ## 3. Watchdog tiers and their boundaries
 
@@ -262,6 +282,19 @@ configuration and are marked unverified here.
    handshake timing question from 2026-09-22 stands with it. Same
    maintainer decision surfaces as items 1–3; folds into the fw #1/#3
    ratification track rather than a new repo.
+6. **Define the CPU reset/debug vs watchdog interplay (OSK-037, new
+   2026-09-26).** `c9b9c868` adds CM5 `~{STM_RST}` onto the
+   `~{PULSE_OUT}`/`~{STM32_RST}`/`V-MOTORS-EN` net and routes SWD/BOOT
+   (`SWCLK`/`SWDIO`, `BOOT0`→`BOOT`) from CPU to MCU, with a 3-input OR
+   (`TP74LVC1G332S6`) mixing `JTAG_PRESENCE`/SWD/`BOOT` into the reset chain
+   (`DIS1/2/3`). Firmware PR #3's watchdog core should state: may the CPU
+   hold/shape the MCU reset (e.g. across a reflash) and does WDI watching
+   pause while `DIS*` inputs assert; who arbitrates when the watchdog has
+   fired and the CPU then asserts `~{STM_RST}`; and the intended
+   `JTAG_PRESENCE` semantics (a debug-session flag? level or pulse?).
+   Pins (`JTAG_PRESENCE`, `SWCLK/SWDIO`, `BOOT`) are not yet in the
+   maintainer IO xlsx — the answer belongs in that spreadsheet plus the fw
+   watchdog doc.
 
 ## 6. Not duplicated here
 

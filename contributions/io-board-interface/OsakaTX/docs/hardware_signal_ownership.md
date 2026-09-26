@@ -53,6 +53,33 @@
 > says whether it reaches any message). Contract-silent: the 2×4 `MCU_IO1` debug header
 > (local pin-name labels only) left the MCU sheet. `PB13=RK-RESET` vs `FDCAN2_TX`
 > alt-fn (**OSK-033**) re-confirmed verbatim in the new xlsx, still open.
+>
+> **2026-09-26 refresh (pcb `78bd659c`→`c9b9c868`, per
+> [`spec_crosscheck_20260926.md`](spec_crosscheck_20260926.md) — parsed at the root
+> hierarchy boundary, every delta root-joined):** three ownership-surface changes.
+> (1) **Debug/reset moves into CPU↔MCU shared space**: new MCU outputs `SWCLK`,
+> `SWDIO`, `JTAG_PRESENCE` and new MCU input `BOOT`, paired at root with CM5
+> `SWCLK`/`SWDIO`/`BOOT0` outputs + a CM5 `~{STM_RST}` output into the MCU-reset
+> net (which also carries watchdog `~{PULSE_OUT}` and `V-MOTORS-EN` — OSK-024
+> pair now has a third participant); the **WATCHDOG sheet gains a second stage**
+> (U4 `TP74LVC1G332S6` 3-input OR; `DIS1`←`JTAG_PRESENCE`, `DIS2`←the SWDIO pair,
+> `DIS3`←the BOOT pair) ⇒ **OSK-037** (fw must define the CPU-reset/debug vs
+> watchdog interplay); the old root `~{EN}`↔MCU `3.3V_JTG` pair is gone — U3's
+> on-sheet `EN` driver is untraced (§8 of the crosscheck). (2) **MCU↔charger
+> link removed**: MCU `I2C3_SCL/I2C3_SDA` outputs + `~{CHG_INT}` input and the
+> charger `SCL/SDA/~{INT}` boundary pins all disappear with no successor at
+> either boundary ⇒ **OSK-036** (charger-status ownership after the power
+> rework is an open maintainer question). (3) **CPU-owned audio lands**: new
+> SPEAKER sheet (2× NS4168 class-D) fed CM5→sheet `I2S_SCLK→BCLK`,
+> `I2S_LRCLK→LRCLK`, `I2S_DOUT→DIN`, `GPIO011→SP_SHUTDOWN` — CM5 outputs,
+> MCU-uninvolved, no serial-contract message; recorded here for the CPU side of
+> the table only. `GPIO06` renamed `GPIO06{slash}GPCLK2` (same root coordinate).
+> **The maintainer xlsx was NOT updated in `c9b9c868`**: `JTAG_PRESENCE`,
+> `SWCLK/SWDIO`, `BOOT`, `GPIO011`, `SP_SHUTDOWN`-adjacent pins are
+> **xlsx-unmapped as of this run**; the sep24 xlsx remains authoritative only
+> for the rows it already covers (`PB12=LDR?` is inferred from the sheet
+> symbol, not xlsx-confirmed). MCU-sheet hier-label census 75→75 (set delta =
+> the seven names in (1)/(2)); CM5-GPIO 26→31.
 
 Cross-reference: I/O board **SPEC.md GPIO entries** → **CPU/MCU serial message fields**
 and **ROS2 topics**.
