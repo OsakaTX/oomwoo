@@ -37,6 +37,22 @@
 > `safety_watchdog_behavior.md`). Known name-drift instance (cosmetic,
 > net connected): MCU `LIDAR_EN` vs LiDAR-sheet `LiDAR-EN`
 > (OSK-031 pattern).
+>
+> **2026-09-24 refresh (pcb `a7ac0fd7`→`78bd659c`, per
+> [`spec_crosscheck_20260924.md`](spec_crosscheck_20260924.md)):** the CPU power
+> handshake gains its teardown leg — MCU-sheet output, CM5-GPIO input, root-joined
+> by one wire, xlsx-pinned as **`PI_SHUTDOWN` = PB6** (**OSK-034**: its level/timing/ack
+> semantics are undocumented; the "CPU power on/off" row in `CPU interface` below is its
+> contract-side counterpart, still message-less). Xlsx pin-map deltas: **PB12 primary
+> `LED-HOME`→`LDR`** (alias column keeps `LED-HOME`) while **PC13 gains `LED-HOME`** —
+> a dual-home ambiguity (**OSK-035**: PC13 per MCU label cluster vs PB12 alias; the
+> driving wire was not traced; the "Home LED" row in `Buttons and UI` below must not be
+> pinned to a physical pin until the maintainer disambiguates). A **GL5537-1 LDR + 10k
+> divider (R75/R103)** lands on the MCU sheet = a new **MCU-owned ambient-light input
+> with no contract message** (ownership row intentionally deferred until the maintainer
+> says whether it reaches any message). Contract-silent: the 2×4 `MCU_IO1` debug header
+> (local pin-name labels only) left the MCU sheet. `PB13=RK-RESET` vs `FDCAN2_TX`
+> alt-fn (**OSK-033**) re-confirmed verbatim in the new xlsx, still open.
 
 Cross-reference: I/O board **SPEC.md GPIO entries** → **CPU/MCU serial message fields**
 and **ROS2 topics**.

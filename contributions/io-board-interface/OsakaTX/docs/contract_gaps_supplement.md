@@ -1,5 +1,23 @@
 # Contract Gaps Supplement — OsakaTX
 
+> **2026-09-24 status:** deltas only; full evidence in
+> [`spec_crosscheck_20260924.md`](spec_crosscheck_20260924.md). (1) pcb `78bd659c`
+> "LDR" (2026-09-22, 11 files) adds **`PI_SHUTDOWN` = PB6** (MCU output → CM5 input,
+> fourth handshake signal next to 3.3V_EN/5V_EN/PI_DONE) ⇒ **OSK-034 NEW (open, High)**:
+> the teardown half of the power handshake has no level/timing/ack semantics anywhere —
+> maintainer rc *before* the first HIL bring-up (decision item added to
+> `safety_watchdog_behavior.md` §5.5). (2) GL5537-1 LDR + 10k divider lands on the MCU
+> sheet — new MCU-owned ambient-light analog input with **no contract message**;
+> retrains-watch owner decides if one is ever warranted (kept id-less; next free id
+> re-verified **`0x8006`** at fw `d103a5d4`). (3) **OSK-035 NEW (open, Low-Med)**:
+> maintainer xlsx moves the home-LED primary to PC13 while keeping a PB12 alias —
+> dual-home; one xlsx note settles it. (4) **OSK-029 numeric side closed**: the
+> STWD100NYWY3F datasheet was FINALLY fetched (5th run) — 1.6 s typ timeout family,
+> tPW 210 ms typ dual-edge WDI ⇒ MCU-side kick duty ≤1.6 s either-edge ≥1 μs; only
+> maintainer ratification of the fw-heartbeat numbers remains. OSK-033 evidence
+> re-confirmed verbatim (PB13 RK-RESET vs FDCAN2_TX), open. Registry: no drift,
+> 16 ids `0x0001…0x8005`.
+
 > **2026-09-11 status:** upstream PR #63 is MERGED (merge commit `90324ec`,
 > 2026-09-11T04:20:59Z): `0x8005 SAFETY_STATE` (16+16-bit active/latched
 > masks) and `0x0004 IDENTIFY_REQUEST` are adopted mainline contract, with a
@@ -40,6 +58,14 @@ for those.
 | OSK-004 | Side brush count: two PWM outputs, one contract field | Low | Open (HW-SW-005) |
 | OSK-005 | Wire v1→v2 and the open firmware RFC | High | Open (firmware#1) |
 | OSK-006 | MCU part discrepancy: G070 vs G473 | Low | Open (acknowledged) |
+| OSK-033 | PB13 dual role: `RK-RESET` GPIO vs `FDCAN2_TX` alt-fn (xlsx row 52) | High | Open — decide before fw pins FDCAN2 (*new 09-22, `spec_crosscheck_20260922.md`; re-confirmed verbatim 09-24*) |
+| OSK-034 | `PI_SHUTDOWN` (PB6) teardown semantics undocumented (level/duration/ack/timeout; interaction with PI-RESET/STM-PWR-CTRL/RK-RESET) | High | Open — maintainer, before first HIL bring-up (*new 09-24, `spec_crosscheck_20260924.md` §2*) |
+| OSK-035 | `LED-HOME` dual-home: xlsx primary PC13 vs PB12 alias | Low-Med | Open — one maintainer xlsx note settles it (*new 09-24, `spec_crosscheck_20260924.md` §4*) |
+
+Items OSK-007..033 live in the crosscheck history
+(`spec_crosscheck_20260809..20260922.md`), not in this file's detail sections; the
+three rows above are added here so the gap index carries every *currently open* id
+with a one-line status, per the house ledger convention.
 
 ---
 

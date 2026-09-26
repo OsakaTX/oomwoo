@@ -138,6 +138,30 @@ supervisor). Full evidence: [`spec_crosscheck_20260909.md`](spec_crosscheck_2026
 > supervisor-of-last-resort design has now changed twice in eight days
 > (PCF85063→TPS3828 on Sep 05, TPS3828→STWD100 on Sep 13) and may change
 > again.
+> 
+> **2026-09-24 refresh — the supervisor's number set is now FIRST-HAND, and the
+> MCU gains teardown power over the CPU.** (1) The STWD100 datasheet was finally
+> fetched (`st.com/resource/en/datasheet/stwd100.pdf`, DocID14134 Rev 11, Jan
+> 2017 — full text read; first success after four prior runs' failures, so the
+> standing "kick polarity/timeout unverified (datasheet not fetched)" caveat is
+> now discharged with the manufacturer's own tables): our exact order code
+> `STWD100NYWY3F` = Table 7 row "SOT23-5, topside marking WNY"; the `Y` speed
+> family = timeout **1.12/1.6/2.24 s** (min/typ/max) with active pulse
+> **tPW 140/210/280 ms**; WDI pulse ≥1 μs, glitch rejection <100 ns, and on xW/xX/xY
+> **both WDI edges count** (high-to-low included, §3.1 verbatim) — so the kick is
+> "toggle ≤1.6 s, either edge, ≥1 μs", about 10× looser cadence-wise than the 1 kHz
+> harness and 150 ms heartbeat discussions in fw PR #3/issue #1, i.e. the HW
+> supervisor is confirmed as MCU-death last-resort, not the heartbeat enforcer.
+> `~{EN}` is itself a watchdog control input (high = WDO forced high ≥10 μs; >1 μs
+> pulse resets the watch) — its net owner on this sheet is still untraced, carried
+> as part of OSK-029's remaining ratification item. One decode is **marked
+> interpretation, not datasheet-read**: push-pull vs open-drain for the `…YWY3F`
+> suffix (the text capture renders the ordering figure only as tables). (2) pcb
+> `a7ac0fd7`→`78bd659c` adds **`PI_SHUTDOWN` (PB6, MCU output → CM5 input)**: a
+> third MCU→CPU recovery/power lever beside PI-RESET/`STM-PWR-CTRL`/`RK-RESET`
+>  — with **no level/timing/ack semantics documented anywhere yet**
+> (**OSK-034**, new, High; folded into §5's decision list). WATCHDOG.kicad_sch
+> untouched in that commit; `WDI`/`~{EN}`/`~{PULSE_OUT}` label set unchanged.
 
 ## 3. Watchdog tiers and their boundaries
 
@@ -228,6 +252,16 @@ configuration and are marked unverified here.
    MCU's UART5 load (scan forwarding, if chosen) shares the MCU with the
    safety loop — keep the safety USART1 path priority-isolated (separate
    ISR/queue) from UART5 forwarding.
+5. **Define the `PI_SHUTDOWN` (PB6) teardown semantics before the first HIL
+   bring-up (OSK-034, new 2026-09-24).** The MCU now has a dedicated
+   MCU→CPU shutdown command net, but nothing documents: asserted level and
+   duration (pulse vs stable-until-ack), whether the CM5 must acknowledge
+   (PI_DONE-style) before the MCU drops the 3.3/5 V rails, what the MCU does
+   if the CPU never shuts down or never acks, and how it interacts with
+   `PI-RESET`/`STM-PWR-CTRL`(PA15)/`RK-RESET`(PB13). The up-direction
+   handshake timing question from 2026-09-22 stands with it. Same
+   maintainer decision surfaces as items 1–3; folds into the fw #1/#3
+   ratification track rather than a new repo.
 
 ## 6. Not duplicated here
 
