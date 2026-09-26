@@ -950,6 +950,50 @@ alone pick the preset; everything else tunes a named (E) field in
 
 ---
 
+## Jig 27: 22N704V160 drop-in cup + port go-ring (`robot-suction-fan-22n704v160/jig27-cup-gauge.scad`, BOM L26 10 kPa fan)
+
+Two printed pieces; render one per run with `-D part="cup"` (default) or
+`-D part="ring"`. Grounding: every part dimension is measured on the
+one-cad solid `lib/fans/22N704V160.stp` (provenance story in the envelope
+model header and MEASURE-ME §26). The jig validates the MODEL against the
+PURCHASED PART — a pass is not datasheet truth.
+
+**Print Instructions**
+
+- Both parts: PLA, 0.2 mm, 3 perimeters, 20 % infill; no supports (cup is a
+  plain prismatic shell). The cup footprint is 82.4×82.4×42 — small-bed safe.
+- Cup: as oriented; ribs inside at floor+33.81 (nominal) and +35.81 (max).
+  If the fan will not start into the bore, re-slice at `-D cup_id=…+0.4` —
+  and record the physical width per MEASURE-ME §26 row 3, do not just
+  widen silently.
+- Ring: as oriented (Ø26.40×8).
+
+**Pass Criteria**
+
+- Cup: body passes to the floor with the top face sighting level at the
+  NOMINAL rib from two clockings 180° apart; clear of the MAX rib; the +x
+  rim notch admits the duct region without forcing (wall contact allowed,
+  rock ≤1 mm).
+- Ring: drops fully into the top inlet bore by finger pressure and sits
+  flush; sighting the inverted fan flat on a table, no daylight under the
+  land ring; bore-over-ring centering holds the ring coaxial (≤0.5 mm
+  wander).
+
+**Fail Criteria & Fix**
+
+| Symptom | Likely cause | Fix (param) |
+|---------|--------------|-------------|
+| Body wider than cup even rotated | lobe/Ø measurements off for YOUR unit | caliper, set `lobe_pair`/`wall_od`, raise `cup_id`; record in §26 row 3 |
+| Top face below the nominal rib by >1 mm | neck/hub bottoms prouder than modeled, or taller body | caliper height (§26 row 4), re-zero the z stack constants |
+| Top face above MAX rib | axial features under-read in the STEP | same as above; re-print cup |
+| Ring won't enter / sits proud | bore <27.9 or land proud | caliper, set `port_bore_d`/`land_d`; §26 row 6 |
+| Bore pushes ring off-center | port not concentric with the cup axis | record offset vs wall, §26 row 10/6; model gets a port-offset param next rev |
+
+Report with photos: cup with fan seated at ribs (both clockings), ring
+seated, and the two readings — cross-ref MEASURE-ME §26 rows.
+
+---
+
 ## Printing Guidelines
 
 | Parameter | Setting |

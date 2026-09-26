@@ -990,3 +990,39 @@ Include:
 - Photos of the part with caliper readings
 - Which specific part/vendor/revision you measured
 - Notes on any differences from the listed estimate
+
+---
+
+## 26. Robot Suction Fan 22N704V160 — purchased-unit gates (BOM L26, 10 kPa row)
+
+The one-cad CAD library now ships a solid of this EXACT suffix
+(`lib/fans/22N704V160.stp`, commit 9d796b26, 2026-09-25). ALL geometry in
+`robot-suction-fan-22n704v160/envelope-22n704v160.scad` is measured on that
+solid [M]; the rows below decide whether the PHYSICAL unit matches it, and
+each failing row maps to a named parameter in the model. Gate order:
+identity → footprints → heights → ports. Rows 2, 3, 4, 6 gate the envelope;
+the rest tune placement [E] fields.
+
+| # | Item | Expect (from the STEP) | How to check / which param moves |
+|---|------|------------------------|----------------------------------|
+| 1 | WHICH unit arrived (packing slip / label) | `22N704V160` | paper beats memory; any other suffix → §26 does not apply to it, re-measure as new |
+| 2 | single vs twin top inlet | ONE eye (land Ø28.98, bore Ø27.9); top closed elsewhere | sight; Jig 27 cup 180° check singles out asymmetric features |
+| 3 | body width over the inlet-side lobes vs plain wall | 77.42 across lobes (±38.71); 75.72 plain wall Ø | caliper both, through center; moves `lobe_pair` / `wall_od` (and Jig 27 `cup_id`) |
+| 4 | total height on the wheel axis | 33.81 (top +4.70 … bottom −29.11) | caliper standing on the barrel/neck face; moves the zstack only if the physical hubs/neck are prouder (rows 8/11) |
+| 5 | x total incl. the −x duct termination | 78.69 (−41.03 … +37.66) | caliper; the model E-bridges this via `xboss_*` — record the real duct-mouth position/size |
+| 6 | top land OD / inlet bore ID | 28.98 / 27.9 | Jig 27 ring drop + caliper; moves `land_d` / `port_bore_d` |
+| 7 | hub pair Ø60/Ø57, wall, axis offset | rings 60.0/57.0; wall ≈1.5 (E); center offset (−6.05, +2.72) [E xy ±4] | caliper skirt; offset from wheel axis via the Ø3.06 bore if it IS the index (row 12); moves `hub*_d`, `hub_c*` |
+| 8 | barrel OD / bore ID / axis offset | 30.53 / 27.02 / (+0.27, +0.25) | caliper; offset vs wheel axis scribe; moves `barrel_*`, `axis_d*` |
+| 9 | bottom neck OD — and does it breathe? | Ø14.4 (6.91–7.45 r spread); paper-draft test | caliper + draft; a sealed stub collapses compensator assumptions; moves `neck_d` |
+| 10 | exit-duct position (R20 wall arcs r/bore 3.5/2.75 measured; mount xyz NOT) | close the closure: record duct-center offset from wheel axis | sight + caliper; gates adding the duct geometry (`ductArc_r` reserved) |
+| 11 | hub skirt bottom z | −25.0 est [E: sections −24.5/−25.5 straddle] | depth rod from the floor plane; moves `hub2_z_bot` |
+| 12 | the Ø3.06 bore at (16.16, −10.84, −15.51): port, pilot, or screw? | unidentified in the STEP | caliper + trial M3 pin; if screw → add hole pattern to the model |
+
+Fork note: one-cad also carries the companion `lib/dreame/
+suction_fan_mount.stp` (same commit) — the MOUNT-side footprint truth. Not
+measured by this repo yet; treat as adjacent evidence, not ours
+(components/measured there first, then cross-check).
+
+Any objective row that disagrees with the model ⇒ edit the named param(s)
+in `envelope-22n704v160.scad`, re-render (zero-warning, single-component
+STL), then re-print Jig 27 before trusting a pass.
