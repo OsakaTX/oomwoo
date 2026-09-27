@@ -250,3 +250,15 @@ docker exec oomwoo-bench bash -c '
   +~3 pp, nav2 flat — NEW: lifelong slam thread-sum CPU 39.9->95.4->119.3
   monotone in sigma, the top system consumer at sigma>=0.05 (share 40->66%);
   converge x noise cells and CPU attribution open (Next).
+- `docs/adr-0020-measured-combo-cpu-attribution-and-reps.md` — per-thread
+  /proc CPU-attribution sidecar (`collect_thread_cpu.py` host-side
+  utime/stime/threads/ctx-switch sampler + `run_cpuattr_combo.sh` +
+  `analyze_cpuattr.py`): the lifelong-vs-async slam CPU asymmetry is
+  STRUCTURAL — async concentrates (top-2 threads = 14.7 of 21.4 pp),
+  lifelong spreads (main 17.8 pp + seven ~2.9 pp workers, no hotspot) with
+  2.1x involuntary ctx switches (37,002 vs 17,846); nav2/publisher/goal
+  clouds arm-invariant. Reps: async/churn n=3 steady, C2==C1 (+0.3 MiB),
+  G1 reproduces B1 memory (-1.0 MiB; lh-CPU +4.9 pp single-obs, Next),
+  lifelong sigma0.05 n=2 to the third digit (98.0 vs 95.4 CPU, slope
+  0.781 vs 0.783). Health 0/0/0 all five runs; anchors re-derived and
+  matched. Open: noise-cell attribution, profiler, Pi gate.

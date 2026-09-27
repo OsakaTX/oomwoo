@@ -1,0 +1,9 @@
+[INFO] [launch]: All log files can be found below /root/.ros/log/2026-09-27-16-37-46-625775-89594396727c-785710
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [async_slam_toolbox_node-1]: process started with pid [785730]
+[async_slam_toolbox_node-1] [INFO] [1790527067.012011836] [slam_toolbox]: Configuring
+[async_slam_toolbox_node-1] [INFO] [1790527067.018261167] [slam_toolbox]: Using solver plugin solver_plugins::CeresSolver
+[INFO] [launch.user]: [LifecycleLaunch] Slamtoolbox node is activating.
+[async_slam_toolbox_node-1] [INFO] [1790527067.042825886] [slam_toolbox]: Activating
+[async_slam_toolbox_node-1] [INFO] [1790527067.266710977] [slam_toolbox]: Message Filter dropping message: frame 'base_link' at time 1790527066.965 for reason 'discarding message because the queue is full'
+[async_slam_toolbox_node-1] Registering sensor: [Custom Described Lidar]

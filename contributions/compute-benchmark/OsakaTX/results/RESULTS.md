@@ -580,3 +580,35 @@ in `results/combo2/`. Full record: `docs/adr-0019-measured-combo-noise-frontier.
 Provenance: produced AND verified 2026-09-25 (same session, numbers from
 live analyzer runs archived as stdout); noiseE1 post-run echo lost with an
 interrupted client, health from log census — CSV complete.
+
+## 21. CPU attribution of the combo stack + ADR-0018/0019 rep cells — 2026-09-27
+
+New host-side sidecar `scripts/collect_thread_cpu.py` (per-process
+utime/stime ticks, thread counts, vcsw/nvcsw deltas; per-thread cumulative
+ticks w/ comm names every 10th sample) + `scripts/run_cpuattr_combo.sh`
+(host orchestrator: docker-exec driver + pid discovery from container
+cgroup.procs + quiesce waits) + `scripts/analyze_cpuattr.py` (splits,
+cross-instrument check, per-thread cores). Runs 2026-09-27 (390 s, driver
+UNCHANGED): G1 churn/lifelong sigma0 (B1 rep 2 + attribution), H1
+churn/async sigma0 (A rep 3 + attribution), C2 converge/async (C1 rep 2),
+noiseF3 churn/lifelong sigma0.05 (F1 rep 2), SM1 90 s instrument smoke.
+System last-half (analyzer unchanged; new rows from own CSVs; F2 quoted
+from ADR-0019, not re-run):
+
+| cell | SYSTEM PSS / cpu-sum | slam lh-PSS / lh-CPU | note |
+|---|---|---|---|
+| H1 async s0 | 324.9 / 79.4 | 77.3 / 19.5 | A-row 3rd: 19.0/19.4/19.5 |
+| C2 conv/async s0 | 321.3 / 78.1 | 77.6 / 19.3 | == C1 +0.3 MiB/+1.4 pp |
+| G1 lifelong s0 | 295.9 / 105.2 | 49.9 / 44.8 | mem == B1 -1.0; CPU +4.9 pp 1st-spread (Next) |
+| noiseF3 lifelong s.05 | 298.3 / 156.8 | 52.3 / 98.0 | == F1 3rd digit (slope .781 vs .783) |
+
+Attribution (noiseless pair, sidecar; sampler agrees <=4.1 pp/cloud):
+lifelong slam 40.4 %cpu = main 17.8 + 7 x ~2.9 pp workers (33 thr peak;
+NO single hotspot) vs async 21.4 = 9.7+5.0 top-2-concentrated (25 thr);
+slam nvcsw lifelong 37,002 vs async 17,846 (2.1x); nav2 47.4/46.5 and
+assistants 10.9/10.5 arm-invariant => asymmetry is slam-internal
+throughput/occupancy, not the navigator or a pathology. Health 0/0/0 x5
+(`repair_healthcheck_0927.txt`); anchors A1/A2/B1/C1/F1 re-derived from
+archived CSVs == ADR-0018/0019 records. Full record:
+`docs/adr-0020-measured-combo-cpu-attribution-and-reps.md`. Open: B3 rep,
+noise-cell sidecar, profiler/pass on the worker pool, Pi-gate rerun.

@@ -1,0 +1,42 @@
+=== [G1] arm=lifelong regime=churn dur=390 side=yes start 2026-09-27T16:30:03Z
+/home/hermes/oomwoo-wt-cb/contributions/compute-benchmark/OsakaTX/scripts/run_cpuattr_combo.sh: line 51: /proc/3720818/cmdline: No such file or directory
+/home/hermes/oomwoo-wt-cb/contributions/compute-benchmark/OsakaTX/scripts/run_cpuattr_combo.sh: line 51: /proc/3728134/cmdline: No such file or directory
+/home/hermes/oomwoo-wt-cb/contributions/compute-benchmark/OsakaTX/scripts/run_cpuattr_combo.sh: line 51: /proc/3728138/cmdline: No such file or directory
+/home/hermes/oomwoo-wt-cb/contributions/compute-benchmark/OsakaTX/scripts/run_cpuattr_combo.sh: line 51: /proc/3728133/cmdline: No such file or directory
+/home/hermes/oomwoo-wt-cb/contributions/compute-benchmark/OsakaTX/scripts/run_cpuattr_combo.sh: line 51: /proc/3728135/cmdline: No such file or directory
+[G1] pids slam=[3721725] nav=[3721758] pub=[3721013] goal=[3728113]
+[G1] sidecar done: 2891 rows
+[G1] quiesced at t+458s
+=== [H1] arm=async regime=churn dur=390 side=yes start 2026-09-27T16:37:41Z
+[H1] pids slam=[3826877] nav=[3826911] pub=[3826172] goal=[3833250]
+[H1] sidecar done: 2742 rows
+[H1] quiesced at t+458s
+=== [C2] arm=async regime=converge dur=390 side=no start 2026-09-27T16:45:19Z
+[C2] pids slam=[3932856] nav=[3933404] pub=[3932642] goal=[3939702]
+/home/hermes/oomwoo-wt-cb/contributions/compute-benchmark/OsakaTX/scripts/run_cpuattr_combo.sh: line 101: /proc/3943180/cmdline: No such file or directory
+/home/hermes/oomwoo-wt-cb/contributions/compute-benchmark/OsakaTX/scripts/run_cpuattr_combo.sh: line 101: /proc/3943182/cmdline: No such file or directory
+/home/hermes/oomwoo-wt-cb/contributions/compute-benchmark/OsakaTX/scripts/run_cpuattr_combo.sh: line 101: /proc/3944456/cmdline: No such file or directory
+/home/hermes/oomwoo-wt-cb/contributions/compute-benchmark/OsakaTX/scripts/run_cpuattr_combo.sh: line 101: /proc/3944460/cmdline: No such file or directory
+/home/hermes/oomwoo-wt-cb/contributions/compute-benchmark/OsakaTX/scripts/run_cpuattr_combo.sh: line 101: /proc/3960135/cmdline: No such file or directory
+/home/hermes/oomwoo-wt-cb/contributions/compute-benchmark/OsakaTX/scripts/run_cpuattr_combo.sh: line 101: /proc/3963555/cmdline: No such file or directory
+/home/hermes/oomwoo-wt-cb/contributions/compute-benchmark/OsakaTX/scripts/run_cpuattr_combo.sh: line 101: /proc/3977761/cmdline: No such file or directory
+/home/hermes/oomwoo-wt-cb/contributions/compute-benchmark/OsakaTX/scripts/run_cpuattr_combo.sh: line 101: /proc/3977766/cmdline: No such file or directory
+/home/hermes/oomwoo-wt-cb/contributions/compute-benchmark/OsakaTX/scripts/run_cpuattr_combo.sh: line 101: /proc/3979458/cmdline: No such file or directory
+/home/hermes/oomwoo-wt-cb/contributions/compute-benchmark/OsakaTX/scripts/run_cpuattr_combo.sh: line 101: /proc/3979459/cmdline: No such file or directory
+/home/hermes/oomwoo-wt-cb/contributions/compute-benchmark/OsakaTX/scripts/run_cpuattr_combo.sh: line 101: /proc/3979460/cmdline: No such file or directory
+/home/hermes/oomwoo-wt-cb/contributions/compute-benchmark/OsakaTX/scripts/run_cpuattr_combo.sh: line 101: /proc/3993609/cmdline: No such file or directory
+/home/hermes/oomwoo-wt-cb/contributions/compute-benchmark/OsakaTX/scripts/run_cpuattr_combo.sh: line 101: /proc/3993610/cmdline: No such file or directory
+/home/hermes/oomwoo-wt-cb/contributions/compute-benchmark/OsakaTX/scripts/run_cpuattr_combo.sh: line 101: /proc/3994744/cmdline: No such file or directory
+/home/hermes/oomwoo-wt-cb/contributions/compute-benchmark/OsakaTX/scripts/run_cpuattr_combo.sh: line 101: /proc/3994748/cmdline: No such file or directory
+/home/hermes/oomwoo-wt-cb/contributions/compute-benchmark/OsakaTX/scripts/run_cpuattr_combo.sh: line 101: /proc/3996445/cmdline: No such file or directory
+/home/hermes/oomwoo-wt-cb/contributions/compute-benchmark/OsakaTX/scripts/run_cpuattr_combo.sh: line 101: /proc/3996449/cmdline: No such file or directory
+/home/hermes/oomwoo-wt-cb/contributions/compute-benchmark/OsakaTX/scripts/run_cpuattr_combo.sh: line 101: /proc/3997948/cmdline: No such file or directory
+/home/hermes/oomwoo-wt-cb/contributions/compute-benchmark/OsakaTX/scripts/run_cpuattr_combo.sh: line 101: /proc/3997949/cmdline: No such file or directory
+/home/hermes/oomwoo-wt-cb/contributions/compute-benchmark/OsakaTX/scripts/run_cpuattr_combo.sh: line 101: /proc/4015011/cmdline: No such file or directory
+/home/hermes/oomwoo-wt-cb/contributions/compute-benchmark/OsakaTX/scripts/run_cpuattr_combo.sh: line 101: /proc/4015015/cmdline: No such file or directory
+/home/hermes/oomwoo-wt-cb/contributions/compute-benchmark/OsakaTX/scripts/run_cpuattr_combo.sh: line 101: /proc/4015958/cmdline: No such file or directory
+/home/hermes/oomwoo-wt-cb/contributions/compute-benchmark/OsakaTX/scripts/run_cpuattr_combo.sh: line 101: /proc/4016246/cmdline: No such file or directory
+/home/hermes/oomwoo-wt-cb/contributions/compute-benchmark/OsakaTX/scripts/run_cpuattr_combo.sh: line 101: /proc/4016248/cmdline: No such file or directory
+/home/hermes/oomwoo-wt-cb/contributions/compute-benchmark/OsakaTX/scripts/run_cpuattr_combo.sh: line 101: /proc/4016250/cmdline: No such file or directory
+[C2] quiesced at t+349s
+WRAPPER-DONE 2026-09-27T16:51:08Z

@@ -1,0 +1,29 @@
+== sidecar /home/hermes/oomwoo-wt-cb/contributions/compute-benchmark/OsakaTX/results/combo2/cpuattr_H1_threads.csv: rows 2741, median dt 2.0s, samples 205
+  nav2     user   172.3s sys   17.3s ->   46.5 %cpu
+  slam     user    84.7s sys    2.5s ->   21.4 %cpu
+  pyproc   user    41.2s sys    1.8s ->   10.5 %cpu
+  TOTAL      78.4 %cpu (of one core)
+== sampler /home/hermes/oomwoo-wt-cb/contributions/compute-benchmark/OsakaTX/results/combo2/H1_20260927T163744Z.csv: 1240 rows, 155 samples (mean of per-sample sums)
+  nav2       46.5 %cpu
+  slam       17.2 %cpu
+  pyproc     12.3 %cpu
+  other       1.7 %cpu
+== agreement (sidecar - sampler, pp; sampler ps%cpu is an
+   11-s-window average so bounded lag is expected, not an error)
+  slam       +4.1 pp
+  nav2       -0.1 pp
+  pyproc     -1.8 pp
+== hot threads (avg cores per inter-snapshot window, top 12)
+  (thread window span 380 s)
+  TH:async_slam_tool   9.7 %cpu (3826877t3826909)
+  TH:component_conta   5.6 %cpu (3826911t3826937)
+  TH:python3           5.1 %cpu (3833250t3833250)
+  TH:async_slam_tool   5.0 %cpu (3826877t3826877)
+  TH:component_conta   4.5 %cpu (3826911t3826942)
+  TH:python3           4.4 %cpu (3826172t3826172)
+  TH:component_conta   2.4 %cpu (3826911t3826932)
+  TH:component_conta   2.1 %cpu (3826911t3826931)
+  TH:component_conta   2.0 %cpu (3826911t3826926)
+  TH:dds.shm.7419      1.9 %cpu (3826911t3826920)
+  TH:component_conta   1.8 %cpu (3826911t3826930)
+  TH:component_conta   1.7 %cpu (3826911t3826935)

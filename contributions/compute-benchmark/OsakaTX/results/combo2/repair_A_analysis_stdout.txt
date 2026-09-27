@@ -1,0 +1,33 @@
+
+=== regA1_20260921T080602Z.csv  (slam arm: async, 161 samples) ===
+  goal_sender     PSS mean   52.9 [  52.8..  52.9]  cpu mean    7.1   last-half cpu    6.6  last-half pss   52.9
+  launch_sh       PSS mean   54.2 [  54.2..  54.3]  cpu mean    1.2   last-half cpu    0.7  last-half pss   54.2
+  nav2_container  PSS mean  146.4 [ 135.5.. 152.8]  cpu mean   46.6   last-half cpu   48.7  last-half pss  149.7
+  publisher       PSS mean   47.3 [  47.3..  47.4]  cpu mean    5.6   last-half cpu    5.4  last-half pss   47.3
+  python3_other   PSS mean   45.5 [  45.5..  45.6]  cpu mean    0.1   last-half cpu    0.1  last-half pss   45.5
+  shell           PSS mean    1.1 [   1.1..   1.1]  cpu mean    0.5   last-half cpu    0.5  last-half pss    1.1
+  slam            PSS mean   66.2 [  43.8..  89.3]  cpu mean   17.2   last-half cpu   19.4  last-half pss   77.4
+  SYSTEM steady (last-half): PSS 327.3 MiB [312.4..342.3]  RSS~423.8  cpu-sum 80.2
+  slam PSS whole-window slope +8.380 MiB/min (R2=0.9997) first 43.8 -> last 89.3 MiB
+
+=== regA2_20260921T084113Z.csv  (slam arm: async, 160 samples) ===
+  goal_sender     PSS mean   52.7 [  52.6..  52.7]  cpu mean    6.6   last-half cpu    6.3  last-half pss   52.7
+  launch_sh       PSS mean   54.2 [  54.2..  54.3]  cpu mean    1.2   last-half cpu    0.7  last-half pss   54.2
+  nav2_container  PSS mean  144.6 [ 136.3.. 148.4]  cpu mean   44.8   last-half cpu   46.6  last-half pss  146.1
+  publisher       PSS mean   47.4 [  47.3..  47.4]  cpu mean    5.6   last-half cpu    5.5  last-half pss   47.4
+  python3_other   PSS mean   45.7 [  45.7..  45.8]  cpu mean    0.1   last-half cpu    0.1  last-half pss   45.7
+  shell           PSS mean    1.1 [   1.1..   1.1]  cpu mean    0.5   last-half cpu    0.5  last-half pss    1.1
+  slam            PSS mean   66.4 [  44.0..  89.8]  cpu mean   16.8   last-half cpu   19.0  last-half pss   77.7
+  SYSTEM steady (last-half): PSS 323.9 MiB [308.6..335.4]  RSS~420.4  cpu-sum 77.3
+  slam PSS whole-window slope +8.445 MiB/min (R2=0.9996) first 44.0 -> last 89.8 MiB
+
+=== H1_20260927T163744Z.csv  (slam arm: async, 155 samples) ===
+  goal_sender     PSS mean   52.6 [  52.6..  52.7]  cpu mean    6.8   last-half cpu    6.4  last-half pss   52.6
+  launch_sh       PSS mean   54.1 [  54.1..  54.1]  cpu mean    1.2   last-half cpu    0.7  last-half pss   54.1
+  nav2_container  PSS mean  145.4 [ 135.2.. 150.9]  cpu mean   46.5   last-half cpu   48.4  last-half pss  147.5
+  publisher       PSS mean   47.4 [  47.4..  47.5]  cpu mean    5.4   last-half cpu    5.3  last-half pss   47.4
+  python3_other   PSS mean   45.7 [  45.7..  45.8]  cpu mean    0.1   last-half cpu    0.1  last-half pss   45.7
+  shell           PSS mean    1.3 [   1.3..   1.3]  cpu mean    0.5   last-half cpu    0.5  last-half pss    1.3
+  slam            PSS mean   66.2 [  43.9..  89.2]  cpu mean   17.2   last-half cpu   19.5  last-half pss   77.3
+  SYSTEM steady (last-half): PSS 324.9 MiB [311.3..340.2]  RSS~420.1  cpu-sum 79.4
+  slam PSS whole-window slope +8.677 MiB/min (R2=0.9997) first 43.9 -> last 89.2 MiB

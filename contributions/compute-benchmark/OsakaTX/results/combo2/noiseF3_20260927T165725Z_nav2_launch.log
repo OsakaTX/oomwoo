@@ -1,0 +1,1109 @@
+[INFO] [launch]: All log files can be found below /root/.ros/log/2026-09-27-16-57-27-503091-89594396727c-911635
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [component_container_isolated-1]: process started with pid [911687]
+[component_container_isolated-1] [INFO] [1790528248.449053372] [nav2_container]: Load Library: /opt/ros/jazzy/lib/libcontroller_server_core.so
+[component_container_isolated-1] [INFO] [1790528248.462057635] [nav2_container]: Found class: rclcpp_components::NodeFactoryTemplate<nav2_controller::ControllerServer>
+[component_container_isolated-1] [INFO] [1790528248.462118335] [nav2_container]: Instantiate class: rclcpp_components::NodeFactoryTemplate<nav2_controller::ControllerServer>
+[component_container_isolated-1] [INFO] [1790528248.477069808] [controller_server]: 
+[component_container_isolated-1] 	controller_server lifecycle node launched. 
+[component_container_isolated-1] 	Waiting on external lifecycle transitions to activate
+[component_container_isolated-1] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[component_container_isolated-1] [INFO] [1790528248.481534229] [controller_server]: Creating controller server
+[component_container_isolated-1] [INFO] [1790528248.491935180] [local_costmap.local_costmap]: 
+[component_container_isolated-1] 	local_costmap lifecycle node launched. 
+[component_container_isolated-1] 	Waiting on external lifecycle transitions to activate
+[component_container_isolated-1] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[component_container_isolated-1] [INFO] [1790528248.492431982] [local_costmap.local_costmap]: Creating Costmap
+[INFO] [launch_ros.actions.load_composable_nodes]: Loaded node '/controller_server' in container '/nav2_container'
+[component_container_isolated-1] [INFO] [1790528248.495594397] [nav2_container]: Load Library: /opt/ros/jazzy/lib/libsmoother_server_core.so
+[component_container_isolated-1] [INFO] [1790528248.498590812] [nav2_container]: Found class: rclcpp_components::NodeFactoryTemplate<nav2_smoother::SmootherServer>
+[component_container_isolated-1] [INFO] [1790528248.498617212] [nav2_container]: Instantiate class: rclcpp_components::NodeFactoryTemplate<nav2_smoother::SmootherServer>
+[component_container_isolated-1] [INFO] [1790528248.509480165] [smoother_server]: 
+[component_container_isolated-1] 	smoother_server lifecycle node launched. 
+[component_container_isolated-1] 	Waiting on external lifecycle transitions to activate
+[component_container_isolated-1] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[component_container_isolated-1] [INFO] [1790528248.511991477] [smoother_server]: Creating smoother server
+[INFO] [launch_ros.actions.load_composable_nodes]: Loaded node '/smoother_server' in container '/nav2_container'
+[component_container_isolated-1] [INFO] [1790528248.515945196] [nav2_container]: Load Library: /opt/ros/jazzy/lib/libplanner_server_core.so
+[component_container_isolated-1] [INFO] [1790528248.518197107] [nav2_container]: Found class: rclcpp_components::NodeFactoryTemplate<nav2_planner::PlannerServer>
+[component_container_isolated-1] [INFO] [1790528248.518228207] [nav2_container]: Instantiate class: rclcpp_components::NodeFactoryTemplate<nav2_planner::PlannerServer>
+[component_container_isolated-1] [INFO] [1790528248.532811878] [planner_server]: 
+[component_container_isolated-1] 	planner_server lifecycle node launched. 
+[component_container_isolated-1] 	Waiting on external lifecycle transitions to activate
+[component_container_isolated-1] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[component_container_isolated-1] [INFO] [1790528248.534698187] [planner_server]: Creating
+[component_container_isolated-1] [INFO] [1790528248.547918351] [global_costmap.global_costmap]: 
+[component_container_isolated-1] 	global_costmap lifecycle node launched. 
+[component_container_isolated-1] 	Waiting on external lifecycle transitions to activate
+[component_container_isolated-1] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[component_container_isolated-1] [INFO] [1790528248.548353953] [global_costmap.global_costmap]: Creating Costmap
+[INFO] [launch_ros.actions.load_composable_nodes]: Loaded node '/planner_server' in container '/nav2_container'
+[component_container_isolated-1] [INFO] [1790528248.552262672] [nav2_container]: Load Library: /opt/ros/jazzy/lib/libroute_server_core.so
+[component_container_isolated-1] [INFO] [1790528248.555185786] [nav2_container]: Found class: rclcpp_components::NodeFactoryTemplate<nav2_route::RouteServer>
+[component_container_isolated-1] [INFO] [1790528248.555213986] [nav2_container]: Instantiate class: rclcpp_components::NodeFactoryTemplate<nav2_route::RouteServer>
+[component_container_isolated-1] [INFO] [1790528248.566921743] [route_server]: 
+[component_container_isolated-1] 	route_server lifecycle node launched. 
+[component_container_isolated-1] 	Waiting on external lifecycle transitions to activate
+[component_container_isolated-1] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[INFO] [launch_ros.actions.load_composable_nodes]: Loaded node '/route_server' in container '/nav2_container'
+[component_container_isolated-1] [INFO] [1790528248.571855567] [nav2_container]: Load Library: /opt/ros/jazzy/lib/libbehavior_server_core.so
+[component_container_isolated-1] [INFO] [1790528248.573538575] [nav2_container]: Found class: rclcpp_components::NodeFactoryTemplate<behavior_server::BehaviorServer>
+[component_container_isolated-1] [INFO] [1790528248.573570775] [nav2_container]: Instantiate class: rclcpp_components::NodeFactoryTemplate<behavior_server::BehaviorServer>
+[component_container_isolated-1] [INFO] [1790528248.585845735] [behavior_server]: 
+[component_container_isolated-1] 	behavior_server lifecycle node launched. 
+[component_container_isolated-1] 	Waiting on external lifecycle transitions to activate
+[component_container_isolated-1] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[INFO] [launch_ros.actions.load_composable_nodes]: Loaded node '/behavior_server' in container '/nav2_container'
+[component_container_isolated-1] [INFO] [1790528248.590275056] [nav2_container]: Load Library: /opt/ros/jazzy/lib/libbt_navigator_core.so
+[component_container_isolated-1] [INFO] [1790528248.596290786] [nav2_container]: Found class: rclcpp_components::NodeFactoryTemplate<nav2_bt_navigator::BtNavigator>
+[component_container_isolated-1] [INFO] [1790528248.596321386] [nav2_container]: Instantiate class: rclcpp_components::NodeFactoryTemplate<nav2_bt_navigator::BtNavigator>
+[component_container_isolated-1] [INFO] [1790528248.610167353] [bt_navigator]: 
+[component_container_isolated-1] 	bt_navigator lifecycle node launched. 
+[component_container_isolated-1] 	Waiting on external lifecycle transitions to activate
+[component_container_isolated-1] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[component_container_isolated-1] [INFO] [1790528248.611826161] [bt_navigator]: Creating
+[INFO] [launch_ros.actions.load_composable_nodes]: Loaded node '/bt_navigator' in container '/nav2_container'
+[component_container_isolated-1] [INFO] [1790528248.613972771] [nav2_container]: Load Library: /opt/ros/jazzy/lib/libwaypoint_follower_core.so
+[component_container_isolated-1] [INFO] [1790528248.615350478] [nav2_container]: Found class: rclcpp_components::NodeFactoryTemplate<nav2_waypoint_follower::WaypointFollower>
+[component_container_isolated-1] [INFO] [1790528248.615377978] [nav2_container]: Instantiate class: rclcpp_components::NodeFactoryTemplate<nav2_waypoint_follower::WaypointFollower>
+[component_container_isolated-1] [INFO] [1790528248.626733033] [waypoint_follower]: 
+[component_container_isolated-1] 	waypoint_follower lifecycle node launched. 
+[component_container_isolated-1] 	Waiting on external lifecycle transitions to activate
+[component_container_isolated-1] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[component_container_isolated-1] [INFO] [1790528248.627106835] [waypoint_follower]: Creating
+[INFO] [launch_ros.actions.load_composable_nodes]: Loaded node '/waypoint_follower' in container '/nav2_container'
+[component_container_isolated-1] [INFO] [1790528248.629337346] [nav2_container]: Load Library: /opt/ros/jazzy/lib/libvelocity_smoother_core.so
+[component_container_isolated-1] [INFO] [1790528248.630394651] [nav2_container]: Found class: rclcpp_components::NodeFactoryTemplate<nav2_velocity_smoother::VelocitySmoother>
+[component_container_isolated-1] [INFO] [1790528248.630421651] [nav2_container]: Instantiate class: rclcpp_components::NodeFactoryTemplate<nav2_velocity_smoother::VelocitySmoother>
+[component_container_isolated-1] [INFO] [1790528248.643331314] [velocity_smoother]: 
+[INFO] [launch_ros.actions.load_composable_nodes]: Loaded node '/velocity_smoother' in container '/nav2_container'
+[component_container_isolated-1] 	velocity_smoother lifecycle node launched. 
+[component_container_isolated-1] 	Waiting on external lifecycle transitions to activate
+[component_container_isolated-1] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[component_container_isolated-1] [INFO] [1790528248.645957526] [nav2_container]: Load Library: /opt/ros/jazzy/lib/libcollision_monitor_core.so
+[component_container_isolated-1] [INFO] [1790528248.649598744] [nav2_container]: Found class: rclcpp_components::NodeFactoryTemplate<nav2_collision_monitor::CollisionMonitor>
+[component_container_isolated-1] [INFO] [1790528248.649626144] [nav2_container]: Instantiate class: rclcpp_components::NodeFactoryTemplate<nav2_collision_monitor::CollisionMonitor>
+[component_container_isolated-1] [INFO] [1790528248.662340206] [collision_monitor]: 
+[INFO] [launch_ros.actions.load_composable_nodes]: Loaded node '/collision_monitor' in container '/nav2_container'
+[component_container_isolated-1] 	collision_monitor lifecycle node launched. 
+[component_container_isolated-1] 	Waiting on external lifecycle transitions to activate
+[component_container_isolated-1] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[component_container_isolated-1] [INFO] [1790528248.665185220] [nav2_container]: Load Library: /opt/ros/jazzy/lib/libopennav_docking_core.so
+[component_container_isolated-1] [INFO] [1790528248.667506931] [nav2_container]: Found class: rclcpp_components::NodeFactoryTemplate<opennav_docking::DockingServer>
+[component_container_isolated-1] [INFO] [1790528248.667539231] [nav2_container]: Instantiate class: rclcpp_components::NodeFactoryTemplate<opennav_docking::DockingServer>
+[component_container_isolated-1] [INFO] [1790528248.682013701] [docking_server]: 
+[component_container_isolated-1] 	docking_server lifecycle node launched. 
+[component_container_isolated-1] 	Waiting on external lifecycle transitions to activate
+[component_container_isolated-1] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[component_container_isolated-1] [INFO] [1790528248.682064701] [docking_server]: Creating docking_server
+[INFO] [launch_ros.actions.load_composable_nodes]: Loaded node '/docking_server' in container '/nav2_container'
+[component_container_isolated-1] [INFO] [1790528248.686497423] [nav2_container]: Load Library: /opt/ros/jazzy/lib/libnav2_lifecycle_manager_core.so
+[component_container_isolated-1] [INFO] [1790528248.687937730] [nav2_container]: Found class: rclcpp_components::NodeFactoryTemplate<nav2_lifecycle_manager::LifecycleManager>
+[component_container_isolated-1] [INFO] [1790528248.687970430] [nav2_container]: Instantiate class: rclcpp_components::NodeFactoryTemplate<nav2_lifecycle_manager::LifecycleManager>
+[component_container_isolated-1] [INFO] [1790528248.703691706] [lifecycle_manager_navigation]: Creating
+[component_container_isolated-1] [INFO] [1790528248.709865336] [lifecycle_manager_navigation]: [34m[1mCreating and initializing lifecycle service clients[0m[0m
+[INFO] [launch_ros.actions.load_composable_nodes]: Loaded node '/lifecycle_manager_navigation' in container '/nav2_container'
+[component_container_isolated-1] [INFO] [1790528248.730390236] [lifecycle_manager_navigation]: [34m[1mStarting managed nodes bringup...[0m[0m
+[component_container_isolated-1] [INFO] [1790528248.730456236] [lifecycle_manager_navigation]: [34m[1mConfiguring controller_server[0m[0m
+[component_container_isolated-1] [INFO] [1790528248.730701737] [controller_server]: Configuring controller interface
+[component_container_isolated-1] [INFO] [1790528248.730732437] [controller_server]: getting progress checker plugins..
+[component_container_isolated-1] [INFO] [1790528248.731142439] [controller_server]: getting goal checker plugins..
+[component_container_isolated-1] [INFO] [1790528248.731437641] [controller_server]: Controller frequency set to 20.0000Hz
+[component_container_isolated-1] [INFO] [1790528248.731501741] [local_costmap.local_costmap]: Configuring
+[component_container_isolated-1] [INFO] [1790528248.739296879] [local_costmap.local_costmap]: Using plugin "voxel_layer"
+[component_container_isolated-1] [INFO] [1790528248.744579704] [local_costmap.local_costmap]: Subscribed to Topics: scan
+[component_container_isolated-1] [INFO] [1790528248.760170080] [local_costmap.local_costmap]: Initialized plugin "voxel_layer"
+[component_container_isolated-1] [INFO] [1790528248.760274381] [local_costmap.local_costmap]: Using plugin "inflation_layer"
+[component_container_isolated-1] [INFO] [1790528248.762304890] [local_costmap.local_costmap]: Initialized plugin "inflation_layer"
+[component_container_isolated-1] [INFO] [1790528248.780674579] [controller_server]: Created progress_checker : progress_checker of type nav2_controller::SimpleProgressChecker
+[component_container_isolated-1] [INFO] [1790528248.782658889] [controller_server]: Controller Server has progress_checker  progress checkers available.
+[component_container_isolated-1] [INFO] [1790528248.783322892] [controller_server]: Created goal checker : general_goal_checker of type nav2_controller::SimpleGoalChecker
+[component_container_isolated-1] [INFO] [1790528248.783867595] [controller_server]: Controller Server has general_goal_checker  goal checkers available.
+[component_container_isolated-1] [INFO] [1790528248.785309002] [controller_server]: Created controller : FollowPath of type nav2_mppi_controller::MPPIController
+[component_container_isolated-1] [INFO] [1790528248.788227416] [controller_server]: Controller period is equal to model dt. Control sequence shifting is ON
+[component_container_isolated-1] [INFO] [1790528248.790931229] [controller_server]: ConstraintCritic instantiated with 1 power and 4.000000 weight.
+[component_container_isolated-1] [INFO] [1790528248.790968029] [controller_server]: Critic loaded : mppi::critics::ConstraintCritic
+[component_container_isolated-1] [INFO] [1790528248.792471137] [controller_server]: InflationCostCritic instantiated with 1 power and 300.000000 / 0.015000 weights. Critic will collision check based on circular cost.
+[component_container_isolated-1] [INFO] [1790528248.792499937] [controller_server]: Critic loaded : mppi::critics::CostCritic
+[component_container_isolated-1] [INFO] [1790528248.793834843] [controller_server]: GoalCritic instantiated with 1 power and 5.000000 weight.
+[component_container_isolated-1] [INFO] [1790528248.793863443] [controller_server]: Critic loaded : mppi::critics::GoalCritic
+[component_container_isolated-1] [INFO] [1790528248.795067149] [controller_server]: GoalAngleCritic instantiated with 1 power, 3.000000 weight, 0.500000 angular threshold and symmetric_yaw_tolerance disabled
+[component_container_isolated-1] [INFO] [1790528248.795095249] [controller_server]: Critic loaded : mppi::critics::GoalAngleCritic
+[component_container_isolated-1] [INFO] [1790528248.796897458] [controller_server]: ReferenceTrajectoryCritic instantiated with 1 power and 14.000000 weight
+[component_container_isolated-1] [INFO] [1790528248.796926358] [controller_server]: Critic loaded : mppi::critics::PathAlignCritic
+[component_container_isolated-1] [INFO] [1790528248.797679362] [controller_server]: Critic loaded : mppi::critics::PathFollowCritic
+[component_container_isolated-1] [INFO] [1790528248.800165174] [controller_server]: PathAngleCritic instantiated with 1 power and 2.000000 weight. Mode set to: Forward Preference
+[component_container_isolated-1] [INFO] [1790528248.800193674] [controller_server]: Critic loaded : mppi::critics::PathAngleCritic
+[component_container_isolated-1] [INFO] [1790528248.800716077] [controller_server]: PreferForwardCritic instantiated with 1 power and 5.000000 weight.
+[component_container_isolated-1] [INFO] [1790528248.800737877] [controller_server]: Critic loaded : mppi::critics::PreferForwardCritic
+[component_container_isolated-1] [INFO] [1790528248.804441795] [controller_server]: Optimizer reset
+[component_container_isolated-1] [INFO] [1790528248.811273228] [MPPIController]: Configured MPPI Controller: FollowPath
+[component_container_isolated-1] [INFO] [1790528248.811294528] [controller_server]: Controller Server has FollowPath  controllers available.
+[component_container_isolated-1] [INFO] [1790528248.821962380] [lifecycle_manager_navigation]: [34m[1mConfiguring smoother_server[0m[0m
+[component_container_isolated-1] [INFO] [1790528248.822393682] [smoother_server]: Configuring smoother server
+[component_container_isolated-1] [INFO] [1790528248.833780837] [smoother_server]: Created smoother : simple_smoother of type nav2_smoother::SimpleSmoother
+[component_container_isolated-1] [INFO] [1790528248.835561345] [smoother_server]: Smoother Server has simple_smoother  smoothers available.
+[component_container_isolated-1] [INFO] [1790528248.844400588] [lifecycle_manager_navigation]: [34m[1mConfiguring planner_server[0m[0m
+[component_container_isolated-1] [INFO] [1790528248.844524389] [planner_server]: Configuring
+[component_container_isolated-1] [INFO] [1790528248.844569489] [global_costmap.global_costmap]: Configuring
+[component_container_isolated-1] [INFO] [1790528248.854431737] [global_costmap.global_costmap]: Using plugin "static_layer"
+[component_container_isolated-1] [INFO] [1790528248.856742948] [global_costmap.global_costmap]: Subscribing to the map topic (/map) with transient local durability
+[component_container_isolated-1] [INFO] [1790528248.857437852] [global_costmap.global_costmap]: Initialized plugin "static_layer"
+[component_container_isolated-1] [INFO] [1790528248.857461752] [global_costmap.global_costmap]: Using plugin "obstacle_layer"
+[component_container_isolated-1] [INFO] [1790528248.859765863] [global_costmap.global_costmap]: Subscribed to Topics: scan
+[component_container_isolated-1] [INFO] [1790528248.867509400] [global_costmap.global_costmap]: Initialized plugin "obstacle_layer"
+[component_container_isolated-1] [INFO] [1790528248.867535500] [global_costmap.global_costmap]: Using plugin "inflation_layer"
+[component_container_isolated-1] [INFO] [1790528248.869593910] [global_costmap.global_costmap]: Initialized plugin "inflation_layer"
+[component_container_isolated-1] [INFO] [1790528248.889317506] [planner_server]: Created global planner plugin GridBased of type nav2_navfn_planner::NavfnPlanner
+[component_container_isolated-1] [INFO] [1790528248.889360006] [planner_server]: Configuring plugin GridBased of type NavfnPlanner
+[component_container_isolated-1] [INFO] [1790528248.890859214] [planner_server]: Planner Server has GridBased  planners available.
+[component_container_isolated-1] [INFO] [1790528248.901273364] [lifecycle_manager_navigation]: [34m[1mConfiguring route_server[0m[0m
+[component_container_isolated-1] [INFO] [1790528248.901454365] [route_server]: Configuring
+[component_container_isolated-1] [INFO] [1790528248.924037674] [route_server]: Created GraphFileLoader GeoJsonGraphFileLoader of type nav2_route::GeoJsonGraphFileLoader
+[component_container_isolated-1] [INFO] [1790528248.924078975] [route_server]: Configuring geojson graph file loader
+[component_container_isolated-1] [INFO] [1790528248.924121975] [route_server]: No graph file provided to load yet.
+[component_container_isolated-1] [INFO] [1790528248.928508696] [route_server]: Created edge cost function plugin DistanceScorer of type nav2_route::DistanceScorer
+[component_container_isolated-1] [INFO] [1790528248.928539896] [route_server]: Configuring distance scorer.
+[component_container_isolated-1] [INFO] [1790528248.929509301] [route_server]: Created edge cost function plugin CostmapScorer of type nav2_route::CostmapScorer
+[component_container_isolated-1] [INFO] [1790528248.929541801] [route_server]: Configuring costmap scorer.
+[component_container_isolated-1] [INFO] [1790528248.934330624] [route_server]: Created route operation AdjustSpeedLimit of type nav2_route::AdjustSpeedLimit
+[component_container_isolated-1] [INFO] [1790528248.934360924] [route_server]: Configuring Adjust speed limit operation.
+[component_container_isolated-1] [INFO] [1790528248.935992932] [route_server]: Created route operation ReroutingService of type nav2_route::ReroutingService
+[component_container_isolated-1] [INFO] [1790528248.936022132] [route_server]: Configuring Rerouting service operation.
+[component_container_isolated-1] [INFO] [1790528248.937497040] [route_server]: Created route operation CollisionMonitor of type nav2_route::CollisionMonitor
+[component_container_isolated-1] [INFO] [1790528248.937930042] [route_server]: Using costmap topic: local_costmap/costmap_raw instead of server costmap topic: global_costmap/costmap_raw for CollisionMonitor.
+[component_container_isolated-1] [INFO] [1790528248.943498369] [lifecycle_manager_navigation]: [34m[1mConfiguring behavior_server[0m[0m
+[component_container_isolated-1] [INFO] [1790528248.943642669] [behavior_server]: Configuring
+[component_container_isolated-1] [INFO] [1790528248.952128111] [behavior_server]: Creating behavior plugin spin of type nav2_behaviors::Spin
+[component_container_isolated-1] [INFO] [1790528248.953343516] [behavior_server]: Creating behavior plugin backup of type nav2_behaviors::BackUp
+[component_container_isolated-1] [INFO] [1790528248.955167425] [behavior_server]: Creating behavior plugin drive_on_heading of type nav2_behaviors::DriveOnHeading
+[component_container_isolated-1] [INFO] [1790528248.956555732] [behavior_server]: Creating behavior plugin assisted_teleop of type nav2_behaviors::AssistedTeleop
+[component_container_isolated-1] [INFO] [1790528248.959054844] [behavior_server]: Creating behavior plugin wait of type nav2_behaviors::Wait
+[component_container_isolated-1] [INFO] [1790528248.962839362] [behavior_server]: Configuring spin
+[component_container_isolated-1] [INFO] [1790528248.970567400] [behavior_server]: Configuring backup
+[component_container_isolated-1] [INFO] [1790528248.976005226] [behavior_server]: Configuring drive_on_heading
+[component_container_isolated-1] [INFO] [1790528248.981402452] [behavior_server]: Configuring assisted_teleop
+[component_container_isolated-1] [INFO] [1790528248.989187790] [behavior_server]: Configuring wait
+[component_container_isolated-1] [INFO] [1790528248.995184519] [lifecycle_manager_navigation]: [34m[1mConfiguring velocity_smoother[0m[0m
+[component_container_isolated-1] [INFO] [1790528248.995321020] [velocity_smoother]: Configuring velocity smoother
+[component_container_isolated-1] [INFO] [1790528249.005427969] [lifecycle_manager_navigation]: [34m[1mConfiguring collision_monitor[0m[0m
+[component_container_isolated-1] [INFO] [1790528249.005748770] [collision_monitor]: Configuring
+[component_container_isolated-1] [INFO] [1790528249.017071625] [collision_monitor]: [scan]: Creating Scan
+[component_container_isolated-1] [INFO] [1790528249.020608043] [collision_monitor]: [FootprintApproach]: Creating Polygon
+[component_container_isolated-1] [INFO] [1790528249.020910044] [collision_monitor]: [FootprintApproach]: Polygon points are not defined. Using dynamic subscription instead.
+[component_container_isolated-1] [INFO] [1790528249.026879473] [collision_monitor]: [FootprintApproach]: Making footprint subscriber on /local_costmap/published_footprint topic
+[component_container_isolated-1] [INFO] [1790528249.034638811] [lifecycle_manager_navigation]: [34m[1mConfiguring bt_navigator[0m[0m
+[component_container_isolated-1] [INFO] [1790528249.034775711] [bt_navigator]: Configuring
+[component_container_isolated-1] [INFO] [1790528249.041514544] [bt_navigator]: Creating navigator id navigate_to_pose of type nav2_bt_navigator::NavigateToPoseNavigator
+[component_container_isolated-1] [INFO] [1790528249.149396167] [bt_navigator]: Creating navigator id navigate_through_poses of type nav2_bt_navigator::NavigateThroughPosesNavigator
+[component_container_isolated-1] [INFO] [1790528249.189729962] [lifecycle_manager_navigation]: [34m[1mConfiguring waypoint_follower[0m[0m
+[component_container_isolated-1] [INFO] [1790528249.189936863] [waypoint_follower]: Configuring
+[component_container_isolated-1] [INFO] [1790528249.217068395] [waypoint_follower]: Created waypoint_task_executor : wait_at_waypoint of type nav2_waypoint_follower::WaitAtWaypoint
+[component_container_isolated-1] [INFO] [1790528249.218754503] [lifecycle_manager_navigation]: [34m[1mConfiguring docking_server[0m[0m
+[component_container_isolated-1] [INFO] [1790528249.218951804] [docking_server]: Configuring docking_server
+[component_container_isolated-1] [INFO] [1790528249.219007004] [docking_server]: Controller frequency set to 50.0000Hz
+[component_container_isolated-1] [INFO] [1790528249.249333051] [docking_server]: Created charging dock plugin simple_charging_dock of type opennav_docking::SimpleChargingDock
+[component_container_isolated-1] [WARN] [1790528249.259327000] [docking_server]: Dock database filepath nor dock parameters set. Docking actions can only be executed specifying the dock pose via the action request. Or update the dock database via the reload_database service.
+[component_container_isolated-1] [INFO] [1790528249.259374400] [docking_server]: Docking Server has 1 dock types and 0 dock instances available.
+[component_container_isolated-1] [INFO] [1790528249.261421210] [lifecycle_manager_navigation]: [34m[1mActivating controller_server[0m[0m
+[component_container_isolated-1] [INFO] [1790528249.261807412] [controller_server]: Activating
+[component_container_isolated-1] [INFO] [1790528249.261847012] [local_costmap.local_costmap]: Activating
+[component_container_isolated-1] [INFO] [1790528249.261860712] [local_costmap.local_costmap]: Checking transform
+[component_container_isolated-1] [INFO] [1790528249.262007613] [local_costmap.local_costmap]: start
+[component_container_isolated-1] [WARN] [1790528249.513365331] [controller_server]: Parameter controller_server.verbose not found
+[component_container_isolated-1] [INFO] [1790528249.517000049] [controller_server]: Optimizer reset
+[component_container_isolated-1] [INFO] [1790528249.518909458] [MPPIController]: Activated MPPI Controller: FollowPath
+[component_container_isolated-1] [INFO] [1790528249.519012359] [controller_server]: Creating bond (controller_server) to lifecycle manager.
+[component_container_isolated-1] [INFO] [1790528249.630713600] [lifecycle_manager_navigation]: Server controller_server connected with bond.
+[component_container_isolated-1] [INFO] [1790528249.630775300] [lifecycle_manager_navigation]: [34m[1mActivating smoother_server[0m[0m
+[component_container_isolated-1] [INFO] [1790528249.631108702] [smoother_server]: Activating
+[component_container_isolated-1] [INFO] [1790528249.631147002] [smoother_server]: Creating bond (smoother_server) to lifecycle manager.
+[component_container_isolated-1] [INFO] [1790528249.737170616] [lifecycle_manager_navigation]: Server smoother_server connected with bond.
+[component_container_isolated-1] [INFO] [1790528249.737246717] [lifecycle_manager_navigation]: [34m[1mActivating planner_server[0m[0m
+[component_container_isolated-1] [INFO] [1790528249.737508718] [planner_server]: Activating
+[component_container_isolated-1] [INFO] [1790528249.737559018] [global_costmap.global_costmap]: Activating
+[component_container_isolated-1] [INFO] [1790528249.737572018] [global_costmap.global_costmap]: Checking transform
+[component_container_isolated-1] [INFO] [1790528249.737679719] [global_costmap.global_costmap]: start
+[component_container_isolated-1] [INFO] [1790528250.739202674] [planner_server]: Activating plugin GridBased of type NavfnPlanner
+[component_container_isolated-1] [INFO] [1790528250.742081788] [planner_server]: Creating bond (planner_server) to lifecycle manager.
+[component_container_isolated-1] [INFO] [1790528250.847406598] [lifecycle_manager_navigation]: Server planner_server connected with bond.
+[component_container_isolated-1] [INFO] [1790528250.847451898] [lifecycle_manager_navigation]: [34m[1mActivating route_server[0m[0m
+[component_container_isolated-1] [INFO] [1790528250.847775300] [route_server]: Activating
+[component_container_isolated-1] [INFO] [1790528250.848101702] [route_server]: Creating bond (route_server) to lifecycle manager.
+[component_container_isolated-1] [INFO] [1790528250.932015008] [global_costmap.global_costmap]: StaticLayer: Resizing costmap to 205 X 206 at 0.050000 m/pix
+[component_container_isolated-1] [INFO] [1790528250.952733009] [lifecycle_manager_navigation]: Server route_server connected with bond.
+[component_container_isolated-1] [INFO] [1790528250.952834009] [lifecycle_manager_navigation]: [34m[1mActivating behavior_server[0m[0m
+[component_container_isolated-1] [INFO] [1790528250.953324812] [behavior_server]: Activating
+[component_container_isolated-1] [INFO] [1790528250.953351812] [behavior_server]: Activating spin
+[component_container_isolated-1] [INFO] [1790528250.953376612] [behavior_server]: Activating backup
+[component_container_isolated-1] [INFO] [1790528250.953387312] [behavior_server]: Activating drive_on_heading
+[component_container_isolated-1] [INFO] [1790528250.953398312] [behavior_server]: Activating assisted_teleop
+[component_container_isolated-1] [INFO] [1790528250.953407212] [behavior_server]: Activating wait
+[component_container_isolated-1] [INFO] [1790528250.953432512] [behavior_server]: Creating bond (behavior_server) to lifecycle manager.
+[component_container_isolated-1] [INFO] [1790528251.059729827] [lifecycle_manager_navigation]: Server behavior_server connected with bond.
+[component_container_isolated-1] [INFO] [1790528251.059774228] [lifecycle_manager_navigation]: [34m[1mActivating velocity_smoother[0m[0m
+[component_container_isolated-1] [INFO] [1790528251.060012529] [velocity_smoother]: Activating
+[component_container_isolated-1] [INFO] [1790528251.060077329] [velocity_smoother]: Creating bond (velocity_smoother) to lifecycle manager.
+[component_container_isolated-1] [INFO] [1790528251.165517240] [lifecycle_manager_navigation]: Server velocity_smoother connected with bond.
+[component_container_isolated-1] [INFO] [1790528251.165559740] [lifecycle_manager_navigation]: [34m[1mActivating collision_monitor[0m[0m
+[component_container_isolated-1] [INFO] [1790528251.165826942] [collision_monitor]: Activating
+[component_container_isolated-1] [INFO] [1790528251.165923242] [collision_monitor]: Creating bond (collision_monitor) to lifecycle manager.
+[component_container_isolated-1] [INFO] [1790528251.272139157] [lifecycle_manager_navigation]: Server collision_monitor connected with bond.
+[component_container_isolated-1] [INFO] [1790528251.272229958] [lifecycle_manager_navigation]: [34m[1mActivating bt_navigator[0m[0m
+[component_container_isolated-1] [INFO] [1790528251.272701460] [bt_navigator]: Activating
+[component_container_isolated-1] [INFO] [1790528251.339399683] [bt_navigator]: Creating bond (bt_navigator) to lifecycle manager.
+[component_container_isolated-1] [INFO] [1790528251.444947595] [lifecycle_manager_navigation]: Server bt_navigator connected with bond.
+[component_container_isolated-1] [INFO] [1790528251.445035595] [lifecycle_manager_navigation]: [34m[1mActivating waypoint_follower[0m[0m
+[component_container_isolated-1] [INFO] [1790528251.445457197] [waypoint_follower]: Activating
+[component_container_isolated-1] [INFO] [1790528251.445508298] [waypoint_follower]: Creating bond (waypoint_follower) to lifecycle manager.
+[component_container_isolated-1] [INFO] [1790528251.551792113] [lifecycle_manager_navigation]: Server waypoint_follower connected with bond.
+[component_container_isolated-1] [INFO] [1790528251.551850913] [lifecycle_manager_navigation]: [34m[1mActivating docking_server[0m[0m
+[component_container_isolated-1] [INFO] [1790528251.552171515] [docking_server]: Activating docking_server
+[component_container_isolated-1] [INFO] [1790528251.564700775] [docking_server]: Creating bond (docking_server) to lifecycle manager.
+[component_container_isolated-1] [INFO] [1790528251.671438293] [lifecycle_manager_navigation]: Server docking_server connected with bond.
+[component_container_isolated-1] [INFO] [1790528251.671495793] [lifecycle_manager_navigation]: [34m[1mManaged nodes are active[0m[0m
+[component_container_isolated-1] [INFO] [1790528251.671549993] [lifecycle_manager_navigation]: [34m[1mCreating bond timer...[0m[0m
+[component_container_isolated-1] [INFO] [1790528254.737871358] [global_costmap.global_costmap]: StaticLayer: Resizing costmap to 206 X 207 at 0.050000 m/pix
+[component_container_isolated-1] [INFO] [1790528257.737846501] [global_costmap.global_costmap]: StaticLayer: Resizing costmap to 207 X 207 at 0.050000 m/pix
+[component_container_isolated-1] [INFO] [1790528260.737847144] [global_costmap.global_costmap]: StaticLayer: Resizing costmap to 207 X 208 at 0.050000 m/pix
+[component_container_isolated-1] [INFO] [1790528263.737837388] [global_costmap.global_costmap]: StaticLayer: Resizing costmap to 208 X 208 at 0.050000 m/pix
+[component_container_isolated-1] [INFO] [1790528266.737839231] [global_costmap.global_costmap]: StaticLayer: Resizing costmap to 209 X 208 at 0.050000 m/pix
+[component_container_isolated-1] [INFO] [1790528269.737836275] [global_costmap.global_costmap]: StaticLayer: Resizing costmap to 209 X 209 at 0.050000 m/pix
+[component_container_isolated-1] [INFO] [1790528272.737881819] [global_costmap.global_costmap]: StaticLayer: Resizing costmap to 209 X 209 at 0.050000 m/pix
+[component_container_isolated-1] [INFO] [1790528275.737842163] [global_costmap.global_costmap]: StaticLayer: Resizing costmap to 209 X 209 at 0.050000 m/pix
+[component_container_isolated-1] [INFO] [1790528278.737845507] [global_costmap.global_costmap]: StaticLayer: Resizing costmap to 209 X 208 at 0.050000 m/pix
+[component_container_isolated-1] [INFO] [1790528281.737838252] [global_costmap.global_costmap]: StaticLayer: Resizing costmap to 209 X 209 at 0.050000 m/pix
+[component_container_isolated-1] [INFO] [1790528284.737835596] [global_costmap.global_costmap]: StaticLayer: Resizing costmap to 209 X 209 at 0.050000 m/pix
+[component_container_isolated-1] [INFO] [1790528287.737875541] [global_costmap.global_costmap]: StaticLayer: Resizing costmap to 209 X 210 at 0.050000 m/pix
+[component_container_isolated-1] [INFO] [1790528287.906896160] [bt_navigator]: Begin navigating from current location (1.28, 0.51) to (4.00, 4.00)
+[component_container_isolated-1] [WARN] [1790528287.908965770] [planner_server]: GridBased plugin failed to plan from (1.28, 0.51) to (4.00, 4.00): "Failed to create plan with tolerance of: 0.500000"
+[component_container_isolated-1] [WARN] [1790528287.909029571] [planner_server]: [compute_path_to_pose] [ActionServer] Aborting handle.
+[component_container_isolated-1] [INFO] [1790528287.927818762] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[component_container_isolated-1] [WARN] [1790528288.749512246] [planner_server]: GridBased plugin failed to plan from (1.22, 0.69) to (4.00, 4.00): "Failed to create plan with tolerance of: 0.500000"
+[component_container_isolated-1] [WARN] [1790528288.749571346] [planner_server]: [compute_path_to_pose] [ActionServer] Aborting handle.
+[component_container_isolated-1] [INFO] [1790528288.767437832] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[component_container_isolated-1] [INFO] [1790528288.767754234] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[component_container_isolated-1] [WARN] [1790528289.750330698] [planner_server]: Planner loop missed its desired rate of 20.0000 Hz. Current loop rate is 1.0183 Hz
+[component_container_isolated-1] [INFO] [1790528289.767804782] [controller_server]: Received a goal, begin computing control effort.
+[component_container_isolated-1] [WARN] [1790528289.767864183] [controller_server]: No goal checker was specified in parameter 'current_goal_checker'. Server will use only plugin loaded general_goal_checker . This warning will appear once.
+[component_container_isolated-1] [WARN] [1790528289.767881583] [controller_server]: No progress checker was specified in parameter 'current_progress_checker'. Server will use only plugin loaded progress_checker . This warning will appear once.
+[component_container_isolated-1] [INFO] [1790528290.739107092] [global_costmap.global_costmap]: StaticLayer: Resizing costmap to 209 X 210 at 0.050000 m/pix
+[component_container_isolated-1] [INFO] [1790528290.820454786] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528291.868026565] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528292.869426120] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528293.737835730] [global_costmap.global_costmap]: StaticLayer: Resizing costmap to 209 X 210 at 0.050000 m/pix
+[component_container_isolated-1] [INFO] [1790528293.921671822] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528294.918870256] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528295.970807157] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528296.968027091] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528298.018031082] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528299.024937564] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528300.074310152] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528301.072290390] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [WARN] [1790528301.421621084] [controller_server]: Control loop missed its desired rate of 20.0000 Hz. Current loop rate is 19.2826 Hz.
+[component_container_isolated-1] [ERROR] [1790528301.674801212] [controller_server]: Exception in transformPose: Lookup would require extrapolation into the future.  Requested time 1790528301.548610 but the latest data is at time 1790528301.507473, when looking up transform from frame [map] to frame [odom]
+[component_container_isolated-1] [ERROR] [1790528301.674959312] [controller_server]: Unable to transform goal pose into costmap frame
+[component_container_isolated-1] [INFO] [1790528301.680232438] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1790528301.680276938] [controller_server]: [follow_path] [ActionServer] Aborting handle.
+[component_container_isolated-1] [WARN] [1790528301.705350660] [bt_navigator]: [navigate_to_pose] [ActionServer] Aborting handle.
+[component_container_isolated-1] [ERROR] [1790528301.705601961] [bt_navigator]: Goal failed
+[component_container_isolated-1] [INFO] [1790528302.813062231] [global_costmap.global_costmap]: Message Filter dropping message: frame 'base_link' at time 1790528302.407 for reason 'the timestamp on the message is earlier than all the data in the transform cache'
+[component_container_isolated-1] [INFO] [1790528303.740929729] [bt_navigator]: Begin navigating from current location (-1.53, 0.51) to (4.00, 4.00)
+[component_container_isolated-1] [INFO] [1790528303.772295081] [controller_server]: Received a goal, begin computing control effort.
+[component_container_isolated-1] [ERROR] [1790528303.873818274] [controller_server]: Exception in transformPose: Lookup would require extrapolation into the future.  Requested time 1790528303.747554 but the latest data is at time 1790528303.511975, when looking up transform from frame [map] to frame [odom]
+[component_container_isolated-1] [ERROR] [1790528303.873974574] [controller_server]: Unable to transform goal pose into costmap frame
+[component_container_isolated-1] [INFO] [1790528303.877057589] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1790528303.877100889] [controller_server]: [follow_path] [ActionServer] Aborting handle.
+[component_container_isolated-1] [WARN] [1790528303.901805809] [bt_navigator]: [navigate_to_pose] [ActionServer] Aborting handle.
+[component_container_isolated-1] [ERROR] [1790528303.902067211] [bt_navigator]: Goal failed
+[component_container_isolated-1] [INFO] [1790528305.915026170] [bt_navigator]: Begin navigating from current location (-1.59, -0.09) to (4.00, 4.00)
+[component_container_isolated-1] [INFO] [1790528305.936027372] [controller_server]: Received a goal, begin computing control effort.
+[component_container_isolated-1] [INFO] [1790528306.986249364] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528307.986237513] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528309.036233304] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528310.087176299] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528311.086239443] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528311.737906203] [global_costmap.global_costmap]: StaticLayer: Resizing costmap to 209 X 210 at 0.050000 m/pix
+[component_container_isolated-1] [INFO] [1790528312.136242834] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528313.136230083] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528314.186229974] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528315.186466924] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [WARN] [1790528315.238275475] [controller_server]: Control loop missed its desired rate of 20.0000 Hz. Current loop rate is 19.3008 Hz.
+[component_container_isolated-1] [INFO] [1790528316.239919131] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528317.239948680] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528317.737860294] [global_costmap.global_costmap]: StaticLayer: Resizing costmap to 209 X 210 at 0.050000 m/pix
+[component_container_isolated-1] [INFO] [1790528318.289905671] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528319.289975720] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528320.339920611] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528321.339905560] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528322.389920351] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528323.439925942] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528324.439908891] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528325.490012982] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528326.395286372] [controller_server]: Optimizer reset
+[component_container_isolated-1] [INFO] [1790528326.400221496] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1790528326.400304396] [controller_server]: Optimizer fail to compute path
+[component_container_isolated-1] [INFO] [1790528326.446002318] [controller_server]: Optimizer reset
+[component_container_isolated-1] [INFO] [1790528326.453161253] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1790528326.453213053] [controller_server]: Optimizer fail to compute path
+[component_container_isolated-1] [INFO] [1790528326.489960231] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528326.572921533] [collision_monitor]: Robot to approach for 1.200000 seconds away from collision
+[component_container_isolated-1] [INFO] [1790528326.645929387] [controller_server]: Optimizer reset
+[component_container_isolated-1] [INFO] [1790528326.653618924] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1790528326.653676825] [controller_server]: Optimizer fail to compute path
+[component_container_isolated-1] [INFO] [1790528326.670528906] [collision_monitor]: Robot to continue normal operation
+[component_container_isolated-1] [INFO] [1790528326.730480497] [collision_monitor]: Robot to approach for 1.200000 seconds away from collision
+[component_container_isolated-1] [INFO] [1790528326.845361654] [controller_server]: Optimizer reset
+[component_container_isolated-1] [INFO] [1790528326.852889091] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1790528326.852957091] [controller_server]: Optimizer fail to compute path
+[component_container_isolated-1] [INFO] [1790528327.045223223] [controller_server]: Optimizer reset
+[component_container_isolated-1] [INFO] [1790528327.052975961] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1790528327.053049161] [controller_server]: Optimizer fail to compute path
+[component_container_isolated-1] [INFO] [1790528327.070387945] [collision_monitor]: Robot to continue normal operation
+[component_container_isolated-1] [INFO] [1790528327.095813969] [controller_server]: Optimizer reset
+[component_container_isolated-1] [INFO] [1790528327.103006703] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1790528327.103073704] [controller_server]: Optimizer fail to compute path
+[component_container_isolated-1] [INFO] [1790528327.145817011] [controller_server]: Optimizer reset
+[component_container_isolated-1] [INFO] [1790528327.153313347] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1790528327.153369448] [controller_server]: Optimizer fail to compute path
+[component_container_isolated-1] [INFO] [1790528327.195918854] [controller_server]: Optimizer reset
+[component_container_isolated-1] [INFO] [1790528327.202987488] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1790528327.203047589] [controller_server]: Optimizer fail to compute path
+[component_container_isolated-1] [INFO] [1790528327.245869396] [controller_server]: Optimizer reset
+[component_container_isolated-1] [INFO] [1790528327.253401833] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1790528327.253449533] [controller_server]: Optimizer fail to compute path
+[component_container_isolated-1] [INFO] [1790528327.330419906] [collision_monitor]: Robot to approach for 1.200000 seconds away from collision
+[component_container_isolated-1] [WARN] [1790528327.495908409] [planner_server]: GridBased plugin failed to plan from (1.28, 0.45) to (4.00, 4.00): "Failed to create plan with tolerance of: 0.500000"
+[component_container_isolated-1] [WARN] [1790528327.495977009] [planner_server]: [compute_path_to_pose] [ActionServer] Aborting handle.
+[component_container_isolated-1] [INFO] [1790528327.505663056] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[component_container_isolated-1] [WARN] [1790528327.746419223] [planner_server]: GridBased plugin failed to plan from (1.26, 0.52) to (4.00, 4.00): "Failed to create plan with tolerance of: 0.500000"
+[component_container_isolated-1] [WARN] [1790528327.746482024] [planner_server]: [compute_path_to_pose] [ActionServer] Aborting handle.
+[component_container_isolated-1] [ERROR] [1790528327.776089367] [bt_navigator_navigate_to_pose_rclcpp_node]: Failed to get result for follow_path in node halt!
+[component_container_isolated-1] [INFO] [1790528327.776558569] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[component_container_isolated-1] [INFO] [1790528327.776891071] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[component_container_isolated-1] [INFO] [1790528327.789909334] [controller_server]: Cancellation was successful. Stopping the robot.
+[component_container_isolated-1] [INFO] [1790528327.789938734] [controller_server]: [follow_path] [ActionServer] Client requested to cancel the goal. Cancelling.
+[component_container_isolated-1] [INFO] [1790528327.790875339] [controller_server]: Optimizer reset
+[component_container_isolated-1] [INFO] [1790528327.870311124] [collision_monitor]: Robot to continue normal operation
+[component_container_isolated-1] [ERROR] [1790528327.954915634] [bt_navigator_navigate_to_pose_rclcpp_node]: Failed to get result for compute_path_to_pose in node halt!
+[component_container_isolated-1] [INFO] [1790528327.955057135] [bt_navigator]: [navigate_to_pose] [ActionServer] Client requested to cancel the goal. Cancelling.
+[component_container_isolated-1] [INFO] [1790528327.955199836] [bt_navigator]: Goal canceled
+[component_container_isolated-1] [INFO] [1790528328.747962680] [planner_server]: Goal was canceled. Canceling planning action.
+[component_container_isolated-1] [INFO] [1790528328.748011780] [planner_server]: [compute_path_to_pose] [ActionServer] Client requested to cancel the goal. Cancelling.
+[component_container_isolated-1] [INFO] [1790528329.963754275] [bt_navigator]: Begin navigating from current location (1.01, 0.97) to (4.00, 4.00)
+[component_container_isolated-1] [INFO] [1790528329.984708676] [controller_server]: Received a goal, begin computing control effort.
+[component_container_isolated-1] [INFO] [1790528331.034919869] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528332.034919918] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528332.737835126] [global_costmap.global_costmap]: StaticLayer: Resizing costmap to 209 X 210 at 0.050000 m/pix
+[component_container_isolated-1] [INFO] [1790528333.084987009] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528334.084923158] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528335.134923749] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528335.737846473] [global_costmap.global_costmap]: StaticLayer: Resizing costmap to 209 X 210 at 0.050000 m/pix
+[component_container_isolated-1] [INFO] [1790528336.134936098] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528337.185799394] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528338.186053144] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528338.737845220] [global_costmap.global_costmap]: StaticLayer: Resizing costmap to 210 X 211 at 0.050000 m/pix
+[component_container_isolated-1] [INFO] [1790528339.235091531] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528340.234915379] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528341.284997771] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528341.737839366] [global_costmap.global_costmap]: StaticLayer: Resizing costmap to 210 X 210 at 0.050000 m/pix
+[component_container_isolated-1] [INFO] [1790528342.284928419] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528343.334923011] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528344.334975360] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528344.737834614] [global_costmap.global_costmap]: StaticLayer: Resizing costmap to 209 X 210 at 0.050000 m/pix
+[component_container_isolated-1] [INFO] [1790528345.384930351] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528346.386811809] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528347.434925492] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528347.737866761] [global_costmap.global_costmap]: StaticLayer: Resizing costmap to 209 X 211 at 0.050000 m/pix
+[component_container_isolated-1] [INFO] [1790528348.435042442] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528349.484924833] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528350.484935782] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528350.737833908] [global_costmap.global_costmap]: StaticLayer: Resizing costmap to 209 X 212 at 0.050000 m/pix
+[component_container_isolated-1] [INFO] [1790528351.534928573] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [ERROR] [1790528352.010029277] [bt_navigator_navigate_to_pose_rclcpp_node]: Failed to get result for follow_path in node halt!
+[component_container_isolated-1] [INFO] [1790528352.010175978] [bt_navigator]: [navigate_to_pose] [ActionServer] Client requested to cancel the goal. Cancelling.
+[component_container_isolated-1] [INFO] [1790528352.010325579] [bt_navigator]: Goal canceled
+[component_container_isolated-1] [INFO] [1790528352.034922398] [controller_server]: Cancellation was successful. Stopping the robot.
+[component_container_isolated-1] [INFO] [1790528352.034964898] [controller_server]: [follow_path] [ActionServer] Client requested to cancel the goal. Cancelling.
+[component_container_isolated-1] [INFO] [1790528352.041741531] [controller_server]: Optimizer reset
+[component_container_isolated-1] [INFO] [1790528353.737832956] [global_costmap.global_costmap]: StaticLayer: Resizing costmap to 212 X 212 at 0.050000 m/pix
+[component_container_isolated-1] [INFO] [1790528354.018715518] [bt_navigator]: Begin navigating from current location (-0.31, -1.49) to (4.00, 4.00)
+[component_container_isolated-1] [INFO] [1790528354.039717519] [controller_server]: Received a goal, begin computing control effort.
+[component_container_isolated-1] [INFO] [1790528355.089924812] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528356.089920061] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528356.737831903] [global_costmap.global_costmap]: StaticLayer: Resizing costmap to 211 X 209 at 0.050000 m/pix
+[component_container_isolated-1] [INFO] [1790528357.139909453] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528358.139915302] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528359.189917494] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528359.737837351] [global_costmap.global_costmap]: StaticLayer: Resizing costmap to 211 X 209 at 0.050000 m/pix
+[component_container_isolated-1] [INFO] [1790528360.189907143] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528361.190506995] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528362.239912184] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528363.239975534] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528364.289940325] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528365.289914474] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528366.339911166] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528366.447413088] [controller_server]: Optimizer reset
+[component_container_isolated-1] [INFO] [1790528366.455303726] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1790528366.455389426] [controller_server]: Optimizer fail to compute path
+[component_container_isolated-1] [INFO] [1790528366.570304583] [collision_monitor]: Robot to approach for 1.200000 seconds away from collision
+[component_container_isolated-1] [INFO] [1790528366.646214552] [controller_server]: Optimizer reset
+[component_container_isolated-1] [INFO] [1790528366.654630392] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1790528366.654706693] [controller_server]: Optimizer fail to compute path
+[component_container_isolated-1] [INFO] [1790528366.670328469] [collision_monitor]: Robot to continue normal operation
+[component_container_isolated-1] [INFO] [1790528366.730477560] [collision_monitor]: Robot to approach for 1.200000 seconds away from collision
+[component_container_isolated-1] [INFO] [1790528366.847406227] [controller_server]: Optimizer reset
+[component_container_isolated-1] [INFO] [1790528366.855634067] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1790528366.855847868] [controller_server]: Optimizer fail to compute path
+[component_container_isolated-1] [INFO] [1790528366.870318338] [collision_monitor]: Robot to continue normal operation
+[component_container_isolated-1] [INFO] [1790528366.930424130] [collision_monitor]: Robot to approach for 1.200000 seconds away from collision
+[component_container_isolated-1] [INFO] [1790528367.045856790] [controller_server]: Optimizer reset
+[component_container_isolated-1] [INFO] [1790528367.053482727] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1790528367.053545527] [controller_server]: Optimizer fail to compute path
+[component_container_isolated-1] [INFO] [1790528367.070376008] [collision_monitor]: Robot to continue normal operation
+[component_container_isolated-1] [INFO] [1790528367.095393030] [controller_server]: Optimizer reset
+[component_container_isolated-1] [INFO] [1790528367.102454564] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1790528367.102507164] [controller_server]: Optimizer fail to compute path
+[component_container_isolated-1] [INFO] [1790528367.148359387] [controller_server]: Optimizer reset
+[component_container_isolated-1] [INFO] [1790528367.158266235] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1790528367.158354735] [controller_server]: Optimizer fail to compute path
+[component_container_isolated-1] [INFO] [1790528367.203583254] [controller_server]: Optimizer reset
+[component_container_isolated-1] [INFO] [1790528367.210749189] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1790528367.210817590] [controller_server]: Optimizer fail to compute path
+[component_container_isolated-1] [INFO] [1790528367.245513758] [controller_server]: Optimizer reset
+[component_container_isolated-1] [INFO] [1790528367.253374596] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1790528367.253425696] [controller_server]: Optimizer fail to compute path
+[component_container_isolated-1] [WARN] [1790528367.309618369] [planner_server]: GridBased plugin failed to plan from (1.42, 0.41) to (4.00, 4.00): "Failed to create plan with tolerance of: 0.500000"
+[component_container_isolated-1] [WARN] [1790528367.309677569] [planner_server]: [compute_path_to_pose] [ActionServer] Aborting handle.
+[component_container_isolated-1] [INFO] [1790528367.329398965] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[component_container_isolated-1] [INFO] [1790528367.330466070] [collision_monitor]: Robot to approach for 1.200000 seconds away from collision
+[component_container_isolated-1] [WARN] [1790528367.740227457] [planner_server]: GridBased plugin failed to plan from (1.38, 0.52) to (4.00, 4.00): "Failed to create plan with tolerance of: 0.500000"
+[component_container_isolated-1] [WARN] [1790528367.740302157] [planner_server]: [compute_path_to_pose] [ActionServer] Aborting handle.
+[component_container_isolated-1] [ERROR] [1790528367.779332746] [bt_navigator_navigate_to_pose_rclcpp_node]: Failed to get result for follow_path in node halt!
+[component_container_isolated-1] [INFO] [1790528367.779642348] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[component_container_isolated-1] [INFO] [1790528367.783005264] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[component_container_isolated-1] [INFO] [1790528367.790390800] [controller_server]: Cancellation was successful. Stopping the robot.
+[component_container_isolated-1] [INFO] [1790528367.790430400] [controller_server]: [follow_path] [ActionServer] Client requested to cancel the goal. Cancelling.
+[component_container_isolated-1] [INFO] [1790528367.792249709] [controller_server]: Optimizer reset
+[component_container_isolated-1] [INFO] [1790528367.830749796] [collision_monitor]: Robot to continue normal operation
+[component_container_isolated-1] [INFO] [1790528368.737859695] [global_costmap.global_costmap]: StaticLayer: Resizing costmap to 211 X 208 at 0.050000 m/pix
+[component_container_isolated-1] [WARN] [1790528368.744220126] [planner_server]: GridBased plugin failed to plan from (1.28, 0.73) to (4.00, 4.00): "Failed to create plan with tolerance of: 0.500000"
+[component_container_isolated-1] [WARN] [1790528368.744275426] [planner_server]: [compute_path_to_pose] [ActionServer] Aborting handle.
+[component_container_isolated-1] [INFO] [1790528368.744554427] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[component_container_isolated-1] [WARN] [1790528369.746986088] [planner_server]: Planner loop missed its desired rate of 20.0000 Hz. Current loop rate is 0.9985 Hz
+[component_container_isolated-1] [INFO] [1790528369.764679974] [controller_server]: Received a goal, begin computing control effort.
+[component_container_isolated-1] [INFO] [1790528370.814867967] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528371.737832643] [global_costmap.global_costmap]: StaticLayer: Resizing costmap to 211 X 210 at 0.050000 m/pix
+[component_container_isolated-1] [INFO] [1790528371.864871559] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528372.865310710] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528373.914875300] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528374.737854491] [global_costmap.global_costmap]: StaticLayer: Resizing costmap to 211 X 211 at 0.050000 m/pix
+[component_container_isolated-1] [INFO] [1790528374.914879250] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528375.964915742] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [ERROR] [1790528376.054549576] [bt_navigator_navigate_to_pose_rclcpp_node]: Failed to get result for follow_path in node halt!
+[component_container_isolated-1] [INFO] [1790528376.054723077] [bt_navigator]: [navigate_to_pose] [ActionServer] Client requested to cancel the goal. Cancelling.
+[component_container_isolated-1] [INFO] [1790528376.054914578] [bt_navigator]: Goal canceled
+[component_container_isolated-1] [INFO] [1790528376.065049627] [controller_server]: Cancellation was successful. Stopping the robot.
+[component_container_isolated-1] [INFO] [1790528376.065209628] [controller_server]: [follow_path] [ActionServer] Client requested to cancel the goal. Cancelling.
+[component_container_isolated-1] [INFO] [1790528376.069954851] [controller_server]: Optimizer reset
+[component_container_isolated-1] [INFO] [1790528378.064714825] [bt_navigator]: Begin navigating from current location (-0.73, 1.37) to (4.00, 4.00)
+[component_container_isolated-1] [INFO] [1790528378.085527026] [controller_server]: Received a goal, begin computing control effort.
+[component_container_isolated-1] [INFO] [1790528379.135692518] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528380.135694168] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528380.737921188] [global_costmap.global_costmap]: StaticLayer: Resizing costmap to 211 X 210 at 0.050000 m/pix
+[component_container_isolated-1] [INFO] [1790528381.187636769] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528382.235856253] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528383.235800902] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528383.737832337] [global_costmap.global_costmap]: StaticLayer: Resizing costmap to 211 X 211 at 0.050000 m/pix
+[component_container_isolated-1] [INFO] [1790528384.285970295] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528385.285703143] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528386.335689435] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528387.335701485] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528388.385703577] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528389.385708627] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528390.435687019] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528391.435697768] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528392.485690360] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528393.485698810] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528394.485761560] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528395.536193154] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528395.738013033] [global_costmap.global_costmap]: StaticLayer: Resizing costmap to 211 X 210 at 0.050000 m/pix
+[component_container_isolated-1] [INFO] [1790528396.535691402] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528397.585693694] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528398.635691586] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528399.635692336] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528400.085697018] [controller_server]: Cancellation was successful. Stopping the robot.
+[component_container_isolated-1] [INFO] [1790528400.085740819] [controller_server]: [follow_path] [ActionServer] Client requested to cancel the goal. Cancelling.
+[component_container_isolated-1] [INFO] [1790528400.085893719] [bt_navigator]: [navigate_to_pose] [ActionServer] Client requested to cancel the goal. Cancelling.
+[component_container_isolated-1] [INFO] [1790528400.086063720] [bt_navigator]: Goal canceled
+[component_container_isolated-1] [INFO] [1790528400.088416131] [controller_server]: Optimizer reset
+[component_container_isolated-1] [INFO] [1790528402.094941563] [bt_navigator]: Begin navigating from current location (1.19, -0.76) to (4.00, 4.00)
+[component_container_isolated-1] [INFO] [1790528402.116083565] [controller_server]: Received a goal, begin computing control effort.
+[component_container_isolated-1] [INFO] [1790528403.166543760] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528404.166597410] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528405.216528802] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528406.216600752] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528406.422539851] [controller_server]: Optimizer reset
+[component_container_isolated-1] [INFO] [1790528406.433324403] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1790528406.433396003] [controller_server]: Optimizer fail to compute path
+[component_container_isolated-1] [INFO] [1790528406.623069123] [controller_server]: Optimizer reset
+[component_container_isolated-1] [INFO] [1790528406.628056347] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1790528406.628120448] [controller_server]: Optimizer fail to compute path
+[component_container_isolated-1] [INFO] [1790528406.630896261] [collision_monitor]: Robot to approach for 1.200000 seconds away from collision
+[component_container_isolated-1] [INFO] [1790528406.670327452] [collision_monitor]: Robot to continue normal operation
+[component_container_isolated-1] [INFO] [1790528406.730450944] [collision_monitor]: Robot to approach for 1.200000 seconds away from collision
+[component_container_isolated-1] [INFO] [1790528407.073183506] [controller_server]: Optimizer reset
+[component_container_isolated-1] [INFO] [1790528407.081285646] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1790528407.081362546] [controller_server]: Optimizer fail to compute path
+[component_container_isolated-1] [INFO] [1790528407.123963653] [controller_server]: Optimizer reset
+[component_container_isolated-1] [INFO] [1790528407.132558094] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1790528407.132625295] [controller_server]: Optimizer fail to compute path
+[component_container_isolated-1] [INFO] [1790528407.170342977] [collision_monitor]: Robot to continue normal operation
+[component_container_isolated-1] [INFO] [1790528407.177563012] [controller_server]: Optimizer reset
+[component_container_isolated-1] [INFO] [1790528407.187348660] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1790528407.187420660] [controller_server]: Optimizer fail to compute path
+[component_container_isolated-1] [INFO] [1790528407.222971333] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1790528407.225977347] [planner_server]: GridBased plugin failed to plan from (1.35, 0.40) to (4.00, 4.00): "Failed to create plan with tolerance of: 0.500000"
+[component_container_isolated-1] [WARN] [1790528407.226026848] [planner_server]: [compute_path_to_pose] [ActionServer] Aborting handle.
+[component_container_isolated-1] [INFO] [1790528407.228901161] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1790528407.228953362] [controller_server]: Optimizer fail to compute path
+[component_container_isolated-1] [INFO] [1790528407.235643794] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[component_container_isolated-1] [INFO] [1790528407.330456954] [collision_monitor]: Robot to approach for 1.200000 seconds away from collision
+[component_container_isolated-1] [WARN] [1790528407.746417371] [planner_server]: GridBased plugin failed to plan from (1.40, 0.51) to (4.00, 4.00): "Failed to create plan with tolerance of: 0.500000"
+[component_container_isolated-1] [WARN] [1790528407.746478472] [planner_server]: [compute_path_to_pose] [ActionServer] Aborting handle.
+[component_container_isolated-1] [INFO] [1790528407.766539569] [controller_server]: Cancellation was successful. Stopping the robot.
+[component_container_isolated-1] [INFO] [1790528407.766589169] [controller_server]: [follow_path] [ActionServer] Client requested to cancel the goal. Cancelling.
+[component_container_isolated-1] [INFO] [1790528407.766874971] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[component_container_isolated-1] [INFO] [1790528407.767719375] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[component_container_isolated-1] [INFO] [1790528407.768151877] [controller_server]: Optimizer reset
+[component_container_isolated-1] [INFO] [1790528407.870412773] [collision_monitor]: Robot to continue normal operation
+[component_container_isolated-1] [WARN] [1790528408.749310035] [planner_server]: GridBased plugin failed to plan from (1.27, 0.73) to (4.00, 4.00): "Failed to create plan with tolerance of: 0.500000"
+[component_container_isolated-1] [WARN] [1790528408.749383636] [planner_server]: [compute_path_to_pose] [ActionServer] Aborting handle.
+[component_container_isolated-1] [INFO] [1790528408.765505514] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[component_container_isolated-1] [WARN] [1790528409.748552481] [planner_server]: Planner loop missed its desired rate of 20.0000 Hz. Current loop rate is 1.0186 Hz
+[component_container_isolated-1] [INFO] [1790528409.766046466] [controller_server]: Received a goal, begin computing control effort.
+[component_container_isolated-1] [INFO] [1790528410.817699567] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528411.816227209] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528412.866220002] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528413.866217852] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528414.916226444] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528415.916231894] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528416.966229087] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528417.966222937] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528419.016228329] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528420.016240179] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528421.066222472] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528422.066499923] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528422.737867079] [global_costmap.global_costmap]: StaticLayer: Resizing costmap to 211 X 210 at 0.050000 m/pix
+[component_container_isolated-1] [INFO] [1790528423.116230114] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528424.116229764] [controller_server]: Cancellation was successful. Stopping the robot.
+[component_container_isolated-1] [WARN] [1790528424.116280864] [controller_server]: [follow_path] [ActionServer] Aborting handle.
+[component_container_isolated-1] [INFO] [1790528424.116383965] [controller_server]: [follow_path] [ActionServer] Client requested to cancel the goal. Cancelling.
+[component_container_isolated-1] [INFO] [1790528424.116477265] [bt_navigator]: [navigate_to_pose] [ActionServer] Client requested to cancel the goal. Cancelling.
+[component_container_isolated-1] [INFO] [1790528424.116632666] [bt_navigator]: Goal canceled
+[component_container_isolated-1] [INFO] [1790528424.118428075] [controller_server]: Optimizer reset
+[component_container_isolated-1] [INFO] [1790528426.125453109] [bt_navigator]: Begin navigating from current location (-1.54, -0.12) to (4.00, 4.00)
+[component_container_isolated-1] [INFO] [1790528426.146135609] [controller_server]: Received a goal, begin computing control effort.
+[component_container_isolated-1] [INFO] [1790528427.199806720] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528428.196313153] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528429.246312946] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528430.246301396] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528431.296310888] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528432.346314181] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528433.346307531] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528434.396358324] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528435.396312174] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528436.446443967] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528437.446305817] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528438.496302010] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528439.496316260] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528440.546310753] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528441.546316103] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528442.597826003] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528443.599814263] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528444.646308639] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528445.646316389] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528446.406934078] [controller_server]: Optimizer reset
+[component_container_isolated-1] [INFO] [1790528446.420358243] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1790528446.420435344] [controller_server]: Optimizer fail to compute path
+[component_container_isolated-1] [INFO] [1790528446.453126202] [controller_server]: Optimizer reset
+[component_container_isolated-1] [INFO] [1790528446.460564838] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1790528446.460636139] [controller_server]: Optimizer fail to compute path
+[component_container_isolated-1] [INFO] [1790528446.530431577] [collision_monitor]: Robot to approach for 1.200000 seconds away from collision
+[component_container_isolated-1] [WARN] [1790528446.636670893] [planner_server]: GridBased plugin failed to plan from (1.40, 0.26) to (4.00, 4.00): "Failed to create plan with tolerance of: 0.500000"
+[component_container_isolated-1] [WARN] [1790528446.636733893] [planner_server]: [compute_path_to_pose] [ActionServer] Aborting handle.
+[component_container_isolated-1] [INFO] [1790528446.652229468] [controller_server]: Optimizer reset
+[component_container_isolated-1] [INFO] [1790528446.655887486] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[component_container_isolated-1] [INFO] [1790528446.659483103] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1790528446.659526403] [controller_server]: Optimizer fail to compute path
+[component_container_isolated-1] [INFO] [1790528446.670331156] [collision_monitor]: Robot to continue normal operation
+[component_container_isolated-1] [INFO] [1790528446.730506548] [collision_monitor]: Robot to approach for 1.200000 seconds away from collision
+[component_container_isolated-1] [WARN] [1790528446.746761427] [planner_server]: GridBased plugin failed to plan from (1.39, 0.28) to (4.00, 4.00): "Failed to create plan with tolerance of: 0.500000"
+[component_container_isolated-1] [WARN] [1790528446.746831527] [planner_server]: [compute_path_to_pose] [ActionServer] Aborting handle.
+[component_container_isolated-1] [ERROR] [1790528446.776275370] [bt_navigator_navigate_to_pose_rclcpp_node]: Failed to get result for follow_path in node halt!
+[component_container_isolated-1] [INFO] [1790528446.776512771] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[component_container_isolated-1] [INFO] [1790528446.776769672] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[component_container_isolated-1] [INFO] [1790528446.797803774] [controller_server]: Cancellation was successful. Stopping the robot.
+[component_container_isolated-1] [INFO] [1790528446.797844674] [controller_server]: [follow_path] [ActionServer] Client requested to cancel the goal. Cancelling.
+[component_container_isolated-1] [INFO] [1790528446.798795279] [controller_server]: Optimizer reset
+[component_container_isolated-1] [INFO] [1790528446.830612633] [collision_monitor]: Robot to continue normal operation
+[component_container_isolated-1] [WARN] [1790528447.747724982] [planner_server]: GridBased plugin failed to plan from (1.32, 0.52) to (4.00, 4.00): "Failed to create plan with tolerance of: 0.500000"
+[component_container_isolated-1] [WARN] [1790528447.747798382] [planner_server]: [compute_path_to_pose] [ActionServer] Aborting handle.
+[component_container_isolated-1] [INFO] [1790528447.767937380] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[component_container_isolated-1] [ERROR] [1790528448.157930771] [bt_navigator_navigate_to_pose_rclcpp_node]: Failed to get result for compute_path_to_pose in node halt!
+[component_container_isolated-1] [INFO] [1790528448.158056572] [bt_navigator]: [navigate_to_pose] [ActionServer] Client requested to cancel the goal. Cancelling.
+[component_container_isolated-1] [INFO] [1790528448.158199272] [bt_navigator]: Goal canceled
+[component_container_isolated-1] [INFO] [1790528448.749182239] [planner_server]: Goal was canceled. Canceling planning action.
+[component_container_isolated-1] [INFO] [1790528448.749243839] [planner_server]: [compute_path_to_pose] [ActionServer] Client requested to cancel the goal. Cancelling.
+[component_container_isolated-1] [INFO] [1790528450.169693729] [bt_navigator]: Begin navigating from current location (1.01, 1.01) to (4.00, 4.00)
+[component_container_isolated-1] [INFO] [1790528450.190523730] [controller_server]: Received a goal, begin computing control effort.
+[component_container_isolated-1] [INFO] [1790528451.240700924] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528452.240732074] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528453.290689367] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528454.290740118] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528455.340699910] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528455.739836446] [global_costmap.global_costmap]: StaticLayer: Resizing costmap to 212 X 210 at 0.050000 m/pix
+[component_container_isolated-1] [INFO] [1790528456.340700761] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528457.390700654] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528458.440708747] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528459.440696597] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528460.440709748] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528461.490695640] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528462.490716591] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528463.540698284] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528464.540697834] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528465.590716028] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528466.640709921] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528467.640711771] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528468.690709064] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528469.690704315] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528470.740724908] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528471.740705758] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528472.190688441] [controller_server]: Cancellation was successful. Stopping the robot.
+[component_container_isolated-1] [INFO] [1790528472.190727041] [controller_server]: [follow_path] [ActionServer] Client requested to cancel the goal. Cancelling.
+[component_container_isolated-1] [INFO] [1790528472.190872942] [bt_navigator]: [navigate_to_pose] [ActionServer] Client requested to cancel the goal. Cancelling.
+[component_container_isolated-1] [INFO] [1790528472.191004043] [bt_navigator]: Goal canceled
+[component_container_isolated-1] [INFO] [1790528472.192550150] [controller_server]: Optimizer reset
+[component_container_isolated-1] [INFO] [1790528474.203040302] [bt_navigator]: Begin navigating from current location (-0.36, -1.47) to (4.00, 4.00)
+[component_container_isolated-1] [INFO] [1790528474.223728903] [controller_server]: Received a goal, begin computing control effort.
+[component_container_isolated-1] [INFO] [1790528475.273917897] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528476.323916690] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528477.323913840] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528478.373903834] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528479.373901084] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528480.423902877] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528481.423915528] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528482.473898521] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528482.737832202] [global_costmap.global_costmap]: StaticLayer: Resizing costmap to 212 X 210 at 0.050000 m/pix
+[component_container_isolated-1] [INFO] [1790528483.473907572] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528484.473904823] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528485.523917616] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528485.737847154] [global_costmap.global_costmap]: StaticLayer: Resizing costmap to 212 X 210 at 0.050000 m/pix
+[component_container_isolated-1] [INFO] [1790528486.430843315] [controller_server]: Optimizer reset
+[component_container_isolated-1] [INFO] [1790528486.439613158] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1790528486.439689058] [controller_server]: Optimizer fail to compute path
+[component_container_isolated-1] [INFO] [1790528486.470406007] [collision_monitor]: Robot to approach for 1.200000 seconds away from collision
+[component_container_isolated-1] [WARN] [1790528486.514003819] [planner_server]: GridBased plugin failed to plan from (1.44, 0.23) to (4.00, 4.00): "Failed to create plan with tolerance of: 0.500000"
+[component_container_isolated-1] [WARN] [1790528486.514065019] [planner_server]: [compute_path_to_pose] [ActionServer] Aborting handle.
+[component_container_isolated-1] [INFO] [1790528486.533615814] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[component_container_isolated-1] [INFO] [1790528486.629772680] [controller_server]: Optimizer reset
+[component_container_isolated-1] [INFO] [1790528486.637075716] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1790528486.637140716] [controller_server]: Optimizer fail to compute path
+[component_container_isolated-1] [WARN] [1790528486.746386246] [planner_server]: Planner loop missed its desired rate of 20.0000 Hz. Current loop rate is 4.7098 Hz
+[component_container_isolated-1] [INFO] [1790528486.773902279] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528487.081510872] [controller_server]: Optimizer reset
+[component_container_isolated-1] [INFO] [1790528487.092509425] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1790528487.092617125] [controller_server]: Optimizer fail to compute path
+[component_container_isolated-1] [INFO] [1790528487.132071417] [controller_server]: Optimizer reset
+[component_container_isolated-1] [INFO] [1790528487.142966170] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1790528487.143041770] [controller_server]: Optimizer fail to compute path
+[component_container_isolated-1] [INFO] [1790528487.170365003] [collision_monitor]: Robot to continue normal operation
+[component_container_isolated-1] [INFO] [1790528487.179986449] [controller_server]: Optimizer reset
+[component_container_isolated-1] [INFO] [1790528487.190416400] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1790528487.190503000] [controller_server]: Optimizer fail to compute path
+[component_container_isolated-1] [INFO] [1790528487.234177812] [controller_server]: Optimizer reset
+[component_container_isolated-1] [INFO] [1790528487.242988955] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1790528487.243070155] [controller_server]: Optimizer fail to compute path
+[component_container_isolated-1] [INFO] [1790528487.331154883] [collision_monitor]: Robot to approach for 1.200000 seconds away from collision
+[component_container_isolated-1] [WARN] [1790528487.774112831] [planner_server]: GridBased plugin failed to plan from (1.33, 0.53) to (4.00, 4.00): "Failed to create plan with tolerance of: 0.500000"
+[component_container_isolated-1] [WARN] [1790528487.774209532] [planner_server]: [compute_path_to_pose] [ActionServer] Aborting handle.
+[component_container_isolated-1] [INFO] [1790528487.793891527] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[component_container_isolated-1] [INFO] [1790528488.191893358] [controller_server]: Optimizer reset
+[component_container_isolated-1] [INFO] [1790528488.204047717] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1790528488.204120217] [controller_server]: Optimizer fail to compute path
+[component_container_isolated-1] [INFO] [1790528488.244314312] [controller_server]: Optimizer reset
+[component_container_isolated-1] [INFO] [1790528488.264305409] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1790528488.264386009] [controller_server]: Optimizer fail to compute path
+[component_container_isolated-1] [INFO] [1790528488.280689289] [collision_monitor]: Robot to continue normal operation
+[component_container_isolated-1] [INFO] [1790528488.332503640] [collision_monitor]: Robot to approach for 1.200000 seconds away from collision
+[component_container_isolated-1] [WARN] [1790528488.745324642] [planner_server]: GridBased plugin failed to plan from (1.23, 0.73) to (4.00, 4.00): "Failed to create plan with tolerance of: 0.500000"
+[component_container_isolated-1] [WARN] [1790528488.745397843] [planner_server]: [compute_path_to_pose] [ActionServer] Aborting handle.
+[component_container_isolated-1] [INFO] [1790528488.773910881] [controller_server]: Cancellation was successful. Stopping the robot.
+[component_container_isolated-1] [INFO] [1790528488.773968981] [controller_server]: [follow_path] [ActionServer] Client requested to cancel the goal. Cancelling.
+[component_container_isolated-1] [INFO] [1790528488.774244983] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[component_container_isolated-1] [INFO] [1790528488.774537384] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[component_container_isolated-1] [INFO] [1790528488.775179787] [controller_server]: Optimizer reset
+[component_container_isolated-1] [INFO] [1790528488.830559956] [collision_monitor]: Robot to continue normal operation
+[component_container_isolated-1] [WARN] [1790528489.746553099] [planner_server]: Planner loop missed its desired rate of 20.0000 Hz. Current loop rate is 1.0294 Hz
+[component_container_isolated-1] [INFO] [1790528489.763917583] [controller_server]: Received a goal, begin computing control effort.
+[component_container_isolated-1] [INFO] [1790528490.814085477] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528491.814119028] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528492.864146622] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528493.864089772] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528494.914110066] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528495.914091417] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [ERROR] [1790528496.243440114] [bt_navigator_navigate_to_pose_rclcpp_node]: Failed to get result for follow_path in node halt!
+[component_container_isolated-1] [INFO] [1790528496.243599515] [bt_navigator]: [navigate_to_pose] [ActionServer] Client requested to cancel the goal. Cancelling.
+[component_container_isolated-1] [INFO] [1790528496.243778816] [bt_navigator]: Goal canceled
+[component_container_isolated-1] [INFO] [1790528496.264082414] [controller_server]: Cancellation was successful. Stopping the robot.
+[component_container_isolated-1] [INFO] [1790528496.264120315] [controller_server]: [follow_path] [ActionServer] Client requested to cancel the goal. Cancelling.
+[component_container_isolated-1] [INFO] [1790528496.265323020] [controller_server]: Optimizer reset
+[component_container_isolated-1] [INFO] [1790528498.251673356] [bt_navigator]: Begin navigating from current location (-0.73, 1.37) to (4.00, 4.00)
+[component_container_isolated-1] [INFO] [1790528498.272442657] [controller_server]: Received a goal, begin computing control effort.
+[component_container_isolated-1] [INFO] [1790528499.322612851] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528500.372610244] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528500.738762120] [global_costmap.global_costmap]: StaticLayer: Resizing costmap to 212 X 210 at 0.050000 m/pix
+[component_container_isolated-1] [INFO] [1790528501.372643595] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528502.423554493] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528503.422619140] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528504.472606433] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528505.472607884] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528506.522614277] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528507.522609628] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528508.572613922] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528509.572607473] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528510.622656567] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528511.672606460] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528512.672658411] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528513.722817205] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528514.723348359] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528515.772614349] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528516.772604700] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528517.822613694] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528518.822614445] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528519.872623138] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528520.272824480] [controller_server]: Cancellation was successful. Stopping the robot.
+[component_container_isolated-1] [INFO] [1790528520.272870880] [controller_server]: [follow_path] [ActionServer] Client requested to cancel the goal. Cancelling.
+[component_container_isolated-1] [INFO] [1790528520.273139081] [bt_navigator]: [navigate_to_pose] [ActionServer] Client requested to cancel the goal. Cancelling.
+[component_container_isolated-1] [INFO] [1790528520.273651584] [bt_navigator]: Goal canceled
+[component_container_isolated-1] [INFO] [1790528520.275278292] [controller_server]: Optimizer reset
+[component_container_isolated-1] [INFO] [1790528521.737831887] [global_costmap.global_costmap]: StaticLayer: Resizing costmap to 212 X 210 at 0.050000 m/pix
+[component_container_isolated-1] [INFO] [1790528522.283399333] [bt_navigator]: Begin navigating from current location (1.17, -0.74) to (4.00, 4.00)
+[component_container_isolated-1] [INFO] [1790528522.304202834] [controller_server]: Received a goal, begin computing control effort.
+[component_container_isolated-1] [INFO] [1790528523.354395229] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528524.404804825] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528525.405803281] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528526.454402967] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528526.661531472] [controller_server]: Optimizer reset
+[component_container_isolated-1] [INFO] [1790528526.670387115] [collision_monitor]: Robot to approach for 1.200000 seconds away from collision
+[component_container_isolated-1] [INFO] [1790528526.670837217] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1790528526.670924718] [controller_server]: Optimizer fail to compute path
+[component_container_isolated-1] [INFO] [1790528526.862733948] [controller_server]: Optimizer reset
+[component_container_isolated-1] [INFO] [1790528526.872375095] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1790528526.872485996] [controller_server]: Optimizer fail to compute path
+[component_container_isolated-1] [INFO] [1790528526.930589877] [collision_monitor]: Robot to continue normal operation
+[component_container_isolated-1] [INFO] [1790528526.970385371] [collision_monitor]: Robot to approach for 1.200000 seconds away from collision
+[component_container_isolated-1] [INFO] [1790528527.064575327] [controller_server]: Optimizer reset
+[component_container_isolated-1] [INFO] [1790528527.076433285] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1790528527.077046088] [controller_server]: Optimizer fail to compute path
+[component_container_isolated-1] [INFO] [1790528527.113034863] [controller_server]: Optimizer reset
+[component_container_isolated-1] [INFO] [1790528527.126606428] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1790528527.126801629] [controller_server]: Optimizer fail to compute path
+[component_container_isolated-1] [INFO] [1790528527.130749948] [collision_monitor]: Robot to continue normal operation
+[component_container_isolated-1] [INFO] [1790528527.163672308] [controller_server]: Optimizer reset
+[component_container_isolated-1] [INFO] [1790528527.172958453] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1790528527.173041554] [controller_server]: Optimizer fail to compute path
+[component_container_isolated-1] [INFO] [1790528527.212419945] [controller_server]: Optimizer reset
+[component_container_isolated-1] [INFO] [1790528527.221985091] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1790528527.222066191] [controller_server]: Optimizer fail to compute path
+[component_container_isolated-1] [INFO] [1790528527.265943004] [controller_server]: Optimizer reset
+[component_container_isolated-1] [INFO] [1790528527.276320855] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1790528527.276486255] [controller_server]: Optimizer fail to compute path
+[component_container_isolated-1] [INFO] [1790528527.370538912] [collision_monitor]: Robot to approach for 1.200000 seconds away from collision
+[component_container_isolated-1] [WARN] [1790528527.415058028] [planner_server]: GridBased plugin failed to plan from (1.32, 0.45) to (4.00, 4.00): "Failed to create plan with tolerance of: 0.500000"
+[component_container_isolated-1] [WARN] [1790528527.415176228] [planner_server]: [compute_path_to_pose] [ActionServer] Aborting handle.
+[component_container_isolated-1] [INFO] [1790528527.436492132] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[component_container_isolated-1] [WARN] [1790528527.740573907] [planner_server]: GridBased plugin failed to plan from (1.31, 0.52) to (4.00, 4.00): "Failed to create plan with tolerance of: 0.500000"
+[component_container_isolated-1] [WARN] [1790528527.741337711] [planner_server]: [compute_path_to_pose] [ActionServer] Aborting handle.
+[component_container_isolated-1] [INFO] [1790528527.754398374] [controller_server]: Cancellation was successful. Stopping the robot.
+[component_container_isolated-1] [INFO] [1790528527.754432574] [controller_server]: [follow_path] [ActionServer] Client requested to cancel the goal. Cancelling.
+[component_container_isolated-1] [INFO] [1790528527.755062577] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[component_container_isolated-1] [INFO] [1790528527.755694880] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[component_container_isolated-1] [INFO] [1790528527.757268088] [controller_server]: Optimizer reset
+[component_container_isolated-1] [INFO] [1790528527.770549752] [collision_monitor]: Robot to continue normal operation
+[component_container_isolated-1] [WARN] [1790528528.747434091] [planner_server]: GridBased plugin failed to plan from (1.25, 0.73) to (4.00, 4.00): "Failed to create plan with tolerance of: 0.500000"
+[component_container_isolated-1] [WARN] [1790528528.747557992] [planner_server]: [compute_path_to_pose] [ActionServer] Aborting handle.
+[component_container_isolated-1] [INFO] [1790528528.763846571] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[component_container_isolated-1] [WARN] [1790528529.746019736] [planner_server]: Planner loop missed its desired rate of 20.0000 Hz. Current loop rate is 1.0188 Hz
+[component_container_isolated-1] [INFO] [1790528529.764259824] [controller_server]: Received a goal, begin computing control effort.
+[component_container_isolated-1] [INFO] [1790528530.816379228] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528531.814422670] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528532.864421063] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528533.864422815] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528534.914423908] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528535.964422202] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528536.964425254] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528538.014441947] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528539.017802115] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528540.064450593] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528541.064430544] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528542.114431538] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528543.164434531] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528544.164426883] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [ERROR] [1790528544.313908908] [bt_navigator_navigate_to_pose_rclcpp_node]: Failed to get result for follow_path in node halt!
+[component_container_isolated-1] [INFO] [1790528544.314055009] [bt_navigator]: [navigate_to_pose] [ActionServer] Client requested to cancel the goal. Cancelling.
+[component_container_isolated-1] [INFO] [1790528544.314193709] [bt_navigator]: Goal canceled
+[component_container_isolated-1] [INFO] [1790528544.314428110] [controller_server]: Cancellation was successful. Stopping the robot.
+[component_container_isolated-1] [INFO] [1790528544.314463011] [controller_server]: [follow_path] [ActionServer] Client requested to cancel the goal. Cancelling.
+[component_container_isolated-1] [INFO] [1790528544.316262719] [controller_server]: Optimizer reset
+[component_container_isolated-1] [INFO] [1790528545.737860716] [global_costmap.global_costmap]: StaticLayer: Resizing costmap to 212 X 211 at 0.050000 m/pix
+[component_container_isolated-1] [INFO] [1790528546.324934564] [bt_navigator]: Begin navigating from current location (-1.60, -0.22) to (4.00, 4.00)
+[component_container_isolated-1] [INFO] [1790528546.345838165] [controller_server]: Received a goal, begin computing control effort.
+[component_container_isolated-1] [INFO] [1790528547.396213561] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528548.396025112] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528549.446029405] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528550.446017057] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528551.496006151] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528552.496019702] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528553.546015696] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528554.546015047] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528555.596021541] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528556.596029493] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528557.646011287] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528558.646016238] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528559.646020790] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528560.700853207] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528561.746017578] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528562.746011029] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528563.796018323] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528564.796012375] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528565.846025469] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528566.405648384] [controller_server]: Optimizer reset
+[component_container_isolated-1] [INFO] [1790528566.418218245] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1790528566.418302945] [controller_server]: Optimizer fail to compute path
+[component_container_isolated-1] [INFO] [1790528566.454111919] [controller_server]: Optimizer reset
+[component_container_isolated-1] [INFO] [1790528566.462209558] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1790528566.462291959] [controller_server]: Optimizer fail to compute path
+[component_container_isolated-1] [INFO] [1790528566.570399683] [collision_monitor]: Robot to approach for 1.200000 seconds away from collision
+[component_container_isolated-1] [INFO] [1790528566.653266085] [controller_server]: Optimizer reset
+[component_container_isolated-1] [INFO] [1790528566.662292129] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1790528566.662485530] [controller_server]: Optimizer fail to compute path
+[component_container_isolated-1] [WARN] [1790528566.815961675] [planner_server]: GridBased plugin failed to plan from (1.40, 0.31) to (4.00, 4.00): "Failed to create plan with tolerance of: 0.500000"
+[component_container_isolated-1] [WARN] [1790528566.816041475] [planner_server]: [compute_path_to_pose] [ActionServer] Aborting handle.
+[component_container_isolated-1] [INFO] [1790528566.825398220] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[component_container_isolated-1] [INFO] [1790528566.854747063] [controller_server]: Optimizer reset
+[component_container_isolated-1] [INFO] [1790528566.865803716] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1790528566.865883417] [controller_server]: Optimizer fail to compute path
+[component_container_isolated-1] [INFO] [1790528567.055223835] [controller_server]: Optimizer reset
+[component_container_isolated-1] [INFO] [1790528567.068400799] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1790528567.068486500] [controller_server]: Optimizer fail to compute path
+[component_container_isolated-1] [INFO] [1790528567.104868676] [controller_server]: Optimizer reset
+[component_container_isolated-1] [INFO] [1790528567.113431018] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1790528567.113509118] [controller_server]: Optimizer fail to compute path
+[component_container_isolated-1] [INFO] [1790528567.130641401] [collision_monitor]: Robot to continue normal operation
+[component_container_isolated-1] [INFO] [1790528567.156345826] [controller_server]: Optimizer reset
+[component_container_isolated-1] [INFO] [1790528567.169413789] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1790528567.169481090] [controller_server]: Optimizer fail to compute path
+[component_container_isolated-1] [INFO] [1790528567.209135282] [controller_server]: Optimizer reset
+[component_container_isolated-1] [INFO] [1790528567.221904344] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1790528567.221983444] [controller_server]: Optimizer fail to compute path
+[component_container_isolated-1] [INFO] [1790528567.254289001] [controller_server]: Optimizer reset
+[component_container_isolated-1] [INFO] [1790528567.265497656] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1790528567.265576356] [controller_server]: Optimizer fail to compute path
+[component_container_isolated-1] [INFO] [1790528567.330674172] [collision_monitor]: Robot to approach for 1.200000 seconds away from collision
+[component_container_isolated-1] [INFO] [1790528567.457308286] [controller_server]: Optimizer reset
+[component_container_isolated-1] [INFO] [1790528567.470015248] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1790528567.470102048] [controller_server]: Optimizer fail to compute path
+[component_container_isolated-1] [WARN] [1790528567.747212093] [planner_server]: GridBased plugin failed to plan from (1.34, 0.50) to (4.00, 4.00): "Failed to create plan with tolerance of: 0.500000"
+[component_container_isolated-1] [WARN] [1790528567.747309593] [planner_server]: [compute_path_to_pose] [ActionServer] Aborting handle.
+[component_container_isolated-1] [ERROR] [1790528567.785648679] [bt_navigator_navigate_to_pose_rclcpp_node]: Failed to get result for follow_path in node halt!
+[component_container_isolated-1] [INFO] [1790528567.785988781] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[component_container_isolated-1] [INFO] [1790528567.786304782] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[component_container_isolated-1] [INFO] [1790528567.796022529] [controller_server]: Cancellation was successful. Stopping the robot.
+[component_container_isolated-1] [INFO] [1790528567.796066230] [controller_server]: [follow_path] [ActionServer] Client requested to cancel the goal. Cancelling.
+[component_container_isolated-1] [INFO] [1790528567.797723438] [controller_server]: Optimizer reset
+[component_container_isolated-1] [INFO] [1790528567.830456596] [collision_monitor]: Robot to continue normal operation
+[component_container_isolated-1] [ERROR] [1790528568.357732755] [bt_navigator_navigate_to_pose_rclcpp_node]: Failed to get result for compute_path_to_pose in node halt!
+[component_container_isolated-1] [INFO] [1790528568.357871555] [bt_navigator]: [navigate_to_pose] [ActionServer] Client requested to cancel the goal. Cancelling.
+[component_container_isolated-1] [INFO] [1790528568.358037156] [bt_navigator]: Goal canceled
+[component_container_isolated-1] [INFO] [1790528568.747443645] [planner_server]: Goal was canceled. Canceling planning action.
+[component_container_isolated-1] [INFO] [1790528568.747504746] [planner_server]: [compute_path_to_pose] [ActionServer] Client requested to cancel the goal. Cancelling.
+[component_container_isolated-1] [INFO] [1790528570.371690025] [bt_navigator]: Begin navigating from current location (0.97, 1.04) to (4.00, 4.00)
+[component_container_isolated-1] [INFO] [1790528570.392384426] [controller_server]: Received a goal, begin computing control effort.
+[component_container_isolated-1] [INFO] [1790528571.442556421] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528572.492562015] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528573.492553466] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528574.542553660] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528575.542564912] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528576.592551106] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528577.592543958] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528578.642549652] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528579.642651604] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528580.698828328] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528581.692554950] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528582.742555744] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528583.742547895] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528584.792610790] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528585.792547941] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528586.842822837] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528587.842549187] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528588.892587482] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528589.892550333] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528590.737851634] [global_costmap.global_costmap]: StaticLayer: Resizing costmap to 213 X 211 at 0.050000 m/pix
+[component_container_isolated-1] [INFO] [1790528590.942561328] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528591.942550879] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528592.392622763] [controller_server]: Cancellation was successful. Stopping the robot.
+[component_container_isolated-1] [INFO] [1790528592.392667263] [controller_server]: [follow_path] [ActionServer] Client requested to cancel the goal. Cancelling.
+[component_container_isolated-1] [INFO] [1790528592.392900964] [bt_navigator]: [navigate_to_pose] [ActionServer] Client requested to cancel the goal. Cancelling.
+[component_container_isolated-1] [INFO] [1790528592.393038965] [bt_navigator]: Goal canceled
+[component_container_isolated-1] [INFO] [1790528592.394504772] [controller_server]: Optimizer reset
+[component_container_isolated-1] [INFO] [1790528594.404337223] [bt_navigator]: Begin navigating from current location (-0.27, -1.50) to (4.00, 4.00)
+[component_container_isolated-1] [INFO] [1790528594.408943946] [controller_server]: Received a goal, begin computing control effort.
+[component_container_isolated-1] [INFO] [1790528595.459152541] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528596.459241693] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528597.509129887] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528598.509145339] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528599.559129333] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528600.561812598] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528601.611805792] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528602.610803739] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528603.659177926] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528604.659130877] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528605.709151972] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528606.421495928] [controller_server]: Optimizer reset
+[component_container_isolated-1] [INFO] [1790528606.450358968] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1790528606.450455069] [controller_server]: Optimizer fail to compute path
+[component_container_isolated-1] [INFO] [1790528606.470042764] [controller_server]: Optimizer reset
+[component_container_isolated-1] [INFO] [1790528606.482762825] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1790528606.482873526] [controller_server]: Optimizer fail to compute path
+[component_container_isolated-1] [INFO] [1790528606.620552594] [controller_server]: Optimizer reset
+[component_container_isolated-1] [INFO] [1790528606.636152070] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1790528606.636248070] [controller_server]: Optimizer fail to compute path
+[component_container_isolated-1] [INFO] [1790528606.669291030] [controller_server]: Optimizer reset
+[component_container_isolated-1] [INFO] [1790528606.670592937] [collision_monitor]: Robot to approach for 1.200000 seconds away from collision
+[component_container_isolated-1] [INFO] [1790528606.680921587] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1790528606.681047287] [controller_server]: Optimizer fail to compute path
+[component_container_isolated-1] [WARN] [1790528606.685226908] [planner_server]: GridBased plugin failed to plan from (1.44, 0.27) to (4.00, 4.00): "Failed to create plan with tolerance of: 0.500000"
+[component_container_isolated-1] [WARN] [1790528606.685310808] [planner_server]: [compute_path_to_pose] [ActionServer] Aborting handle.
+[component_container_isolated-1] [INFO] [1790528606.704879703] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[component_container_isolated-1] [INFO] [1790528606.730859129] [collision_monitor]: Robot to continue normal operation
+[component_container_isolated-1] [WARN] [1790528606.746528205] [planner_server]: GridBased plugin failed to plan from (1.44, 0.29) to (4.00, 4.00): "Failed to create plan with tolerance of: 0.500000"
+[component_container_isolated-1] [WARN] [1790528606.746653206] [planner_server]: [compute_path_to_pose] [ActionServer] Aborting handle.
+[component_container_isolated-1] [INFO] [1790528606.770622122] [collision_monitor]: Robot to approach for 1.200000 seconds away from collision
+[component_container_isolated-1] [ERROR] [1790528606.785572294] [bt_navigator_navigate_to_pose_rclcpp_node]: Failed to get result for follow_path in node halt!
+[component_container_isolated-1] [INFO] [1790528606.785893296] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[component_container_isolated-1] [INFO] [1790528606.786331898] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[component_container_isolated-1] [INFO] [1790528606.809130609] [controller_server]: Cancellation was successful. Stopping the robot.
+[component_container_isolated-1] [INFO] [1790528606.809164709] [controller_server]: [follow_path] [ActionServer] Client requested to cancel the goal. Cancelling.
+[component_container_isolated-1] [INFO] [1790528606.811188119] [controller_server]: Optimizer reset
+[component_container_isolated-1] [INFO] [1790528606.830536413] [collision_monitor]: Robot to continue normal operation
+[component_container_isolated-1] [WARN] [1790528607.739407522] [planner_server]: GridBased plugin failed to plan from (1.36, 0.51) to (4.00, 4.00): "Failed to create plan with tolerance of: 0.500000"
+[component_container_isolated-1] [WARN] [1790528607.739466623] [planner_server]: [compute_path_to_pose] [ActionServer] Aborting handle.
+[component_container_isolated-1] [INFO] [1790528607.749975474] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[component_container_isolated-1] [WARN] [1790528608.740852481] [planner_server]: GridBased plugin failed to plan from (1.27, 0.72) to (4.00, 4.00): "Failed to create plan with tolerance of: 0.500000"
+[component_container_isolated-1] [WARN] [1790528608.740923082] [planner_server]: [compute_path_to_pose] [ActionServer] Aborting handle.
+[component_container_isolated-1] [INFO] [1790528608.760242375] [behavior_server]: Running spin
+[component_container_isolated-1] [INFO] [1790528608.760323376] [behavior_server]: Turning 1.57 for spin behavior.
+[component_container_isolated-1] [INFO] [1790528608.830479616] [collision_monitor]: Robot to approach for 1.200000 seconds away from collision
+[component_container_isolated-1] [WARN] [1790528608.860530762] [behavior_server]: Collision Ahead - Exiting Spin
+[component_container_isolated-1] [WARN] [1790528608.860558862] [behavior_server]: spin failed
+[component_container_isolated-1] [WARN] [1790528608.860571662] [behavior_server]: [spin] [ActionServer] Aborting handle.
+[component_container_isolated-1] [INFO] [1790528608.880174357] [behavior_server]: Running wait
+[component_container_isolated-1] [INFO] [1790528608.970355695] [collision_monitor]: Robot to continue normal operation
+[component_container_isolated-1] [INFO] [1790528613.880351618] [behavior_server]: wait completed successfully
+[component_container_isolated-1] [INFO] [1790528613.920781414] [controller_server]: Received a goal, begin computing control effort.
+[component_container_isolated-1] [INFO] [1790528614.970987509] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528616.020974404] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528616.420979944] [controller_server]: Cancellation was successful. Stopping the robot.
+[component_container_isolated-1] [INFO] [1790528616.421029945] [controller_server]: [follow_path] [ActionServer] Client requested to cancel the goal. Cancelling.
+[component_container_isolated-1] [INFO] [1790528616.422764453] [bt_navigator]: [navigate_to_pose] [ActionServer] Client requested to cancel the goal. Cancelling.
+[component_container_isolated-1] [INFO] [1790528616.422848553] [controller_server]: Optimizer reset
+[component_container_isolated-1] [INFO] [1790528616.422936554] [bt_navigator]: Goal canceled
+[component_container_isolated-1] [INFO] [1790528618.431370699] [bt_navigator]: Begin navigating from current location (-0.71, 1.36) to (4.00, 4.00)
+[component_container_isolated-1] [INFO] [1790528618.452133099] [controller_server]: Received a goal, begin computing control effort.
+[component_container_isolated-1] [INFO] [1790528619.502302795] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528620.552545791] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528621.552313541] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528622.602321136] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528623.602305788] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528624.652314083] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528625.652540136] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528626.702318729] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528627.702299381] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528628.752305976] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528629.752297928] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528630.802305622] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528631.852447918] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528632.852353169] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528633.902436064] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528634.902361616] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528635.952306111] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528636.952300763] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528638.002315857] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528639.002336210] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528640.052319104] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528640.452313845] [controller_server]: Cancellation was successful. Stopping the robot.
+[component_container_isolated-1] [INFO] [1790528640.452362245] [controller_server]: [follow_path] [ActionServer] Client requested to cancel the goal. Cancelling.
+[component_container_isolated-1] [INFO] [1790528640.452540946] [bt_navigator]: [navigate_to_pose] [ActionServer] Client requested to cancel the goal. Cancelling.
+[component_container_isolated-1] [INFO] [1790528640.452739947] [bt_navigator]: Goal canceled
+[component_container_isolated-1] [INFO] [1790528640.454260555] [controller_server]: Optimizer reset
+[component_container_isolated-1] [INFO] [1790528642.464305508] [bt_navigator]: Begin navigating from current location (1.29, -0.69) to (4.00, 4.00)
+[component_container_isolated-1] [INFO] [1790528642.485196009] [controller_server]: Received a goal, begin computing control effort.
+[component_container_isolated-1] [INFO] [1790528643.535362704] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528644.585378199] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528645.585385451] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528646.452291258] [controller_server]: Optimizer reset
+[component_container_isolated-1] [INFO] [1790528646.465537222] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1790528646.465633323] [controller_server]: Optimizer fail to compute path
+[component_container_isolated-1] [INFO] [1790528646.571185435] [collision_monitor]: Robot to approach for 1.200000 seconds away from collision
+[component_container_isolated-1] [WARN] [1790528646.585389704] [planner_server]: GridBased plugin failed to plan from (1.42, 0.26) to (4.00, 4.00): "Failed to create plan with tolerance of: 0.500000"
+[component_container_isolated-1] [WARN] [1790528646.585452304] [planner_server]: [compute_path_to_pose] [ActionServer] Aborting handle.
+[component_container_isolated-1] [INFO] [1790528646.595062651] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[component_container_isolated-1] [INFO] [1790528646.649247513] [controller_server]: Optimizer reset
+[component_container_isolated-1] [INFO] [1790528646.658258157] [controller_server]: Optimizer reset
+[component_container_isolated-1] [WARN] [1790528646.658324258] [controller_server]: Optimizer fail to compute path
+[component_container_isolated-1] [WARN] [1790528646.745987583] [planner_server]: GridBased plugin failed to plan from (1.41, 0.30) to (4.00, 4.00): "Failed to create plan with tolerance of: 0.500000"
+[component_container_isolated-1] [WARN] [1790528646.746063783] [planner_server]: [compute_path_to_pose] [ActionServer] Aborting handle.
+[component_container_isolated-1] [ERROR] [1790528646.784908472] [bt_navigator_navigate_to_pose_rclcpp_node]: Failed to get result for follow_path in node halt!
+[component_container_isolated-1] [INFO] [1790528646.785187073] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[component_container_isolated-1] [INFO] [1790528646.785378374] [controller_server]: Cancellation was successful. Stopping the robot.
+[component_container_isolated-1] [INFO] [1790528646.785412274] [controller_server]: [follow_path] [ActionServer] Client requested to cancel the goal. Cancelling.
+[component_container_isolated-1] [INFO] [1790528646.785494175] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[component_container_isolated-1] [INFO] [1790528646.786984782] [controller_server]: Optimizer reset
+[component_container_isolated-1] [INFO] [1790528646.832025500] [collision_monitor]: Robot to continue normal operation
+[component_container_isolated-1] [WARN] [1790528647.746453137] [planner_server]: GridBased plugin failed to plan from (1.37, 0.52) to (4.00, 4.00): "Failed to create plan with tolerance of: 0.500000"
+[component_container_isolated-1] [WARN] [1790528647.746517438] [planner_server]: [compute_path_to_pose] [ActionServer] Aborting handle.
+[component_container_isolated-1] [INFO] [1790528647.756962988] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[component_container_isolated-1] [WARN] [1790528648.747781696] [planner_server]: GridBased plugin failed to plan from (1.30, 0.72) to (4.00, 4.00): "Failed to create plan with tolerance of: 0.500000"
+[component_container_isolated-1] [WARN] [1790528648.747862296] [planner_server]: [compute_path_to_pose] [ActionServer] Aborting handle.
+[component_container_isolated-1] [INFO] [1790528648.766910889] [behavior_server]: Running spin
+[component_container_isolated-1] [INFO] [1790528648.766987689] [behavior_server]: Turning 1.57 for spin behavior.
+[component_container_isolated-1] [INFO] [1790528648.830651798] [collision_monitor]: Robot to approach for 1.200000 seconds away from collision
+[component_container_isolated-1] [WARN] [1790528648.867200675] [behavior_server]: Collision Ahead - Exiting Spin
+[component_container_isolated-1] [WARN] [1790528648.867235276] [behavior_server]: spin failed
+[component_container_isolated-1] [WARN] [1790528648.867250076] [behavior_server]: [spin] [ActionServer] Aborting handle.
+[component_container_isolated-1] [INFO] [1790528648.887041272] [behavior_server]: Running wait
+[component_container_isolated-1] [INFO] [1790528648.970345376] [collision_monitor]: Robot to continue normal operation
+[component_container_isolated-1] [INFO] [1790528653.887208233] [behavior_server]: wait completed successfully
+[component_container_isolated-1] [INFO] [1790528653.927168827] [controller_server]: Received a goal, begin computing control effort.
+[component_container_isolated-1] [INFO] [1790528654.977356123] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528656.027345418] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528657.027399170] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528658.077357265] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528659.077344417] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528660.077340569] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528661.127343064] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528662.177337159] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528663.177359312] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528664.227344806] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528664.477344720] [controller_server]: Cancellation was successful. Stopping the robot.
+[component_container_isolated-1] [INFO] [1790528664.477390220] [controller_server]: [follow_path] [ActionServer] Client requested to cancel the goal. Cancelling.
+[component_container_isolated-1] [INFO] [1790528664.477560621] [bt_navigator]: [navigate_to_pose] [ActionServer] Client requested to cancel the goal. Cancelling.
+[component_container_isolated-1] [INFO] [1790528664.477758922] [bt_navigator]: Goal canceled
+[component_container_isolated-1] [INFO] [1790528664.479958032] [controller_server]: Optimizer reset
+[component_container_isolated-1] [INFO] [1790528666.491909095] [bt_navigator]: Begin navigating from current location (-1.55, -0.24) to (4.00, 4.00)
+[component_container_isolated-1] [INFO] [1790528666.512834596] [controller_server]: Received a goal, begin computing control effort.
+[component_container_isolated-1] [INFO] [1790528667.563357394] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528668.613734691] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528669.613012739] [controller_server]: Passing new path to controller.
+[component_container_isolated-1] [INFO] [1790528670.663021834] [controller_server]: Passing new path to controller.

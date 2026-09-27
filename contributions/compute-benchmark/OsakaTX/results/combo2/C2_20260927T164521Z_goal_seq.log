@@ -1,0 +1,74 @@
+[INFO] [1790527565.843210585] [nav_goal_seq]: cycle 1 sending goal x=1.061 y=1.061 yaw=0.000 [CONVERGE]
+[INFO] [1790527565.845369195] [nav_goal_seq]: cycle 1 goal ACCEPTED: True
+[INFO] [1790527566.246109428] [nav_goal_seq]: cycle 1 goal FINAL status=4 SUCCEEDED (next in 2.0s)
+[INFO] [1790527568.253429212] [nav_goal_seq]: cycle 2 sending goal x=1.061 y=1.061 yaw=0.000 [CONVERGE]
+[INFO] [1790527568.258263335] [nav_goal_seq]: cycle 2 goal ACCEPTED: True
+[INFO] [1790527568.295619115] [nav_goal_seq]: cycle 2 goal FINAL status=4 SUCCEEDED (next in 2.0s)
+[INFO] [1790527570.302673698] [nav_goal_seq]: cycle 3 sending goal x=1.061 y=1.061 yaw=0.000 [CONVERGE]
+[INFO] [1790527570.304369306] [nav_goal_seq]: cycle 3 goal ACCEPTED: True
+[INFO] [1790527605.065111138] [nav_goal_seq]: cycle 3 goal FINAL status=4 SUCCEEDED (next in 2.0s)
+[INFO] [1790527607.071810923] [nav_goal_seq]: cycle 4 sending goal x=1.061 y=1.061 yaw=0.000 [CONVERGE]
+[INFO] [1790527607.073250530] [nav_goal_seq]: cycle 4 goal ACCEPTED: True
+[INFO] [1790527607.123854875] [nav_goal_seq]: cycle 4 goal FINAL status=4 SUCCEEDED (next in 2.0s)
+[INFO] [1790527609.131126163] [nav_goal_seq]: cycle 5 sending goal x=1.061 y=1.061 yaw=0.000 [CONVERGE]
+[INFO] [1790527609.132772371] [nav_goal_seq]: cycle 5 goal ACCEPTED: True
+[INFO] [1790527645.043472234] [nav_goal_seq]: cycle 5 goal FINAL status=4 SUCCEEDED (next in 2.0s)
+[INFO] [1790527647.051013527] [nav_goal_seq]: cycle 6 sending goal x=1.061 y=1.061 yaw=0.000 [CONVERGE]
+[INFO] [1790527647.053155938] [nav_goal_seq]: cycle 6 goal ACCEPTED: True
+[INFO] [1790527647.103443580] [nav_goal_seq]: cycle 6 goal FINAL status=4 SUCCEEDED (next in 2.0s)
+[INFO] [1790527649.111135675] [nav_goal_seq]: cycle 7 sending goal x=1.061 y=1.061 yaw=0.000 [CONVERGE]
+[INFO] [1790527649.113189385] [nav_goal_seq]: cycle 7 goal ACCEPTED: True
+[INFO] [1790527685.083197411] [nav_goal_seq]: cycle 7 goal FINAL status=4 SUCCEEDED (next in 2.0s)
+[INFO] [1790527687.089305102] [nav_goal_seq]: cycle 8 sending goal x=1.061 y=1.061 yaw=0.000 [CONVERGE]
+[INFO] [1790527687.091014510] [nav_goal_seq]: cycle 8 goal ACCEPTED: True
+[INFO] [1790527687.141378254] [nav_goal_seq]: cycle 8 goal FINAL status=4 SUCCEEDED (next in 2.0s)
+[INFO] [1790527689.147818046] [nav_goal_seq]: cycle 9 sending goal x=1.061 y=1.061 yaw=0.000 [CONVERGE]
+[INFO] [1790527689.149834156] [nav_goal_seq]: cycle 9 goal ACCEPTED: True
+[INFO] [1790527725.061120570] [nav_goal_seq]: cycle 9 goal FINAL status=4 SUCCEEDED (next in 2.0s)
+[INFO] [1790527727.067542366] [nav_goal_seq]: cycle 10 sending goal x=1.061 y=1.061 yaw=0.000 [CONVERGE]
+[INFO] [1790527727.069617576] [nav_goal_seq]: cycle 10 goal ACCEPTED: True
+[INFO] [1790527727.120229120] [nav_goal_seq]: cycle 10 goal FINAL status=4 SUCCEEDED (next in 2.0s)
+[INFO] [1790527729.127172219] [nav_goal_seq]: cycle 11 sending goal x=1.061 y=1.061 yaw=0.000 [CONVERGE]
+[INFO] [1790527729.129638531] [nav_goal_seq]: cycle 11 goal ACCEPTED: True
+[INFO] [1790527765.090111148] [nav_goal_seq]: cycle 11 goal FINAL status=4 SUCCEEDED (next in 2.0s)
+[INFO] [1790527767.097515653] [nav_goal_seq]: cycle 12 sending goal x=1.061 y=1.061 yaw=0.000 [CONVERGE]
+[INFO] [1790527767.099209461] [nav_goal_seq]: cycle 12 goal ACCEPTED: True
+[INFO] [1790527767.149944006] [nav_goal_seq]: cycle 12 goal FINAL status=4 SUCCEEDED (next in 2.0s)
+[INFO] [1790527769.158106915] [nav_goal_seq]: cycle 13 sending goal x=1.061 y=1.061 yaw=0.000 [CONVERGE]
+[INFO] [1790527769.159989124] [nav_goal_seq]: cycle 13 goal ACCEPTED: True
+[INFO] [1790527805.070322359] [nav_goal_seq]: cycle 13 goal FINAL status=4 SUCCEEDED (next in 2.0s)
+[INFO] [1790527807.078126369] [nav_goal_seq]: cycle 14 sending goal x=1.061 y=1.061 yaw=0.000 [CONVERGE]
+[INFO] [1790527807.080273279] [nav_goal_seq]: cycle 14 goal ACCEPTED: True
+[INFO] [1790527807.141034773] [nav_goal_seq]: cycle 14 goal FINAL status=4 SUCCEEDED (next in 2.0s)
+[INFO] [1790527809.148132880] [nav_goal_seq]: cycle 15 sending goal x=1.061 y=1.061 yaw=0.000 [CONVERGE]
+[INFO] [1790527809.150188290] [nav_goal_seq]: cycle 15 goal ACCEPTED: True
+[INFO] [1790527845.060580981] [nav_goal_seq]: cycle 15 goal FINAL status=4 SUCCEEDED (next in 2.0s)
+[INFO] [1790527847.068170193] [nav_goal_seq]: cycle 16 sending goal x=1.061 y=1.061 yaw=0.000 [CONVERGE]
+[INFO] [1790527847.070411904] [nav_goal_seq]: cycle 16 goal ACCEPTED: True
+[INFO] [1790527847.120108144] [nav_goal_seq]: cycle 16 goal FINAL status=4 SUCCEEDED (next in 2.0s)
+[INFO] [1790527849.127917557] [nav_goal_seq]: cycle 17 sending goal x=1.061 y=1.061 yaw=0.000 [CONVERGE]
+[INFO] [1790527849.130043167] [nav_goal_seq]: cycle 17 goal ACCEPTED: True
+[INFO] [1790527885.040512612] [nav_goal_seq]: cycle 17 goal FINAL status=4 SUCCEEDED (next in 2.0s)
+[INFO] [1790527887.046436718] [nav_goal_seq]: cycle 18 sending goal x=1.061 y=1.061 yaw=0.000 [CONVERGE]
+[INFO] [1790527887.048454928] [nav_goal_seq]: cycle 18 goal ACCEPTED: True
+[INFO] [1790527887.099063673] [nav_goal_seq]: cycle 18 goal FINAL status=4 SUCCEEDED (next in 2.0s)
+[INFO] [1790527889.105322881] [nav_goal_seq]: cycle 19 sending goal x=1.061 y=1.061 yaw=0.000 [CONVERGE]
+[INFO] [1790527889.106893589] [nav_goal_seq]: cycle 19 goal ACCEPTED: True
+[INFO] [1790527925.020583796] [nav_goal_seq]: cycle 19 goal FINAL status=4 SUCCEEDED (next in 2.0s)
+[INFO] [1790527927.026553905] [nav_goal_seq]: cycle 20 sending goal x=1.061 y=1.061 yaw=0.000 [CONVERGE]
+[INFO] [1790527927.028324014] [nav_goal_seq]: cycle 20 goal ACCEPTED: True
+[INFO] [1790527927.078905559] [nav_goal_seq]: cycle 20 goal FINAL status=4 SUCCEEDED (next in 2.0s)
+[INFO] [1790527929.086639877] [nav_goal_seq]: cycle 21 sending goal x=1.061 y=1.061 yaw=0.000 [CONVERGE]
+[INFO] [1790527929.088661387] [nav_goal_seq]: cycle 21 goal ACCEPTED: True
+Traceback (most recent call last):
+  File "/wt/contributions/compute-benchmark/OsakaTX/scripts/nav_goal_seq.py", line 204, in <module>
+    main()
+  File "/wt/contributions/compute-benchmark/OsakaTX/scripts/nav_goal_seq.py", line 195, in main
+    node.spin_once()
+  File "/wt/contributions/compute-benchmark/OsakaTX/scripts/nav_goal_seq.py", line 109, in spin_once
+    if not self.client.server_is_ready():
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/action/client.py", line 582, in server_is_ready
+    return self._client_handle.is_action_server_available()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+rclpy._rclpy_pybind11.RCLError: Failed to check if action server is available: rcl node's context is invalid, at ./src/rcl/node.c:404

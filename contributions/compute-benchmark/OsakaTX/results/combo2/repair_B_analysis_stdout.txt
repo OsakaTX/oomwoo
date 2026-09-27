@@ -1,0 +1,22 @@
+
+=== regB1_20260921T081335Z.csv  (slam arm: lifelong, 159 samples) ===
+  goal_sender     PSS mean   52.8 [  52.2..  52.8]  cpu mean    7.4   last-half cpu    7.0  last-half pss   52.8
+  launch_sh       PSS mean   54.2 [  54.1..  54.3]  cpu mean    1.7   last-half cpu    1.2  last-half pss   54.2
+  nav2_container  PSS mean  146.0 [ 141.1.. 149.9]  cpu mean   45.7   last-half cpu   47.3  last-half pss  147.5
+  publisher       PSS mean   47.2 [  47.2..  47.3]  cpu mean    5.7   last-half cpu    5.6  last-half pss   47.2
+  python3_other   PSS mean   45.6 [  45.6..  45.7]  cpu mean    0.1   last-half cpu    0.1  last-half pss   45.6
+  shell           PSS mean    1.1 [   1.1..   1.1]  cpu mean    0.5   last-half cpu    0.5  last-half pss    1.1
+  slam            PSS mean   48.8 [  47.2..  49.8]  cpu mean   40.2   last-half cpu   39.9  last-half pss   49.4
+  SYSTEM steady (last-half): PSS 296.9 MiB [294.9..299.0]  RSS~392.9  cpu-sum 99.7
+  slam PSS whole-window slope +0.447 MiB/min (R2=0.9639) first 47.2 -> last 49.8 MiB
+
+=== G1_20260927T163006Z.csv  (slam arm: lifelong, 155 samples) ===
+  goal_sender     PSS mean   52.8 [  52.8..  52.9]  cpu mean    7.1   last-half cpu    6.6  last-half pss   52.8
+  launch_sh       PSS mean   54.1 [  54.1..  54.2]  cpu mean    1.7   last-half cpu    1.2  last-half pss   54.1
+  nav2_container  PSS mean  144.4 [ 135.5.. 150.1]  cpu mean   46.2   last-half cpu   48.4  last-half pss  145.8
+  publisher       PSS mean   47.4 [  47.3..  47.4]  cpu mean    5.7   last-half cpu    5.5  last-half pss   47.4
+  python3_other   PSS mean   45.5 [  45.5..  45.5]  cpu mean    0.2   last-half cpu    0.1  last-half pss   45.5
+  shell           PSS mean    1.3 [   1.3..   1.3]  cpu mean    0.5   last-half cpu    0.5  last-half pss    1.3
+  slam            PSS mean   49.3 [  47.2..  49.9]  cpu mean   44.3   last-half cpu   44.8  last-half pss   49.9
+  SYSTEM steady (last-half): PSS 295.9 MiB [292.1..300.2]  RSS~391.7  cpu-sum 105.2
+  slam PSS whole-window slope +0.479 MiB/min (R2=0.8195) first 47.2 -> last 49.9 MiB

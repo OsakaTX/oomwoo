@@ -1,0 +1,29 @@
+== sidecar /home/hermes/oomwoo-wt-cb/contributions/compute-benchmark/OsakaTX/results/combo2/cpuattr_G1_threads.csv: rows 2890, median dt 2.0s, samples 205
+  nav2     user   175.9s sys   17.4s ->   47.4 %cpu
+  slam     user   160.8s sys    4.0s ->   40.4 %cpu
+  pyproc   user    43.0s sys    1.5s ->   10.9 %cpu
+  TOTAL      98.7 %cpu (of one core)
+== sampler /home/hermes/oomwoo-wt-cb/contributions/compute-benchmark/OsakaTX/results/combo2/G1_20260927T163006Z.csv: 1240 rows, 155 samples (mean of per-sample sums)
+  nav2       46.2 %cpu
+  slam       44.3 %cpu
+  pyproc     13.0 %cpu
+  other       2.2 %cpu
+== agreement (sidecar - sampler, pp; sampler ps%cpu is an
+   11-s-window average so bounded lag is expected, not an error)
+  slam       -3.9 pp
+  nav2       +1.2 pp
+  pyproc     -2.1 pp
+== hot threads (avg cores per inter-snapshot window, top 12)
+  (thread window span 380 s)
+  TH:lifelong_slam_t  17.8 %cpu (3721725t3721725)
+  TH:component_conta   5.5 %cpu (3721758t3721792)
+  TH:python3           5.4 %cpu (3728113t3728113)
+  TH:component_conta   4.8 %cpu (3721758t3721797)
+  TH:python3           4.5 %cpu (3721013t3721013)
+  TH:lifelong_slam_t   2.9 %cpu (3721725t3721778)
+  TH:lifelong_slam_t   2.9 %cpu (3721725t3721779)
+  TH:lifelong_slam_t   2.9 %cpu (3721725t3721776)
+  TH:lifelong_slam_t   2.9 %cpu (3721725t3721775)
+  TH:lifelong_slam_t   2.9 %cpu (3721725t3721773)
+  TH:lifelong_slam_t   2.9 %cpu (3721725t3721774)
+  TH:lifelong_slam_t   2.9 %cpu (3721725t3721777)
