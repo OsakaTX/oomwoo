@@ -1026,3 +1026,54 @@ measured by this repo yet; treat as adjacent evidence, not ours
 Any objective row that disagrees with the model ⇒ edit the named param(s)
 in `envelope-22n704v160.scad`, re-render (zero-warning, single-component
 STL), then re-print Jig 27 before trusting a pass.
+
+## 27. Dreame "MSDG" suction fan (BOM L25, 6 kPa option row)
+
+one-cad commit 61439c3d ("Add MSDG fan, HEPA filter", committer date
+2026-09-27T00:04:08Z) added `lib/fans/msdg-fan.step` — the FIRST solid
+for the BOM's 6 kPa row ("Dreame MSD-C-3, Nidec 20N709U020"). The
+filename string "msdg" matches the BOM's "MSD-C-3" family only by
+prefix; WHICH commercial suffix this donor is, is UNVERIFIED (row 1).
+Measured by OsakaTX 2026-09-28 on the fetched blob
+(sha256 fef0734a5488d8a4…, 3 600 415 B, AP214-ish header "ST-Developer",
+2 solids). Landmark cloud: `robot-suction-fan-msdg/envelope-msdg-fan.scad`.
+Ring+skyline gauge: `robot-suction-fan-msdg/jig28-cup-gauge.scad` (Jig 28).
+
+| # | Item | Expect (from the STEP) | How to check / which param moves |
+|---|------|------------------------|----------------------------------|
+| 1 | which suffix is "msdg"? | packing slip must name an MSD-* / 20N709U020-class part | identity FIRST: this file may be a sibling of, not the, MSD-C-3 |
+| 2 | overall can Ø | 60.4 (wall circles D60.49/60.38 about the pod axis) | caliper across; Jig 28 ring 60.4 nominal binds/60.8 loose passes ⇒ within ~0.8; moves `wall_od` |
+| 3 | reach of the off-axis Ø72.5 feature pair | 72.48/72.68 across (centers x+3.2, y−2.7 vs pod axis ⇒ 4.2 off-axis) | caliper; identifies the twin-scroll reach; Jig 28 ring 72.5; the FEATURE's role (rotor? scroll wall?) is (estimate) |
+| 4 | total height | 37.0 (z −2.14 … +34.88) | caliper standing on the z−2.14 face; Jig 28 skyline blade; moves nothing (envelope only) |
+| 5 | top hub / proud land | Ø53.8 at z+24.0; Ø44.6 land at z+31.0 | caliper + depth rod vs the z34.88 top; skyline notches 24.0/31.0 |
+| 6 | large top portal pair | Ø46.0/45.8 circles centered (−15.6, +2.3) ⇒ 15.8 off-axis | caliper/sight: are these twin fan inlets? ring 46.0 on Jig 28; role (estimate) |
+| 7 | side arc family | r15.10/14.89 at (−33.2, 0) z4.0..14.2 ⇒ ~Ø30 port mouth INTO the wall? | sight + paper-draft: is that a duct mouth? gate adding side-port geometry |
+| 8 | deep bore at (33.1, 7.3), Ø12.2, spans z4.0..13.8 | bore role: duct? Boss bore? (estimate)) | pin gauge + sight through; resolves the outlet question with row 7 |
+| 9 | pod can | Ø30.2 × h8.90 (z2.76..11.66) + Ø7.4..7.0 top circles at axis | caliper pod; the x9 Ø8.2 circle row at r≈12.3 = bolt row? [E] trial M4/M5 pin |
+| 10 | mass & volts | not in STEP | scale + label photo; BOM electrical row (6 kPa option, $10–23) |
+
+## 28. Dreame X50-family HEPA filter — measured donor (BOM L62 x50 row)
+
+Same one-cad commit 61439c3d added `lib/dreame/dreame_hepa_filter.step`
+(fetched copy sha256 9b18350931f232eb…, 2 087 880 B, build123d/OCC
+7.9 writer, 1 solid). OsakaTX measured it 2026-09-28 (cadquery 2.8;
+oriented bbox by face-normal PCA on the facet cloud — the file's own
+frame is rotated, RAW world bbox 109.85×58.12×67.75 is NOT the part
+envelope). This is the first PRIMARY geometry for the BOM's "~20 kPa
+~110 x 48 x 22" row. Landmark model:
+`hepa-dreame-x50/envelope-dreame-hepa-x50.scad`. Gauges:
+`hepa-dreame-x50/jig29-filter-slide-gauge.scad` (Jig 29 slide+holes).
+
+| # | Item | Expect (from the STEP) | How to check / which param moves |
+|---|------|------------------------|----------------------------------|
+| 1 | machine family of the donor | label/filters list x50 Pro/Ultra/Master etc. | identity — BOM L62 machine list must include what the label says |
+| 2 | length (pleat-axis faces) | 107.10 | caliper; vs BOM "~110" −2.9 — model value wins once confirmed; `L` |
+| 3 | height (cap-to-cap, seat axis) | 50.11 | caliper; **BOM table says 48 ⇒ −2.1 flag** — Jig 29 slide rails H+0.8; if the real part is 48, the donor is a TALLER sibling → re-check row 1; `H` |
+| 4 | thickness (pleat pack) | 24.61 | caliper across the pleats; vs BOM "22" ⇒ +2.6 flag, same caveat; `W` |
+| 5 | plan-corner radius | 8.04 (cap-face arcs) | radius gauge set; `corner_r` |
+| 6 | cap hole pair | 4× Ø6.0 holes; separations 2.06 (thickness dir) × 36.18 (height dir); rows sit ~1.5 in from the cap faces | pin + caliper; Jig 29 `holes` plate; drives any handle/latch design; `hole_*` |
+| 7 | end-cap plate thickness | ~3.5 (3.85/3.50 face pairs) | caliper at the cap edge; cap stiffness for the door seal; n/a envelope |
+| 8 | skirt wall thickness | 2.88 (one measured wall) [E sample=1] | caliper 3 walls, record spread; seal-groove design input |
+| 9 | top notch ("tool ridge") | flank pair dip 13.0°/16.0°, depth reach t0 +1.7, length 43.4 | sight + protractor; confirm it's the unpack-tool notch [E role] |
+| 10 | pleat count / media color | NOT in STEP (interior hidden) — count on sight through the cap window | count + photo; cross-check fill vs 31 t0-bands ≈15 pleats at the mid-plane |
+| 11 | window / latch figures | legacy x50 window 29.9×9.19 remains (estimate) from the sep13 doc round | sight: confirm shape + position on the physical part; no STEP evidence either way |

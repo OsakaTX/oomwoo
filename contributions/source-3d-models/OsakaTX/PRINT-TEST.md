@@ -1014,3 +1014,68 @@ or open an issue with:
 - Measured vs expected results (table)
 - Photos of the part in the jig with caliper readings
 - Any adjustments you made to the SCAD parameters
+
+## Jig 28: Dreame "MSDG" Suction-Fan Landmark Gauge (`robot-suction-fan-msdg/jig28-cup-gauge.scad`, BOM L25 6 kPa row)
+
+**File:** `robot-suction-fan-msdg/jig28-cup-gauge.scad` — render BOTH variants:
+`openscad -D 'pair="rings"' -o jig28-rings.stl ...` and
+`-D 'pair="skyline"' -o jig28-skyline.stl`.
+
+### Print Instructions
+1. The `rings` plate is flat, prints without supports (ring posts 6 mm tall, bridges
+   over the plate bore). PETG preferred — the rings flex onto the fan.
+2. The `skyline` is two upright blades on feet; print flat, no supports, 3 perimeters
+   for the scribe notches to survive handling.
+3. Nominal ring = donor diameter exactly; LOOSE ring = +0.8 mm. Standing order:
+   try NOMINAL first; if it binds, the LOOSE pass tells you the real oversize.
+
+### The rings (from the measured `lib/fans/msdg-fan.step` solid, §27)
+60.4 wall can · 72.48 off-axis feature reach · 53.8 top hub · 30.2 motor pod · 46.0 large top portal.
+
+### Pass Criteria
+- 60.4 nominal ring slides over the body with light friction → donor and purchased
+  fan share the can Ø; 60.8 loose passing while nominal binds = part is ≤0.8 over.
+- Skyline blade rests on the z−2.14 base face and the 24.0 / 31.0 notches touch their
+  lands (feel, no light gap) → hub/land z matches the donor within feather-eye.
+- Any ring that CANNOT pass even loose ⇒ the purchased fan is NOT the donor geometry
+  → record which ring failed and the measured Ø, then update `wall_od`… in
+  `envelope-msdg-fan.scad` (MEASURE-ME §27 row 2-6 map).
+
+### Fail Criteria & Fix
+- Rings pass but the skyline notches miss by a constant offset everywhere → the fan
+  is the same D family, different H → re-measure and split a NEW variant, do NOT
+  bend the shared constants silently.
+- Ring 72.48 passes but 60.4 fails ⇒ the "walls" reading was the smaller sibling —
+  re-check §27 row 3's feature role guess (the off-axis circles may BE the body).
+
+---
+
+## Jig 29: Dreame x50-HEPA Filter Gauges (`hepa-dreame-x50/jig29-filter-slide-gauge.scad`, BOM L62 x50 row)
+
+**File:** `hepa-dreame-x50/jig29-filter-slide-gauge.scad` — two parts:
+`part="slide"` (rails go/no-go for H = 50.11) and `part="holes"`
+(D6.0 twin-bore separation ruler). One print each.
+
+### Print Instructions
+1. `slide`: plate + two rails 12 mm tall, gap = H + 2×0.4. The filter slides
+   pleats-first down the slot. PETG; 4 perimeters on the rails.
+2. `holes`: flat plate with three D6.3 witness bores 21 mm apart (etch reader for the
+   36.18 cap-pair). Add the two purchased-filter cap pins as the go row.
+
+### Pass Criteria
+- The filter drops through the `slide` rails under its own weight with ≤0.5 mm rock
+  ⇒ height ≈50.11 ±0.8 → the one-cad donor IS the machine's filter class, and the
+  BOM-table "48" row value gets a `+2` real-world correction (§28 row 3).
+- BOTH cap pin pairs might drop into the `holes` plate bores and the 36.18 pair
+  straddles two bores ⇒ cap interface confirmed for any door-latch design.
+- Corner radius: filter corners should NOT catch the plate's r8.04 corner fill
+  (checked visually on the slide entry).
+
+### Fail Criteria & Fix
+- Slide binds hard at the rails' TOP entry (before 5 mm depth) → the physical part is
+  taller than 50.11+0.8 → caliper, then move `H` in `envelope-dreame-hepa-x50.scad`.
+- Slide rattles >1 mm side-to-side ⇒ part thinner than 50.11−0.8 → same, `H` down.
+  If H lands ≈48: rejoice — BOM table was right and the donor is a taller sibling;
+  re-check identity (§28 row 1) before trusting ANY donor-derived interface number.
+- Holes: pins do not enter D6.3 ⇒ part uses a different cap interface entirely —
+  photograph the cap, park the donor-locked numbers, restart §28 from row 1.
