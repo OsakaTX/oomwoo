@@ -2,9 +2,8 @@
 // jig29-filter-slide-gauge.scad — Jig 29: HEPA x50 filter gauges
 // Two printed pieces against the MEASURED x50 solid
 //   (107.10 long x 24.61 thick x 50.11 high, corner r8.04):
-// part="slide" : slider go/no-go — slide along Y between rails set at
-//   H+2*clear Using the flat 107.10 face; the HEIGHT (50.11, vs the BOM-
-//   table claim 48) is what this country-row pins down.
+// part="slide" : slider go/no-go — rails set at H+2*clear; the HEIGHT
+//   (50.11 vs the BOM-table claim 48) is what this test pins down.
 // part="holes"  : D6.0 twin-hole slotted ruler; hole separation read
 //   against etched 2.06/36.18 witness pairs.
 // All numbers from cadquery on one-cad lib/dreame/dreame_hepa_filter.stp

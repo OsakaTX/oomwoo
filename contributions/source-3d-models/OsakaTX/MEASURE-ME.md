@@ -1048,7 +1048,7 @@ Ring+skyline gauge: `robot-suction-fan-msdg/jig28-cup-gauge.scad` (Jig 28).
 | 5 | top hub / proud land | Ø53.8 at z+24.0; Ø44.6 land at z+31.0 | caliper + depth rod vs the z34.88 top; skyline notches 24.0/31.0 |
 | 6 | large top portal pair | Ø46.0/45.8 circles centered (−15.6, +2.3) ⇒ 15.8 off-axis | caliper/sight: are these twin fan inlets? ring 46.0 on Jig 28; role (estimate) |
 | 7 | side arc family | r15.10/14.89 at (−33.2, 0) z4.0..14.2 ⇒ ~Ø30 port mouth INTO the wall? | sight + paper-draft: is that a duct mouth? gate adding side-port geometry |
-| 8 | deep bore at (33.1, 7.3), Ø12.2, spans z4.0..13.8 | bore role: duct? Boss bore? (estimate)) | pin gauge + sight through; resolves the outlet question with row 7 |
+| 8 | deep bore at (33.1, 7.3), Ø12.2, spans z4.0..13.8 | bore role: duct? boss bore? (estimate) | pin gauge + sight through; resolves the outlet question with row 7 |
 | 9 | pod can | Ø30.2 × h8.90 (z2.76..11.66) + Ø7.4..7.0 top circles at axis | caliper pod; the x9 Ø8.2 circle row at r≈12.3 = bolt row? [E] trial M4/M5 pin |
 | 10 | mass & volts | not in STEP | scale + label photo; BOM electrical row (6 kPa option, $10–23) |
 
