@@ -303,3 +303,51 @@ and bringup phases are xbattlax's (merged #27) and are not restated. Signal
 ownership rows live in `hardware_signal_ownership.md`. This document only
 adds the **watchdog authority model** and the failsafe-coverage analysis the
 contract draft left implicit.
+
+## 7. 2026-09-28 status — PCB watchdog reworked to an RC charge-pump (WD_OK)
+
+Between 2026-09-27 and 09-28 the pcb repo (`56c51848`…`5c275ad5`, all parsed this
+run — see [`spec_crosscheck_20260928.md`](spec_crosscheck_20260928.md)) replaced the
+RTC/supervisor-era hardware story on the board: the WATCHDOG sheet is now a discrete
+**RC charge-pump** (Q7001 AO3401 + C7001/C7002 + R7001–R7004). Verbatim sheet rules:
+"**Firmware toggles WDI in software (50-1000 Hz, ~50% duty) only while the control
+loop is healthy.** Never drive WDI from a timer/PWM … WD_OK starts at 0 V at
+power-up (fail-safe). WD_OK drives N-FET gates only (14.4 V rail switch, water pump,
+LiDAR incl. laser): no resistive loads. WDI pin: high-Z at reset, no pull-down."
+The `TP74LVC1G332S6` OR and its `DIS1/2/3` inputs documented on 2026-09-26 are
+gone; `JTAG_PRESENCE` is off the MCU boundary; `WDO` was renamed `WDI` (`5c275ad5`).
+
+Status of the tiers and open items above under the new topology:
+
+- **Tier 0 is no longer RTC-owned — it is MCU-owned**, and much stronger: WD_OK-fed
+  rails now cover the motor rail (VM-VBAT), the LiDAR rail (VM-5V-LIDAR) and a new
+  water-pump rail (VM-5V-WATER-PUMP), each ANDed with its enable
+  (`~{VM-VBAT-EN}` / `LiDAR-EN` / `WATER-PUMPU-CTRL`, all MCU-side nets; verified on
+  SYSTEM-POWER / LIDAR / WATER-PUMP sheets @`5c275ad5`). The §5 item 2 question
+  ("is an MCU-death motor-cut required? add the path") is **answered by the
+  hardware**: the path exists; a hung MCU stops feeding WDI and the rails decay
+  (sheet: <1 V in ~100 ms, <0.4 V in ~190 ms — designer claim, unverified).
+- **Tier 3 (external RTC PULSE/LATCH)** still exists as a sheet
+  (`RTC_WATCHDOG.kicad_sch` — root still references it) but saturates: with WD_OK
+  covering motor/rail cuts, the RTC pair's
+  remaining role is CPU power-cycling; §5 item 1 (who arms/feeds PCF85063AT,
+  PULSE-vs-LATCH waveforms) stands unchanged.
+- **MCU-hang row of §4 upgrades from ⚠️ Partial to covered-by-construction** *for
+  the actuator rails* (WD_OK decay) — the same caveat as before applies to any
+  resistive/always-on load, per the sheet's own "no resistive loads" line.
+- **OSK-029 shrinks to pure firmware ratification**: the hardware input contract is
+  now written on the sheet (software-toggle-only, 50–1000 Hz, ~50 % duty, high-Z at
+  reset). fw PR #3's 150 ms timeout and its kick implementation must be checked
+  against that band; no hardware number remains to be chosen.
+- **OSK-037 reframed**: the DIS/OR stage is gone; `~{STM_RST}`/`BOOT0`/SWD remain
+  direct CM5→MCU nets. The fw questions (may the CPU hold the MCU in reset across a
+  reflash; is WDI feeding paused during debug) are unchanged and now have no
+  `JTAG_PRESENCE`/`DIS*` semantics to define alongside them.
+- **New duty-cycle caveat (OSK-038)**: Carpet-sensor sheet TODO — "may need
+  watchdog (LO left HIGH for extended time stresses R7011)"; the flame-sensor-style
+  LO drive needs a bounded duty cycle in fw #3's actuator rules.
+
+The contract-relevant constant list for fw #1/#3 ratification is therefore now:
+WDI toggle band 50–1000 Hz (hw sheet), CPU heartbeat timeout 150 ms (fw PR #3
+proposal, issue #1), rail-decay ≈100 ms class (sheet claim) — three numbers, two
+already pinned, one (150) awaiting maintainer sign-off.

@@ -57,12 +57,13 @@ for those.
 | OSK-003 | IMU SPI ownership: MCU controls, CPU needs data | Medium | Open |
 | OSK-004 | Side brush count: two PWM outputs, one contract field | Low | Open (HW-SW-005) |
 | OSK-005 | Wire v1→v2 and the open firmware RFC | High | Open (firmware#1) |
-| OSK-006 | MCU part discrepancy: G070 vs G473 | Low | Open (acknowledged) |
+| OSK-006 | MCU part discrepancy: G070 vs G473 | Low | Open (acknowledged; pcb-schematic side closed upstream 09-28 — G070 sheet file deleted in `5c275ad5` — ARCHITECTURE.md §5.4 text update still owed) |
 | OSK-033 | PB13 dual role: `RK-RESET` GPIO vs `FDCAN2_TX` alt-fn (xlsx row 52) | High | Open — decide before fw pins FDCAN2 (*new 09-22, `spec_crosscheck_20260922.md`; re-confirmed verbatim 09-24*) |
 | OSK-034 | `PI_SHUTDOWN` (PB6) teardown semantics undocumented (level/duration/ack/timeout; interaction with PI-RESET/STM-PWR-CTRL/RK-RESET) | High | Open — maintainer, before first HIL bring-up (*new 09-24, `spec_crosscheck_20260924.md` §2*) |
 | OSK-035 | `LED-HOME` dual-home: xlsx primary PC13 vs PB12 alias | Low-Med | Open — one maintainer xlsx note settles it (*new 09-24, `spec_crosscheck_20260924.md` §4*) |
 | OSK-036 | MCU↔charger `I2C3_SCL/SDA` + `~{CHG_INT}` removed from the schematic; replacement charger-status source undocumented after the power rework | Medium | Open — maintainer to name the replacement sense point (*new 09-26, `spec_crosscheck_20260926.md` §5*) |
-| OSK-037 | CPU reset/debug vs watchdog: CM5 `~{STM_RST}`/`BOOT0`/SWD now feed the MCU-reset/OR chain; fw must define the interplay; pins xlsx-unmapped | Low-Med | Open — fw side to state intended behavior (*new 09-26, `spec_crosscheck_20260926.md` §3/§5*) |
+| OSK-037 | CPU reset/debug vs watchdog: `~{STM_RST}`/`BOOT0`/SWD reach the MCU reset path (direct nets since the 09-28 rework; the 09-26 OR/DIS stage was deleted); fw must define the interplay | Low-Med | Open — fw side to state intended behavior (*new 09-26 `spec_crosscheck_20260926.md`; reframed 09-28*) |
+| OSK-038 | Carpet-sensor `LO` continuous-on duty: sheet TODO "may need watchdog (LO left HIGH for extended time stresses R7011)" after AO3400 low-side redesign; bound-duty rule owed in fw actuator section | Low-Med | Open — fw #3 actuator rules must bound `CARPET-SENSOR-LO` on-time (*new 09-28, `spec_crosscheck_20260928.md` §4*) |
 
 > Items OSK-007..033 live in the crosscheck history
 > (`spec_crosscheck_20260809..20260924.md`), not in this file's detail sections; the
@@ -86,6 +87,30 @@ for those.
 > `GPIO011`→`SP_SHUTDOWN` — CPU-owned, no contract message. (4) maintainer xlsx
 > NOT updated in the commit ⇒ new pins xlsx-unmapped; `PB12=LDR?` unverified.
 > Registry no drift (fw tip still `d103a5d4`; PR #6 open, docs-only).
+>
+> **2026-09-28 status:** deltas only; full evidence in
+> [`spec_crosscheck_20260928.md`](spec_crosscheck_20260928.md). pcb lands **11
+> commits** 09-27/09-28 (`56c51848`…`5c275ad5`, head now `5c275ad5`); firmware
+> unchanged (`d103a5d4`); SPEC.md unchanged since `c9b9c868` (sep26 quotes stand).
+> (1) **Watchdog hardware rewritten a second time**: WATCHDOG sheet is now a
+> discrete **RC charge-pump** (Q7001 AO3401); the sep26 U4 OR/`DIS1-3` stage and
+> the STWD100 supervisor era are both gone from the sheet; MCU `WDO` renamed
+> **`WDI`**; sheet dictates the input rule in writing — software-only toggling,
+> 50–1000 Hz ~50 % duty, never timer/PWM, high-Z at reset ⇒ **OSK-029 hardware
+> side fully pinned; only the fw timeout (150 ms proposal) remains to
+> ratify.** (2) **`=VM-VBAT` rail model**: VM-5V switch removed; motor rail
+> VM-VBAT gated by `WD_OK AND ~{VM-VBAT-EN}` (new MCU output); LiDAR and new
+> WATER-PUMP rails each WD_OK-gated ⇒ MCU-death rail-cut path now exists by
+> construction (OSK-024 same net family: `V-MOTORS-EN` name retired; CPU side unchanged).
+> (3) **OSK-018 pcb-side CLOSED**: `5c275ad5` deletes `STM32G070RBT6.kicad_sch`
+> (−21022); doc-side (ARCHITECTURE.md) stays open in OSK-006. (4) **OSK-038
+> NEW (open, Low-Med)**: carpet `LO` extended-HIGH thermal TODO ⇒ fw must bound
+> the duty cycle. (5) xlsx still `WDO`/`CARPET-SENSOR-HI` era names + no rows for
+> `WDI`/`~{VM-VBAT-EN}` — maintainer sync pending (with OSK-035). (6) PR
+> census: main #69 (StreamDecoder fuzz tests) + #70 (command-gate reference
+> oracle, 57-vector corpus) open; fw #7 (MCU_HELLO identity handshake) + #8
+> (cross-repo corpus conformance) open; fw #3 rebased, proposal unchanged —
+> all directly in this module's surface; none merged as of this run.
 
 ---
 

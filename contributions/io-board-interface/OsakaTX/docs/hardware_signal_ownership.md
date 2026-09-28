@@ -80,6 +80,37 @@
 > for the rows it already covers (`PB12=LDR?` is inferred from the sheet
 > symbol, not xlsx-confirmed). MCU-sheet hier-label census 75→75 (set delta =
 > the seven names in (1)/(2)); CM5-GPIO 26→31.
+>
+> **2026-09-28 refresh (pcb `c9b9c868`→`5c275ad5`, 11 commits 09-27/09-28, per
+> [`spec_crosscheck_20260928.md`](spec_crosscheck_20260928.md)):** the power/
+> watchdog ownership model rewritten a second time; four net-level facts, each
+> verified from the sheets at `5c275ad5` this run. (1) **MCU becomes the sole
+> heartbeat+rail authority**: WATCHDOG sheet is now a discrete **RC charge-pump**
+> (Q7001 `AO3401`; the 09-26 `TP74LVC1G332S6` OR and `DIS1/2/3` are deleted;
+> `JTAG_PRESENCE` leaves the MCU boundary with the OR); MCU out `WDO` renamed
+> **`WDI`** (`5c275ad5`) still the only kick source; **new MCU output
+> `~{VM-VBAT-EN}`** plus `3.3V_EN/5V_EN/USB_PWR_EN` — the MCU-side of `## CPU
+> interface` above grows by one master motor-rail enable. The motor rail is now
+> named **`VM-VBAT`**, gated `WD_OK AND ~{VM-VBAT-EN}` (SYSTEM-POWER sheet,
+> verbatim: "VM-VBAT (motors, fan) is on only while WD_OK is high (RC watchdog
+> fed) AND ~{VM-VBAT-EN} is low."); sep26's `V-MOTORS-EN` name is retired. The
+> OSK-024 row below keeps its CPU-side wave/PULSE notes; the rail side is
+> MCU/WD_OK-owned as of this rework. (2) **Per-rail watchdog gating spreads**:
+> LiDAR "On only while WD_OK is high AND LiDAR-EN is low (Q7003 …)"; new
+> WATER-PUMP sheet gates `VM-5V-WATER-PUMP` the same way via
+> `WATER-PUMPU-CTRL` (PC0) / `WATER-PUMP-SENSE-ADC` (PA7, xlsx rows 15/29);
+> "Old VM-5V switch removed" (SYSTEM-POWER text). (3) **`~{VM-VBAT-EN}` and
+> `WDI` have no maintainer-xlsx row yet**; the xlsx still says PD8=`WDO` and
+> PE10=`CARPET-SENSOR-HI` while the sheet now reads `WDI` and
+> ~~CARPET-SENSOR-HI~~ (renamed to VM-VBAT-EN duty by `4f70f300` — the PE10
+> physical-pin successor is unconfirmed); OSK-035 PB12 row unchanged. (4)
+> Carpet drive simplified to one low-side `AO3400` + 330R pull-up (P-FET
+> half-bridge removed, "could not turn it off at 290 kHz"); on-sheet TODO "may
+> need watchdog (LO left HIGH for extended time stresses R7011)" ⇒ **OSK-038
+> (new, Low-Med)** bound-duty-cycle rule owed in fw #3's actuator section.
+> MCU hier labels 75→74 (delta: −`JTAG_PRESENCE` −`CARPET-SENSOR-HI`
+> −`WDO`, +`WDI` +`~{VM-VBAT-EN}`); `Main.kicad_pcb` relayout #6 dep recorded
+> (blob `6a8fa0ec`, pad-truth OSK-030/031 debt now six layouts).
 
 Cross-reference: I/O board **SPEC.md GPIO entries** → **CPU/MCU serial message fields**
 and **ROS2 topics**.
