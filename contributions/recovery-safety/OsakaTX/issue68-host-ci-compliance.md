@@ -92,3 +92,39 @@ All numbers in §1/§2 were produced this run (2026-09-27) by
   tip `988dc6e`), subdir `contributions/recovery-safety/OsakaTX/roe/`
 
 Re-run before quoting any count elsewhere; counts rot.
+
+## 5. Execution note (2026-09-29): #68 landed
+
+Issue #68 merged 2026-09-28 as upstream `fc8eb03` (`merged_at
+2026-09-28T23:55:39Z` per the pulls API; merge-commit SHA confirmed) and
+closed. Contents: exactly ONE file changed vs the pre-PR workflow,
+`+9/-0` — `.github/workflows/host-contribution-tests.yml` (PR files API).
+Landed step text, fetched from `upstream/main` @ `fc8eb03` verbatim:
+
+```
+      - name: Install pytest for recovery-safety tests
+        run: python3 -m pip install --disable-pip-version-check pytest
+      - name: Run recovery-safety tests (rclpy stubbed, no ROS graph)
+        env:
+          PYTHONDONTWRITEBYTECODE: '1'
+        working-directory: contributions/recovery-safety/xbattlax/oomwoo_recovery_safety
+        run: |
+          PYTHONPATH="$PWD" python3 -m pytest test -q
+```
+
+This is §1's verified form, byte-for-byte on the invocation line. The
+§1.2 pip trade-off question was answered upstream by landing the pip step
+as the PR itself proposed. Upstream CI on `fc8eb03`: workflow run "Host
+contribution tests" = success (created 2026-09-28T23:55:41Z, runs API) —
+green on its first run.
+
+§3 recommendation: **EXECUTED.** This memo now serves as (a) the
+verified-claims record for what landed and (b) the standing §2 deltas if
+the OsakaTX `roe` suite is ever wired into the same job.
+
+Also re-checked this run: upstream recovery blobs UNCHANGED at
+`fc8eb03` (`git ls-tree`: `core.py` `7bd5faba`, `recovery_node.py`
+`1f4d0487`); upstream delta `7470a66..fc8eb03` = this PR's own chain
+(`f9d8b86` + two upstream-side merges) plus io-board PRs #69/#70 (other
+module; no recovery-safety files). `gz_bridge.yaml` @ oomwoo-one jazzy
+`e7759d4` still has zero `oomwoo/` entries (grep count 0).
